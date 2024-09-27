@@ -1,8 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 
 const servicesEntry = (await getCollection('services'))[0];
 const { services } = servicesEntry.data;
+
+const iconMap = {
+  'Precision Mapping': 'heroicons:map',
+  'Drone Surveying': 'heroicons:video-camera',
+  'BIM Integration': 'heroicons:building-office',
+  'Environmental Analysis': 'heroicons:beaker',
+};
 ---
 
 <section class="py-20 bg-gradient-to-b from-gray-100 to-white">
@@ -11,8 +19,8 @@ const { services } = servicesEntry.data;
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {services.map((service) => (
         <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 group">
-          <div class="text-hr-accent text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-            {service.icon}
+          <div class="text-hr-accent w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <Icon name={iconMap[service.title]} />
           </div>
           <h3 class="text-xl font-semibold mb-2 text-hr-dark">{service.title}</h3>
           <p class="text-gray-600">{service.description}</p>
