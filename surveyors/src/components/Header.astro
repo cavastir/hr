@@ -13,7 +13,7 @@ const navItems = [
       <span class="text-hr-accent group-hover:rotate-180 transition-transform duration-500">⚡</span>
       <span><span class="text-hr-accent">HR</span>SURVEYORS</span>
     </a>
-    <nav class="hidden md:block">
+    <nav class="hidden md:flex items-center space-x-6">
       <ul class="flex space-x-6">
         {navItems.map((item) => (
           <li>
@@ -21,6 +21,9 @@ const navItems = [
           </li>
         ))}
       </ul>
+      <a href="/contact" class="bg-hr-accent text-hr-dark px-4 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
+        Book a Call
+      </a>
     </nav>
     <button class="md:hidden text-hr-accent" id="mobile-menu-toggle">
       ☰
@@ -35,6 +38,9 @@ const navItems = [
         {item.name}
       </a>
     ))}
+    <a href="/contact" class="bg-hr-accent text-hr-dark px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
+      Book a Call
+    </a>
   </div>
 </div>
 
