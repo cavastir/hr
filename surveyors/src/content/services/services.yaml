@@ -1,0 +1,30 @@
+services:
+  - title: Building and Construction
+    icon: building-office
+    shortDesc: High-precision surveys for diverse building projects.
+    longDesc: Comprehensive surveys for apartments, high-rises, schools, and residential builds. Adaptable solutions from initial site datum to final as-constructed surveys.
+
+  - title: Civil Construction
+    icon: truck
+    shortDesc: Expert surveying for major civil engineering projects.
+    longDesc: Specialized in road upgrades, sub-divisions, bridges, pipelines, and rail projects. Offering control networks, set-outs, volume calculations, and 3D modeling.
+
+  - title: Infrastructure
+    icon: cog
+    shortDesc: Large-scale infrastructure project management.
+    longDesc: Experienced in Australia's biggest infrastructure projects. Streamlined procedures for conformance reports, RFI, and data management.
+
+  - title: Feature and Level
+    icon: map
+    shortDesc: Crucial surveys for development planning.
+    longDesc: Essential for new buildings, sub-divisions, and major constructions. Establishes accurate survey control for design and construction phases.
+
+  - title: Point Clouds
+    icon: cloud
+    shortDesc: Cutting-edge 3D scanning solutions.
+    longDesc: Utilizing latest scanning technologies and software. Providing exportable point clouds and accurate files accessible via client login.
+
+  - title: Specification Surveys (A-SPEC)
+    icon: document-text
+    shortDesc: Comprehensive A-SPEC surveys for infrastructure.
+    longDesc: Producing GIS as-constructed data for D-Spec (Drainage), R-Spec (Roads), and O-Spec (Open space) requirements.
