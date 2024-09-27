@@ -1,0 +1,45 @@
+---
+const projects = [
+  {
+    title: 'Urban Skyline Mapping',
+    description: 'Comprehensive 3D mapping of downtown skyscrapers for urban planning.',
+    icon: '🏙️',
+    color: 'bg-blue-500',
+  },
+  {
+    title: 'Coastal Erosion Study',
+    description: 'High-precision drone surveys to monitor and analyze coastal erosion patterns.',
+    icon: '🌊',
+    color: 'bg-green-500',
+  },
+  {
+    title: 'Highway Expansion Project',
+    description: 'Detailed topographic surveys for a major interstate expansion project.',
+    icon: '🛣️',
+    color: 'bg-yellow-500',
+  },
+];
+---
+
+<section class="py-20 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16 text-hr-dark">Featured Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project) => (
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class={`relative h-48 ${project.color} flex items-center justify-center`}>
+            <span class="text-6xl">{project.icon}</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-hr-dark">{project.title}</h3>
+            <p class="text-gray-600 mb-4">{project.description}</p>
+            <a href="/projects" class="text-hr-accent hover:underline inline-flex items-center">
+              Learn more
+              <span class="ml-1">→</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

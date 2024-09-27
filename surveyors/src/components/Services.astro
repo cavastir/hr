@@ -1,0 +1,45 @@
+---
+const services = [
+  {
+    title: 'Precision Mapping',
+    description: 'State-of-the-art 3D mapping for unparalleled accuracy in urban planning and development.',
+    icon: '🗺️',
+  },
+  {
+    title: 'Drone Surveying',
+    description: 'Cutting-edge aerial surveys for rapid data collection and comprehensive site analysis.',
+    icon: '🚁',
+  },
+  {
+    title: 'BIM Integration',
+    description: 'Seamless integration of survey data into Building Information Modeling for smarter construction.',
+    icon: '🏗️',
+  },
+  {
+    title: 'Environmental Analysis',
+    description: 'Advanced terrain and environmental assessments for sustainable project planning.',
+    icon: '🌿',
+  },
+];
+---
+
+<section class="py-20 bg-gradient-to-b from-gray-100 to-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16 text-hr-dark">Our Cutting-Edge Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {services.map((service, index) => (
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+          <div class="text-hr-accent text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+            {service.icon}
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-hr-dark">{service.title}</h3>
+          <p class="text-gray-600">{service.description}</p>
+          <a href="/services" class="mt-4 inline-flex items-center text-hr-accent hover:underline">
+            Learn more
+            <span class="ml-1">→</span>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

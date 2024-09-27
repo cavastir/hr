@@ -1,0 +1,53 @@
+---
+const currentYear = new Date().getFullYear();
+const socialLinks = [
+  { name: 'Facebook', icon: 'f', url: '#' },
+  { name: 'Twitter', icon: 't', url: '#' },
+  { name: 'LinkedIn', icon: 'in', url: '#' },
+  { name: 'Instagram', icon: 'ig', url: '#' },
+];
+---
+
+<footer class="bg-hr-dark text-hr-light py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold mb-4 flex items-center space-x-2">
+          <span class="text-hr-accent">⚡</span>
+          <span><span class="text-hr-accent">HR</span>SURVEYORS</span>
+        </h3>
+        <p class="text-sm">Pioneering precision engineering solutions since 2012.</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="/services" class="hover:text-hr-accent transition-colors">Services</a></li>
+          <li><a href="/projects" class="hover:text-hr-accent transition-colors">Projects</a></li>
+          <li><a href="/careers" class="hover:text-hr-accent transition-colors">Careers</a></li>
+          <li><a href="/contact" class="hover:text-hr-accent transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+        <address class="not-italic">
+          <p>123 Survey Street, Engineering City, 12345</p>
+          <p>Phone: (123) 456-7890</p>
+          <p>Email: info@hrsurveyors.com</p>
+        </address>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+        <div class="flex space-x-4">
+          {socialLinks.map((link) => (
+            <a href={link.url} class="text-hr-light hover:text-hr-accent transition-colors" aria-label={link.name}>
+              {link.icon}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+      <p>&copy; {currentYear} HR Surveyors. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

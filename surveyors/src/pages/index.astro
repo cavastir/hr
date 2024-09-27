@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+const pageTitle = "HR Surveyors - Precision Engineering Surveys";
+const pageDescription = "HR Surveyors provides efficient and accurate survey solutions for construction and infrastructure projects since 2012.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Hero />
+  <Services />
+  <FeaturedProjects />
+  <Testimonials />
+  <CallToAction />
+</Layout>

@@ -1,0 +1,42 @@
+---
+const testimonials = [
+  {
+    quote: "HR Surveyors' precision and efficiency significantly accelerated our project timeline.",
+    author: "Jane Doe",
+    position: "Project Manager, MegaBuild Corp",
+  },
+  {
+    quote: "Their innovative approach to surveying helped us overcome complex terrain challenges.",
+    author: "John Smith",
+    position: "Chief Engineer, EcoTech Solutions",
+  },
+  {
+    quote: "The team's expertise in 3D mapping was crucial for our urban renewal project's success.",
+    author: "Emily Johnson",
+    position: "Urban Planner, MetroCity Development",
+  },
+];
+---
+
+<section class="py-20 bg-hr-dark text-hr-light">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16">What Our Clients Say</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <span class="text-4xl text-hr-accent mb-4 block">"</span>
+          <p class="mb-4 italic">{testimonial.quote}</p>
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-hr-accent rounded-full flex items-center justify-center mr-4">
+              <span class="text-2xl text-hr-dark">👤</span>
+            </div>
+            <div>
+              <p class="font-semibold">{testimonial.author}</p>
+              <p class="text-sm text-gray-400">{testimonial.position}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
