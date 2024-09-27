@@ -1,25 +1,24 @@
 ---
 import { Image } from 'astro:assets';
+import fallbackImage from '../assets/fallback-hero.jpg';
 
-// Import a placeholder image or use a default one
-import placeholderImage from '../assets/placeholder-hero.jpg';
-
-// Try to import the hero image, fall back to placeholder if not found
 let heroImage;
 try {
   heroImage = (await import('../assets/hero-image.jpg')).default;
 } catch (e) {
-  console.warn('Hero image not found, using placeholder');
-  heroImage = placeholderImage;
+  console.warn('Hero image not found, using fallback image');
+  heroImage = fallbackImage;
 }
 ---
 
 <section class="relative h-screen overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-r from-hr-dark to-transparent z-10"></div>
   <Image 
-    src={heroImage} 
-    alt="Engineering survey site" 
+    src={heroImage}
+    alt="Engineering survey site"
     class="absolute inset-0 w-full h-full object-cover object-center"
+    loading="eager"
+    format="avif"
   />
   <div class="relative container mx-auto px-4 h-full flex flex-col justify-center z-20">
     <h1 class="text-6xl font-bold text-hr-light mb-4 animate-fade-in-up">
