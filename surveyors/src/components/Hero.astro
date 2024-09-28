@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import fallbackImage from '../assets/fallback-hero.jpg';
-import Certifications from './Certifications.astro';
 
 let heroImage;
 try {
@@ -24,38 +23,31 @@ try {
   </div>
 
   <div class="relative z-10 container mx-auto px-4 pt-32 pb-16 flex flex-col justify-between min-h-[calc(100vh-2rem)]">
-    <div class="max-w-[70%] bg-white bg-opacity-80 p-8 clip-path-hero rounded-tl absolute bottom-0 left-0">
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-hr-dark leading-tight mb-4">
-        Elevating<br />Precision
+    <div class="w-[60%] bg-white bg-opacity-90 p-8 clip-path-hero rounded-tl absolute bottom-0 left-0">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-hr-dark leading-tight mb-6">
+        Australia's Leading<br />Engineering Surveyors
       </h1>
-      <p class="text-xl sm:text-2xl font-light text-hr-dark mb-6">
-        Australia's Leading Engineering Surveyors
-      </p>
-      <p class="text-lg text-gray-600 mb-8">
+      <p class="text-base text-gray-600 mb-8">
         Delivering high-quality survey solutions since 2012.
       </p>
       <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-        <a href="/contact" class="bg-hr-accent text-white px-8 py-4 rounded font-bold hover:bg-hr-dark transition-all duration-300 text-center">
+        <a href="/contact" class="bg-hr-accent text-white px-6 py-3 rounded font-bold hover:bg-hr-dark transition-all duration-300 text-center">
           Start Your Project
         </a>
-        <a href="/services" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded font-bold hover:bg-hr-dark hover:text-white transition-all duration-300 text-center">
+        <a href="/services" class="bg-transparent border-2 border-hr-dark text-hr-dark px-6 py-3 rounded font-bold hover:bg-hr-dark hover:text-white transition-all duration-300 text-center">
           Our Services
         </a>
       </div>
     </div>
-  </div>
-
-  <div class="relative z-10 bg-white py-8">
-    <Certifications />
   </div>
 </section>
 
 <style>
   .clip-path-hero {
     clip-path: polygon(
-      0 0, 100% 0, 100% 60%, 
-      80% 60%, 80% 80%, 
-      60% 80%, 60% 100%, 
+      0 0, 100% 0, 100% 65%, 
+      85% 65%, 85% 82.5%, 
+      70% 82.5%, 70% 100%, 
       0 100%
     );
   }

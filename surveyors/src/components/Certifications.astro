@@ -1,19 +1,32 @@
 ---
 const certifications = [
-  { name: 'ISO 9001', logo: '/path-to-iso-9001-logo.png' },
-  { name: 'RICS', logo: '/path-to-rics-logo.png' },
-  { name: 'Chartered Surveyors', logo: '/path-to-chartered-surveyors-logo.png' },
-  { name: 'ACENZ', logo: '/path-to-acenz-logo.png' },
+  { name: 'ISO 9001', logo: '/iso.jpg' },
+  { name: 'RICS', logo: '/rics.jpg' },
+  { name: 'Surveyors Australia', logo: '/sa.jpg' },
+  { name: 'VBA', logo: '/vba.jpg' },
 ];
 ---
 
-<div class="container mx-auto px-4">
-  <h2 class="text-xl font-bold text-center text-hr-dark mb-6">Our Professional Certifications</h2>
-  <div class="flex justify-center items-center space-x-8 flex-wrap">
-    {certifications.map((cert) => (
-      <div class="w-24 h-16 flex items-center justify-center">
-        <img src={cert.logo} alt={`${cert.name} certification`} class="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
+<div class="bg-white py-8">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold text-center text-hr-dark mb-6">Our Professional Certifications</h2>
+    <div class="flex justify-center items-center space-x-4 sm:space-x-8 flex-wrap">
+      {certifications.map((cert) => (
+        <div class="w-20 sm:w-24 h-14 sm:h-16 flex items-center justify-center">
+          <img 
+            src={cert.logo} 
+            alt={`${cert.name} certification`} 
+            class="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300" 
+          />
+        </div>
+      ))}
+    </div>
   </div>
 </div>
+
+<style>
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
