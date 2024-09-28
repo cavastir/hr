@@ -10,10 +10,12 @@ export default {
 			},
 			backgroundColor: {
 				'hr-dark': 'rgba(62, 62, 63, var(--tw-bg-opacity))',
+				'white': 'rgba(255, 255, 255, var(--tw-bg-opacity))',
 			},
 			backgroundOpacity: {
 				'20': '0.2',
 				'70': '0.7',
+				'98': '0.98',
 			},
 			animation: {
 				'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
