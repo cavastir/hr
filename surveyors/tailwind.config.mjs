@@ -31,6 +31,9 @@ export default {
 					},
 				},
 			},
+			borderRadius: {
+				'custom': '6px',
+			},
 		},
 	},
 	plugins: [],
