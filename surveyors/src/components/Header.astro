@@ -1,66 +1,41 @@
 ---
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Projects', href: '/projects' },
+  { name: 'What we do', href: '/services', hasDropdown: true },
+  { name: 'Our work', href: '/projects' },
+  { name: 'Why choose us', href: '/about' },
+  { name: 'Our resources', href: '/resources' },
   { name: 'Contact', href: '/contact' },
 ];
 ---
 
-<header class="bg-hr-dark text-hr-light sticky top-0 z-50 transition-all duration-300" id="header">
+<header class="absolute top-0 left-0 right-0 z-50 bg-hr-dark bg-opacity-20 backdrop-blur-md">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="/" class="text-2xl font-bold flex items-center space-x-2 group">
-      <span class="text-hr-accent group-hover:rotate-180 transition-transform duration-500">⚡</span>
+    <a href="/" class="text-2xl font-bold text-white flex items-center space-x-2">
+      <span class="text-hr-accent">⚡</span>
       <span><span class="text-hr-accent">HR</span>SURVEYORS</span>
     </a>
     <nav class="hidden md:flex items-center space-x-6">
-      <ul class="flex space-x-6">
-        {navItems.map((item) => (
-          <li>
-            <a href={item.href} class="hover:text-hr-accent transition-colors">{item.name}</a>
-          </li>
-        ))}
-      </ul>
-      <a href="/contact" class="bg-hr-accent text-hr-dark px-4 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
-        Book a Call
+      {navItems.map((item) => (
+        <a href={item.href} class="text-white hover:text-hr-accent transition-colors">
+          {item.name}
+          {item.hasDropdown && <span class="ml-1">▼</span>}
+        </a>
+      ))}
+      <a href="/contact" class="bg-hr-accent text-hr-dark px-4 py-2 font-semibold hover:bg-opacity-90 transition-colors">
+        Get in touch
       </a>
     </nav>
-    <button class="md:hidden text-hr-accent" id="mobile-menu-toggle">
+    <button class="md:hidden text-white" id="mobile-menu-toggle">
       ☰
     </button>
   </div>
 </header>
 
+<!-- Mobile menu (hidden by default) -->
 <div class="fixed inset-0 bg-hr-dark bg-opacity-90 z-40 transform transition-transform duration-300 translate-x-full" id="mobile-menu">
-  <div class="flex flex-col h-full justify-center items-center space-y-8">
-    {navItems.map((item) => (
-      <a href={item.href} class="text-hr-light text-2xl hover:text-hr-accent transition-colors">
-        {item.name}
-      </a>
-    ))}
-    <a href="/contact" class="bg-hr-accent text-hr-dark px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
-      Book a Call
-    </a>
-  </div>
+  <!-- Mobile menu content -->
 </div>
 
 <script>
-  const header = document.getElementById('header');
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  let lastScrollY = window.scrollY;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > lastScrollY) {
-      header.classList.add('-translate-y-full');
-    } else {
-      header.classList.remove('-translate-y-full');
-    }
-    lastScrollY = window.scrollY;
-  });
-
-  mobileMenuToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('translate-x-full');
-  });
+  // Mobile menu toggle script
 </script>

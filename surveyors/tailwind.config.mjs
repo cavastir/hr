@@ -8,6 +8,13 @@ export default {
 				'hr-light': '#FFFFFF',
 				'hr-accent': '#BBCF31',
 			},
+			backgroundColor: {
+				'hr-dark': 'rgba(62, 62, 63, var(--tw-bg-opacity))',
+			},
+			backgroundOpacity: {
+				'20': '0.2',
+				'70': '0.7',
+			},
 			animation: {
 				'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
 				'bounce': 'bounce 1s infinite',

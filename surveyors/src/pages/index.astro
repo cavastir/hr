@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Certifications from '../components/Certifications.astro';
 
 const pageTitle = "HR Surveyors - Precision Engineering Surveys";
 const pageDescription = "HR Surveyors provides efficient and accurate survey solutions for construction and infrastructure projects since 2012.";
 
 const components = [
   { name: 'Hero', import: () => import('../components/Hero.astro') },
+  { name: 'Certifications', import: () => Promise.resolve({ default: Certifications }) },
   { name: 'Services', import: () => import('../components/Services.astro') },
   { name: 'FeaturedProjects', import: () => import('../components/FeaturedProjects.astro') },
   { name: 'Testimonials', import: () => import('../components/Testimonials.astro') },
