@@ -1,55 +1,53 @@
 ---
-import { getEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
+import { getEntry } from 'astro:content';
 
-const { data } = await getEntry('services', 'services');
-const { services } = data;
+const { data: { services } } = await getEntry('services', 'services');
 
 const updatedServices = [
   {
     title: "Building and Construction",
-    icon: "building-office-2",
+    icon: "heroicons:building-office-2",
     shortDesc: "High-precision surveys for apartment complexes, high-rise buildings, schools, and residential projects.",
     fullDesc: "With extensive experience in the building and construction sector, we deliver high-precision surveys for apartment complexes, high-rise buildings, schools, and residential projects. Understanding that each project is unique, we tailor our services to meet the specific needs of every client. From initial site datum setup to final as-constructed surveys, our team ensures accurate data and seamless execution, giving you the confidence to complete your project on time and within budget."
   },
   {
     title: "Civil Construction",
-    icon: "truck",
+    icon: "heroicons:truck",
     shortDesc: "Expertise for road upgrades, subdivisions, bridges, pipelines, and rail projects.",
     fullDesc: "From road upgrades and subdivisions to bridges, pipelines, and rail projects, HR Surveyors offers the expertise required for your civil construction needs. Our services include control network setup, on-site set out and pickups, volume calculations, 3D modeling, and final as-built surveys. Whether you need a dedicated team of surveyors to manage your project or a one-time visit to set up, we deliver the same high-quality, reliable service every time."
   },
   {
     title: "Infrastructure & Mining",
-    icon: "cube-transparent",
+    icon: "heroicons:cube-transparent",
     shortDesc: "Managing major projects in urban and rural settings, including Australia's largest infrastructure and mining projects.",
     fullDesc: "With extensive experience in some of Australia's largest infrastructure and regional mining projects, we have the systems in place to efficiently manage your major undertaking, whether in urban or rural settings. From submitting conformance reports to handling RFIs and managing data, we ensure that all records are current, facilitating seamless project execution and on-time handover. Our highly skilled surveyors offer expert advice and reliable service, giving you the confidence you need throughout the entire project lifecycle."
   },
   {
     title: "Feature and Level Survey",
-    icon: "map",
+    icon: "heroicons:map",
     shortDesc: "Essential data collection for accurate design in development projects.",
     fullDesc: "A Feature and Level survey is a crucial step in the planning of any development project, whether for a new building, subdivision, or major construction endeavor. This type of survey provides essential data that forms the foundation for accurate design before construction begins. By establishing precise survey control to a local datum or MGA/AHD from the outset, we ensure continuity and adherence to standards throughout every aspect of the development process."
   },
   {
     title: "Laser Scanning",
-    icon: "cube",
+    icon: "heroicons:cube",
     shortDesc: "Advanced 3D laser scanning for detailed digital models of structures and environments.",
     fullDesc: "We utilize advanced 3D laser scanning technology to capture highly accurate spatial data of structures and environments. This non-invasive method generates detailed digital models, providing essential information for applications in architecture, construction, and heritage preservation. By rapidly gathering millions of data points, our service streamlines project planning, design, and analysis. The resulting point clouds and 3D models integrate seamlessly with various software applications, enhancing collaboration and decision-making. Trust our experienced team to deliver high-quality results tailored to your project needs."
   },
   {
     title: "UAV (Drone Survey)",
-    icon: "paper-airplane",
+    icon: "heroicons:paper-airplane",
     shortDesc: "Cutting-edge drone technology for aerial mapping and imagery across multiple industries.",
     fullDesc: "Our UAV (Drone Survey) service utilizes cutting-edge drone technology to deliver accurate and efficient aerial mapping and imagery for various applications. This innovative approach enables us to capture high-resolution images and videos, providing essential data for informed decision-making across multiple industries. We specialize in creating detailed topographical plans, conducting stockpile volume calculations, and developing comprehensive 3D digital terrain models. Our skilled team ensures data quality and precision, facilitating informed decision-making and effective project management."
   }
 ];
 
 const images = [
-  "/path/to/image1.jpg",
-  "/path/to/image2.jpg",
-  "/path/to/image3.jpg",
-  "/path/to/image4.jpg",
-  // Add more image paths as needed
+  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+1",
+  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+2",
+  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+3",
+  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+4",
 ];
 ---
 
@@ -103,7 +101,7 @@ const images = [
   </div>
 </section>
 
-<script client:load>
+<script is:inline>
   function toggleService(button) {
     const content = button.nextElementSibling;
     const chevron = button.querySelector('svg');

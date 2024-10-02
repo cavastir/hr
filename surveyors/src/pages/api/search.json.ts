@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async ({ url }) => {
   const query = url.searchParams.get('q')?.toLowerCase() || '';
@@ -7,7 +7,7 @@ export const GET: APIRoute = async ({ url }) => {
   
   const results = servicesEntry.data.services.filter((service) => 
     service.title.toLowerCase().includes(query) || 
-    service.description.toLowerCase().includes(query)
+    service.longDesc.toLowerCase().includes(query)
   );
 
   return new Response(JSON.stringify(results), {
