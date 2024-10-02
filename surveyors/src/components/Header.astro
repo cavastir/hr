@@ -1,13 +1,22 @@
 ---
 const navItems = [
-  { name: 'What we do', href: '/services', hasDropdown: true },
+  { name: 'Our Services', href: '/services', hasDropdown: true },
   { name: 'Why HR Surveyors', href: '/about' },
   { name: 'Our locations', href: '/locations' },
   { name: 'Contact', href: '/contact' },
 ];
+
+const serviceItems = [
+  { name: 'Land Surveying', href: '/services/land-surveying' },
+  { name: 'Engineering Surveys', href: '/services/engineering-surveys' },
+  { name: 'Construction Surveys', href: '/services/construction-surveys' },
+  { name: 'Aerial Mapping', href: '/services/aerial-mapping' },
+  { name: 'Hydrographic Surveys', href: '/services/hydrographic-surveys' },
+  { name: 'GIS Services', href: '/services/gis-services' },
+];
 ---
 
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 mx-10 mt-10 bg-hr-dark bg-opacity-20 backdrop-blur-md rounded transition-all duration-300">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-hr-dark bg-opacity-20 backdrop-blur-md transition-all duration-300">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <a href="/" class="text-2xl font-bold text-white flex items-center space-x-2">
       <span class="text-hr-accent">⚡</span>
@@ -17,7 +26,6 @@ const navItems = [
       {navItems.map((item) => (
         <a href={item.href} class="text-white hover:text-hr-accent transition-colors" data-nav-link>
           {item.name}
-          {item.hasDropdown && <span class="ml-1">▼</span>}
         </a>
       ))}
       <a href="/contact" class="bg-hr-accent text-hr-dark px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors">
@@ -33,21 +41,45 @@ const navItems = [
 </header>
 
 <!-- Mobile menu (hidden by default) -->
-<div class="fixed inset-0 bg-hr-dark bg-opacity-90 z-40 transform transition-transform duration-300 translate-x-full" id="mobile-menu">
-  <div class="flex flex-col h-full justify-center items-center space-y-8">
-    <button class="absolute top-4 right-4 text-white" id="close-mobile-menu" aria-label="Close mobile menu">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-    {navItems.map((item) => (
-      <a href={item.href} class="text-white text-2xl hover:text-hr-accent transition-colors">
-        {item.name}
+<div class="fixed inset-0 bg-white z-50 transform transition-transform duration-300 translate-x-full" id="mobile-menu">
+  <div class="flex flex-col h-full w-full">
+    <div class="bg-gray-100 p-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-hr-dark flex items-center space-x-2">
+        <span class="text-hr-accent">⚡</span>
+        <span><span class="text-hr-accent">HR</span>SURVEYORS</span>
       </a>
-    ))}
-    <a href="/contact" class="bg-hr-accent text-hr-dark px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
-      Get in touch
-    </a>
+      <button class="text-hr-dark" id="close-mobile-menu" aria-label="Close mobile menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="overflow-y-auto flex-grow">
+      {navItems.map((item) => (
+        <div class="border-b border-gray-200">
+          <button 
+            class="w-full text-left text-hr-dark text-lg hover:text-hr-accent transition-colors py-4 px-4 flex justify-between items-center"
+            data-dropdown-toggle={item.hasDropdown ? item.name : null}
+          >
+            {item.name}
+            {item.hasDropdown && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            )}
+          </button>
+          {item.hasDropdown && (
+            <div class="hidden pl-4" id={`dropdown-${item.name}`}>
+              {serviceItems.map((service) => (
+                <a href={service.href} class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-2">
+                  {service.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
   </div>
 </div>
 
@@ -61,46 +93,41 @@ const navItems = [
   const burgerIcon = mobileMenuToggle?.querySelector('svg');
 
   let lastScrollY = window.scrollY;
-  const scrollThreshold = 300;
+  const scrollThreshold = 50;
 
   window.addEventListener('scroll', () => {
     if (!header || !logo || !burgerIcon) return;
 
     const currentScrollY = window.scrollY;
 
-    if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
-      header.classList.add('translate-y-[-150%]');
+    if (currentScrollY > scrollThreshold) {
+      header.classList.add('bg-white', 'text-hr-dark');
+      header.classList.remove('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
+      
+      navLinks.forEach(link => {
+        if (link instanceof HTMLElement) {
+          link.classList.remove('text-white');
+          link.classList.add('text-hr-dark');
+        }
+      });
+      logo.classList.remove('text-white');
+      logo.classList.add('text-hr-dark');
+      burgerIcon.classList.remove('text-white');
+      burgerIcon.classList.add('text-hr-dark');
     } else {
-      header.classList.remove('translate-y-[-150%]');
-      if (currentScrollY > 50) {
-        header.classList.add('bg-white');
-        header.classList.remove('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
-        
-        navLinks.forEach(link => {
-          if (link instanceof HTMLElement) {
-            link.classList.remove('text-white');
-            link.classList.add('text-black');
-          }
-        });
-        logo.classList.remove('text-white');
-        logo.classList.add('text-black');
-        burgerIcon.classList.remove('text-white');
-        burgerIcon.classList.add('text-black');
-      } else {
-        header.classList.remove('bg-white');
-        header.classList.add('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
-        
-        navLinks.forEach(link => {
-          if (link instanceof HTMLElement) {
-            link.classList.add('text-white');
-            link.classList.remove('text-black');
-          }
-        });
-        logo.classList.add('text-white');
-        logo.classList.remove('text-black');
-        burgerIcon.classList.add('text-white');
-        burgerIcon.classList.remove('text-black');
-      }
+      header.classList.remove('bg-white', 'text-hr-dark');
+      header.classList.add('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
+      
+      navLinks.forEach(link => {
+        if (link instanceof HTMLElement) {
+          link.classList.add('text-white');
+          link.classList.remove('text-hr-dark');
+        }
+      });
+      logo.classList.add('text-white');
+      logo.classList.remove('text-hr-dark');
+      burgerIcon.classList.add('text-white');
+      burgerIcon.classList.remove('text-hr-dark');
     }
 
     lastScrollY = currentScrollY;
@@ -109,21 +136,27 @@ const navItems = [
   if (mobileMenuToggle && closeMobileMenu && mobileMenu) {
     mobileMenuToggle.addEventListener('click', () => {
       mobileMenu.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
     });
 
     closeMobileMenu.addEventListener('click', () => {
       mobileMenu.classList.add('translate-x-full');
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (event) => {
-      if (event.target instanceof Node && 
-          mobileMenu && 
-          mobileMenuToggle && 
-          !mobileMenu.contains(event.target) && 
-          !mobileMenuToggle.contains(event.target)) {
-        mobileMenu.classList.add('translate-x-full');
-      }
+      document.body.style.overflow = '';
     });
   }
+
+  // Handle dropdowns in mobile menu
+  const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const dropdownName = toggle.getAttribute('data-dropdown-toggle');
+      const dropdown = document.getElementById(`dropdown-${dropdownName}`);
+      const arrow = toggle.querySelector('svg');
+      
+      if (dropdown && arrow) {
+        dropdown.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
+      }
+    });
+  });
 </script>
