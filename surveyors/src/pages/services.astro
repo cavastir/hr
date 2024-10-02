@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const mainServices = [
+  {
+    title: "Building and Construction",
+    icon: "heroicons:building-office-2",
+    description: "With extensive experience in the building and construction sector, we deliver high-precision surveys for apartment complexes, high-rise buildings, schools, and residential projects. Understanding that each project is unique, we tailor our services to meet the specific needs of every client. From initial site datum setup to final as-constructed surveys, our team ensures accurate data and seamless execution, giving you the confidence to complete your project on time and within budget."
+  },
+  {
+    title: "Civil Construction",
+    icon: "heroicons:truck",
+    description: "From road upgrades and subdivisions to bridges, pipelines, and rail projects, HR Surveyors offers the expertise required for your civil construction needs. Our services include control network setup, on-site set out and pickups, volume calculations, 3D modeling, and final as-built surveys. Whether you need a dedicated team of surveyors to manage your project or a one-time visit to set up, we deliver the same high-quality, reliable service every time."
+  },
+  {
+    title: "Infrastructure & Mining",
+    icon: "heroicons:cube-transparent",
+    description: "With extensive experience in some of Australia's largest infrastructure and regional mining projects, we have the systems in place to efficiently manage your major undertaking, whether in urban or rural settings. From submitting conformance reports to handling RFIs and managing data, we ensure that all records are current, facilitating seamless project execution and on-time handover. Our highly skilled surveyors offer expert advice and reliable service, giving you the confidence you need throughout the entire project lifecycle."
+  },
+  {
+    title: "Feature and Level Survey",
+    icon: "heroicons:map",
+    description: "A Feature and Level survey is a crucial step in the planning of any development project, whether for a new building, subdivision, or major construction endeavor. This type of survey provides essential data that forms the foundation for accurate design before construction begins. By establishing precise survey control to a local datum or MGA/AHD from the outset, we ensure continuity and adherence to standards throughout every aspect of the development process."
+  },
+  {
+    title: "Laser Scanning",
+    icon: "heroicons:cube",
+    description: "We utilize advanced 3D laser scanning technology to capture highly accurate spatial data of structures and environments. This non-invasive method generates detailed digital models, providing essential information for applications in architecture, construction, and heritage preservation. By rapidly gathering millions of data points, our service streamlines project planning, design, and analysis. The resulting point clouds and 3D models integrate seamlessly with various software applications, enhancing collaboration and decision-making. Trust our experienced team to deliver high-quality results tailored to your project needs."
+  },
+  {
+    title: "UAV (Drone Survey)",
+    icon: "heroicons:paper-airplane",
+    description: "Our UAV (Drone Survey) service utilizes cutting-edge drone technology to deliver accurate and efficient aerial mapping and imagery for various applications. This innovative approach enables us to capture high-resolution images and videos, providing essential data for informed decision-making across multiple industries. We specialize in creating detailed topographical plans, conducting stockpile volume calculations, and developing comprehensive 3D digital terrain models. Our skilled team ensures data quality and precision, facilitating informed decision-making and effective project management."
+  }
+];
+
+const secondaryServices = [
+  {
+    title: "Specification Surveys (A-SPEC & ADAC)",
+    description: "Upon completion of new infrastructure works, councils require A-SPEC or ADAC as-constructed data to transfer asset information into their corporate systems. These standards ensure consistency and accuracy in the documentation of various infrastructure assets, including drainage systems, roadways, footpaths, parks, and utility networks. At HR Surveyors, we have the expertise and capabilities to produce precise GIS as-constructed data that meets all council requirements, facilitating seamless integration into local asset management systems."
+  },
+  {
+    title: "Point Clouds",
+    description: "At HR Surveyors, we leverage the latest advancements in scanning technologies to deliver cutting-edge survey solutions for our clients. By utilizing comprehensive 3D scanning techniques and specialized software, we tailor our services to meet the unique needs and budget of your project. We can generate detailed point clouds and produce accurate files, ensuring you receive high-quality data to support your project's success."
+  },
+  {
+    title: "Machine Control (3D Models & Design)",
+    description: "Our expertise in 3D surfaces enables us to create highly accurate design surface files tailored to your project's specific requirements. Whether it's converting machine control files and localizations, developing comprehensive Digital Terrain Models (DTM), or designing intricate 3D drainage systems, we have the skills to fulfill our clients' needs. We collaborate closely with you during the design process, producing detailed construction drawings and 3D models that enhance project clarity and execution."
+  },
+  {
+    title: "Equipment Hire",
+    description: "We offer a diverse range of high-quality surveying equipment for hire, including GPS base and rover or network systems, Total Stations, and all essential surveying tools for both short- and long-term projects. Our experienced team provides tailored solutions and expert support to help you choose the right equipment for your needs. Whether you're undertaking a road construction project, conducting earthworks for landscaping, or performing precise set-out tasks, our reliable equipment and dedicated service ensure you achieve your project goals efficiently and effectively."
+  }
+];
+---
+
+<Layout title="Our Services | HR Surveyors">
+  <main class="bg-hr-dark text-white">
+    <section class="pt-40 pb-12"> <!-- Increased top padding even more -->
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-8">Our Services</h1> <!-- Removed negative margin -->
+        <p class="text-xl mb-12">At HR Surveyors, we offer a comprehensive range of surveying services to meet all your project needs. Our expert team utilizes cutting-edge technology and years of experience to deliver precise, reliable results.</p>
+        
+        <h2 class="text-3xl font-bold mb-6">Main Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {mainServices.map((service) => (
+            <div class="bg-hr-dark-lighter rounded-lg p-6 transition-all duration-300 hover:bg-hr-accent group">
+              <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-accent group-hover:text-black" />
+              <h3 class="text-2xl font-semibold mb-4 group-hover:text-black">{service.title}</h3>
+              <p class="text-gray-300 group-hover:text-black">{service.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="text-3xl font-bold mt-16 mb-6">Additional Services</h2>
+        <div class="space-y-8">
+          {secondaryServices.map((service) => (
+            <div class="bg-hr-dark-lighter rounded-lg p-6 transition-all duration-300 hover:bg-hr-accent group">
+              <h3 class="text-2xl font-semibold mb-4 group-hover:text-black">{service.title}</h3>
+              <p class="text-gray-300 group-hover:text-black">{service.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-16 text-center">
+          <a href="/contact" class="bg-hr-accent text-hr-dark px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 inline-flex items-center space-x-2 group">
+            <span>Get in Touch</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

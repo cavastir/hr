@@ -24,15 +24,31 @@ const navItems = [
         Get in touch
       </a>
     </nav>
-    <button class="md:hidden text-white" id="mobile-menu-toggle">
-      ☰
+    <button class="md:hidden text-white p-2" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
     </button>
   </div>
 </header>
 
 <!-- Mobile menu (hidden by default) -->
 <div class="fixed inset-0 bg-hr-dark bg-opacity-90 z-40 transform transition-transform duration-300 translate-x-full" id="mobile-menu">
-  <!-- Mobile menu content -->
+  <div class="flex flex-col h-full justify-center items-center space-y-8">
+    <button class="absolute top-4 right-4 text-white" id="close-mobile-menu" aria-label="Close mobile menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    {navItems.map((item) => (
+      <a href={item.href} class="text-white text-2xl hover:text-hr-accent transition-colors">
+        {item.name}
+      </a>
+    ))}
+    <a href="/contact" class="bg-hr-accent text-hr-dark px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
+      Get in touch
+    </a>
+  </div>
 </div>
 
 <script>
@@ -75,5 +91,24 @@ const navItems = [
     }
 
     lastScrollY = currentScrollY;
+  });
+
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const closeMobileMenu = document.getElementById('close-mobile-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuToggle.addEventListener('click', () => {
+    mobileMenu.classList.remove('translate-x-full');
+  });
+
+  closeMobileMenu.addEventListener('click', () => {
+    mobileMenu.classList.add('translate-x-full');
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!mobileMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+      mobileMenu.classList.add('translate-x-full');
+    }
   });
 </script>
