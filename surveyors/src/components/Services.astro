@@ -4,37 +4,124 @@ import { Icon } from 'astro-icon/components';
 
 const { data } = await getEntry('services', 'services');
 const { services } = data;
+
+// Updated services array with new descriptions
+const updatedServices = [
+  {
+    title: "Building and Construction",
+    icon: "building-office-2",
+    shortDesc: "High-precision surveys for apartment complexes, high-rise buildings, schools, and residential projects.",
+    fullDesc: "With extensive experience in the building and construction sector, we deliver high-precision surveys for apartment complexes, high-rise buildings, schools, and residential projects. Understanding that each project is unique, we tailor our services to meet the specific needs of every client. From initial site datum setup to final as-constructed surveys, our team ensures accurate data and seamless execution, giving you the confidence to complete your project on time and within budget."
+  },
+  {
+    title: "Civil Construction",
+    icon: "truck",
+    shortDesc: "Expertise for road upgrades, subdivisions, bridges, pipelines, and rail projects.",
+    fullDesc: "From road upgrades and subdivisions to bridges, pipelines, and rail projects, HR Surveyors offers the expertise required for your civil construction needs. Our services include control network setup, on-site set out and pickups, volume calculations, 3D modeling, and final as-built surveys. Whether you need a dedicated team of surveyors to manage your project or a one-time visit to set up, we deliver the same high-quality, reliable service every time."
+  },
+  {
+    title: "Infrastructure & Mining",
+    icon: "cube-transparent",
+    shortDesc: "Managing major projects in urban and rural settings, including Australia's largest infrastructure and mining projects.",
+    fullDesc: "With extensive experience in some of Australia's largest infrastructure and regional mining projects, we have the systems in place to efficiently manage your major undertaking, whether in urban or rural settings. From submitting conformance reports to handling RFIs and managing data, we ensure that all records are current, facilitating seamless project execution and on-time handover. Our highly skilled surveyors offer expert advice and reliable service, giving you the confidence you need throughout the entire project lifecycle."
+  },
+  {
+    title: "Feature and Level Survey",
+    icon: "map",
+    shortDesc: "Essential data collection for accurate design in development projects.",
+    fullDesc: "A Feature and Level survey is a crucial step in the planning of any development project, whether for a new building, subdivision, or major construction endeavor. This type of survey provides essential data that forms the foundation for accurate design before construction begins. By establishing precise survey control to a local datum or MGA/AHD from the outset, we ensure continuity and adherence to standards throughout every aspect of the development process."
+  },
+  {
+    title: "Laser Scanning",
+    icon: "cube",
+    shortDesc: "Advanced 3D laser scanning for detailed digital models of structures and environments.",
+    fullDesc: "We utilize advanced 3D laser scanning technology to capture highly accurate spatial data of structures and environments. This non-invasive method generates detailed digital models, providing essential information for applications in architecture, construction, and heritage preservation. By rapidly gathering millions of data points, our service streamlines project planning, design, and analysis. The resulting point clouds and 3D models integrate seamlessly with various software applications, enhancing collaboration and decision-making. Trust our experienced team to deliver high-quality results tailored to your project needs."
+  },
+  {
+    title: "UAV (Drone Survey)",
+    icon: "paper-airplane",
+    shortDesc: "Cutting-edge drone technology for aerial mapping and imagery across multiple industries.",
+    fullDesc: "Our UAV (Drone Survey) service utilizes cutting-edge drone technology to deliver accurate and efficient aerial mapping and imagery for various applications. This innovative approach enables us to capture high-resolution images and videos, providing essential data for informed decision-making across multiple industries. We specialize in creating detailed topographical plans, conducting stockpile volume calculations, and developing comprehensive 3D digital terrain models. Our skilled team ensures data quality and precision, facilitating informed decision-making and effective project management."
+  }
+];
 ---
 
-<section class="py-20 bg-gradient-to-b from-gray-100 to-white relative overflow-hidden rounded">
+<section class="py-20 bg-hr-dark text-white relative overflow-hidden rounded">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-4 text-hr-dark">Our Services</h2>
-    <p class="text-xl text-center mb-16 text-gray-600 max-w-2xl mx-auto">
-      HR Surveyors provides comprehensive surveying solutions for a wide range of projects, ensuring precision and efficiency at every step.
-    </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-      {services.map((service, index) => (
-        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
-          <div class="flex items-center mb-4">
-            <div class="bg-hr-accent p-3 rounded-full mr-4 group-hover:scale-110 transition-transform duration-300">
-              <Icon name={`heroicons:${service.icon}`} class="w-6 h-6 text-hr-dark" />
-            </div>
-            <h3 class="text-xl font-semibold text-hr-dark">{service.title}</h3>
-          </div>
-          <p class="text-gray-600 mb-4">{service.shortDesc}</p>
-          <a href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} class="text-hr-accent hover:underline inline-flex items-center group">
-            Learn more
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-          </a>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-5xl font-bold mb-6">Delivering high-quality survey solutions since 2012</h2>
+        <div class="w-full h-64 bg-gray-300 rounded-lg">
+          <!-- Placeholder for image -->
+          <img src="/path/to/your/image.jpg" alt="HR Surveyors in action" class="w-full h-full object-cover rounded-lg">
         </div>
-      ))}
+      </div>
+      <div class="space-y-4">
+        {updatedServices.map((service, index) => (
+          <div class="bg-hr-dark-lighter rounded-lg transition-all duration-300 hover:bg-hr-accent group">
+            <button 
+              class="w-full text-left flex justify-between items-center p-4"
+              id={`service-button-${index}`}
+            >
+              <h3 class="text-xl font-semibold">{service.title}</h3>
+              <Icon name="heroicons:chevron-down" class="w-6 h-6 transform transition-transform duration-300 group-hover:rotate-180" />
+            </button>
+            <div id={`service-content-${index}`} class="hidden p-4 bg-hr-dark-lighter">
+              <p class="text-gray-300 mb-4">{service.fullDesc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
-  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
-    <svg class="w-full h-full text-hr-accent opacity-5" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <path fill="currentColor" d="M44.9,-76.8C58.1,-69.3,68.9,-56.3,77.1,-41.9C85.3,-27.5,90.9,-11.7,89.8,3.7C88.7,19,80.8,33.9,71.1,47.1C61.4,60.3,49.9,71.8,36.2,78.1C22.5,84.4,6.6,85.5,-8.9,83.1C-24.4,80.7,-39.5,74.7,-52.4,65.6C-65.3,56.5,-76,44.3,-82.5,29.7C-89,15.1,-91.3,-1.9,-87.8,-17.5C-84.3,-33.1,-75,-47.3,-62.6,-57.9C-50.2,-68.5,-34.7,-75.5,-19.2,-79.2C-3.7,-82.9,11.8,-83.3,26.3,-80.6C40.8,-77.9,54.3,-72.1,44.9,-76.8Z" transform="translate(100 100)" />
-    </svg>
-  </div>
+
+  {updatedServices.map((service, index) => (
+    <dialog id={`modal-${index}`} class="p-6 rounded-lg shadow-xl max-w-2xl w-full bg-white text-hr-dark">
+      <h3 class="text-2xl font-bold mb-4">{service.title}</h3>
+      <p class="text-gray-600 mb-6">{service.fullDesc}</p>
+      <button
+        class="bg-hr-accent text-white px-4 py-2 rounded hover:bg-hr-dark transition-colors duration-300"
+        onclick={`document.getElementById('modal-${index}').close()`}
+      >
+        Close
+      </button>
+    </dialog>
+  ))}
 </section>
+
+<script>
+  function toggleService(index) {
+    const serviceContent = document.getElementById(`service-content-${index}`);
+    const serviceButton = document.getElementById(`service-button-${index}`);
+    const chevron = serviceButton.querySelector('svg');
+
+    if (serviceContent.classList.contains('hidden')) {
+      serviceContent.classList.remove('hidden');
+      chevron.classList.add('rotate-180');
+    } else {
+      serviceContent.classList.add('hidden');
+      chevron.classList.remove('rotate-180');
+    }
+  }
+
+  // Close modal when clicking outside
+  document.addEventListener('click', (e) => {
+    const modals = document.querySelectorAll('dialog');
+    modals.forEach((modal) => {
+      if (e.target === modal) {
+        modal.close();
+      }
+    });
+  });
+
+  // Add event listeners to service buttons
+  document.addEventListener('astro:page-load', () => {
+    const serviceButtons = document.querySelectorAll('[id^="service-button-"]');
+    serviceButtons.forEach((button, index) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleService(index);
+      });
+    });
+  });
+</script>
