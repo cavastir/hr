@@ -1,14 +1,13 @@
 ---
 const navItems = [
   { name: 'What we do', href: '/services', hasDropdown: true },
-  { name: 'Our work', href: '/projects' },
-  { name: 'Why choose us', href: '/about' },
-  { name: 'Our resources', href: '/resources' },
+  { name: 'Why HR Surveyors', href: '/about' },
+  { name: 'Our locations', href: '/locations' },
   { name: 'Contact', href: '/contact' },
 ];
 ---
 
-<header class="fixed top-5 left-0 right-0 z-50 mx-10 mt-10 bg-hr-dark bg-opacity-20 backdrop-blur-md rounded">
+<header id="main-header" class="fixed top-5 left-0 right-0 z-50 mx-10 mt-10 bg-hr-dark bg-opacity-20 backdrop-blur-md rounded transition-all duration-300">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <a href="/" class="text-2xl font-bold text-white flex items-center space-x-2">
       <span class="text-hr-accent">⚡</span>
@@ -16,7 +15,7 @@ const navItems = [
     </a>
     <nav class="hidden md:flex items-center space-x-6">
       {navItems.map((item) => (
-        <a href={item.href} class="text-white hover:text-hr-accent transition-colors">
+        <a href={item.href} class="text-white hover:text-hr-accent transition-colors" data-nav-link>
           {item.name}
           {item.hasDropdown && <span class="ml-1">▼</span>}
         </a>
@@ -37,5 +36,46 @@ const navItems = [
 </div>
 
 <script>
-  // Mobile menu toggle script
+  const header = document.getElementById('main-header');
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const logo = document.querySelector('#main-header a.text-2xl');
+  let lastScrollY = window.scrollY;
+  const scrollThreshold = 300; // Adjust this value to control how long the header stays visible
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+      // Scrolling down and past the threshold
+      header.classList.add('translate-y-[-150%]');
+    } else {
+      // Scrolling up or not past the threshold
+      header.classList.remove('translate-y-[-150%]');
+      if (currentScrollY > 50) {
+        header.classList.add('bg-white');
+        header.classList.remove('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
+        
+        // Change text color to black
+        navLinks.forEach(link => {
+          link.classList.remove('text-white');
+          link.classList.add('text-black');
+        });
+        logo.classList.remove('text-white');
+        logo.classList.add('text-black');
+      } else {
+        header.classList.remove('bg-white');
+        header.classList.add('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
+        
+        // Revert text color to white
+        navLinks.forEach(link => {
+          link.classList.add('text-white');
+          link.classList.remove('text-black');
+        });
+        logo.classList.add('text-white');
+        logo.classList.remove('text-black');
+      }
+    }
+
+    lastScrollY = currentScrollY;
+  });
 </script>
