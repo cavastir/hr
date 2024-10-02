@@ -43,6 +43,14 @@ const updatedServices = [
     fullDesc: "Our UAV (Drone Survey) service utilizes cutting-edge drone technology to deliver accurate and efficient aerial mapping and imagery for various applications. This innovative approach enables us to capture high-resolution images and videos, providing essential data for informed decision-making across multiple industries. We specialize in creating detailed topographical plans, conducting stockpile volume calculations, and developing comprehensive 3D digital terrain models. Our skilled team ensures data quality and precision, facilitating informed decision-making and effective project management."
   }
 ];
+
+const images = [
+  "/path/to/image1.jpg",
+  "/path/to/image2.jpg",
+  "/path/to/image3.jpg",
+  "/path/to/image4.jpg",
+  // Add more image paths as needed
+];
 ---
 
 <section class="py-12 bg-hr-dark text-white relative overflow-hidden rounded">
@@ -50,8 +58,15 @@ const updatedServices = [
     <div class="flex flex-col lg:flex-row gap-12">
       <div class="lg:w-1/2">
         <h2 class="text-4xl lg:text-5xl font-bold mb-6">We deliver high-quality survey solutions tailored to your construction project.</h2>
-        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-6">
-          <img src="/path/to/your/image.jpg" alt="HR Surveyors in action" class="w-full h-full object-cover">
+        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-6 relative">
+          {images.map((src, index) => (
+            <img 
+              src={src} 
+              alt={`HR Surveyors in action ${index + 1}`} 
+              class={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+              data-index={index}
+            />
+          ))}
         </div>
       </div>
       <div class="lg:w-1/2 relative">
@@ -137,9 +152,28 @@ const updatedServices = [
     });
   }
 
+  function initializeSlideshow() {
+    const images = document.querySelectorAll('.aspect-video img');
+    let currentIndex = 0;
+
+    function showNextImage() {
+      images[currentIndex].classList.remove('opacity-100');
+      images[currentIndex].classList.add('opacity-0');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.remove('opacity-0');
+      images[currentIndex].classList.add('opacity-100');
+    }
+
+    setInterval(showNextImage, 3000);
+  }
+
   // Run initialization immediately
   initializeServices();
+  initializeSlideshow();
 
   // Re-run initialization after navigation
-  document.addEventListener('astro:after-swap', initializeServices);
+  document.addEventListener('astro:after-swap', () => {
+    initializeServices();
+    initializeSlideshow();
+  });
 </script>
