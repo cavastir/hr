@@ -5,7 +5,6 @@ import { Icon } from 'astro-icon/components';
 const { data } = await getEntry('services', 'services');
 const { services } = data;
 
-// Updated services array with new descriptions
 const updatedServices = [
   {
     title: "Building and Construction",
@@ -52,76 +51,68 @@ const updatedServices = [
       <div>
         <h2 class="text-5xl font-bold mb-6">Delivering high-quality survey solutions since 2012</h2>
         <div class="w-full h-64 bg-gray-300 rounded-lg">
-          <!-- Placeholder for image -->
           <img src="/path/to/your/image.jpg" alt="HR Surveyors in action" class="w-full h-full object-cover rounded-lg">
         </div>
       </div>
       <div class="space-y-4">
         {updatedServices.map((service, index) => (
-          <div class="bg-hr-dark-lighter rounded-lg transition-all duration-300 hover:bg-hr-accent group">
+          <div class="bg-hr-dark-lighter rounded-lg transition-all duration-300 group">
             <button 
-              class="w-full text-left flex justify-between items-center p-4"
-              id={`service-button-${index}`}
+              class="w-full text-left flex justify-between items-center p-4 service-button hover:bg-hr-accent"
+              data-index={index}
             >
               <h3 class="text-xl font-semibold">{service.title}</h3>
-              <Icon name="heroicons:chevron-down" class="w-6 h-6 transform transition-transform duration-300 group-hover:rotate-180" />
+              <Icon name="heroicons:chevron-down" class="w-6 h-6 transform transition-transform duration-300" />
             </button>
-            <div id={`service-content-${index}`} class="hidden p-4 bg-hr-dark-lighter">
-              <p class="text-gray-300 mb-4">{service.fullDesc}</p>
+            <div class="hidden p-4 bg-hr-dark-lighter service-content">
+              <p class="text-gray-300 mb-4">{service.shortDesc}</p>
+              <button class="text-hr-accent hover:text-black hover:bg-hr-accent px-3 py-1 rounded transition-colors duration-300 learn-more-button">
+                Learn more
+              </button>
+              <div class="hidden mt-4 text-gray-300 full-description">
+                <p>{service.fullDesc}</p>
+              </div>
             </div>
           </div>
         ))}
       </div>
     </div>
   </div>
-
-  {updatedServices.map((service, index) => (
-    <dialog id={`modal-${index}`} class="p-6 rounded-lg shadow-xl max-w-2xl w-full bg-white text-hr-dark">
-      <h3 class="text-2xl font-bold mb-4">{service.title}</h3>
-      <p class="text-gray-600 mb-6">{service.fullDesc}</p>
-      <button
-        class="bg-hr-accent text-white px-4 py-2 rounded hover:bg-hr-dark transition-colors duration-300"
-        onclick={`document.getElementById('modal-${index}').close()`}
-      >
-        Close
-      </button>
-    </dialog>
-  ))}
 </section>
 
-<script>
-  function toggleService(index) {
-    const serviceContent = document.getElementById(`service-content-${index}`);
-    const serviceButton = document.getElementById(`service-button-${index}`);
-    const chevron = serviceButton.querySelector('svg');
+<script client:load>
+  function toggleService(button) {
+    const content = button.nextElementSibling;
+    const chevron = button.querySelector('svg');
 
-    if (serviceContent.classList.contains('hidden')) {
-      serviceContent.classList.remove('hidden');
-      chevron.classList.add('rotate-180');
-    } else {
-      serviceContent.classList.add('hidden');
-      chevron.classList.remove('rotate-180');
-    }
+    content.classList.toggle('hidden');
+    chevron.classList.toggle('rotate-180');
   }
 
-  // Close modal when clicking outside
-  document.addEventListener('click', (e) => {
-    const modals = document.querySelectorAll('dialog');
-    modals.forEach((modal) => {
-      if (e.target === modal) {
-        modal.close();
-      }
-    });
-  });
+  function toggleFullDescription(button) {
+    const fullDescription = button.nextElementSibling;
+    fullDescription.classList.toggle('hidden');
+    button.textContent = button.textContent === 'Learn more' ? 'Show less' : 'Learn more';
+  }
 
-  // Add event listeners to service buttons
-  document.addEventListener('astro:page-load', () => {
-    const serviceButtons = document.querySelectorAll('[id^="service-button-"]');
-    serviceButtons.forEach((button, index) => {
+  function initializeServices() {
+    const serviceButtons = document.querySelectorAll('.service-button');
+    serviceButtons.forEach((button) => {
+      button.addEventListener('click', () => toggleService(button));
+    });
+
+    const learnMoreButtons = document.querySelectorAll('.learn-more-button');
+    learnMoreButtons.forEach((button) => {
       button.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggleService(index);
+        e.stopPropagation();
+        toggleFullDescription(button);
       });
     });
-  });
+  }
+
+  // Run initialization immediately
+  initializeServices();
+
+  // Re-run initialization after navigation
+  document.addEventListener('astro:after-swap', initializeServices);
 </script>
