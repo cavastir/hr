@@ -55,6 +55,10 @@ const navItems = [
   const header = document.getElementById('main-header');
   const navLinks = document.querySelectorAll('[data-nav-link]');
   const logo = document.querySelector('#main-header a.text-2xl');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const closeMobileMenu = document.getElementById('close-mobile-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+
   let lastScrollY = window.scrollY;
   const scrollThreshold = 300;
 
@@ -72,8 +76,10 @@ const navItems = [
         header.classList.remove('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
         
         navLinks.forEach(link => {
-          link.classList.remove('text-white');
-          link.classList.add('text-black');
+          if (link instanceof HTMLElement) {
+            link.classList.remove('text-white');
+            link.classList.add('text-black');
+          }
         });
         logo.classList.remove('text-white');
         logo.classList.add('text-black');
@@ -82,8 +88,10 @@ const navItems = [
         header.classList.add('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
         
         navLinks.forEach(link => {
-          link.classList.add('text-white');
-          link.classList.remove('text-black');
+          if (link instanceof HTMLElement) {
+            link.classList.add('text-white');
+            link.classList.remove('text-black');
+          }
         });
         logo.classList.add('text-white');
         logo.classList.remove('text-black');
@@ -93,22 +101,24 @@ const navItems = [
     lastScrollY = currentScrollY;
   });
 
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const closeMobileMenu = document.getElementById('close-mobile-menu');
-  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileMenuToggle && closeMobileMenu && mobileMenu) {
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.remove('translate-x-full');
+    });
 
-  mobileMenuToggle.addEventListener('click', () => {
-    mobileMenu.classList.remove('translate-x-full');
-  });
-
-  closeMobileMenu.addEventListener('click', () => {
-    mobileMenu.classList.add('translate-x-full');
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (event) => {
-    if (!mobileMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+    closeMobileMenu.addEventListener('click', () => {
       mobileMenu.classList.add('translate-x-full');
-    }
-  });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && 
+          mobileMenu && 
+          mobileMenuToggle && 
+          !mobileMenu.contains(event.target) && 
+          !mobileMenuToggle.contains(event.target)) {
+        mobileMenu.classList.add('translate-x-full');
+      }
+    });
+  }
 </script>
