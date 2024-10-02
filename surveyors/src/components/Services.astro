@@ -45,36 +45,44 @@ const updatedServices = [
 ];
 ---
 
-<section class="py-20 bg-hr-dark text-white relative overflow-hidden rounded">
+<section class="py-12 bg-hr-dark text-white relative overflow-hidden rounded">
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <div>
-        <h2 class="text-5xl font-bold mb-6">Delivering high-quality survey solutions since 2012</h2>
-        <div class="w-full h-64 bg-gray-300 rounded-lg">
-          <img src="/path/to/your/image.jpg" alt="HR Surveyors in action" class="w-full h-full object-cover rounded-lg">
+    <div class="flex flex-col lg:flex-row gap-12">
+      <div class="lg:w-1/2">
+        <h2 class="text-4xl lg:text-5xl font-bold mb-6">We deliver high-quality survey solutions tailored to your construction project.</h2>
+        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-6">
+          <img src="/path/to/your/image.jpg" alt="HR Surveyors in action" class="w-full h-full object-cover">
         </div>
       </div>
-      <div class="space-y-4">
-        {updatedServices.map((service, index) => (
-          <div class="bg-hr-dark-lighter rounded-lg transition-all duration-300 group">
-            <button 
-              class="w-full text-left flex justify-between items-center p-4 service-button hover:bg-hr-accent"
-              data-index={index}
-            >
-              <h3 class="text-xl font-semibold">{service.title}</h3>
-              <Icon name="heroicons:chevron-down" class="w-6 h-6 transform transition-transform duration-300" />
-            </button>
-            <div class="hidden p-4 bg-hr-dark-lighter service-content">
-              <p class="text-gray-300 mb-4">{service.shortDesc}</p>
-              <button class="text-hr-accent hover:text-black hover:bg-hr-accent px-3 py-1 rounded transition-colors duration-300 learn-more-button">
-                Learn more
+      <div class="lg:w-1/2 relative">
+        <div class="space-y-4 services-container h-[600px] overflow-y-auto pr-4">
+          {updatedServices.map((service, index) => (
+            <div class="bg-hr-dark-lighter rounded-lg transition-all duration-300 group hover:bg-hr-accent">
+              <button 
+                class="w-full text-left flex justify-between items-center px-4 py-4 service-button"
+                data-index={index}
+              >
+                <h3 class="text-xl font-semibold group-hover:text-black">{service.title}</h3>
+                <Icon name="heroicons:chevron-down" class="w-6 h-6 transform transition-transform duration-300 group-hover:text-black" />
               </button>
-              <div class="hidden mt-4 text-gray-300 full-description">
-                <p>{service.fullDesc}</p>
+              <div class="hidden px-4 pb-4 service-content">
+                <p class="text-gray-300 mb-4 group-hover:text-black">{service.shortDesc}</p>
+                <button class="text-hr-accent group-hover:text-black hover:underline transition-colors duration-300 learn-more-button">
+                  Learn more
+                </button>
+                <div class="hidden mt-4 text-gray-300 group-hover:text-black full-description">
+                  <p>{service.fullDesc}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div class="absolute bottom-4 right-4">
+          <a href="/services" class="text-white hover:text-hr-accent transition-colors duration-300">
+            <Icon name="heroicons:arrow-right-circle" class="w-10 h-10" />
+            <span class="sr-only">View all services</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -84,6 +92,25 @@ const updatedServices = [
   function toggleService(button) {
     const content = button.nextElementSibling;
     const chevron = button.querySelector('svg');
+    const allContents = document.querySelectorAll('.service-content');
+    const allChevrons = document.querySelectorAll('.service-button svg');
+
+    allContents.forEach((el) => {
+      if (el !== content && !el.classList.contains('hidden')) {
+        el.classList.add('hidden');
+        const learnMoreBtn = el.querySelector('.learn-more-button');
+        if (learnMoreBtn.textContent === 'Show less') {
+          learnMoreBtn.textContent = 'Learn more';
+          el.querySelector('.full-description').classList.add('hidden');
+        }
+      }
+    });
+
+    allChevrons.forEach((el) => {
+      if (el !== chevron) {
+        el.classList.remove('rotate-180');
+      }
+    });
 
     content.classList.toggle('hidden');
     chevron.classList.toggle('rotate-180');
