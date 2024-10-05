@@ -1,12 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
-import tailwind from '@astrojs/tailwind';
-import icon from "astro-icon";
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon()],
+  integrations: [react()],
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp'
@@ -14,7 +12,7 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      noExternal: ['@astrojs/image']
+      noExternal: ['react', 'react-dom', 'framer-motion'],
     },
     optimizeDeps: {
       exclude: ['problematic-package'],
