@@ -5,23 +5,48 @@ import Certifications from '../components/Certifications.astro';
 import Services from '../components/Services.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import Testimonials from '../components/Testimonials.astro';
-import InstagramFeed from '../components/InstagramFeed.astro';
-import CallToAction from '../components/CallToAction.astro';
+// Import dynamic components
+import { InstagramFeed } from '../components/InstagramFeed';
+import { CallToAction } from '../components/CallToAction';
 
 const pageTitle = "HR Surveyors - Precision Engineering Surveys";
 const pageDescription = "HR Surveyors provides efficient and accurate survey solutions for construction and infrastructure projects since 2012.";
 
-const components = [
+// Static components
+const staticComponents = [
   Hero,
   Certifications,
   Services,
   FeaturedProjects,
   Testimonials,
-  InstagramFeed,
-  CallToAction
+];
+
+// Dynamic components
+const dynamicComponents = [
+  'InstagramFeed',
+  'CallToAction'
 ];
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  {components.map((Component) => <Component />)}
+  {staticComponents.map((Component) => <Component />)}
+  
+  {dynamicComponents.map((componentName) => (
+    <astro-island>
+      <Fragment set:html={`<${componentName} client:idle />`}></Fragment>
+    </astro-island>
+  ))}
 </Layout>
+
+<script>
+  class AstroIsland extends HTMLElement {
+    constructor() {
+      super();
+      const template = this.querySelector('template');
+      if (template) {
+        this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true));
+      }
+    }
+  }
+  customElements.define('astro-island', AstroIsland);
+</script>
