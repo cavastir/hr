@@ -15,6 +15,7 @@
     "@iconify-json/heroicons": "^1.2.0",
     "astro": "^4.15.9",
     "astro-icon": "^1.1.1",
+    "framer-motion": "^11.11.1",
     "sharp": "^0.33.5",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2"

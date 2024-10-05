@@ -21,6 +21,9 @@ const { title, description } = Astro.props;
 		<meta name="description" content={description} />
 	</head>
 	<body class="bg-hr-light text-hr-dark">
+		<div id="loading-overlay" class="fixed inset-0 bg-hr-dark z-50 flex items-center justify-center">
+			<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-hr-accent"></div>
+		</div>
 		<Header />
 		<main>
 			<slot />
@@ -28,3 +31,31 @@ const { title, description } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<script>
+	import { inView, animate, stagger } from "framer-motion";
+
+	const animateElement = (element, delay = 0) => {
+		animate(element, 
+			{ opacity: [0, 1], y: [20, 0] }, 
+			{ duration: 0.5, delay, ease: "easeOut" }
+		);
+	};
+
+	inView("section, img", ({ target }) => {
+		animateElement(target);
+	}, { amount: 0.2, once: true });
+
+	inView("section ul, section ol", ({ target }) => {
+		animate(target.children,
+			{ opacity: [0, 1], x: [-10, 0] },
+			{ duration: 0.3, delay: stagger(0.05), ease: "easeOut" }
+		);
+	}, { amount: 0.2, once: true });
+</script>
+
+<script>
+	window.addEventListener('load', () => {
+		document.getElementById('loading-overlay').style.display = 'none';
+	});
+</script>

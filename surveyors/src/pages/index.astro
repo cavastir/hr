@@ -9,10 +9,10 @@ const components = [
   { name: 'Hero', import: () => import('../components/Hero.astro') },
   { name: 'Certifications', import: () => Promise.resolve({ default: Certifications }) },
   { name: 'Services', import: () => import('../components/Services.astro') },
-  { name: 'FeaturedProjects', import: () => import('../components/FeaturedProjects.astro') },
-  { name: 'Testimonials', import: () => import('../components/Testimonials.astro') },
-  { name: 'InstagramFeed', import: () => import('../components/InstagramFeed.astro') },
-  { name: 'CallToAction', import: () => import('../components/CallToAction.astro') },
+  { name: 'FeaturedProjects', import: () => import('../components/FeaturedProjects.astro'), lazy: true },
+  { name: 'Testimonials', import: () => import('../components/Testimonials.astro'), lazy: true },
+  { name: 'InstagramFeed', import: () => import('../components/InstagramFeed.astro'), lazy: true },
+  { name: 'CallToAction', import: () => import('../components/CallToAction.astro'), lazy: true },
 ];
 ---
 
