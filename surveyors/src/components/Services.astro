@@ -44,11 +44,17 @@ const updatedServices = [
 ];
 
 const images = [
-  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+1",
-  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+2",
-  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+3",
-  "https://via.placeholder.com/800x600?text=HR+Surveyors+in+action+4",
+  "/images/hr-surveyors-construction-site.jpg",
+  "/images/hr-surveyors-surface-mapping.jpg",
+  "/images/hr-surveyors-laser-scanning.jpg",
+  "/images/hr-surveyors-infrastructure-project.jpg",
 ];
+
+function getAltText(src: string) {
+  const filename = src.split('/').pop()?.split('.')[0] || '';
+  return filename.split('-').slice(2).join(' ');
+}
+
 ---
 
 <section class="py-12 bg-hr-dark text-white relative overflow-hidden rounded">
@@ -60,8 +66,8 @@ const images = [
           {images.map((src, index) => (
             <img 
               src={src} 
-              alt={`HR Surveyors in action ${index + 1}`} 
-              class={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+              alt={`HR Surveyors in action: ${getAltText(src)}`} 
+              class={`object-cover object-center w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
               data-index={index}
             />
           ))}
