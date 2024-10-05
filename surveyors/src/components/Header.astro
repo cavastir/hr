@@ -16,18 +16,18 @@ const serviceItems = [
 ];
 ---
 
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-hr-dark bg-opacity-20 backdrop-blur-md transition-all duration-300">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-hr-dark bg-opacity-30 backdrop-blur-md transition-all duration-300">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="/" class="flex items-center space-x-2">
+    <a href="/" class="flex items-center space-x-2 relative w-40 h-10">
       <img 
         src="/images/hr-surveyors-logo-dark.png" 
         alt="HR Surveyors Logo" 
-        class="h-10 w-auto dark-logo"
+        class="absolute top-0 left-2 h-full w-auto object-contain dark-logo"
       />
       <img 
         src="/images/hr-surveyors-logo-light.png" 
         alt="HR Surveyors Logo" 
-        class="h-10 w-auto light-logo hidden"
+        class="absolute top-0 left-0 h-full w-auto object-contain light-logo opacity-0 transition-opacity duration-200"
       />
     </a>
     <nav class="hidden md:flex items-center space-x-6">
@@ -114,7 +114,7 @@ const serviceItems = [
 
     if (currentScrollY > scrollThreshold) {
       header.classList.add('bg-white');
-      header.classList.remove('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
+      header.classList.remove('bg-hr-dark', 'bg-opacity-30', 'backdrop-blur-md');
       
       navLinks.forEach(link => {
         if (link instanceof HTMLElement) {
@@ -123,8 +123,8 @@ const serviceItems = [
         }
       });
       if (darkLogo && lightLogo) {
-        darkLogo.classList.add('hidden');
-        lightLogo.classList.remove('hidden');
+        darkLogo.classList.add('opacity-0');
+        lightLogo.classList.remove('opacity-0');
       }
       if (burgerIcon) {
         burgerIcon.classList.remove('text-white');
@@ -132,7 +132,7 @@ const serviceItems = [
       }
     } else {
       header.classList.remove('bg-white');
-      header.classList.add('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
+      header.classList.add('bg-hr-dark', 'bg-opacity-30', 'backdrop-blur-md');
       
       navLinks.forEach(link => {
         if (link instanceof HTMLElement) {
@@ -141,8 +141,8 @@ const serviceItems = [
         }
       });
       if (darkLogo && lightLogo) {
-        darkLogo.classList.remove('hidden');
-        lightLogo.classList.add('hidden');
+        darkLogo.classList.remove('opacity-0');
+        lightLogo.classList.add('opacity-0');
       }
       if (burgerIcon) {
         burgerIcon.classList.add('text-white');
