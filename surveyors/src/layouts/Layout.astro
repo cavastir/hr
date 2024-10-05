@@ -21,9 +21,6 @@ const { title, description } = Astro.props;
 		<meta name="description" content={description} />
 	</head>
 	<body class="bg-hr-light text-hr-dark">
-		<div id="loading-overlay" class="fixed inset-0 bg-hr-dark z-50 flex items-center justify-center">
-			<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-hr-accent"></div>
-		</div>
 		<Header />
 		<main>
 			<slot />
@@ -33,18 +30,6 @@ const { title, description } = Astro.props;
 </html>
 
 <script>
-	window.addEventListener('load', () => {
-		const loadingOverlay = document.getElementById('loading-overlay');
-		if (loadingOverlay) {
-			loadingOverlay.style.opacity = '0';
-			loadingOverlay.style.transition = 'opacity 0.5s ease-out';
-			setTimeout(() => {
-				loadingOverlay.style.display = 'none';
-			}, 500);
-		}
-		document.body.classList.add('loaded');
-	});
-
 	document.addEventListener('astro:page-load', () => {
 		const fadeElems = document.querySelectorAll('.fade-in');
 		fadeElems.forEach((elem, index) => {
@@ -70,15 +55,6 @@ const { title, description } = Astro.props;
 	body {
 		overflow-x: hidden;
 		transition: background-color 0.3s ease;
-	}
-
-	body.loaded {
-		animation: fadeIn 0.5s ease-out;
-	}
-
-	@keyframes fadeIn {
-		from { opacity: 0; }
-		to { opacity: 1; }
 	}
 
 	.fade-in {
@@ -117,11 +93,6 @@ const { title, description } = Astro.props;
 	/* Improve readability */
 	p, li {
 		line-height: 1.6;
-	}
-
-	/* Smooth scrolling for anchor links */
-	html {
-		scroll-behavior: smooth;
 	}
 
 	/* Responsive images */
