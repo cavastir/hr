@@ -18,9 +18,17 @@ const serviceItems = [
 
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-hr-dark bg-opacity-20 backdrop-blur-md transition-all duration-300">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="/" class="text-2xl font-bold text-white flex items-center space-x-2">
-      <span class="text-hr-accent">⚡</span>
-      <span><span class="text-hr-accent">HR</span>SURVEYORS</span>
+    <a href="/" class="flex items-center space-x-2">
+      <img 
+        src="/images/hr-surveyors-logo-dark.png" 
+        alt="HR Surveyors Logo" 
+        class="h-10 w-auto dark-logo"
+      />
+      <img 
+        src="/images/hr-surveyors-logo-light.png" 
+        alt="HR Surveyors Logo" 
+        class="h-10 w-auto light-logo hidden"
+      />
     </a>
     <nav class="hidden md:flex items-center space-x-6">
       {navItems.map((item) => (
@@ -44,9 +52,12 @@ const serviceItems = [
 <div class="fixed inset-0 bg-white z-50 transform transition-transform duration-300 translate-x-full" id="mobile-menu">
   <div class="flex flex-col h-full w-full">
     <div class="bg-gray-100 p-4 flex justify-between items-center">
-      <a href="/" class="text-2xl font-bold text-hr-dark flex items-center space-x-2">
-        <span class="text-hr-accent">⚡</span>
-        <span><span class="text-hr-accent">HR</span>SURVEYORS</span>
+      <a href="/" class="flex items-center space-x-2">
+        <img 
+          src="/images/hr-surveyors-logo-light.png" 
+          alt="HR Surveyors Logo" 
+          class="h-10 w-auto"
+        />
       </a>
       <button class="text-hr-dark" id="close-mobile-menu" aria-label="Close mobile menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -86,22 +97,23 @@ const serviceItems = [
 <script>
   const header = document.getElementById('main-header');
   const navLinks = document.querySelectorAll('[data-nav-link]');
-  const logo = document.querySelector('#main-header a.text-2xl');
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
   const closeMobileMenu = document.getElementById('close-mobile-menu');
   const mobileMenu = document.getElementById('mobile-menu');
   const burgerIcon = mobileMenuToggle?.querySelector('svg');
+  const darkLogo = document.querySelector('.dark-logo');
+  const lightLogo = document.querySelector('.light-logo');
 
   let lastScrollY = window.scrollY;
   const scrollThreshold = 50;
 
   window.addEventListener('scroll', () => {
-    if (!header || !logo || !burgerIcon) return;
+    if (!header) return;
 
     const currentScrollY = window.scrollY;
 
     if (currentScrollY > scrollThreshold) {
-      header.classList.add('bg-white', 'text-hr-dark');
+      header.classList.add('bg-white');
       header.classList.remove('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
       
       navLinks.forEach(link => {
@@ -110,12 +122,16 @@ const serviceItems = [
           link.classList.add('text-hr-dark');
         }
       });
-      logo.classList.remove('text-white');
-      logo.classList.add('text-hr-dark');
-      burgerIcon.classList.remove('text-white');
-      burgerIcon.classList.add('text-hr-dark');
+      if (darkLogo && lightLogo) {
+        darkLogo.classList.add('hidden');
+        lightLogo.classList.remove('hidden');
+      }
+      if (burgerIcon) {
+        burgerIcon.classList.remove('text-white');
+        burgerIcon.classList.add('text-hr-dark');
+      }
     } else {
-      header.classList.remove('bg-white', 'text-hr-dark');
+      header.classList.remove('bg-white');
       header.classList.add('bg-hr-dark', 'bg-opacity-20', 'backdrop-blur-md');
       
       navLinks.forEach(link => {
@@ -124,10 +140,14 @@ const serviceItems = [
           link.classList.remove('text-hr-dark');
         }
       });
-      logo.classList.add('text-white');
-      logo.classList.remove('text-hr-dark');
-      burgerIcon.classList.add('text-white');
-      burgerIcon.classList.remove('text-hr-dark');
+      if (darkLogo && lightLogo) {
+        darkLogo.classList.remove('hidden');
+        lightLogo.classList.add('hidden');
+      }
+      if (burgerIcon) {
+        burgerIcon.classList.add('text-white');
+        burgerIcon.classList.remove('text-hr-dark');
+      }
     }
 
     lastScrollY = currentScrollY;
