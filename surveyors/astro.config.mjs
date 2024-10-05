@@ -15,6 +15,9 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ['@astrojs/image']
-    }
+    },
+    optimizeDeps: {
+      exclude: ['problematic-package'],
+    },
   }
 });
