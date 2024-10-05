@@ -1,22 +1,28 @@
 ---
 const projects = [
-  {
-    title: 'Urban Skyline Mapping',
-    description: 'Comprehensive 3D mapping of downtown skyscrapers for urban planning.',
-    icon: '🏙️',
-    color: 'bg-blue-500',
-  },
-  {
-    title: 'Coastal Erosion Study',
-    description: 'High-precision drone surveys to monitor and analyze coastal erosion patterns.',
-    icon: '🌊',
+    {
+    title: 'Mentone Grammar Bayview Campus',
+    description: 'We contributed to the construction of Mentone Grammar\'s state-of-the-art Bayview Campus building, a significant project in the school\'s history.',
+    icon: '🏫',
     color: 'bg-green-500',
+    image: '/images/school-construction.jpg',
+    link: 'https://www.linkedin.com/posts/hrsurveyors_well-done-to-everyone-involved-in-this-project-activity-7191728928061845506-jmwH'
   },
   {
-    title: 'Highway Expansion Project',
-    description: 'Detailed topographic surveys for a major interstate expansion project.',
+    title: 'Sunbury Road Upgrade',
+    description: 'We were involved in the Sunbury Road duplication works over 18 months, contributing to a smoother and safer journey over Jacksons Creek.',
     icon: '🛣️',
+    color: 'bg-blue-500',
+    image: '/images/road-upgrade.jpg',
+    link: 'https://www.linkedin.com/posts/hrsurveyors_we-were-fortunate-enough-to-be-involved-in-activity-7130689244154531842-fFCx'
+  },
+  {
+    title: 'Rangebank Battery Energy Storage System',
+    description: 'Our VIC team contributed to the Eku Energy project in West Cranbourne, Victoria, helping to set up a 200MW / 400MWh battery storage system.',
+    icon: '🔋',
     color: 'bg-yellow-500',
+    image: '/images/precision-engineering-surveys.jpg',
+    link: 'https://www.linkedin.com/posts/hrsurveyors_what-a-effort-by-the-vic-team-to-finish-this-activity-7136163615044222976-xvjw'
   },
 ];
 ---
@@ -26,20 +32,32 @@ const projects = [
     <h2 class="text-4xl font-bold text-center mb-16 text-hr-dark">Featured Projects</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map((project) => (
-        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <div class={`relative h-48 ${project.color} flex items-center justify-center`}>
-            <span class="text-6xl">{project.icon}</span>
+        <a href={project.link} class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+          <div class={`relative h-64 ${project.color} flex items-center justify-center overflow-hidden`}>
+            {project.image ? (
+              <img src={project.image} alt={project.title} class="w-full h-full object-cover" />
+            ) : (
+              <span class="text-6xl">{project.icon}</span>
+            )}
           </div>
-          <div class="p-6">
+          <div class="p-6 flex flex-col flex-grow">
             <h3 class="text-xl font-semibold mb-2 text-hr-dark">{project.title}</h3>
-            <p class="text-gray-600 mb-4">{project.description}</p>
-            <a href="/projects" class="text-hr-accent hover:underline inline-flex items-center">
+            <p class="text-gray-600 mb-4 flex-grow">{project.description}</p>
+            <span class="text-hr-accent hover:underline inline-flex items-center mt-auto">
               Learn more
               <span class="ml-1">→</span>
-            </a>
+            </span>
           </div>
-        </div>
+        </a>
       ))}
+    </div>
+    <div class="mt-12 text-center">
+      <a href="https://www.linkedin.com/company/hrsurveyors?trk=public_post_feed-actor-name&originalSubdomain=au" class="text-hr-accent hover:underline inline-flex items-center justify-center">
+        <span class="mr-2">Follow us on LinkedIn for more updates</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
