@@ -111,76 +111,45 @@ function getAltText(src: string) {
 </section>
 
 <script>
-  function toggleService(button) {
-    const content = button.nextElementSibling;
-    const chevron = button.querySelector('svg');
-    const allContents = document.querySelectorAll('.service-content');
-    const allChevrons = document.querySelectorAll('.service-button svg');
+  function toggleService(button: HTMLElement) {
+    const content = button.nextElementSibling as HTMLElement | null;
+    const chevron = button.querySelector('.chevron') as HTMLElement | null;
 
-    allContents.forEach((el) => {
-      if (el !== content && !el.classList.contains('hidden')) {
-        el.classList.add('hidden');
-        const learnMoreBtn = el.querySelector('.learn-more-button');
-        if (learnMoreBtn.textContent === 'Show less') {
-          learnMoreBtn.textContent = 'Learn more';
-          el.querySelector('.full-description').classList.add('hidden');
-        }
-      }
-    });
-
-    allChevrons.forEach((el) => {
-      if (el !== chevron) {
-        el.classList.remove('rotate-180');
-      }
-    });
-
-    content.classList.toggle('hidden');
-    chevron.classList.toggle('rotate-180');
+    if (content && chevron) {
+      content.classList.toggle('hidden');
+      chevron.classList.toggle('rotate-180');
+    }
   }
 
-  function toggleFullDescription(button) {
-    const fullDescription = button.nextElementSibling;
-    fullDescription.classList.toggle('hidden');
-    button.textContent = button.textContent === 'Learn more' ? 'Show less' : 'Learn more';
+  function toggleFullDescription(button: HTMLElement) {
+    const el = button.closest('.service-item') as HTMLElement | null;
+    const fullDescription = el?.querySelector('.full-description') as HTMLElement | null;
+    const learnMoreBtn = button;
+
+    if (fullDescription && learnMoreBtn) {
+      if (learnMoreBtn.textContent === 'Show less') {
+        learnMoreBtn.textContent = 'Learn more';
+        fullDescription.classList.add('hidden');
+      } else {
+        learnMoreBtn.textContent = 'Show less';
+        fullDescription.classList.remove('hidden');
+      }
+    }
   }
 
-  function initializeServices() {
-    const serviceButtons = document.querySelectorAll('.service-button');
-    serviceButtons.forEach((button) => {
-      button.addEventListener('click', () => toggleService(button));
-    });
-
-    const learnMoreButtons = document.querySelectorAll('.learn-more-button');
-    learnMoreButtons.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleFullDescription(button);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.service-item button').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const target = event.currentTarget as HTMLElement;
+        toggleService(target);
       });
     });
-  }
 
-  function initializeSlideshow() {
-    const images = document.querySelectorAll('.aspect-video img');
-    let currentIndex = 0;
-
-    function showNextImage() {
-      images[currentIndex].classList.remove('opacity-100');
-      images[currentIndex].classList.add('opacity-0');
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.remove('opacity-0');
-      images[currentIndex].classList.add('opacity-100');
-    }
-
-    setInterval(showNextImage, 3000);
-  }
-
-  // Run initialization immediately
-  initializeServices();
-  initializeSlideshow();
-
-  // Re-run initialization after navigation
-  document.addEventListener('astro:after-swap', () => {
-    initializeServices();
-    initializeSlideshow();
+    document.querySelectorAll('.learn-more-btn').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const target = event.currentTarget as HTMLElement;
+        toggleFullDescription(target);
+      });
+    });
   });
 </script>
