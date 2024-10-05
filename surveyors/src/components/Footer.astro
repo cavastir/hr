@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../assets/hr-surveyors-logo-dark.png';
-import hrUtilitiesLogo from '../assets/hr-utilities-logo.png';
 
 const currentYear = new Date().getFullYear();
 const socialLinks = [
@@ -9,22 +8,35 @@ const socialLinks = [
   { name: 'LinkedIn', icon: 'linkedin', url: '#' },
   { name: 'Instagram', icon: 'instagram', url: '#' },
 ];
+
+const offices = [
+  { name: 'HQ', location: 'Clayton, VIC, 3168' },
+  { name: 'Geelong office', location: 'Newtown, VIC, 3220' },
+  { name: 'WA office', location: 'West Leederville, WA, 6007' },
+  { name: 'QLD/Northern NSW office', location: 'Murwillumbah, NSW, 2484' },
+];
 ---
 
-<footer class="bg-hr-dark text-hr-light py-12">
+<footer class="bg-hr-dark text-hr-light py-16">
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
       <div class="space-y-4">
         <Image 
           src={logoImage} 
           alt="HR Surveyors Logo" 
-          class="h-12 w-auto"
+          class="h-12 w-auto mb-6"
         />
-        <p class="text-sm">Delivering Efficient and Accurate Surveying Solutions since 2012.</p>
+        <p class="text-sm leading-relaxed">Delivering Efficient and Accurate Surveying Solutions since 2012.</p>
+        <div class="pt-4">
+          <a href="https://www.hrutilities.com.au" target="_blank" rel="noopener noreferrer" class="text-hr-accent hover:text-hr-light transition-colors font-semibold text-sm">
+            HR Utilities
+          </a>
+          <p class="text-sm mt-2 leading-relaxed">Discover our sister company specializing in advanced subsurface mapping solutions.</p>
+        </div>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-        <ul class="space-y-2">
+        <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+        <ul class="space-y-3 text-sm">
           <li><a href="/services" class="hover:text-hr-accent transition-colors">Services</a></li>
           <li><a href="/projects" class="hover:text-hr-accent transition-colors">Projects</a></li>
           <li><a href="/careers" class="hover:text-hr-accent transition-colors">Careers</a></li>
@@ -32,16 +44,19 @@ const socialLinks = [
         </ul>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
-        <address class="not-italic">
-          <p>123 Survey Street, Engineering City, 12345</p>
-          <p>Phone: (123) 456-7890</p>
-          <p>Email: info@hrsurveyors.com</p>
-        </address>
+        <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+        <ul class="space-y-4 text-sm">
+          {offices.map((office) => (
+            <li>
+              <p class="font-medium">{office.name}</p>
+              <p>{office.location}</p>
+            </li>
+          ))}
+        </ul>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
-        <div class="flex space-x-4">
+        <h4 class="text-lg font-semibold mb-6">Follow Us</h4>
+        <div class="flex space-x-4 mb-6">
           {socialLinks.map((link) => (
             <a href={link.url} class="text-hr-light hover:text-hr-accent transition-colors" aria-label={link.name}>
               <svg class="w-6 h-6 fill-current">
@@ -50,30 +65,13 @@ const socialLinks = [
             </a>
           ))}
         </div>
-      </div>
-    </div>
-    
-    <!-- HR Utilities Section -->
-    <div class="mt-12 pt-8 border-t border-gray-700">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="flex items-center space-x-4 mb-4 md:mb-0">
-          <Image 
-            src={hrUtilitiesLogo} 
-            alt="HR Utilities Logo" 
-            class="h-10 w-auto"
-          />
-          <p class="text-sm">Subsurface Mapping</p>
-        </div>
-        <p class="text-sm mb-4 md:mb-0 text-center md:text-left">
-          Discover our sister company specializing in advanced subsurface mapping solutions.
+        <p class="text-sm">
+          <span class="font-medium">Email:</span> <a href="mailto:office@hrsurveyors.com.au" class="hover:text-hr-accent transition-colors">office@hrsurveyors.com.au</a>
         </p>
-        <a href="https://www.hrutilities.com" class="bg-hr-accent text-hr-dark px-6 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors">
-          Explore HR Utilities
-        </a>
       </div>
     </div>
     
-    <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+    <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
       <p>&copy; {currentYear} HR Surveyors. All rights reserved.</p>
     </div>
   </div>
