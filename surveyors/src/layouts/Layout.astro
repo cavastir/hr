@@ -36,7 +36,119 @@ const { title, description } = Astro.props;
 	window.addEventListener('load', () => {
 		const loadingOverlay = document.getElementById('loading-overlay');
 		if (loadingOverlay) {
-			loadingOverlay.style.display = 'none';
+			loadingOverlay.style.opacity = '0';
+			loadingOverlay.style.transition = 'opacity 0.5s ease-out';
+			setTimeout(() => {
+				loadingOverlay.style.display = 'none';
+			}, 500);
 		}
+		document.body.classList.add('loaded');
+	});
+
+	document.addEventListener('astro:page-load', () => {
+		const fadeElems = document.querySelectorAll('.fade-in');
+		fadeElems.forEach((elem, index) => {
+			elem.style.animationDelay = `${index * 0.1}s`;
+		});
 	});
 </script>
+
+<style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+	:root {
+		--ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+
+	html {
+		font-family: 'Inter', sans-serif;
+		scroll-behavior: smooth;
+	}
+
+	body {
+		overflow-x: hidden;
+		transition: background-color 0.3s ease;
+	}
+
+	body.loaded {
+		animation: fadeIn 0.5s ease-out;
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+
+	.fade-in {
+		opacity: 0;
+		transform: translateY(20px);
+		animation: fadeInUp 0.6s var(--ease-out-quad) forwards;
+	}
+
+	@keyframes fadeInUp {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.hover-lift {
+		transition: transform 0.3s var(--ease-out-quad), box-shadow 0.3s var(--ease-out-quad);
+	}
+
+	.hover-lift:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+	}
+
+	.text-gradient {
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-image: linear-gradient(45deg, #BBCF31, #3E3E3F);
+	}
+
+	.bg-gradient {
+		background-image: linear-gradient(45deg, rgba(187,207,49,0.1), rgba(62,62,63,0.1));
+	}
+
+	/* Improve readability */
+	p, li {
+		line-height: 1.6;
+	}
+
+	/* Smooth scrolling for anchor links */
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* Responsive images */
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/* Focus styles for accessibility */
+	:focus {
+		outline: 2px solid #BBCF31;
+		outline-offset: 2px;
+	}
+
+	/* Custom scrollbar */
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #BBCF31;
+		border-radius: 5px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #3E3E3F;
+	}
+</style>
