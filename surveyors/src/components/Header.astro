@@ -27,15 +27,17 @@ const serviceItems = [
     </a>
     <nav class="hidden md:flex items-center space-x-6">
       {navItems.map((item) => (
-        <a href={item.href} class="text-white hover:text-hr-accent transition-colors" data-nav-link>
+        <a href={item.href} class="text-white hover:text-hr-accent transition-colors relative group" data-nav-link>
           {item.name}
+          <span class="absolute left-0 right-0 bottom-0 h-0.5 bg-hr-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
         </a>
       ))}
-      <a href="/contact" class="bg-hr-accent text-hr-dark px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors">
-        Get in touch
+      <a href="/contact" class="bg-hr-accent text-hr-dark px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
+        <span class="relative z-10 group-hover:text-white transition-colors">Get in touch</span>
+        <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
       </a>
     </nav>
-    <button class="md:hidden text-white p-2" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+    <button class="md:hidden text-white p-2 focus:outline-none" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>

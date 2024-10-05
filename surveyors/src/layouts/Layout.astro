@@ -130,8 +130,22 @@ const { title, description } = Astro.props;
 
 	/* Focus styles for accessibility */
 	:focus {
-		outline: 2px solid #BBCF31;
+		outline: none;
+	}
+
+	/* Add custom focus styles */
+	*:focus-visible {
+		outline: 2px solid rgba(255, 255, 255, 0.5);
 		outline-offset: 2px;
+	}
+
+	/* For buttons and interactive elements */
+	button:focus-visible,
+	a:focus-visible,
+	input:focus-visible,
+	select:focus-visible,
+	textarea:focus-visible {
+		box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 	}
 
 	/* Custom scrollbar */
