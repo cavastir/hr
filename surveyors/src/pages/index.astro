@@ -1,24 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 import Certifications from '../components/Certifications.astro';
+import Services from '../components/Services.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import Testimonials from '../components/Testimonials.astro';
+import InstagramFeed from '../components/InstagramFeed.astro';
+import CallToAction from '../components/CallToAction.astro';
 
 const pageTitle = "HR Surveyors - Precision Engineering Surveys";
 const pageDescription = "HR Surveyors provides efficient and accurate survey solutions for construction and infrastructure projects since 2012.";
 
 const components = [
-  { name: 'Hero', import: () => import('../components/Hero.astro') },
-  { name: 'Certifications', import: () => Promise.resolve({ default: Certifications }) },
-  { name: 'Services', import: () => import('../components/Services.astro') },
-  { name: 'FeaturedProjects', import: () => import('../components/FeaturedProjects.astro'), lazy: true },
-  { name: 'Testimonials', import: () => import('../components/Testimonials.astro'), lazy: true },
-  { name: 'InstagramFeed', import: () => import('../components/InstagramFeed.astro'), lazy: true },
-  { name: 'CallToAction', import: () => import('../components/CallToAction.astro'), lazy: true },
+  Hero,
+  Certifications,
+  Services,
+  FeaturedProjects,
+  Testimonials,
+  InstagramFeed,
+  CallToAction
 ];
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  {components.map(async (component) => {
-    const { default: Component } = await component.import();
-    return <Component />;
-  })}
+  {components.map((Component) => <Component />)}
 </Layout>
