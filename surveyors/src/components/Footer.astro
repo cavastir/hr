@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../assets/hr-surveyors-logo-dark.png';
+import hrUtilitiesLogo from '../assets/hr-utilities-logo.png';
 
 const currentYear = new Date().getFullYear();
 const socialLinks = [
@@ -8,7 +9,6 @@ const socialLinks = [
   { name: 'LinkedIn', icon: 'linkedin', url: '#' },
   { name: 'Instagram', icon: 'instagram', url: '#' },
 ];
-
 ---
 
 <footer class="bg-hr-dark text-hr-light py-12">
@@ -52,6 +52,27 @@ const socialLinks = [
         </div>
       </div>
     </div>
+    
+    <!-- HR Utilities Section -->
+    <div class="mt-12 pt-8 border-t border-gray-700">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+          <Image 
+            src={hrUtilitiesLogo} 
+            alt="HR Utilities Logo" 
+            class="h-10 w-auto"
+          />
+          <p class="text-sm">Subsurface Mapping</p>
+        </div>
+        <p class="text-sm mb-4 md:mb-0 text-center md:text-left">
+          Discover our sister company specializing in advanced subsurface mapping solutions.
+        </p>
+        <a href="https://www.hrutilities.com" class="bg-hr-accent text-hr-dark px-6 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors">
+          Explore HR Utilities
+        </a>
+      </div>
+    </div>
+    
     <div class="mt-8 pt-8 border-t border-gray-700 text-center">
       <p>&copy; {currentYear} HR Surveyors. All rights reserved.</p>
     </div>
