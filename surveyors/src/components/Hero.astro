@@ -4,7 +4,7 @@ import fallbackImage from '../assets/fallback-hero.jpg';
 
 let heroImage;
 try {
-  heroImage = (await import('../assets/hero-image.png')).default;
+  heroImage = (await import('../assets/hero-image.jpg')).default;
 } catch (e) {
   console.warn('Hero image not found, using fallback image');
   heroImage = fallbackImage;
@@ -16,7 +16,7 @@ try {
     <Image
       src={heroImage}
       alt="Engineering survey site"
-      class="object-cover object-center w-full h-full"
+      class="object-cover object-center w-full h-[160%] -top-[60%] relative"
       width={1920}
       height={1080}
     />
