@@ -1,22 +1,26 @@
 ---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/hr-surveyors-logo-dark.png';
+
 const currentYear = new Date().getFullYear();
 const socialLinks = [
-  { name: 'Facebook', icon: 'f', url: '#' },
-  { name: 'Twitter', icon: 't', url: '#' },
-  { name: 'LinkedIn', icon: 'in', url: '#' },
-  { name: 'Instagram', icon: 'ig', url: '#' },
+  { name: 'Facebook', icon: 'facebook', url: '#' },
+  { name: 'LinkedIn', icon: 'linkedin', url: '#' },
+  { name: 'Instagram', icon: 'instagram', url: '#' },
 ];
+
 ---
 
 <footer class="bg-hr-dark text-hr-light py-12">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div class="space-y-4">
-        <h3 class="text-xl font-semibold mb-4 flex items-center space-x-2">
-          <span class="text-hr-accent">⚡</span>
-          <span><span class="text-hr-accent">HR</span>SURVEYORS</span>
-        </h3>
-        <p class="text-sm">Pioneering precision engineering solutions since 2012.</p>
+        <Image 
+          src={logoImage} 
+          alt="HR Surveyors Logo" 
+          class="h-12 w-auto"
+        />
+        <p class="text-sm">Delivering Efficient and Accurate Surveying Solutions since 2012.</p>
       </div>
       <div>
         <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
@@ -40,7 +44,9 @@ const socialLinks = [
         <div class="flex space-x-4">
           {socialLinks.map((link) => (
             <a href={link.url} class="text-hr-light hover:text-hr-accent transition-colors" aria-label={link.name}>
-              {link.icon}
+              <svg class="w-6 h-6 fill-current">
+                <use xlink:href={`/social-icons.svg#${link.icon}`}></use>
+              </svg>
             </a>
           ))}
         </div>
