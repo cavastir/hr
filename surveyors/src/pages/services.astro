@@ -60,34 +60,34 @@ const secondaryServices = [
   description="Explore the comprehensive range of surveying services offered by HR Surveyors. From building and construction to infrastructure and 3D scanning solutions."
 >
   <main class="bg-hr-dark text-white">
-    <section class="pt-40 pb-12"> <!-- Increased top padding even more -->
-      <div class="container mx-auto px-4">
-        <h1 class="text-4xl lg:text-5xl font-bold mb-8">Our Services</h1> <!-- Removed negative margin -->
-        <p class="text-xl mb-12">At HR Surveyors, we offer a comprehensive range of surveying services to meet all your project needs. Our expert team utilizes cutting-edge technology and years of experience to deliver precise, reliable results.</p>
+    <section class="py-20">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-5xl lg:text-6xl font-bold mb-8 text-hr-accent text-center">Our Services</h1>
+        <p class="text-xl mb-16 leading-relaxed text-center max-w-3xl mx-auto">At HR Surveyors, we offer a comprehensive range of surveying services to meet all your project needs. Our expert team utilizes cutting-edge technology and years of experience to deliver precise, reliable results.</p>
         
-        <h2 class="text-3xl font-bold mb-6">Main Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <h2 class="text-3xl font-bold mb-12 text-hr-accent text-center">Main Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {mainServices.map((service) => (
-            <div class="bg-hr-dark-lighter rounded-lg p-6 transition-all duration-300 hover:bg-hr-accent group">
-              <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-accent group-hover:text-black" />
-              <h3 class="text-2xl font-semibold mb-4 group-hover:text-black">{service.title}</h3>
-              <p class="text-gray-300 group-hover:text-black">{service.description}</p>
+            <div class="bg-hr-dark-lighter rounded-lg p-6 shadow-lg transition-all duration-300 hover:shadow-xl">
+              <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-accent" />
+              <h3 class="text-2xl font-semibold mb-4">{service.title}</h3>
+              <p class="text-gray-300">{service.description}</p>
             </div>
           ))}
         </div>
 
-        <h2 class="text-3xl font-bold mt-16 mb-6">Additional Services</h2>
-        <div class="space-y-8">
+        <h2 class="text-3xl font-bold mb-12 text-hr-accent text-center">Additional Services</h2>
+        <div class="space-y-8 mb-20">
           {secondaryServices.map((service) => (
-            <div class="bg-hr-dark-lighter rounded-lg p-6 transition-all duration-300 hover:bg-hr-accent group">
-              <h3 class="text-2xl font-semibold mb-4 group-hover:text-black">{service.title}</h3>
-              <p class="text-gray-300 group-hover:text-black">{service.description}</p>
+            <div class="bg-hr-dark-lighter rounded-lg p-8 shadow-lg transition-all duration-300 hover:shadow-xl">
+              <h3 class="text-2xl font-semibold mb-4">{service.title}</h3>
+              <p class="text-gray-300">{service.description}</p>
             </div>
           ))}
         </div>
 
-        <div class="mt-16 text-center">
-          <a href="/contact" class="bg-hr-accent text-hr-dark px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 inline-flex items-center space-x-2 group">
+        <div class="text-center">
+          <a href="/contact" class="bg-hr-accent text-hr-dark px-10 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-all duration-300 inline-flex items-center space-x-2 group shadow-lg hover:shadow-xl">
             <span>Get in Touch</span>
             <span class="group-hover:translate-x-1 transition-transform">→</span>
           </a>
