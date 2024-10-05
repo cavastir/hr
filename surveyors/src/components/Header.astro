@@ -16,7 +16,7 @@ const serviceItems = [
 ];
 ---
 
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-hr-dark bg-opacity-30 backdrop-blur-md transition-all duration-200">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-hr-dark bg-opacity-30 backdrop-blur-md transition-all duration-300">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <a href="/" class="flex items-center space-x-2 relative w-48 h-12"> 
       <img 
@@ -98,7 +98,6 @@ const serviceItems = [
   const burgerIcon = mobileMenuToggle?.querySelector('svg');
   const logo = document.querySelector('.logo');
 
-  let lastScrollY = window.scrollY;
   const scrollThreshold = 50;
 
   function updateHeaderStyle() {
@@ -142,7 +141,6 @@ const serviceItems = [
       }
     }
 
-    lastScrollY = currentScrollY;
   }
 
   // Call the function on initial load

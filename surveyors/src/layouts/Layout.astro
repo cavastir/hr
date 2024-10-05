@@ -35,7 +35,7 @@ const { title, description } = Astro.props;
 <script>
 	import { inView, animate, stagger } from "framer-motion";
 
-	const animateElement = (element, delay = 0) => {
+	const animateElement = (element: HTMLElement, delay = 0) => {
 		animate(element, 
 			{ opacity: [0, 1], y: [20, 0] }, 
 			{ duration: 0.5, delay, ease: "easeOut" }
@@ -43,19 +43,20 @@ const { title, description } = Astro.props;
 	};
 
 	inView("section, img", ({ target }) => {
-		animateElement(target);
-	}, { amount: 0.2, once: true });
+		animateElement(target as HTMLElement);
+	}, { amount: 0.2 });
 
 	inView("section ul, section ol", ({ target }) => {
-		animate(target.children,
-			{ opacity: [0, 1], x: [-10, 0] },
+		animate(target.children as any,
+			{ opacity: [0, 1], x: [-10, 0] } as any,
 			{ duration: 0.3, delay: stagger(0.05), ease: "easeOut" }
 		);
-	}, { amount: 0.2, once: true });
-</script>
+	}, { amount: 0.2 });
 
-<script>
 	window.addEventListener('load', () => {
-		document.getElementById('loading-overlay').style.display = 'none';
+		const loadingOverlay = document.getElementById('loading-overlay');
+		if (loadingOverlay) {
+			loadingOverlay.style.display = 'none';
+		}
 	});
 </script>
