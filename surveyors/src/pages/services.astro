@@ -132,8 +132,8 @@ const secondaryServices = [
   </div>
 </Layout>
 
-<script>
-  function showDetails(index, type) {
+<script define:vars={{ mainServices, secondaryServices }}>
+  function showDetails(index: number, type: 'main' | 'secondary'): void {
     const services = type === 'main' ? mainServices : secondaryServices;
     const service = services[index];
     
@@ -164,6 +164,9 @@ const secondaryServices = [
       }
     });
   }
+
+  // Make showDetails available globally
+  (window as any).showDetails = showDetails;
 </script>
 
 <style>
