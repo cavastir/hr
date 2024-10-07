@@ -133,7 +133,11 @@ const secondaryServices = [
 </Layout>
 
 <script define:vars={{ mainServices, secondaryServices }}>
-  function showDetails(index: number, type: 'main' | 'secondary'): void {
+  /**
+   * @param {number} index
+   * @param {'main' | 'secondary'} type
+   */
+  function showDetails(index, type) {
     const services = type === 'main' ? mainServices : secondaryServices;
     const service = services[index];
     
@@ -153,7 +157,7 @@ const secondaryServices = [
 
   if (closeOverlay) {
     closeOverlay.addEventListener('click', () => {
-      overlay?.classList.add('hidden');
+      if (overlay) overlay.classList.add('hidden');
     });
   }
 
@@ -166,7 +170,7 @@ const secondaryServices = [
   }
 
   // Make showDetails available globally
-  (window as any).showDetails = showDetails;
+  window.showDetails = showDetails;
 </script>
 
 <style>
