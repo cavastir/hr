@@ -137,21 +137,33 @@ const secondaryServices = [
     const services = type === 'main' ? mainServices : secondaryServices;
     const service = services[index];
     
-    document.getElementById('overlayTitle').textContent = service.title;
-    document.getElementById('overlayDescription').textContent = service.description;
-    document.getElementById('overlay').classList.remove('hidden');
+    const overlayTitle = document.getElementById('overlayTitle');
+    const overlayDescription = document.getElementById('overlayDescription');
+    const overlay = document.getElementById('overlay');
+
+    if (overlayTitle && overlayDescription && overlay) {
+      overlayTitle.textContent = service.title;
+      overlayDescription.textContent = service.description;
+      overlay.classList.remove('hidden');
+    }
   }
 
-  document.getElementById('closeOverlay').addEventListener('click', () => {
-    document.getElementById('overlay').classList.add('hidden');
-  });
+  const closeOverlay = document.getElementById('closeOverlay');
+  const overlay = document.getElementById('overlay');
 
-  // Close overlay when clicking outside the content
-  document.getElementById('overlay').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('overlay')) {
-      document.getElementById('overlay').classList.add('hidden');
-    }
-  });
+  if (closeOverlay) {
+    closeOverlay.addEventListener('click', () => {
+      overlay?.classList.add('hidden');
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.add('hidden');
+      }
+    });
+  }
 </script>
 
 <style>
