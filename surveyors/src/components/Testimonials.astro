@@ -1,29 +1,31 @@
 ---
 const testimonials = [
   {
-    quote: "HR Surveyors' precision and efficiency significantly accelerated our project timeline.",
-    author: "Jane Doe",
-    position: "Project Manager, MegaBuild Corp",
+    quote: "HR Surveyors' precision is top-notch.",
+    author: "Dr Prat",
+    position: "Developer, Cavastir Pte. Ltd",
   },
   {
-    quote: "Their innovative approach to surveying helped us overcome complex terrain challenges.",
-    author: "John Smith",
-    position: "Chief Engineer, EcoTech Solutions",
+    quote: "Nice.",
+    author: "Detective Harris",
+    position: "Sergeant, South Park",
   },
   {
-    quote: "The team's expertise in 3D mapping was crucial for our urban renewal project's success.",
-    author: "Emily Johnson",
-    position: "Urban Planner, MetroCity Development",
+    quote: "XYZ.",
+    author: "Pat",
+    position: "Director, PATRICE AGENCY",
   },
 ];
 ---
 
-<section class="py-20 bg-hr-dark text-hr-light rounded">
-  <div class="container mx-auto px-4">
+<section class="py-20 text-hr-light rounded relative overflow-hidden">
+  <div class="absolute inset-0 bg-hr-dark opacity-90"></div>
+  <div class="absolute inset-0 backdrop-blur-sm"></div>
+  <div class="container mx-auto px-4 relative z-10">
     <h2 class="text-4xl font-bold text-center mb-16">What Our Clients Say</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {testimonials.map((testimonial) => (
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div class="bg-gray-800 bg-opacity-50 p-6 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm">
           <span class="text-4xl text-hr-accent mb-4 block">"</span>
           <p class="mb-4 italic">{testimonial.quote}</p>
           <div class="flex items-center">
@@ -40,3 +42,11 @@ const testimonials = [
     </div>
   </div>
 </section>
+
+<style>
+  @supports not (backdrop-filter: blur(4px)) {
+    .backdrop-blur-sm {
+      background-color: rgba(18, 18, 18, 0.95);
+    }
+  }
+</style>
