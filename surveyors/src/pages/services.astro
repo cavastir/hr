@@ -64,7 +64,7 @@ const secondaryServices = [
   title="Our Services | HR Surveyors"
   description="Explore the comprehensive range of surveying services offered by HR Surveyors. From building and construction to infrastructure and 3D scanning solutions."
 >
-  <main class="bg-hr-dark text-white">
+  <main class="bg-hr-dark text-white bg-opacity-95">
     <section class="py-20">
       <div class="container mx-auto px-4 max-w-6xl">
         <h1 transition:animate={fade({ duration: '0.5s' })} class="text-6xl lg:text-7xl font-bold mb-8 text-hr-accent text-center">Our Services</h1>
@@ -123,11 +123,11 @@ const secondaryServices = [
   </main>
 
   <!-- Overlay for service details -->
-  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-    <div class="bg-hr-dark-lighter p-8 rounded-lg max-w-2xl w-full mx-4 relative overflow-y-auto max-h-[90vh]">
-      <button id="closeOverlay" class="absolute top-4 right-4 text-hr-accent hover:text-hr-accent-light">&times;</button>
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50">
+    <div class="bg-hr-dark p-8 rounded-lg max-w-2xl w-full mx-4 relative overflow-y-auto max-h-[90vh]">
+      <button id="closeOverlay" class="absolute top-4 right-4 text-hr-accent hover:text-hr-accent-light text-2xl">&times;</button>
       <h3 id="overlayTitle" class="text-3xl font-semibold mb-4 text-hr-accent"></h3>
-      <p id="overlayDescription" class="text-gray-300"></p>
+      <p id="overlayDescription" class="text-gray-100 leading-relaxed"></p>
     </div>
   </div>
 </Layout>
@@ -181,5 +181,9 @@ const secondaryServices = [
   @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
+  }
+
+  #overlay .bg-hr-dark {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   }
 </style>
