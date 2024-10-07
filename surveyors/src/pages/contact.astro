@@ -1,12 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import contactImage from '../assets/contact-image.jpg';  // Make sure to add this image to your assets
 
 const contactInfo = [
   { label: 'Email', value: 'office@hrsurveyors.com.au', href: 'mailto:office@hrsurveyors.com.au' },
   { label: 'Phone', value: '+61 1 2345 6789', href: 'tel:+61123456789' },
-  { label: 'Address', value: '123 Surveyor Street, Melbourne, VIC 3000, Australia', href: null },
+  { label: 'Address', value: '8/20 Duerdin street, Clayton, VIC, 3168, Australia', href: null },
 ];
 ---
 
@@ -16,19 +14,14 @@ const contactInfo = [
 >
   <main class="bg-hr-dark text-white">
     <section class="py-24">
-      <div class="container mx-auto px-4 max-w-6xl">
+      <div class="container mx-auto px-4 max-w-4xl">
         <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-accent text-center">Contact Us</h1>
         <p class="text-2xl mb-16 leading-relaxed text-center max-w-3xl mx-auto">
-          "Let's discuss your project needs"
+          Let's discuss your project needs
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
-            <Image 
-              src={contactImage} 
-              alt="HR Surveyors contact" 
-              class="rounded-lg shadow-xl focus:outline-none mb-8"
-            />
             <h2 class="text-3xl font-bold mb-6 text-hr-accent">Get in Touch</h2>
             <p class="text-lg mb-6 leading-relaxed">
               We're here to answer any questions you may have about our services. Reach out to us and we'll respond as soon as we can.

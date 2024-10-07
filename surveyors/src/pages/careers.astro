@@ -3,12 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import teamImage from '../assets/team-landscape.jpg';
 
-const stats = [
-  { number: '5+', label: 'Years Average Tenure' },
-  { number: '100%', label: 'Employee Satisfaction' },
-  { number: '20+', label: 'Professional Development Programs' },
-  { number: '5', label: 'Office Locations' },
-];
+// Removed stats array
 ---
 
 <Layout 
@@ -46,15 +41,6 @@ const stats = [
           <p class="text-lg mb-6 leading-relaxed">
             We offer a dynamic work environment, competitive compensation, and the opportunity to work with cutting-edge surveying technology. Our commitment to employee development and work-life balance makes HR Surveyors an excellent place to build your career.
           </p>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
-          {stats.map((stat) => (
-            <div class="bg-hr-dark-lighter rounded-lg p-6 text-center shadow-lg">
-              <p class="text-4xl font-bold text-hr-accent">{stat.number}</p>
-              <p class="text-xl">{stat.label}</p>
-            </div>
-          ))}
         </div>
 
         <div class="text-center">
