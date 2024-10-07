@@ -64,7 +64,7 @@ const secondaryServices = [
   title="Our Services | HR Surveyors"
   description="Explore the comprehensive range of surveying services offered by HR Surveyors. From building and construction to infrastructure and 3D scanning solutions."
 >
-  <main class="bg-hr-dark text-white bg-opacity-95">
+  <main class="bg-hr-dark bg-opacity-90 text-white backdrop-filter backdrop-blur-sm">
     <section class="py-24">
       <div class="container mx-auto px-4 max-w-6xl">
         <h1 transition:animate={fade({ duration: '0.5s' })} class="text-6xl lg:text-7xl font-bold mb-8 text-hr-accent text-center">Our Services</h1>
@@ -185,5 +185,11 @@ const secondaryServices = [
 
   #overlay .bg-hr-dark {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  @supports not (backdrop-filter: blur(4px)) {
+    main {
+      background-color: rgba(18, 18, 18, 0.95); /* Adjust the color and opacity as needed */
+    }
   }
 </style>
