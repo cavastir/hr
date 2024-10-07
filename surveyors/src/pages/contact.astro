@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import contactImage from '../assets/contact-image.jpg';  // Make sure to add this image to your assets
+
+const contactInfo = [
+  { label: 'Email', value: 'office@hrsurveyors.com.au', href: 'mailto:office@hrsurveyors.com.au' },
+  { label: 'Phone', value: '+61 1 2345 6789', href: 'tel:+61123456789' },
+  { label: 'Address', value: '123 Surveyor Street, Melbourne, VIC 3000, Australia', href: null },
+];
+---
+
+<Layout 
+  title="Contact Us | HR Surveyors"
+  description="Get in touch with HR Surveyors for all your surveying and engineering needs."
+>
+  <main class="bg-hr-dark text-white">
+    <section class="py-24">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-accent text-center">Contact Us</h1>
+        <p class="text-2xl mb-16 leading-relaxed text-center max-w-3xl mx-auto">
+          "Let's discuss your project needs"
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          <div>
+            <Image 
+              src={contactImage} 
+              alt="HR Surveyors contact" 
+              class="rounded-lg shadow-xl focus:outline-none mb-8"
+            />
+            <h2 class="text-3xl font-bold mb-6 text-hr-accent">Get in Touch</h2>
+            <p class="text-lg mb-6 leading-relaxed">
+              We're here to answer any questions you may have about our services. Reach out to us and we'll respond as soon as we can.
+            </p>
+            {contactInfo.map((item) => (
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2 text-hr-accent">{item.label}</h3>
+                {item.href ? 
+                  <a href={item.href} class="text-white hover:text-hr-accent transition-colors">{item.value}</a> :
+                  <p>{item.value}</p>
+                }
+              </div>
+            ))}
+          </div>
+          <div class="bg-hr-dark-lighter rounded-lg p-8 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 text-hr-accent">Send Us a Message</h2>
+            <form class="space-y-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-white mb-1">Name</label>
+                <input type="text" name="name" id="name" required class="w-full rounded-md bg-hr-dark border-hr-accent text-white shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-white mb-1">Email</label>
+                <input type="email" name="email" id="email" required class="w-full rounded-md bg-hr-dark border-hr-accent text-white shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2">
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium text-white mb-1">Message</label>
+                <textarea name="message" id="message" rows="4" required class="w-full rounded-md bg-hr-dark border-hr-accent text-white shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2"></textarea>
+              </div>
+              <div>
+                <button type="submit" class="w-full bg-hr-accent text-hr-dark px-6 py-3 rounded font-semibold hover:bg-opacity-90 transition-colors">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
