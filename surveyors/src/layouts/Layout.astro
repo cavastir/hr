@@ -19,6 +19,22 @@ const { title, description } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<link rel="preload" as="image" href="/images/hr-surveyors-logo-dark.webp" type="image/webp" media="(prefers-color-scheme: light)">
+		<link rel="preload" as="image" href="/images/hr-surveyors-logo-light.webp" type="image/webp" media="(prefers-color-scheme: dark)">
+		<link rel="preload" as="image" href="/images/hr-surveyors-logo-dark.png">
+		<link rel="preload" as="image" href="/images/hr-surveyors-logo-light.png">
+		<style>
+			/* Add critical CSS here */
+			body {
+				font-family: 'Inter', sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+			/* Add more critical styles as needed */
+		</style>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 	</head>
 	<body class="bg-white text-hr-dark">
 		<Header />
