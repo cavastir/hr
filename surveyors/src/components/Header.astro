@@ -47,9 +47,9 @@ const serviceItems = [
 </header>
 
 <!-- Mobile menu (hidden by default) -->
-<div class="fixed inset-0 bg-white z-50 transform transition-transform duration-300 translate-x-full" id="mobile-menu">
-  <div class="flex flex-col h-full w-full bg-white">
-    <div class="bg-white p-4 flex justify-between items-center border-b border-gray-200">
+<div class="fixed inset-0 z-50 transform transition-transform duration-300 translate-x-full" id="mobile-menu" style="background-color: white !important;">
+  <div class="flex flex-col h-full w-full" style="background-color: white !important;">
+    <div class="p-4 flex justify-between items-center border-b border-gray-200" style="background-color: white !important;">
       <h2 class="text-hr-dark text-xl font-bold">Menu</h2>
       <button class="text-hr-dark" id="close-mobile-menu" aria-label="Close mobile menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,12 +57,13 @@ const serviceItems = [
         </svg>
       </button>
     </div>
-    <div class="overflow-y-auto flex-grow bg-white">
+    <div class="overflow-y-auto flex-grow" style="background-color: white !important;">
       {navItems.map((item) => (
-        <div class="border-b border-gray-200 bg-white">
+        <div class="border-b border-gray-200" style="background-color: white !important;">
           <button 
-            class="w-full text-left text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 flex justify-between items-center bg-white"
+            class="w-full text-left text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 flex justify-between items-center"
             data-dropdown-toggle={item.hasDropdown ? item.name : null}
+            style="background-color: white !important;"
           >
             {item.name}
             {item.hasDropdown && (
@@ -72,9 +73,9 @@ const serviceItems = [
             )}
           </button>
           {item.hasDropdown && (
-            <div class="hidden bg-white" id={`dropdown-${item.name}`}>
+            <div class="hidden" id={`dropdown-${item.name}`} style="background-color: white !important;">
               {serviceItems.map((service) => (
-                <a href={service.href} class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-3 px-8 bg-white">
+                <a href={service.href} class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-3 px-8" style="background-color: white !important;">
                   {service.name}
                 </a>
               ))}
@@ -150,6 +151,7 @@ const serviceItems = [
   if (mobileMenuToggle && closeMobileMenu && mobileMenu) {
     mobileMenuToggle.addEventListener('click', () => {
       mobileMenu.classList.remove('translate-x-full');
+      mobileMenu.style.backgroundColor = 'white';
       document.body.style.overflow = 'hidden';
     });
 
