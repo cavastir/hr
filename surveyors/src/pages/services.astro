@@ -136,33 +136,37 @@ const secondaryServices = [
 </Layout>
 
 <script>
-  function toggleDescription(index) {
+  function toggleDescription(index: number) {
     const description = document.getElementById(`description-${index}`);
     const button = document.getElementById(`button-${index}`);
     
-    if (description.classList.contains('line-clamp-3')) {
-      description.classList.remove('line-clamp-3');
-      button.textContent = 'Show Less';
-    } else {
-      description.classList.add('line-clamp-3');
-      button.textContent = 'Learn More';
+    if (description && button) {
+      if (description.classList.contains('line-clamp-3')) {
+        description.classList.remove('line-clamp-3');
+        button.textContent = 'Show Less';
+      } else {
+        description.classList.add('line-clamp-3');
+        button.textContent = 'Learn More';
+      }
     }
   }
 
-  function toggleSecondaryDescription(index) {
+  function toggleSecondaryDescription(index: number) {
     const description = document.getElementById(`secondary-description-${index}`);
     const button = document.getElementById(`secondary-button-${index}`);
     
-    if (description.classList.contains('line-clamp-3')) {
-      description.classList.remove('line-clamp-3');
-      button.textContent = 'Show Less';
-    } else {
-      description.classList.add('line-clamp-3');
-      button.textContent = 'Learn More';
+    if (description && button) {
+      if (description.classList.contains('line-clamp-3')) {
+        description.classList.remove('line-clamp-3');
+        button.textContent = 'Show Less';
+      } else {
+        description.classList.add('line-clamp-3');
+        button.textContent = 'Learn More';
+      }
     }
   }
 
   // Make functions available globally
-  window.toggleDescription = toggleDescription;
-  window.toggleSecondaryDescription = toggleSecondaryDescription;
+  (window as any).toggleDescription = toggleDescription;
+  (window as any).toggleSecondaryDescription = toggleSecondaryDescription;
 </script>
