@@ -48,26 +48,20 @@ const serviceItems = [
 
 <!-- Mobile menu (hidden by default) -->
 <div class="fixed inset-0 bg-white z-50 transform transition-transform duration-300 translate-x-full" id="mobile-menu">
-  <div class="flex flex-col h-full w-full">
-    <div class="bg-gray-100 p-4 flex justify-between items-center">
-      <a href="/" class="flex items-center space-x-2">
-        <img 
-          src="/images/hr-surveyors-logo-light.png" 
-          alt="HR Surveyors Logo" 
-          class="h-10 w-auto"
-        />
-      </a>
+  <div class="flex flex-col h-full w-full bg-white">
+    <div class="bg-white p-4 flex justify-between items-center border-b border-gray-200">
+      <h2 class="text-hr-dark text-xl font-bold">Menu</h2>
       <button class="text-hr-dark" id="close-mobile-menu" aria-label="Close mobile menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
-    <div class="overflow-y-auto flex-grow">
+    <div class="overflow-y-auto flex-grow bg-white">
       {navItems.map((item) => (
-        <div class="border-b border-gray-200">
+        <div class="border-b border-gray-200 bg-white">
           <button 
-            class="w-full text-left text-hr-dark text-lg hover:text-hr-accent transition-colors py-4 px-4 flex justify-between items-center"
+            class="w-full text-left text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 flex justify-between items-center bg-white"
             data-dropdown-toggle={item.hasDropdown ? item.name : null}
           >
             {item.name}
@@ -78,9 +72,9 @@ const serviceItems = [
             )}
           </button>
           {item.hasDropdown && (
-            <div class="hidden pl-4" id={`dropdown-${item.name}`}>
+            <div class="hidden bg-white" id={`dropdown-${item.name}`}>
               {serviceItems.map((service) => (
-                <a href={service.href} class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-2">
+                <a href={service.href} class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-3 px-8 bg-white">
                   {service.name}
                 </a>
               ))}
@@ -109,8 +103,9 @@ const serviceItems = [
     const currentScrollY = window.scrollY;
 
     if (currentScrollY > scrollThreshold) {
+      header.classList.remove('bg-opacity-80');
       header.classList.add('bg-white');
-      header.classList.remove('bg-hr-dark', 'bg-opacity-30', 'backdrop-blur-md');
+      header.classList.remove('bg-hr-dark');
       
       navLinks.forEach(link => {
         if (link instanceof HTMLElement) {
@@ -127,7 +122,7 @@ const serviceItems = [
       }
     } else {
       header.classList.remove('bg-white');
-      header.classList.add('bg-hr-dark', 'bg-opacity-30', 'backdrop-blur-md');
+      header.classList.add('bg-hr-dark', 'bg-opacity-40', 'backdrop-blur-md');
       
       navLinks.forEach(link => {
         if (link instanceof HTMLElement) {
