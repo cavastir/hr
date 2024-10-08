@@ -54,13 +54,21 @@ const { title, description } = Astro.props;
 			}
 		});
 	});
+
+	if ('serviceWorker' in navigator) {
+		window.addEventListener('load', () => {
+			navigator.serviceWorker.register('/service-worker.js');
+		});
+	}
 </script>
 
 <style is:global>
-	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-	:root {
-		--ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	@font-face {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 400 700;
+		font-display: swap;
+		src: url('/fonts/inter-var.woff2') format('woff2-variations');
 	}
 
 	html {

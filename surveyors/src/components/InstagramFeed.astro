@@ -21,7 +21,15 @@ const instagramUrl = 'https://www.instagram.com/hrsurveyors';
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       {instagramPosts.map((post) => (
         <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="block aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-          <img src={post.image} alt="Instagram post" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" loading="lazy" />
+          <img
+            src={post.image}
+            alt="Instagram post"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="300"
+            height="300"
+            srcset={`${post.image} 1x, ${post.image.replace('.jpg', '@2x.jpg')} 2x`}
+          />
         </a>
       ))}
     </div>
