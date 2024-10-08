@@ -58,31 +58,34 @@ const serviceItems = [
       </button>
     </div>
     <div class="overflow-y-auto flex-grow" style="background-color: white !important;">
-      {navItems.map((item) => (
-        <div class="border-b border-gray-200" style="background-color: white !important;">
-          <button 
-            class="w-full text-left text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 flex justify-between items-center"
-            data-dropdown-toggle={item.hasDropdown ? item.name : null}
-            style="background-color: white !important;"
-          >
-            {item.name}
-            {item.hasDropdown && (
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            )}
-          </button>
-          {item.hasDropdown && (
-            <div class="hidden" id={`dropdown-${item.name}`} style="background-color: white !important;">
-              {serviceItems.map((service) => (
-                <a href={service.href} class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-3 px-8" style="background-color: white !important;">
-                  {service.name}
-                </a>
-              ))}
-            </div>
-          )}
+      <div class="border-b border-gray-200" style="background-color: white !important;">
+        <button 
+          class="w-full text-left text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 flex justify-between items-center"
+          data-dropdown-toggle="Our Services"
+          style="background-color: white !important;"
+        >
+          Our Services
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden" id="dropdown-Our Services" style="background-color: white !important;">
+          {['Land Surveying', 'Engineering Surveys', 'Construction Surveys', 'Aerial Mapping', 'Hydrographic Surveys', 'GIS Services'].map((service) => (
+            <a href="/services" class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-3 px-8" style="background-color: white !important;">
+              {service}
+            </a>
+          ))}
         </div>
-      ))}
+      </div>
+      <a href="/about" class="block text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 border-b border-gray-200" style="background-color: white !important;">
+        Our Story
+      </a>
+      <a href="/locations" class="block text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 border-b border-gray-200" style="background-color: white !important;">
+        Our Locations
+      </a>
+      <a href="/careers" class="block text-hr-dark text-lg font-semibold hover:text-hr-accent transition-colors py-4 px-4 border-b border-gray-200" style="background-color: white !important;">
+        Careers
+      </a>
     </div>
   </div>
 </div>
