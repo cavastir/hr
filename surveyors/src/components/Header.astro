@@ -117,10 +117,10 @@ const sisterCompany = {
     if (!header) return;
 
     const currentScrollY = window.scrollY;
-    const topBar = document.querySelector('.bg-hr-accent');
+    const topBar = document.querySelector('.bg-hr-light');
 
     if (currentScrollY > scrollThreshold) {
-      header.classList.remove('bg-opacity-80');
+      header.classList.remove('bg-opacity-20', 'backdrop-blur-md');
       header.classList.add('bg-white');
       header.classList.remove('bg-hr-dark');
       
@@ -140,7 +140,7 @@ const sisterCompany = {
       if (topBar) topBar.classList.add('hidden');
     } else {
       header.classList.remove('bg-white');
-      header.classList.add('bg-hr-dark', 'bg-opacity-40', 'backdrop-blur-md');
+      header.classList.add('bg-hr-dark', 'bg-opacity-80', 'backdrop-blur-md');
       
       navLinks.forEach(link => {
         if (link instanceof HTMLElement) {
@@ -157,7 +157,6 @@ const sisterCompany = {
       }
       if (topBar) topBar.classList.remove('hidden');
     }
-
   }
 
   // Call the function on initial load
