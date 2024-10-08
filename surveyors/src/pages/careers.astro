@@ -3,7 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import teamImage from '../assets/team-landscape.jpg';
 
-// Removed stats array
+const openPositions = [
+  { title: "Engineering Surveyor", location: "Victoria" },
+  { title: "Project Surveyor", location: "North East Victoria" },
+  { title: "Graduate Surveyor", location: "Perth" },
+  { title: "Engineering Surveyor", location: "Brisbane" },
+];
+
+const companyStats = [
+  { number: "5", label: "Offices" },
+  { number: "65+", label: "Employees" },
+  { number: "70+", label: "Projects Completed" },
+  { number: "10+", label: "Years of Excellence" },
+];
 ---
 
 <Layout 
@@ -11,44 +23,65 @@ import teamImage from '../assets/team-landscape.jpg';
   description="Join the HR Surveyors team and build a rewarding career in precision surveying and engineering solutions."
 >
   <main class="bg-white text-hr-dark">
-    <section class="py-24">
+    <section class="py-28">
       <div class="container mx-auto px-4 max-w-6xl">
-        <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-accent text-center">Careers at HR Surveyors</h1>
-        <p class="text-2xl mb-16 leading-relaxed text-center max-w-3xl mx-auto">
-          "Join Our Team of Precision Experts"
-        </p>
+        <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-accent text-center">Career Opportunities at HR Surveyors</h1>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-          <div>
-            <p class="text-lg mb-6 leading-relaxed">
-              At HR Surveyors, we're always on the lookout for talented individuals who share our passion for precision and excellence in surveying. While we don't have any open positions at the moment, we encourage you to stay connected with us for future opportunities.
-            </p>
-            <p class="text-lg mb-6 leading-relaxed">
-              Our team members enjoy a collaborative work environment, opportunities for professional growth, and the chance to work on exciting projects across Australia.
-            </p>
-          </div>
-          <div>
-            <Image 
-              src={teamImage} 
-              alt="HR Surveyors team" 
-              class="rounded-lg shadow-xl focus:outline-none"
-            />
-          </div>
+        <div class="mb-20">
+          <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+            Are you passionate about precision and dedicated to delivering exceptional results? At HR Surveyors, we believe that our people are the cornerstone of our success.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+          {companyStats.map((stat) => (
+            <div class="text-center">
+              <p class="text-4xl font-bold text-hr-accent mb-2">{stat.number}</p>
+              <p class="text-lg">{stat.label}</p>
+            </div>
+          ))}
         </div>
 
         <div class="bg-hr-light-gray rounded-lg p-12 mb-20 shadow-lg">
-          <h2 class="text-3xl font-bold mb-8 text-hr-accent">Why Join HR Surveyors?</h2>
+          <h2 class="text-3xl font-bold mb-8 text-hr-accent">Our Company</h2>
           <p class="text-lg mb-6 leading-relaxed">
-            We offer a dynamic work environment, competitive compensation, and the opportunity to work with cutting-edge surveying technology. Our commitment to employee development and work-life balance makes HR Surveyors an excellent place to build your career.
+            Established in 2012, HR Surveyors is an innovative, dynamic, and fast-growing surveying company. Having developed strong and long-term client relationships through the delivery of quality results and exceptional client service, our growth has opened up several opportunities for motivated people to join our talented team. We specialize in Civil, Building, Rail, and Drone Surveying, with operations across Queensland, Victoria, South Australia, and Western Australia.
           </p>
         </div>
 
+        <div class="mb-20">
+          <h2 class="text-3xl font-bold mb-8 text-hr-accent">Current Opportunities</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {openPositions.map((position) => (
+              <div class="bg-white border border-hr-light-gray rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-semibold mb-2">{position.title}</h3>
+                <p class="text-hr-accent mb-4">{position.location}</p>
+                <a href="https://www.seek.com.au/HR-Surveyors-jobs/at-this-company" target="_blank" rel="noopener noreferrer" class="inline-block bg-hr-accent text-white py-2 px-4 rounded hover:bg-hr-accent-dark transition duration-300">Learn More</a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="text-center mb-20">
+          <h2 class="text-3xl font-bold mb-6 text-hr-accent">Why Join Us?</h2>
+          <ul class="text-lg list-none text-left max-w-2xl mx-auto space-y-4">
+            <li>Continual training and development</li>
+            <li>Exposure to a diverse range of projects</li>
+            <li>Friendly and supportive work environment</li>
+            <li>A great company culture</li>
+            <li>Long-term career prospects</li>
+            <li>An attractive remuneration package</li>
+            <li>Company car and laptop (for eligible positions)</li>
+            <li>Opportunities for career advancements</li>
+          </ul>
+        </div>
+
         <div class="text-center">
-          <h2 class="text-3xl font-bold mb-6 text-hr-accent">Get in Touch</h2>
+          <h2 class="text-3xl font-bold mb-6 text-hr-accent">Apply Today!</h2>
           <p class="text-lg mb-6 leading-relaxed">
-            While we don't have any current openings, we're always interested in connecting with talented professionals. If you'd like to be considered for future opportunities, please send your resume to:
+            If you're looking for a rewarding career where your expertise will be valued and your growth will be supported, HR Surveyors is the place for you. Take the next step and explore our current vacancies or submit your resume to our talent pool. We look forward to welcoming dedicated professionals who share our commitment to excellence and client satisfaction.
           </p>
-          <a href="mailto:office@hrsurveyors.com.au" class="text-hr-accent hover:underline text-xl">office@hrsurveyors.com.au</a>
+          <a href="https://www.seek.com.au/HR-Surveyors-jobs/at-this-company" target="_blank" rel="noopener noreferrer" class="inline-block bg-hr-accent text-white py-3 px-6 rounded text-lg hover:bg-hr-accent-dark transition duration-300">View Open Positions</a>
         </div>
       </div>
     </section>
