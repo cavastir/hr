@@ -20,7 +20,7 @@ const { title, description } = Astro.props;
 		<title>{title}</title>
 		<meta name="description" content={description} />
 	</head>
-	<body class="bg-hr-light text-hr-dark">
+	<body class="bg-white text-hr-dark">
 		<Header />
 		<main>
 			<slot />
@@ -88,6 +88,14 @@ const { title, description } = Astro.props;
 
 	.bg-gradient {
 		background-image: linear-gradient(45deg, rgba(187,207,49,0.1), rgba(62,62,63,0.1));
+	}
+
+	.bg-hr-light-gray {
+		background-color: #f4f4f4;
+	}
+
+	.text-hr-dark {
+		color: #333333;
 	}
 
 	/* Improve readability */

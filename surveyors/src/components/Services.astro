@@ -54,13 +54,11 @@ function getAltText(src: string) {
 
 ---
 
-<section class="py-12 relative overflow-hidden rounded">
-  <div class="absolute inset-0 bg-hr-dark opacity-90"></div>
-  <div class="absolute inset-0 backdrop-blur-sm"></div>
+<section class="py-12 relative overflow-hidden rounded bg-hr-light-gray">
   <div class="container mx-auto px-4 relative z-10">
     <div class="flex flex-col lg:flex-row gap-12">
       <div class="lg:w-1/2">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-white">We deliver high-quality survey solutions tailored to your construction project.</h2>
+        <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-hr-dark">We deliver high-quality survey solutions tailored to your construction project.</h2>
         <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-6 relative" id="imageSlider">
           {images.map((src, index) => (
             <img 
@@ -75,20 +73,20 @@ function getAltText(src: string) {
       <div class="lg:w-1/2 relative">
         <div class="space-y-4 services-container h-[600px] overflow-y-auto pr-4">
           {updatedServices.map((service, index) => (
-            <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-lg transition-all duration-300 group hover:bg-hr-accent">
+            <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-accent">
               <button 
                 class="w-full text-left flex justify-between items-center px-4 py-4 service-button focus:outline-none"
                 data-index={index}
               >
-                <h3 class="text-xl font-semibold text-white group-hover:text-black">{service.title}</h3>
-                <Icon name={service.icon} class="icon w-6 h-6 transform transition-transform duration-300 text-white group-hover:text-black" />
+                <h3 class="text-xl font-semibold text-hr-dark group-hover:text-white">{service.title}</h3>
+                <Icon name={service.icon} class="icon w-6 h-6 transform transition-transform duration-300 text-hr-dark group-hover:text-white" />
               </button>
               <div class="hidden px-4 pb-4 service-content">
-                <p class="text-gray-200 mb-4 group-hover:text-black">{service.shortDesc}</p>
-                <button class="text-hr-accent group-hover:text-black hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
+                <p class="text-hr-dark mb-4 group-hover:text-white">{service.shortDesc}</p>
+                <button class="text-hr-accent group-hover:text-white hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
                   Learn more
                 </button>
-                <div class="hidden mt-4 text-gray-200 group-hover:text-black full-description">
+                <div class="hidden mt-4 text-hr-dark group-hover:text-white full-description">
                   <p>{service.fullDesc}</p>
                 </div>
               </div>
@@ -96,7 +94,7 @@ function getAltText(src: string) {
           ))}
         </div>
         <div class="absolute bottom-4 right-4 flex items-center">
-          <a href="/services" class="text-white hover:text-hr-accent transition-colors duration-300 flex items-center group">
+          <a href="/services" class="text-hr-dark hover:text-hr-accent transition-colors duration-300 flex items-center group">
             <span class="mr-2 text-sm">View all our services</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>

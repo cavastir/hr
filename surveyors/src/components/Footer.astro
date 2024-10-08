@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logoImage from '../assets/hr-surveyors-logo-dark.png';
+import logoImage from '../assets/hr-surveyors-logo-light.png';
 
 const currentYear = new Date().getFullYear();
 const socialLinks = [
@@ -17,7 +17,7 @@ const offices = [
 ];
 ---
 
-<footer class="bg-hr-dark text-hr-light py-16">
+<footer class="bg-gray-800 text-white py-16">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
       <div class="space-y-4">
@@ -28,14 +28,14 @@ const offices = [
         />
         <p class="text-sm leading-relaxed">Delivering Efficient and Accurate Surveying Solutions since 2012.</p>
         <div class="pt-4">
-          <a href="https://www.hrutilities.com.au" target="_blank" rel="noopener noreferrer" class="text-hr-accent hover:text-hr-light transition-colors font-semibold text-sm">
+          <a href="https://www.hrutilities.com.au" target="_blank" rel="noopener noreferrer" class="text-hr-accent hover:text-white transition-colors font-semibold text-sm">
             HR Utilities
           </a>
           <p class="text-sm mt-2 leading-relaxed">Discover our sister company specializing in advanced subsurface mapping solutions.</p>
         </div>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+        <h4 class="text-lg font-semibold mb-6 text-hr-accent">Quick Links</h4>
         <ul class="space-y-3 text-sm">
           <li><a href="/services" class="hover:text-hr-accent transition-colors">Services</a></li>
           <li><a href="/about" class="hover:text-hr-accent transition-colors">About</a></li>
@@ -44,21 +44,21 @@ const offices = [
         </ul>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+        <h4 class="text-lg font-semibold mb-6 text-hr-accent">Contact Us</h4>
         <ul class="space-y-4 text-sm">
           {offices.map((office) => (
             <li>
-              <p class="font-medium">{office.name}</p>
+              <p class="font-medium text-hr-accent">{office.name}</p>
               <p>{office.location}</p>
             </li>
           ))}
         </ul>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-6">Follow Us</h4>
+        <h4 class="text-lg font-semibold mb-6 text-hr-accent">Follow Us</h4>
         <div class="flex space-x-4 mb-6">
           {socialLinks.map((link) => (
-            <a href={link.url} class="text-hr-light hover:text-hr-accent transition-colors" aria-label={link.name}>
+            <a href={link.url} class="text-white hover:text-hr-accent transition-colors" aria-label={link.name}>
               <svg class="w-6 h-6 fill-current">
                 <use xlink:href={`/social-icons.svg#${link.icon}`}></use>
               </svg>
@@ -66,7 +66,7 @@ const offices = [
           ))}
         </div>
         <p class="text-sm">
-          <span class="font-medium">Email:</span> <a href="mailto:office@hrsurveyors.com.au" class="hover:text-hr-accent transition-colors">office@hrsurveyors.com.au</a>
+          <span class="font-medium text-hr-accent">Email:</span> <a href="mailto:office@hrsurveyors.com.au" class="hover:text-hr-accent transition-colors">office@hrsurveyors.com.au</a>
         </p>
       </div>
     </div>
