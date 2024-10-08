@@ -1,19 +1,16 @@
 ---
 const testimonials = [
   {
-    quote: "HR Surveyors' precision is top-notch.",
-    author: "Dr Prat",
-    position: "Developer, Cavastir Pte. Ltd",
+    quote: "We've been working with HR Surveyors for over ten years, and they continue to exceed expectations. Their commitment to quality and strong communication have been key to our successful partnership.",
+    position: "Long-term Client",
   },
   {
-    quote: "Nice.",
-    author: "Detective Harris",
-    position: "Sergeant, South Park",
+    quote: "The HR Surveyors team played a crucial role on our project, providing an entire survey team for the duration. Their expertise and adaptability made a real difference in the project's success.",
+    position: "Long-term Client",
   },
   {
-    quote: "XYZ.",
-    author: "Pat",
-    position: "Director, PATRICE AGENCY",
+    quote: "HR Surveyors are extremely responsive and efficient. They turned around crucial survey drawings quickly, allowing us to stay ahead of schedule and avoid costly delays.",
+    position: "Long-term Client",
   },
 ];
 ---
@@ -23,17 +20,11 @@ const testimonials = [
     <h2 class="text-4xl font-bold text-center mb-16">What Our Clients Say</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {testimonials.map((testimonial) => (
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="p-6 rounded-lg shadow-md" style="background-color: white;">
           <span class="text-4xl text-hr-accent mb-4 block">"</span>
           <p class="mb-4 italic text-hr-dark">{testimonial.quote}</p>
-          <div class="flex items-center">
-            <div class="w-12 h-12 bg-hr-accent rounded-full flex items-center justify-center mr-4">
-              <span class="text-2xl text-white">👤</span>
-            </div>
-            <div>
-              <p class="font-semibold text-hr-dark">{testimonial.author}</p>
-              <p class="text-sm text-gray-600">{testimonial.position}</p>
-            </div>
+          <div class="mt-4">
+            <p class="text-sm text-gray-600">{testimonial.position}</p>
           </div>
         </div>
       ))}
