@@ -40,22 +40,27 @@ const secondaryServices = [
   {
     title: "Specification Surveys (A-SPEC & ADAC)",
     icon: "specification",
-    description: "Upon completion of new infrastructure works, councils require A-SPEC or ADAC as-constructed data to transfer asset information into their corporate systems. These standards ensure consistency and accuracy in the documentation of various infrastructure assets, including drainage systems, roadways, footpaths, parks, and utility networks. At HR Surveyors, we have the expertise and capabilities to produce precise GIS as-constructed data that meets all council requirements, facilitating seamless integration into local asset management systems."
+    description: "Upon completion of new infrastructure works, councils require A-SPEC or ADAC as-constructed data to transfer asset information into their corporate systems. These standards ensure consistency and accuracy in the documentation of various infrastructure assets, including drainage systems, roadways, footpaths, parks, and utility networks."
+  },
+  {
+    title: "Dilapidation Reports",
+    icon: "report",
+    description: "A dilapidation report is an essential pre-construction document that provides a detailed record of the existing condition of surrounding properties and structures before any construction, excavation, or demolition work begins. Our reports feature high-quality photographs, 4K 360-degree video, and detailed descriptions to provide an accurate baseline for all parties."
   },
   {
     title: "Point Clouds",
     icon: "point-cloud",
-    description: "At HR Surveyors, we leverage the latest advancements in scanning technologies to deliver cutting-edge survey solutions for our clients. By utilizing comprehensive 3D scanning techniques and specialized software, we tailor our services to meet the unique needs and budget of your project. We can generate detailed point clouds and produce accurate files, ensuring you receive high-quality data to support your project's success."
+    description: "At HR Surveyors, we leverage the latest advancements in scanning technologies to deliver cutting-edge survey solutions for our clients. By utilizing comprehensive 3D scanning techniques and specialized software, we tailor our services to meet the unique needs and budget of your project."
   },
   {
     title: "Machine Control (3D Models & Design)",
     icon: "3d-model",
-    description: "Our expertise in 3D surfaces enables us to create highly accurate design surface files tailored to your project's specific requirements. Whether it's converting machine control files and localizations, developing comprehensive Digital Terrain Models (DTM), or designing intricate 3D drainage systems, we have the skills to fulfill our clients' needs. We collaborate closely with you during the design process, producing detailed construction drawings and 3D models that enhance project clarity and execution."
+    description: "Our expertise in 3D surfaces enables us to create highly accurate design surface files tailored to your project's specific requirements. Whether it's converting machine control files and localizations, developing comprehensive Digital Terrain Models (DTM), or designing intricate 3D drainage systems, we have the skills to fulfill our clients' needs."
   },
   {
     title: "Equipment Hire",
     icon: "equipment",
-    description: "We offer a diverse range of high-quality surveying equipment for hire, including GPS base and rover or network systems, Total Stations, and all essential surveying tools for both short- and long-term projects. Our experienced team provides tailored solutions and expert support to help you choose the right equipment for your needs. Whether you're undertaking a road construction project, conducting earthworks for landscaping, or performing precise set-out tasks, our reliable equipment and dedicated service ensure you achieve your project goals efficiently and effectively."
+    description: "We offer a diverse range of high-quality surveying equipment for hire, including GPS base and rover or network systems, Total Stations, and all essential surveying tools for both short- and long-term projects. Our experienced team provides tailored solutions and expert support to help you choose the right equipment for your needs."
   }
 ];
 ---
@@ -64,132 +69,100 @@ const secondaryServices = [
   title="Our Services | HR Surveyors"
   description="Explore the comprehensive range of surveying services offered by HR Surveyors. From building and construction to infrastructure and 3D scanning solutions."
 >
-  <main class="bg-hr-dark bg-opacity-90 text-white backdrop-filter backdrop-blur-sm">
-    <section class="py-24">
+  <main class="bg-white text-hr-dark">
+    <section class="py-32">
       <div class="container mx-auto px-4 max-w-6xl">
-        <h1 transition:animate={fade({ duration: '0.5s' })} class="text-6xl lg:text-7xl font-bold mb-8 text-hr-accent text-center">Our Services</h1>
-        <p class="text-xl mb-16 leading-relaxed text-center max-w-3xl mx-auto">
-          At HR Surveyors, we offer a comprehensive range of surveying services to meet all your project needs. Our expert team utilizes cutting-edge technology and years of experience to deliver precise, reliable results.
-        </p>
+        <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">Our Services</h1>
         
-        <h2 class="text-4xl font-bold mb-12 text-hr-accent text-center">Main Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {mainServices.map((service, index) => (
-            <div class="bg-hr-dark-lighter rounded-lg p-6 shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col h-64">
-              <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-accent" />
-              <h3 class="text-xl font-semibold mb-2">{service.title}</h3>
-              <p class="text-gray-300 text-sm line-clamp-3 mb-2">{service.description}</p>
-              <button 
-                class="text-hr-accent hover:underline mt-auto self-start text-sm"
-                onclick={`showDetails(${index}, 'main')`}
-              >
-                ... Learn more
-              </button>
-            </div>
-          ))}
+        <div class="mb-20">
+          <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+            At HR Surveyors, we offer a comprehensive range of surveying services to meet all your project needs. Our expert team utilizes cutting-edge technology and years of experience to deliver precise, reliable results.
+          </p>
         </div>
 
-        <h2 class="text-3xl font-bold mb-12 text-hr-accent text-center">Additional Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {secondaryServices.map((service, index) => (
-            <div class="bg-hr-dark-lighter rounded-lg p-6 shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col h-64">
-              <Icon name={service.icon} class="w-10 h-10 mb-3 text-hr-accent" />
-              <h3 class="text-xl font-semibold mb-2">{service.title}</h3>
-              <p class="text-gray-300 text-sm line-clamp-3 mb-2">{service.description}</p>
-              <button 
-                class="text-hr-accent hover:underline mt-auto self-start text-sm"
-                onclick={`showDetails(${index}, 'secondary')`}
-              >
-                ... Learn more
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <section class="py-20 bg-hr-accent rounded">
-          <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-6 text-hr-dark">Ready to Start Your Project?</h2>
-            <p class="text-xl mb-8 text-hr-dark max-w-2xl mx-auto">
-              Let us bring precision to your next engineering challenge.
-            </p>
-            <a href="/contact" class="bg-hr-dark text-hr-light px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-all duration-300 inline-flex items-center space-x-2 group focus:outline-none">
-              <span>Get in Touch</span>
-              <span class="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
+        <div class="bg-gray-100 rounded-lg p-12 mb-20 shadow-lg">
+          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Main Services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {mainServices.map((service, index) => (
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-dark" />
+                <h3 class="text-xl font-semibold mb-2 text-hr-dark">{service.title}</h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3" id={`description-${index}`}>{service.description}</p>
+                <button 
+                  class="text-hr-dark hover:underline text-sm font-semibold"
+                  onclick={`toggleDescription(${index})`}
+                  id={`button-${index}`}
+                >
+                  Learn More
+                </button>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+
+        <div class="mb-20">
+          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Additional Services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {secondaryServices.map((service, index) => (
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <Icon name={service.icon} class="w-10 h-10 mb-3 text-hr-dark" />
+                <h3 class="text-xl font-semibold mb-2 text-hr-dark">{service.title}</h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3" id={`secondary-description-${index}`}>{service.description}</p>
+                <button 
+                  class="text-hr-dark hover:underline text-sm font-semibold"
+                  onclick={`toggleSecondaryDescription(${index})`}
+                  id={`secondary-button-${index}`}
+                >
+                  Learn More
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-gray-100 rounded-lg p-12 text-center">
+          <h2 class="text-3xl font-bold mb-6 text-hr-dark">Ready to Start Your Project?</h2>
+          <p class="text-xl mb-8 text-hr-dark max-w-2xl mx-auto">
+            Let us bring precision to your next engineering challenge.
+          </p>
+          <a href="/contact" class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
+            <span class="relative z-10 group-hover:text-white transition-colors">Get in Touch</span>
+            <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
-
-  <!-- Overlay for service details -->
-  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50">
-    <div class="bg-hr-dark p-8 rounded-lg max-w-2xl w-full mx-4 relative overflow-y-auto max-h-[90vh]">
-      <button id="closeOverlay" class="absolute top-4 right-4 text-hr-accent hover:text-hr-accent-light text-2xl">&times;</button>
-      <h3 id="overlayTitle" class="text-3xl font-semibold mb-4 text-hr-accent"></h3>
-      <p id="overlayDescription" class="text-gray-100 leading-relaxed"></p>
-    </div>
-  </div>
 </Layout>
 
-<script define:vars={{ mainServices, secondaryServices }}>
-  /**
-   * @param {number} index
-   * @param {'main' | 'secondary'} type
-   */
-  function showDetails(index, type) {
-    const services = type === 'main' ? mainServices : secondaryServices;
-    const service = services[index];
+<script>
+  function toggleDescription(index) {
+    const description = document.getElementById(`description-${index}`);
+    const button = document.getElementById(`button-${index}`);
     
-    const overlayTitle = document.getElementById('overlayTitle');
-    const overlayDescription = document.getElementById('overlayDescription');
-    const overlay = document.getElementById('overlay');
-
-    if (overlayTitle && overlayDescription && overlay) {
-      overlayTitle.textContent = service.title;
-      overlayDescription.textContent = service.description;
-      overlay.classList.remove('hidden');
+    if (description.classList.contains('line-clamp-3')) {
+      description.classList.remove('line-clamp-3');
+      button.textContent = 'Show Less';
+    } else {
+      description.classList.add('line-clamp-3');
+      button.textContent = 'Learn More';
     }
   }
 
-  const closeOverlay = document.getElementById('closeOverlay');
-  const overlay = document.getElementById('overlay');
-
-  if (closeOverlay) {
-    closeOverlay.addEventListener('click', () => {
-      if (overlay) overlay.classList.add('hidden');
-    });
+  function toggleSecondaryDescription(index) {
+    const description = document.getElementById(`secondary-description-${index}`);
+    const button = document.getElementById(`secondary-button-${index}`);
+    
+    if (description.classList.contains('line-clamp-3')) {
+      description.classList.remove('line-clamp-3');
+      button.textContent = 'Show Less';
+    } else {
+      description.classList.add('line-clamp-3');
+      button.textContent = 'Learn More';
+    }
   }
 
-  if (overlay) {
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        overlay.classList.add('hidden');
-      }
-    });
-  }
-
-  // Make showDetails available globally
-  window.showDetails = showDetails;
+  // Make functions available globally
+  window.toggleDescription = toggleDescription;
+  window.toggleSecondaryDescription = toggleSecondaryDescription;
 </script>
-
-<style>
-  .fade-in {
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-
-  #overlay .bg-hr-dark {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  @supports not (backdrop-filter: blur(4px)) {
-    main {
-      background-color: rgba(18, 18, 18, 0.95); /* Adjust the color and opacity as needed */
-    }
-  }
-</style>
