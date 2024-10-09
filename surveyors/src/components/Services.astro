@@ -204,9 +204,9 @@ function getAltText(src: string) {
     setInterval(showNextImage, 3000);
   }
 
-  // Run on initial load
-  initializeServices();
-
-  // Re-run after Astro page transitions
+  // Run on initial load and after navigation
   document.addEventListener('astro:page-load', initializeServices);
+
+  // Fallback for initial page load if astro:page-load doesn't fire
+  document.addEventListener('DOMContentLoaded', initializeServices);
 </script>
