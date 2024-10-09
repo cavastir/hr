@@ -126,27 +126,31 @@ function getAltText(src: string) {
       servicesContainer.addEventListener('click', (event) => {
         const serviceButton = (event.target as Element).closest('.service-button');
         if (serviceButton) {
-          const content = serviceButton.nextElementSibling;
+          const content = serviceButton.nextElementSibling as HTMLElement | null;
           const icon = serviceButton.querySelector('.icon');
           
-          // Use classList.toggle for more efficient class toggling
-          content.classList.toggle('hidden');
-          icon?.classList.toggle('rotate-180');
+          if (content) {
+            // Use classList.toggle for more efficient class toggling
+            content.classList.toggle('hidden');
+            icon?.classList.toggle('rotate-180');
 
-          // Close other open services
-          document.querySelectorAll('.service-content:not(.hidden)').forEach(openContent => {
-            if (openContent !== content) {
-              openContent.classList.add('hidden');
-              openContent.previousElementSibling?.querySelector('.icon')?.classList.remove('rotate-180');
-            }
-          });
+            // Close other open services
+            document.querySelectorAll('.service-content:not(.hidden)').forEach(openContent => {
+              if (openContent !== content) {
+                openContent.classList.add('hidden');
+                openContent.previousElementSibling?.querySelector('.icon')?.classList.remove('rotate-180');
+              }
+            });
+          }
         }
 
         const learnMoreButton = (event.target as Element).closest('.learn-more-button');
         if (learnMoreButton) {
-          const fullDescription = learnMoreButton.nextElementSibling;
-          fullDescription.classList.toggle('hidden');
-          learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
+          const fullDescription = learnMoreButton.nextElementSibling as HTMLElement | null;
+          if (fullDescription) {
+            fullDescription.classList.toggle('hidden');
+            learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
+          }
         }
       });
     }
