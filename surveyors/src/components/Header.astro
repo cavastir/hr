@@ -32,12 +32,12 @@ const sisterCompany = {
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <a href="/" class="flex items-center space-x-2 relative w-48 h-12"> 
       <picture>
-        <source srcset="/images/hr-surveyors-logo-dark.webp" type="image/webp" media="(prefers-color-scheme: light)">
-        <source srcset="/images/hr-surveyors-logo-dark.png" type="image/png" media="(prefers-color-scheme: light)">
+        <source srcset="/images/hr-surveyors-logo-dark.webp" type="image/webp">
+        <source srcset="/images/hr-surveyors-logo-dark.png" type="image/png">
         <source srcset="/images/hr-surveyors-logo-light.webp" type="image/webp" media="(prefers-color-scheme: dark)">
         <source srcset="/images/hr-surveyors-logo-light.png" type="image/png" media="(prefers-color-scheme: dark)">
         <img 
-          src="/images/hr-surveyors-logo-dark.png" 
+          src="/images/hr-surveyors-logo-light.png" 
           alt="HR Surveyors Logo" 
           class="w-full h-full object-contain logo"
           width="192" height="48"
@@ -143,9 +143,6 @@ const sisterCompany = {
           link.classList.add('text-hr-dark');
         }
       });
-      if (logo instanceof HTMLImageElement) {
-        logo.src = '/images/hr-surveyors-logo-light.png';
-      }
       if (burgerIcon) {
         burgerIcon.classList.remove('text-white');
         burgerIcon.classList.add('text-hr-dark');
@@ -161,9 +158,6 @@ const sisterCompany = {
           link.classList.remove('text-hr-dark');
         }
       });
-      if (logo instanceof HTMLImageElement) {
-        logo.src = '/images/hr-surveyors-logo-dark.png';
-      }
       if (burgerIcon) {
         burgerIcon.classList.add('text-white');
         burgerIcon.classList.remove('text-hr-dark');
