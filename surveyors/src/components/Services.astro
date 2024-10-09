@@ -94,7 +94,7 @@ function getAltText(src: string) {
         </div>
       </div>
       <div class="lg:w-1/2 relative">
-        <div class="space-y-2">
+        <div class="space-y-2 h-[600px] overflow-y-auto"> <!-- Added fixed height and scrolling -->
           {updatedServices.map((service, index) => (
             <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-light">
               <button 
@@ -153,9 +153,22 @@ function getAltText(src: string) {
         }
       });
     }
+
+    // Restore image slider functionality
+    initializeImageSlider();
   }
 
   function handleServiceButtonClick(serviceButton: Element) {
+    const allServiceContents = document.querySelectorAll('.service-content');
+    const allIcons = document.querySelectorAll('.icon');
+    
+    allServiceContents.forEach((content, index) => {
+      if (content instanceof HTMLElement && content !== serviceButton.nextElementSibling) {
+        content.classList.add('hidden');
+        allIcons[index].classList.remove('rotate-180');
+      }
+    });
+
     const content = serviceButton.nextElementSibling as HTMLElement | null;
     const icon = serviceButton.querySelector('.icon');
     
@@ -171,6 +184,24 @@ function getAltText(src: string) {
       fullDescription.classList.toggle('hidden');
       learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
     }
+  }
+
+  function initializeImageSlider() {
+    const imageSlider = document.getElementById('imageSlider');
+    const images = imageSlider?.querySelectorAll('img');
+    let currentIndex = 0;
+
+    function showNextImage() {
+      if (images) {
+        images[currentIndex].classList.remove('opacity-100');
+        images[currentIndex].classList.add('opacity-0');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.remove('opacity-0');
+        images[currentIndex].classList.add('opacity-100');
+      }
+    }
+
+    setInterval(showNextImage, 3000);
   }
 
   // Run on initial load
