@@ -60,12 +60,12 @@ function getAltText(src: string) {
 
 ---
 
-<section class="py-16 relative overflow-hidden rounded bg-hr-light-gray"> <!-- Increased padding -->
+<section class="py-16 relative overflow-hidden rounded bg-hr-light-gray">
   <div class="container mx-auto px-4 relative z-10">
     <div class="flex flex-col lg:flex-row gap-12">
       <div class="lg:w-1/2">
         <h2 class="text-4xl lg:text-5xl font-bold mb-8 text-hr-dark">We deliver high-quality survey solutions tailored to your construction project.</h2>
-        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-8 relative" id="imageSlider" style="height: 400px;"> <!-- Increased height -->
+        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-8 relative" id="imageSlider" style="height: 400px;">
           {images.map((src, index) => (
             <img 
               src={src} 
@@ -77,19 +77,19 @@ function getAltText(src: string) {
         </div>
       </div>
       <div class="lg:w-1/2 relative">
-        <div class="space-y-4 services-container h-[800px] overflow-y-auto pr-4"> <!-- Increased height -->
+        <div class="space-y-4 services-container h-[800px] overflow-y-auto pr-4">
           {updatedServices.map((service, index) => (
             <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-dark !important">
               <button 
-                class="w-full text-left flex justify-between items-center px-6 py-5 service-button focus:outline-none" <!-- Increased padding -->
+                class="w-full text-left flex justify-between items-center px-6 py-5 service-button focus:outline-none"
                 data-index={index}
               >
                 <h3 class="text-xl font-semibold text-hr-dark group-hover:text-dark transition-colors duration-300">
                   {service.title} (Index: {index})
                 </h3>
-                <Icon name={service.icon} class="icon w-8 h-8 transform transition-transform duration-300 text-hr-dark group-hover:text-dark" /> <!-- Increased icon size -->
+                <Icon name={service.icon} class="icon w-8 h-8 transform transition-transform duration-300 text-hr-dark group-hover:text-dark" />
               </button>
-              <div class="hidden px-6 pb-5 service-content"> <!-- Increased padding -->
+              <div class="hidden px-6 pb-5 service-content">
                 <p class="text-hr-dark mb-4 group-hover:text-dark">{service.shortDesc}</p>
                 <button class="text-hr-accent group-hover:text-dark hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
                   Learn more
@@ -114,14 +114,16 @@ function getAltText(src: string) {
       </div>
     </div>
   </div>
+  <script id="servicesData" type="application/json">
+    {JSON.stringify(updatedServices)}
+  </script>
 </section>
 
-<script id="servicesData" type="application/json">
-  {JSON.stringify(updatedServices)}
-</script>
-
 <script>
-  console.log('Services:', JSON.parse(document.getElementById('servicesData').textContent));
+  const servicesDataElement = document.getElementById('servicesData');
+  if (servicesDataElement && servicesDataElement.textContent) {
+    console.log('Services:', JSON.parse(servicesDataElement.textContent));
+  }
 
   function initializeServices() {
     const serviceButtons = document.querySelectorAll('.service-button');
@@ -182,7 +184,7 @@ function getAltText(src: string) {
       }
     }
 
-    setInterval(showNextImage, 300); // Change image every 3 seconds
+    setInterval(showNextImage, 3000); // Change image every 3 seconds
   }
 
   // Run on initial load
