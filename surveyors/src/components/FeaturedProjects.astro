@@ -1,11 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+
 const projects = [
     {
     title: 'Mentone Grammar Bayview Campus',
     description: 'We contributed to the construction of Mentone Grammar\'s state-of-the-art Bayview Campus building, a significant project in the school\'s history.',
     icon: '🏫',
     color: 'bg-green-500',
-    image: '/images/school-construction.jpg',
+    image: 'school-construction.jpg',
     link: 'https://www.linkedin.com/posts/hrsurveyors_well-done-to-everyone-involved-in-this-project-activity-7191728928061845506-jmwH'
   },
   {
@@ -13,7 +15,7 @@ const projects = [
     description: 'We were involved in the Sunbury Road duplication works over 18 months, contributing to a smoother and safer journey over Jacksons Creek.',
     icon: '🛣️',
     color: 'bg-blue-500',
-    image: '/images/road-upgrade.jpg',
+    image: 'road-upgrade.jpg',
     link: 'https://www.linkedin.com/posts/hrsurveyors_we-were-fortunate-enough-to-be-involved-in-activity-7130689244154531842-fFCx'
   },
   {
@@ -21,28 +23,30 @@ const projects = [
     description: 'Our VIC team contributed to the Eku Energy project in West Cranbourne, Victoria, helping to set up a 200MW / 400MWh battery storage system.',
     icon: '🔋',
     color: 'bg-yellow-500',
-    image: '/images/precision-engineering-surveys.jpg',
+    image: 'precision-engineering-surveys.jpg',
     link: 'https://www.linkedin.com/posts/hrsurveyors_what-a-effort-by-the-vic-team-to-finish-this-activity-7136163615044222976-xvjw'
   },
 ];
+
+// Dynamically import images
+const imageModules = import.meta.glob('../assets/*.{jpeg,jpg,png,gif}');
 ---
 
 <section class="py-20 bg-white rounded">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-16 text-hr-dark">Featured Projects</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <a href={project.link} class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
           <div class={`relative h-48 ${project.color} flex items-center justify-center overflow-hidden`}>
             {project.image ? (
-              <img
-                src={project.image}
+              <Image
+                src={imageModules[`../assets/${project.image}`]()}
                 alt={project.title}
+                width={400}
+                height={300}
                 class="w-full h-48 object-cover rounded-t-lg"
-                loading="lazy"
-                width="400"
-                height="300"
-                srcset={`${project.image} 1x, ${project.image.replace('.jpg', '@2x.jpg')} 2x`}
+                loading={index < 3 ? "eager" : "lazy"}
               />
             ) : (
               <span class="text-6xl">{project.icon}</span>
