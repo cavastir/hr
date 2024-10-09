@@ -11,10 +11,9 @@ const openPositions = [
 ];
 
 const companyStats = [
+  { number: "2012", label: "Established" },
+  { number: "70+", label: "Employees" },
   { number: "5", label: "Offices" },
-  { number: "65+", label: "Employees" },
-  { number: "70+", label: "Projects Completed" },
-  { number: "10+", label: "Years of Excellence" },
 ];
 ---
 
@@ -33,7 +32,7 @@ const companyStats = [
           </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {companyStats.map((stat) => (
             <div class="text-center">
               <p class="text-4xl font-bold text-hr-dark mb-2">{stat.number}</p>

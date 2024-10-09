@@ -31,19 +31,13 @@ const sisterCompany = {
 <header id="main-header" class="fixed top-6 left-0 right-0 z-50 bg-hr-dark bg-opacity-30 backdrop-blur-md transition-all duration-300">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <a href="/" class="flex items-center space-x-2 relative w-48 h-12"> 
-      <picture>
-        <source srcset="/images/hr-surveyors-logo-dark.webp" type="image/webp">
-        <source srcset="/images/hr-surveyors-logo-dark.png" type="image/png">
-        <source srcset="/images/hr-surveyors-logo-light.webp" type="image/webp" media="(prefers-color-scheme: dark)">
-        <source srcset="/images/hr-surveyors-logo-light.png" type="image/png" media="(prefers-color-scheme: dark)">
-        <img 
-          src="/images/hr-surveyors-logo-light.png" 
-          alt="HR Surveyors Logo" 
-          class="w-full h-full object-contain logo"
-          width="192" height="48"
-          loading="eager"
-        />
-      </picture>
+      <img 
+        src="/images/hr-surveyors-logo-light.png" 
+        alt="HR Surveyors Logo" 
+        class="w-full h-full object-contain logo"
+        width="192" height="48"
+        loading="eager"
+      />
     </a>
     <nav class="hidden md:flex items-center space-x-6">
       {navItems.map((item) => (

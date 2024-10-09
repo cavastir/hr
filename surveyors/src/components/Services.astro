@@ -21,6 +21,12 @@ const updatedServices = [
     fullDesc: "With extensive experience in some of Australia's largest infrastructure and regional mining projects, we have the systems in place to efficiently manage your major undertaking, whether in urban or rural settings. From submitting conformance reports to handling RFIs and managing data, we ensure that all records are current, facilitating seamless project execution and on-time handover. Our highly skilled surveyors offer expert advice and reliable service, giving you the confidence you need throughout the entire project lifecycle."
   },
   {
+    title: "Renewable Energy",
+    icon: "sun",
+    shortDesc: "Comprehensive surveying solutions for wind farms, solar farms, and battery storage facilities.",
+    fullDesc: "Our Renewable Energy Infrastructure service supports the development of wind farms, solar farms, and battery storage facilities. We provide comprehensive surveying solutions, including site feasibility studies, topographic surveys, construction set-outs, and as-built documentation. With a focus on precision and efficiency, we use advanced technology to streamline project delivery and reduce environmental impact. Whether for new projects or expansions, we ensure accurate data and professional support throughout every stage."
+  },
+  {
     title: "Feature and Level Survey",
     icon: "layers",
     shortDesc: "Essential data collection for accurate design in development projects.",
@@ -54,12 +60,12 @@ function getAltText(src: string) {
 
 ---
 
-<section class="py-12 relative overflow-hidden rounded bg-hr-light-gray">
+<section class="py-16 relative overflow-hidden rounded bg-hr-light-gray"> <!-- Increased padding -->
   <div class="container mx-auto px-4 relative z-10">
     <div class="flex flex-col lg:flex-row gap-12">
       <div class="lg:w-1/2">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-hr-dark">We deliver high-quality survey solutions tailored to your construction project.</h2>
-        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-6 relative" id="imageSlider">
+        <h2 class="text-4xl lg:text-5xl font-bold mb-8 text-hr-dark">We deliver high-quality survey solutions tailored to your construction project.</h2>
+        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-8 relative" id="imageSlider" style="height: 400px;"> <!-- Increased height -->
           {images.map((src, index) => (
             <img 
               src={src} 
@@ -71,17 +77,19 @@ function getAltText(src: string) {
         </div>
       </div>
       <div class="lg:w-1/2 relative">
-        <div class="space-y-4 services-container h-[600px] overflow-y-auto pr-4">
+        <div class="space-y-4 services-container h-[800px] overflow-y-auto pr-4"> <!-- Increased height -->
           {updatedServices.map((service, index) => (
             <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-dark !important">
               <button 
-                class="w-full text-left flex justify-between items-center px-4 py-4 service-button focus:outline-none"
+                class="w-full text-left flex justify-between items-center px-6 py-5 service-button focus:outline-none" <!-- Increased padding -->
                 data-index={index}
               >
-                <h3 class="text-xl font-semibold text-hr-dark group-hover:text-dark transition-colors duration-300">{service.title}</h3>
-                <Icon name={service.icon} class="icon w-6 h-6 transform transition-transform duration-300 text-hr-dark group-hover:text-dark" />
+                <h3 class="text-xl font-semibold text-hr-dark group-hover:text-dark transition-colors duration-300">
+                  {service.title} (Index: {index})
+                </h3>
+                <Icon name={service.icon} class="icon w-8 h-8 transform transition-transform duration-300 text-hr-dark group-hover:text-dark" /> <!-- Increased icon size -->
               </button>
-              <div class="hidden px-4 pb-4 service-content">
+              <div class="hidden px-6 pb-5 service-content"> <!-- Increased padding -->
                 <p class="text-hr-dark mb-4 group-hover:text-dark">{service.shortDesc}</p>
                 <button class="text-hr-accent group-hover:text-dark hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
                   Learn more
@@ -94,7 +102,7 @@ function getAltText(src: string) {
           ))}
         </div>
         <div class="absolute bottom-4 right-4 flex items-center">
-          <a href="/services" class="text-hr-accent hover:text-hr-dark transition-colors duration-300 flex items-center group">
+          <a href="/services" class="text-hr-dark hover:text-hr-accent transition-colors duration-300 flex items-center group">
             <span class="mr-2 text-sm">View all our services</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -108,7 +116,13 @@ function getAltText(src: string) {
   </div>
 </section>
 
+<script id="servicesData" type="application/json">
+  {JSON.stringify(updatedServices)}
+</script>
+
 <script>
+  console.log('Services:', JSON.parse(document.getElementById('servicesData').textContent));
+
   function initializeServices() {
     const serviceButtons = document.querySelectorAll('.service-button');
     const learnMoreButtons = document.querySelectorAll('.learn-more-button');
@@ -168,7 +182,7 @@ function getAltText(src: string) {
       }
     }
 
-    setInterval(showNextImage, 2500); // Change image every 2.5 seconds
+    setInterval(showNextImage, 300); // Change image every 3 seconds
   }
 
   // Run on initial load
