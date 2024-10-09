@@ -126,35 +126,49 @@ function getAltText(src: string) {
       servicesContainer.addEventListener('click', (event) => {
         const target = event.target as Element;
         const serviceButton = target.closest('.service-button');
-        if (serviceButton) {
-          const content = serviceButton.nextElementSibling as HTMLElement | null;
-          const icon = serviceButton.querySelector('.icon');
-          
-          if (content) {
-            content.classList.toggle('hidden');
-            icon?.classList.toggle('rotate-180');
-
-            document.querySelectorAll('.service-content:not(.hidden)').forEach((openContent) => {
-              if (openContent instanceof HTMLElement && openContent !== content) {
-                openContent.classList.add('hidden');
-                const prevSibling = openContent.previousElementSibling;
-                if (prevSibling instanceof HTMLElement) {
-                  prevSibling.querySelector('.icon')?.classList.remove('rotate-180');
-                }
-              }
-            });
-          }
-        }
-
         const learnMoreButton = target.closest('.learn-more-button');
-        if (learnMoreButton instanceof HTMLElement) {
-          const fullDescription = learnMoreButton.nextElementSibling;
-          if (fullDescription instanceof HTMLElement) {
-            fullDescription.classList.toggle('hidden');
-            learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
-          }
+
+        if (serviceButton) {
+          handleServiceButtonClick(serviceButton);
+        } else if (learnMoreButton instanceof HTMLElement) {
+          handleLearnMoreButtonClick(learnMoreButton);
         }
       });
+    }
+  }
+
+  function handleServiceButtonClick(serviceButton: Element) {
+    const content = serviceButton.nextElementSibling as HTMLElement | null;
+    const icon = serviceButton.querySelector('.icon');
+    
+    if (content) {
+      content.classList.toggle('hidden');
+      icon?.classList.toggle('rotate-180');
+
+      // Use requestAnimationFrame for non-critical updates
+      requestAnimationFrame(() => {
+        closeOtherServices(content);
+      });
+    }
+  }
+
+  function closeOtherServices(currentContent: HTMLElement) {
+    document.querySelectorAll('.service-content:not(.hidden)').forEach((openContent) => {
+      if (openContent instanceof HTMLElement && openContent !== currentContent) {
+        openContent.classList.add('hidden');
+        const prevSibling = openContent.previousElementSibling;
+        if (prevSibling instanceof HTMLElement) {
+          prevSibling.querySelector('.icon')?.classList.remove('rotate-180');
+        }
+      }
+    });
+  }
+
+  function handleLearnMoreButtonClick(learnMoreButton: HTMLElement) {
+    const fullDescription = learnMoreButton.nextElementSibling;
+    if (fullDescription instanceof HTMLElement) {
+      fullDescription.classList.toggle('hidden');
+      learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
     }
   }
 
