@@ -207,15 +207,15 @@ function getAltText(src: string) {
     const serviceButtons = document.querySelectorAll('.service-button');
     const learnMoreButtons = document.querySelectorAll('.learn-more-button');
 
-    function toggleService(button) {
-      const content = button.nextElementSibling;
-      const icon = button.querySelector('.icon');
+    function toggleService(button: HTMLElement) {
+      const content = button.nextElementSibling as HTMLElement;
+      const icon = button.querySelector('.icon') as HTMLElement;
       content.classList.toggle('hidden');
       icon.classList.toggle('rotate-180');
     }
 
-    function toggleDescription(button) {
-      const fullDescription = button.nextElementSibling;
+    function toggleDescription(button: HTMLElement) {
+      const fullDescription = button.nextElementSibling as HTMLElement;
       fullDescription.classList.toggle('hidden');
       button.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
     }
@@ -224,7 +224,7 @@ function getAltText(src: string) {
       ['click', 'touchstart'].forEach(eventType => {
         button.addEventListener(eventType, (e) => {
           e.preventDefault();
-          toggleService(button);
+          toggleService(button as HTMLElement);
         });
       });
     });
@@ -233,7 +233,7 @@ function getAltText(src: string) {
       ['click', 'touchstart'].forEach(eventType => {
         button.addEventListener(eventType, (e) => {
           e.preventDefault();
-          toggleDescription(button);
+          toggleDescription(button as HTMLElement);
         });
       });
     });
