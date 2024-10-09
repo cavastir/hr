@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -35,6 +36,7 @@ const { title, description } = Astro.props;
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+		<ViewTransitions />
 	</head>
 	<body class="bg-white text-hr-dark">
 		<Header />
@@ -42,25 +44,24 @@ const { title, description } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		<script>
+			document.addEventListener('astro:page-load', () => {
+				const fadeElems = document.querySelectorAll('.fade-in');
+				fadeElems.forEach((elem, index) => {
+					if (elem instanceof HTMLElement) {
+						elem.style.animationDelay = `${index * 0.1}s`;
+					}
+				});
+			});
+
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/service-worker.js');
+				});
+			}
+		</script>
 	</body>
 </html>
-
-<script>
-	document.addEventListener('astro:page-load', () => {
-		const fadeElems = document.querySelectorAll('.fade-in');
-		fadeElems.forEach((elem, index) => {
-			if (elem instanceof HTMLElement) {
-				elem.style.animationDelay = `${index * 0.1}s`;
-			}
-		});
-	});
-
-	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', () => {
-			navigator.serviceWorker.register('/service-worker.js');
-		});
-	}
-</script>
 
 <style is:global>
 	@font-face {
