@@ -72,7 +72,7 @@ function getAltText(src: string) {
     <div class="flex flex-col lg:flex-row gap-12">
       <div class="lg:w-1/2">
         <h2 class="text-3xl lg:text-4xl font-bold mb-8 text-hr-dark">We deliver high-quality survey solutions tailored to your construction project.</h2>
-        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-8 relative" id="imageSlider" style="height: 300px;">
+        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-8 relative" id="imageSlider" style="height: auto; padding-bottom: 56.25%;">
           {images.map((src, index) => (
             <img 
               src={src} 
@@ -94,7 +94,7 @@ function getAltText(src: string) {
         </div>
       </div>
       <div class="lg:w-1/2 relative">
-        <div class="space-y-2 h-[600px] overflow-y-auto"> <!-- Added fixed height and scrolling -->
+        <div class="space-y-2 h-[600px] overflow-y-auto" id="servicesContainer">
           {updatedServices.map((service, index) => (
             <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-light">
               <button 
@@ -137,62 +137,53 @@ function getAltText(src: string) {
   </div>
 </section>
 
-<script>
+<script is:inline>
   function initializeServices() {
-    const servicesContainer = document.querySelector('.services-container');
+    const servicesContainer = document.getElementById('servicesContainer');
     if (servicesContainer) {
       servicesContainer.addEventListener('click', (event) => {
-        const target = event.target as Element;
+        const target = event.target;
         const serviceButton = target.closest('.service-button');
         const learnMoreButton = target.closest('.learn-more-button');
 
         if (serviceButton) {
-          handleServiceButtonClick(serviceButton);
-        } else if (learnMoreButton instanceof HTMLElement) {
-          handleLearnMoreButtonClick(learnMoreButton);
+          const allServiceContents = servicesContainer.querySelectorAll('.service-content');
+          const allIcons = servicesContainer.querySelectorAll('.icon');
+          
+          allServiceContents.forEach((content, index) => {
+            if (content !== serviceButton.nextElementSibling) {
+              content.classList.add('hidden');
+              allIcons[index].classList.remove('rotate-180');
+            }
+          });
+
+          const content = serviceButton.nextElementSibling;
+          const icon = serviceButton.querySelector('.icon');
+          
+          if (content) {
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+          }
+        } else if (learnMoreButton) {
+          const fullDescription = learnMoreButton.nextElementSibling;
+          if (fullDescription) {
+            fullDescription.classList.toggle('hidden');
+            learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
+          }
         }
       });
     }
 
-    // Restore image slider functionality
     initializeImageSlider();
-  }
-
-  function handleServiceButtonClick(serviceButton: Element) {
-    const allServiceContents = document.querySelectorAll('.service-content');
-    const allIcons = document.querySelectorAll('.icon');
-    
-    allServiceContents.forEach((content, index) => {
-      if (content instanceof HTMLElement && content !== serviceButton.nextElementSibling) {
-        content.classList.add('hidden');
-        allIcons[index].classList.remove('rotate-180');
-      }
-    });
-
-    const content = serviceButton.nextElementSibling as HTMLElement | null;
-    const icon = serviceButton.querySelector('.icon');
-    
-    if (content) {
-      content.classList.toggle('hidden');
-      icon?.classList.toggle('rotate-180');
-    }
-  }
-
-  function handleLearnMoreButtonClick(learnMoreButton: HTMLElement) {
-    const fullDescription = learnMoreButton.nextElementSibling;
-    if (fullDescription instanceof HTMLElement) {
-      fullDescription.classList.toggle('hidden');
-      learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
-    }
   }
 
   function initializeImageSlider() {
     const imageSlider = document.getElementById('imageSlider');
-    const images = imageSlider?.querySelectorAll('img');
+    const images = imageSlider ? imageSlider.querySelectorAll('img') : null;
     let currentIndex = 0;
 
     function showNextImage() {
-      if (images) {
+      if (images && images.length > 0) {
         images[currentIndex].classList.remove('opacity-100');
         images[currentIndex].classList.add('opacity-0');
         currentIndex = (currentIndex + 1) % images.length;
