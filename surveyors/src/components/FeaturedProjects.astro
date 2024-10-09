@@ -1,13 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 
+// Import images statically
+import schoolConstruction from '../assets/school-construction.jpg';
+import roadUpgrade from '../assets/road-upgrade.jpg';
+import precisionEngineering from '../assets/precision-engineering-surveys.jpg';
+
 const projects = [
     {
     title: 'Mentone Grammar Bayview Campus',
     description: 'We contributed to the construction of Mentone Grammar\'s state-of-the-art Bayview Campus building, a significant project in the school\'s history.',
     icon: '🏫',
     color: 'bg-green-500',
-    image: 'school-construction.jpg',
+    image: schoolConstruction,
     link: 'https://www.linkedin.com/posts/hrsurveyors_well-done-to-everyone-involved-in-this-project-activity-7191728928061845506-jmwH'
   },
   {
@@ -15,7 +20,7 @@ const projects = [
     description: 'We were involved in the Sunbury Road duplication works over 18 months, contributing to a smoother and safer journey over Jacksons Creek.',
     icon: '🛣️',
     color: 'bg-blue-500',
-    image: 'road-upgrade.jpg',
+    image: roadUpgrade,
     link: 'https://www.linkedin.com/posts/hrsurveyors_we-were-fortunate-enough-to-be-involved-in-activity-7130689244154531842-fFCx'
   },
   {
@@ -23,7 +28,7 @@ const projects = [
     description: 'Our VIC team contributed to the Eku Energy project in West Cranbourne, Victoria, helping to set up a 200MW / 400MWh battery storage system.',
     icon: '🔋',
     color: 'bg-yellow-500',
-    image: 'precision-engineering-surveys.jpg',
+    image: precisionEngineering,
     link: 'https://www.linkedin.com/posts/hrsurveyors_what-a-effort-by-the-vic-team-to-finish-this-activity-7136163615044222976-xvjw'
   },
 ];
