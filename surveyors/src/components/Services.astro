@@ -114,7 +114,7 @@ function getAltText(src: string) {
       </div>
     </div>
   </div>
-  <script id="servicesData" type="application/json">
+  <script is:inline id="servicesData" type="application/json">
     {JSON.stringify(updatedServices)}
   </script>
 </section>
@@ -122,52 +122,34 @@ function getAltText(src: string) {
 <script>
   function initializeServices() {
     const servicesContainer = document.querySelector('.services-container');
+    if (servicesContainer) {
+      servicesContainer.addEventListener('click', (event) => {
+        const serviceButton = (event.target as Element).closest('.service-button');
+        if (serviceButton) {
+          const content = serviceButton.nextElementSibling;
+          const icon = serviceButton.querySelector('.icon');
+          
+          // Use classList.toggle for more efficient class toggling
+          content.classList.toggle('hidden');
+          icon?.classList.toggle('rotate-180');
 
-    // Use event delegation instead of attaching listeners to each button
-    servicesContainer.addEventListener('click', (event) => {
-      const serviceButton = event.target.closest('.service-button');
-      if (serviceButton) {
-        const content = serviceButton.nextElementSibling;
-        const icon = serviceButton.querySelector('.icon');
-        
-        // Use classList.toggle for more efficient class toggling
-        content.classList.toggle('hidden');
-        icon?.classList.toggle('rotate-180');
+          // Close other open services
+          document.querySelectorAll('.service-content:not(.hidden)').forEach(openContent => {
+            if (openContent !== content) {
+              openContent.classList.add('hidden');
+              openContent.previousElementSibling?.querySelector('.icon')?.classList.remove('rotate-180');
+            }
+          });
+        }
 
-        // Close other open services
-        document.querySelectorAll('.service-content:not(.hidden)').forEach(openContent => {
-          if (openContent !== content) {
-            openContent.classList.add('hidden');
-            openContent.previousElementSibling.querySelector('.icon')?.classList.remove('rotate-180');
-          }
-        });
-      }
-
-      const learnMoreButton = event.target.closest('.learn-more-button');
-      if (learnMoreButton) {
-        const fullDescription = learnMoreButton.nextElementSibling;
-        fullDescription.classList.toggle('hidden');
-        learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
-      }
-    });
-  }
-
-  function initializeImageSlider() {
-    const slider = document.getElementById('imageSlider');
-    const images = slider?.querySelectorAll('img');
-    let currentIndex = 0;
-
-    function showNextImage() {
-      if (images) {
-        images[currentIndex].classList.remove('opacity-100');
-        images[currentIndex].classList.add('opacity-0');
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].classList.remove('opacity-0');
-        images[currentIndex].classList.add('opacity-100');
-      }
+        const learnMoreButton = (event.target as Element).closest('.learn-more-button');
+        if (learnMoreButton) {
+          const fullDescription = learnMoreButton.nextElementSibling;
+          fullDescription.classList.toggle('hidden');
+          learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
+        }
+      });
     }
-
-    setInterval(showNextImage, 3000); // Change image every 3 seconds
   }
 
   // Run on initial load

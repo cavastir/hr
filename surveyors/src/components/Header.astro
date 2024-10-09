@@ -83,9 +83,9 @@ const sisterCompany = {
           </svg>
         </button>
         <div class="hidden" id="dropdown-Our Services" style="background-color: white !important;">
-          {['Land Surveying', 'Engineering Surveys', 'Construction Surveys', 'Aerial Mapping', 'Hydrographic Surveys', 'GIS Services'].map((service) => (
-            <a href="/services" class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-3 px-8" style="background-color: white !important;">
-              {service}
+          {serviceItems.map((service) => (
+            <a href={service.href} class="block text-hr-dark text-lg hover:text-hr-accent transition-colors py-3 px-8" style="background-color: white !important;">
+              {service.name}
             </a>
           ))}
         </div>
@@ -116,7 +116,6 @@ const sisterCompany = {
   const closeMobileMenu = document.getElementById('close-mobile-menu');
   const mobileMenu = document.getElementById('mobile-menu');
   const burgerIcon = mobileMenuToggle?.querySelector('svg');
-  const logo = document.querySelector('.logo');
 
   const scrollThreshold = 50;
 
