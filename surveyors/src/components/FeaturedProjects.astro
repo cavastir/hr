@@ -44,18 +44,14 @@ const imageModules = import.meta.glob('../assets/*.{jpeg,jpg,png,gif}');
       {projects.map((project, index) => (
         <a href={project.link} class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
           <div class={`relative h-48 ${project.color} flex items-center justify-center overflow-hidden`}>
-            {project.image ? (
-              <Image
-                src={imageModules[`../assets/${project.image}`]()}
-                alt={project.title}
-                width={400}
-                height={300}
-                class="w-full h-48 object-cover rounded-t-lg"
-                loading={index < 3 ? "eager" : "lazy"}
-              />
-            ) : (
-              <span class="text-6xl">{project.icon}</span>
-            )}
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={400}
+              height={300}
+              class="w-full h-48 object-cover rounded-t-lg"
+              loading={index < 3 ? "eager" : "lazy"}
+            />
           </div>
           <div class="p-6 flex flex-col flex-grow">
             <h3 class="text-xl font-semibold mb-2 text-hr-dark">{project.title}</h3>
