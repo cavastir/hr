@@ -43,6 +43,13 @@ const updatedServices = [
     icon: "airplane",
     shortDesc: "Cutting-edge drone technology for aerial mapping and imagery across multiple industries.",
     fullDesc: "Our UAV (Drone Survey) service utilizes cutting-edge drone technology to deliver accurate and efficient aerial mapping and imagery for various applications. This innovative approach enables us to capture high-resolution images and videos, providing essential data for informed decision-making across multiple industries. We specialize in creating detailed topographical plans, conducting stockpile volume calculations, and developing comprehensive 3D digital terrain models. Our skilled team ensures data quality and precision, facilitating informed decision-making and effective project management."
+  },
+  {
+    title: "Utility Locating",
+    icon: "search", // You may want to use a more appropriate icon
+    shortDesc: "Accurate underground utility location using electromagnetic induction and Ground Penetrating Radar (GPR).",
+    fullDesc: "Our Utility Locating services use a combination of electromagnetic induction and Ground Penetrating Radar (GPR) to accurately locate both metallic and non-metallic underground utilities. By combining conductive, inductive, and passive locating techniques, we can quickly identify and trace utilities across large areas, even those with non-metallic lines using traceable copper rods. This approach ensures precise depth measurement without breaking ground, making it an efficient and non-invasive solution for your project needs.",
+    externalLink: "https://www.hrutilities.com.au"
   }
 ];
 
@@ -96,6 +103,11 @@ function getAltText(src: string) {
                 </button>
                 <div class="hidden mt-4 text-hr-dark group-hover:text-dark full-description">
                   <p>{service.fullDesc}</p>
+                  {service.externalLink && (
+                    <a href={service.externalLink} class="text-hr-accent hover:underline mt-2 inline-block" target="_blank" rel="noopener noreferrer">
+                      Visit HR Utilities for more information
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
