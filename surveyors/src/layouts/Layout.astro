@@ -38,7 +38,7 @@ const { title, description } = Astro.props;
 	</head>
 	<body class="bg-white text-hr-dark">
 		<Header />
-		<main>
+		<main class="mt-24"> <!-- Add top margin to account for the fixed header -->
 			<slot />
 		</main>
 		<Footer />
@@ -79,6 +79,7 @@ const { title, description } = Astro.props;
 	body {
 		overflow-x: hidden;
 		transition: background-color 0.3s ease;
+		padding-top: 6rem; /* Adjust this value based on your header height */
 	}
 
 	.fade-in {
@@ -169,5 +170,20 @@ const { title, description } = Astro.props;
 
 	::-webkit-scrollbar-thumb:hover {
 		background: #3E3E3F;
+	}
+
+	/* Adjust the header styles */
+	#main-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 50;
+		transition: all 0.3s ease;
+	}
+
+	/* Style for the new top bar */
+	.bg-hr-light {
+		transition: all 0.3s ease;
 	}
 </style>
