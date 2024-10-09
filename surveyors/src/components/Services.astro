@@ -82,36 +82,36 @@ function getAltText(src: string) {
             />
           ))}
         </div>
-        <div class="flex justify-between items-center mt-8">
+        <div class="flex justify-center items-center mt-8 space-x-12">
           <div class="text-center">
-            <p class="text-4xl font-bold text-hr-dark">70+</p>
-            <p class="text-sm text-hr-dark">Employees</p>
+            <p class="text-5xl font-bold text-hr-dark">70+</p>
+            <p class="text-lg text-hr-dark mt-2">Employees</p>
           </div>
           <div class="text-center">
-            <p class="text-4xl font-bold text-hr-dark">5</p>
-            <p class="text-sm text-hr-dark">Offices</p>
+            <p class="text-5xl font-bold text-hr-dark">5</p>
+            <p class="text-lg text-hr-dark mt-2">Offices</p>
           </div>
         </div>
       </div>
       <div class="lg:w-1/2 relative">
-        <div class="space-y-4 services-container h-[600px] overflow-y-auto pr-4">
+        <div class="space-y-4 services-container h-[550px] overflow-y-auto pr-4">
           {updatedServices.map((service, index) => (
             <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-dark">
               <button 
-                class="w-full text-left flex justify-between items-center px-6 py-5 service-button focus:outline-none"
+                class="w-full text-left flex justify-between items-center px-6 py-4 service-button focus:outline-none"
                 data-index={index}
               >
-                <h3 class="text-xl font-semibold text-hr-dark group-hover:text-white transition-colors duration-300">
+                <h3 class="text-lg font-semibold text-hr-dark group-hover:text-white transition-colors duration-300">
                   {service.title}
                 </h3>
-                <Icon name={service.icon} class="icon w-8 h-8 transform transition-transform duration-300 text-hr-dark group-hover:text-white" />
+                <Icon name={service.icon} class="icon w-6 h-6 transform transition-transform duration-300 text-hr-dark group-hover:text-white" />
               </button>
-              <div class="hidden px-6 pb-5 service-content">
-                <p class="text-hr-dark mb-4 group-hover:text-white">{service.shortDesc}</p>
-                <button class="text-hr-accent group-hover:text-white hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
+              <div class="hidden px-6 pb-4 service-content">
+                <p class="text-sm text-hr-dark mb-2 group-hover:text-white">{service.shortDesc}</p>
+                <button class="text-sm text-hr-accent group-hover:text-white hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
                   Learn more
                 </button>
-                <div class="hidden mt-4 text-hr-dark group-hover:text-white full-description">
+                <div class="hidden mt-2 text-sm text-hr-dark group-hover:text-white full-description">
                   <p>{service.fullDesc}</p>
                   {service.externalLink && (
                     <a href={service.externalLink} class="text-hr-accent hover:underline mt-2 inline-block" target="_blank" rel="noopener noreferrer">
