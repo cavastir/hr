@@ -71,8 +71,8 @@ function getAltText(src: string) {
   <div class="container mx-auto px-4 relative z-10">
     <div class="flex flex-col lg:flex-row gap-12">
       <div class="lg:w-1/2">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-8 text-hr-dark">We deliver high-quality survey solutions tailored to your construction project.</h2>
-        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-8 relative" id="imageSlider" style="height: 400px;">
+        <h2 class="text-3xl lg:text-4xl font-bold mb-8 text-hr-dark">We deliver high-quality survey solutions tailored to your construction project.</h2>
+        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden mb-8 relative" id="imageSlider" style="height: 300px;">
           {images.map((src, index) => (
             <img 
               src={src} 
@@ -84,34 +84,34 @@ function getAltText(src: string) {
         </div>
         <div class="flex justify-center items-center mt-8 space-x-12">
           <div class="text-center">
-            <p class="text-5xl font-bold text-hr-dark">70+</p>
+            <p class="text-4xl font-bold text-hr-dark">70+</p>
             <p class="text-lg text-hr-dark mt-2">Employees</p>
           </div>
           <div class="text-center">
-            <p class="text-5xl font-bold text-hr-dark">5</p>
+            <p class="text-4xl font-bold text-hr-dark">5</p>
             <p class="text-lg text-hr-dark mt-2">Offices</p>
           </div>
         </div>
       </div>
       <div class="lg:w-1/2 relative">
-        <div class="space-y-4 services-container h-[550px] overflow-y-auto pr-4">
+        <div class="space-y-2">
           {updatedServices.map((service, index) => (
-            <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-dark">
+            <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-light">
               <button 
-                class="w-full text-left flex justify-between items-center px-6 py-4 service-button focus:outline-none"
+                class="w-full text-left flex justify-between items-center px-4 py-3 service-button focus:outline-none"
                 data-index={index}
               >
-                <h3 class="text-lg font-semibold text-hr-dark group-hover:text-white transition-colors duration-300">
+                <h3 class="text-base font-semibold text-hr-dark group-hover:text-hr-dark transition-colors duration-300">
                   {service.title}
                 </h3>
-                <Icon name={service.icon} class="icon w-6 h-6 transform transition-transform duration-300 text-hr-dark group-hover:text-white" />
+                <Icon name={service.icon} class="icon w-5 h-5 transform transition-transform duration-300 text-hr-dark group-hover:text-hr-dark" />
               </button>
-              <div class="hidden px-6 pb-4 service-content">
-                <p class="text-sm text-hr-dark mb-2 group-hover:text-white">{service.shortDesc}</p>
-                <button class="text-sm text-hr-accent group-hover:text-white hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
+              <div class="hidden px-4 pb-3 service-content">
+                <p class="text-sm text-hr-dark mb-2">{service.shortDesc}</p>
+                <button class="text-sm text-hr-accent hover:underline transition-colors duration-300 learn-more-button focus:outline-none">
                   Learn more
                 </button>
-                <div class="hidden mt-2 text-sm text-hr-dark group-hover:text-white full-description">
+                <div class="hidden mt-2 text-sm text-hr-dark full-description">
                   <p>{service.fullDesc}</p>
                   {service.externalLink && (
                     <a href={service.externalLink} class="text-hr-accent hover:underline mt-2 inline-block" target="_blank" rel="noopener noreferrer">
@@ -123,22 +123,18 @@ function getAltText(src: string) {
             </div>
           ))}
         </div>
-        <div class="absolute bottom-4 right-4 flex items-center">
+        <div class="mt-4 flex justify-end">
           <a href="/services" class="text-hr-dark hover:text-hr-accent transition-colors duration-300 flex items-center group">
             <span class="mr-2 text-sm">View all our services</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
-            <span class="sr-only">View all services</span>
           </a>
         </div>
       </div>
     </div>
   </div>
-  <script is:inline id="servicesData" type="application/json">
-    {JSON.stringify(updatedServices)}
-  </script>
 </section>
 
 <script>
@@ -166,24 +162,7 @@ function getAltText(src: string) {
     if (content) {
       content.classList.toggle('hidden');
       icon?.classList.toggle('rotate-180');
-
-      // Use requestAnimationFrame for non-critical updates
-      requestAnimationFrame(() => {
-        closeOtherServices(content);
-      });
     }
-  }
-
-  function closeOtherServices(currentContent: HTMLElement) {
-    document.querySelectorAll('.service-content:not(.hidden)').forEach((openContent) => {
-      if (openContent instanceof HTMLElement && openContent !== currentContent) {
-        openContent.classList.add('hidden');
-        const prevSibling = openContent.previousElementSibling;
-        if (prevSibling instanceof HTMLElement) {
-          prevSibling.querySelector('.icon')?.classList.remove('rotate-180');
-        }
-      }
-    });
   }
 
   function handleLearnMoreButtonClick(learnMoreButton: HTMLElement) {
