@@ -111,86 +111,62 @@ const sisterCompany = {
 </div>
 
 <script>
-  const header = document.getElementById('main-header');
-  const navLinks = document.querySelectorAll('[data-nav-link]');
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const closeMobileMenu = document.getElementById('close-mobile-menu');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const burgerIcon = mobileMenuToggle?.querySelector('svg');
-
-  const scrollThreshold = 50;
-
-  function updateHeaderStyle() {
-    if (!header) return;
-
-    const currentScrollY = window.scrollY;
+  document.addEventListener('astro:page-load', () => {
+    const header = document.getElementById('main-header');
+    const navLinks = document.querySelectorAll('[data-nav-link]');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const burgerIcon = mobileMenuToggle?.querySelector('svg');
     const topBar = document.querySelector('.bg-hr-light');
 
-    if (currentScrollY > scrollThreshold) {
-      header.classList.remove('bg-opacity-20', 'backdrop-blur-md');
-      header.classList.add('bg-white');
-      header.classList.remove('bg-hr-dark');
-      
-      navLinks.forEach(link => {
-        if (link instanceof HTMLElement) {
-          link.classList.remove('text-white');
-          link.classList.add('text-hr-dark');
+    const scrollThreshold = 50;
+
+    function updateHeaderStyle() {
+      if (!header) return;
+
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > scrollThreshold) {
+        header.classList.remove('bg-opacity-20', 'backdrop-blur-md', 'bg-hr-dark');
+        header.classList.add('bg-white');
+        
+        navLinks.forEach(link => {
+          if (link instanceof HTMLElement) {
+            link.classList.remove('text-hr-light');
+            link.classList.add('text-hr-dark');
+          }
+        });
+        if (burgerIcon) {
+          burgerIcon.classList.remove('text-hr-light');
+          burgerIcon.classList.add('text-hr-dark');
         }
-      });
-      if (burgerIcon) {
-        burgerIcon.classList.remove('text-white');
-        burgerIcon.classList.add('text-hr-dark');
-      }
-      if (topBar) topBar.classList.add('hidden');
-    } else {
-      header.classList.remove('bg-white');
-      header.classList.add('bg-hr-dark', 'bg-opacity-80', 'backdrop-blur-md');
-      
-      navLinks.forEach(link => {
-        if (link instanceof HTMLElement) {
-          link.classList.add('text-white');
-          link.classList.remove('text-hr-dark');
+        if (topBar) topBar.classList.add('hidden');
+      } else {
+        header.classList.remove('bg-white');
+        header.classList.add('bg-hr-dark', 'bg-opacity-80', 'backdrop-blur-md');
+        
+        navLinks.forEach(link => {
+          if (link instanceof HTMLElement) {
+            link.classList.add('text-hr-light');
+            link.classList.remove('text-hr-dark');
+          }
+        });
+        if (burgerIcon) {
+          burgerIcon.classList.add('text-hr-light');
+          burgerIcon.classList.remove('text-hr-dark');
         }
-      });
-      if (burgerIcon) {
-        burgerIcon.classList.add('text-white');
-        burgerIcon.classList.remove('text-hr-dark');
+        if (topBar) topBar.classList.remove('hidden');
       }
-      if (topBar) topBar.classList.remove('hidden');
     }
-  }
 
-  // Call the function on initial load
-  updateHeaderStyle();
+    // Call the function on initial load
+    updateHeaderStyle();
 
-  // Add event listener for scroll
-  window.addEventListener('scroll', updateHeaderStyle);
+    // Add event listener for scroll
+    window.addEventListener('scroll', updateHeaderStyle);
 
-  if (mobileMenuToggle && closeMobileMenu && mobileMenu) {
-    mobileMenuToggle.addEventListener('click', () => {
-      mobileMenu.classList.remove('translate-x-full');
-      mobileMenu.style.backgroundColor = 'white';
-      document.body.style.overflow = 'hidden';
-    });
-
-    closeMobileMenu.addEventListener('click', () => {
-      mobileMenu.classList.add('translate-x-full');
-      document.body.style.overflow = '';
-    });
-  }
-
-  // Handle dropdowns in mobile menu
-  const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
-  dropdownToggles.forEach((toggle) => {
-    toggle.addEventListener('click', () => {
-      const dropdownName = toggle.getAttribute('data-dropdown-toggle');
-      const dropdown = document.getElementById(`dropdown-${dropdownName}`);
-      const arrow = toggle.querySelector('svg');
-      
-      if (dropdown && arrow) {
-        dropdown.classList.toggle('hidden');
-        arrow.classList.toggle('rotate-180');
-      }
-    });
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('scroll', updateHeaderStyle);
+    };
   });
 </script>

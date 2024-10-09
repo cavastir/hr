@@ -201,3 +201,41 @@ function getAltText(src: string) {
   // Fallback for initial page load if astro:page-load doesn't fire
   document.addEventListener('DOMContentLoaded', initializeServices);
 </script>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const serviceButtons = document.querySelectorAll('.service-button');
+    const learnMoreButtons = document.querySelectorAll('.learn-more-button');
+
+    function toggleService(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('.icon');
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    }
+
+    function toggleDescription(button) {
+      const fullDescription = button.nextElementSibling;
+      fullDescription.classList.toggle('hidden');
+      button.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
+    }
+
+    serviceButtons.forEach(button => {
+      ['click', 'touchstart'].forEach(eventType => {
+        button.addEventListener(eventType, (e) => {
+          e.preventDefault();
+          toggleService(button);
+        });
+      });
+    });
+
+    learnMoreButtons.forEach(button => {
+      ['click', 'touchstart'].forEach(eventType => {
+        button.addEventListener(eventType, (e) => {
+          e.preventDefault();
+          toggleDescription(button);
+        });
+      });
+    });
+  });
+</script>
