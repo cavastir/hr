@@ -85,7 +85,7 @@ function getAltText(src: string) {
                 data-index={index}
               >
                 <h3 class="text-xl font-semibold text-hr-dark group-hover:text-dark transition-colors duration-300">
-                  {service.title} (Index: {index})
+                  {service.title}
                 </h3>
                 <Icon name={service.icon} class="icon w-8 h-8 transform transition-transform duration-300 text-hr-dark group-hover:text-dark" />
               </button>
@@ -120,11 +120,6 @@ function getAltText(src: string) {
 </section>
 
 <script>
-  const servicesDataElement = document.getElementById('servicesData');
-  if (servicesDataElement && servicesDataElement.textContent) {
-    console.log('Services:', JSON.parse(servicesDataElement.textContent));
-  }
-
   function initializeServices() {
     const serviceButtons = document.querySelectorAll('.service-button');
     const learnMoreButtons = document.querySelectorAll('.learn-more-button');
