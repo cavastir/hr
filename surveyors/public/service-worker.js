@@ -1,8 +1,7 @@
 const CACHE_NAME = 'hr-surveyors-cache-v1';
 const urlsToCache = [
   '/',
-  '/index.html',
-  '/images/hr-surveyors-logo-dark.png',
+  '/index.html',,
   '/images/hr-surveyors-logo-light.png',
   // Add more URLs to cache
 ];
