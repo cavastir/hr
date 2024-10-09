@@ -121,46 +121,34 @@ function getAltText(src: string) {
 
 <script>
   function initializeServices() {
-    const serviceButtons = document.querySelectorAll('.service-button');
-    const learnMoreButtons = document.querySelectorAll('.learn-more-button');
+    const servicesContainer = document.querySelector('.services-container');
 
-    function closeAllServices() {
-      document.querySelectorAll('.service-content').forEach(content => {
-        content.classList.add('hidden');
-      });
-      document.querySelectorAll('.service-button .icon').forEach(icon => {
-        icon.classList.remove('rotate-180');
-      });
-    }
+    // Use event delegation instead of attaching listeners to each button
+    servicesContainer.addEventListener('click', (event) => {
+      const serviceButton = event.target.closest('.service-button');
+      if (serviceButton) {
+        const content = serviceButton.nextElementSibling;
+        const icon = serviceButton.querySelector('.icon');
+        
+        // Use classList.toggle for more efficient class toggling
+        content.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
 
-    serviceButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const content = button.nextElementSibling;
-        const icon = button.querySelector('.icon');
-        if (content) {
-          if (content.classList.contains('hidden')) {
-            closeAllServices();
-            content.classList.remove('hidden');
-            icon?.classList.add('rotate-180');
-          } else {
-            content.classList.add('hidden');
-            icon?.classList.remove('rotate-180');
+        // Close other open services
+        document.querySelectorAll('.service-content:not(.hidden)').forEach(openContent => {
+          if (openContent !== content) {
+            openContent.classList.add('hidden');
+            openContent.previousElementSibling.querySelector('.icon')?.classList.remove('rotate-180');
           }
-        }
-      });
-    });
+        });
+      }
 
-    learnMoreButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const serviceContent = button.closest('.service-content');
-        const fullDescription = serviceContent?.querySelector('.full-description');
-
-        if (fullDescription) {
-          fullDescription.classList.toggle('hidden');
-          button.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
-        }
-      });
+      const learnMoreButton = event.target.closest('.learn-more-button');
+      if (learnMoreButton) {
+        const fullDescription = learnMoreButton.nextElementSibling;
+        fullDescription.classList.toggle('hidden');
+        learnMoreButton.textContent = fullDescription.classList.contains('hidden') ? 'Learn more' : 'Show less';
+      }
     });
   }
 
@@ -184,11 +172,7 @@ function getAltText(src: string) {
 
   // Run on initial load
   initializeServices();
-  initializeImageSlider();
 
   // Re-run after Astro page transitions
-  document.addEventListener('astro:page-load', () => {
-    initializeServices();
-    initializeImageSlider();
-  });
+  document.addEventListener('astro:page-load', initializeServices);
 </script>
