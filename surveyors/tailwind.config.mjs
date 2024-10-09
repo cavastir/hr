@@ -4,9 +4,9 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				'hr-dark': '#3E3E3F',
-				'hr-light': '#FFFFFF',
-				'hr-accent': '#BBCF31',
+				'hr-dark': '#2E2E2F',
+				'hr-light': '#F5F5F5',
+				'hr-accent': '#9BAD28',
 			},
 			backgroundColor: {
 				'hr-dark': 'rgba(62, 62, 63, var(--tw-bg-opacity))',
