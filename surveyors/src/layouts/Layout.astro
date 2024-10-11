@@ -50,7 +50,7 @@ const { title, description } = Astro.props;
 				const fadeElems = document.querySelectorAll('.fade-in');
 				fadeElems.forEach((elem, index) => {
 					if (elem instanceof HTMLElement) {
-						elem.style.animationDelay = `${index * 0.1}s`;
+							elem.style.animationDelay = `${index * 0.1}s`;
 					}
 				});
 			});
@@ -81,6 +81,8 @@ const { title, description } = Astro.props;
 	body {
 		overflow-x: hidden;
 		transition: background-color 0.3s ease;
+		position: relative;
+		width: 100%;
 	}
 
 	.fade-in {
