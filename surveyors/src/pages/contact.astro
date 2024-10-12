@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 
 const contactInfo = [
   { label: 'Email', value: 'office@hrsurveyors.com.au', href: 'mailto:office@hrsurveyors.com.au' },
-  { label: 'Phone', value: '+61 1 2345 6789', href: 'tel:+61123456789' },
   { label: 'Address', value: '8/20 Duerdin street, Clayton, VIC, 3168, Australia', href: null },
 ];
 ---
@@ -19,49 +18,45 @@ const contactInfo = [
         
         <div class="mb-20">
           <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
-            Let's discuss your project needs. We're here to answer any questions you may have about our services.
+            Let's discuss your project needs.
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div class="bg-gray-100 rounded-lg p-12 shadow-lg">
-            <h2 class="text-3xl font-bold mb-8 text-hr-dark">Get in Touch</h2>
-            <p class="text-lg mb-6 leading-relaxed">
-              Reach out to us and we'll respond as soon as we can.
-            </p>
-            {contactInfo.map((item) => (
-              <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-2 text-hr-dark">{item.label}</h3>
-                {item.href ? 
-                  <a href={item.href} class="text-hr-dark hover:text-hr-accent transition-colors">{item.value}</a> :
-                  <p>{item.value}</p>
-                }
-              </div>
-            ))}
-          </div>
-          <div class="bg-white border border-gray-200 rounded-lg p-8 shadow-md">
-            <h2 class="text-3xl font-bold mb-8 text-hr-dark">Send Us a Message</h2>
-            <form class="space-y-6">
-              <div>
-                <label for="name" class="block text-sm font-medium text-hr-dark mb-1">Name</label>
-                <input type="text" name="name" id="name" required class="w-full rounded-md bg-white border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2">
-              </div>
-              <div>
-                <label for="email" class="block text-sm font-medium text-hr-dark mb-1">Email</label>
-                <input type="email" name="email" id="email" required class="w-full rounded-md bg-white border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2">
-              </div>
-              <div>
-                <label for="message" class="block text-sm font-medium text-hr-dark mb-1">Message</label>
-                <textarea name="message" id="message" rows="4" required class="w-full rounded-md bg-white border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2"></textarea>
-              </div>
-              <div>
-                <button type="submit" class="w-full bg-hr-accent text-hr-dark px-6 py-3 rounded font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
-                  <span class="relative z-10 group-hover:text-white transition-colors">Send Message</span>
-                  <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-                </button>
-              </div>
-            </form>
-          </div>
+        <div class="bg-gray-100 rounded-lg p-12 shadow-lg mb-12">
+          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Get in Touch</h2>
+          {contactInfo.map((item) => (
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold mb-2 text-hr-dark">{item.label}</h3>
+              {item.href ? 
+                <a href={item.href} class="text-hr-dark hover:text-hr-accent transition-colors">{item.value}</a> :
+                <p>{item.value}</p>
+              }
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-8 shadow-md">
+          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Send Us a Message</h2>
+          <form class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-hr-dark mb-1">Name</label>
+              <input type="text" name="name" id="name" required class="w-full rounded-md bg-white border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-hr-dark mb-1">Email</label>
+              <input type="email" name="email" id="email" required class="w-full rounded-md bg-white border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-hr-dark mb-1">Message</label>
+              <textarea name="message" id="message" rows="4" required class="w-full rounded-md bg-white border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-2"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-hr-accent text-hr-dark px-6 py-3 rounded font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
+                <span class="relative z-10 group-hover:text-white transition-colors">Send Message</span>
+                <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
