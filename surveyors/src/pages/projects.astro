@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// Import images (assuming you're using the same imports as in FeaturedProjects.astro)
+import goldenPlainsWind from '../assets/golden-plains-wind.jpg';
+import pennyLane from '../assets/penny-lane.webp';
+import childsRoad from '../assets/childs-road.jpg';
+import victoriaParkcanning from '../assets/victoria-park-canning.jpg';
+import lumiereApartments from '../assets/lumiere-apartments.jpg';
+import mtLindesayHighway from '../assets/mt-lindesay-highway.jpg';
+import parkLaneApartments from '../assets/park-lane-apartments.jpg';
+import bookmarkCreek from '../assets/bookmark-creek.png';
+import nelwartStreetBridge from '../assets/nelwart-street-bridge.jpg';
+
+interface Project {
+  title: string;
+  image: ImageMetadata;
+  link: string;
+  description?: string;
+  state: string;
+}
+
+const projects: Project[] = [
+  {
+    title: 'Golden Plains Wind Farm & East & Cressy Terminal Station',
+    image: goldenPlainsWind,
+    link: '/services',
+    state: 'Victoria'
+  },
+  {
+    title: 'Penny Lane Moonee Ponds',
+    image: pennyLane,
+    link: '/services',
+    state: 'Victoria'
+  },
+  {
+    title: 'Childs Road Upgrade, Epping to Mill Park',
+    image: childsRoad,
+    link: '/services',
+    state: 'Victoria'
+  },
+  {
+    title: 'Victoria Park-Canning Level Crossing Removal Project',
+    description: 'Includes Beckenham, Carlisle, Queens Park, Cannington, and Oats Street Stations',
+    image: victoriaParkcanning,
+    link: '/services',
+    state: 'Western Australia'
+  },
+  {
+    title: 'Lumiere Apartments, South Perth',
+    image: lumiereApartments,
+    link: '/services',
+    state: 'Western Australia'
+  },
+  {
+    title: 'Mt Lindesay Highway Upgrade, Woodhill',
+    image: mtLindesayHighway,
+    link: '/services',
+    state: 'Queensland'
+  },
+  {
+    title: 'Park Lane Apartments, Lutwyche',
+    image: parkLaneApartments,
+    link: '/services',
+    state: 'Queensland'
+  },
+  {
+    title: 'Bookmark Creek Inlet Regulator, Renmark',
+    image: bookmarkCreek,
+    link: '/services',
+    state: 'South Australia'
+  },
+  {
+    title: 'Nelwart Street Bridge, Crescent',
+    image: nelwartStreetBridge,
+    link: '/services',
+    state: 'South Australia'
+  }
+];
+
+const states = [...new Set(projects.map(project => project.state))];
+---
+
+<Layout title="Our Projects | HR Surveyors" description="Explore HR Surveyors' diverse portfolio of projects across Australia, showcasing our expertise in surveying and spatial data services.">
+  <main class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold text-center mb-16 text-hr-dark">Our Projects</h1>
+      
+      <div x-data="{ activeTab: 'All' }" class="mb-12">
+        <div class="flex overflow-x-auto pb-2 mb-6 -mx-4 px-4">
+          <div class="flex min-w-full">
+            <button 
+              @click="activeTab = 'All'"
+              :class="{ 'border-b-2 border-hr-accent text-hr-accent': activeTab === 'All' }"
+              class="px-4 py-2 text-sm sm:text-base font-semibold whitespace-nowrap hover:text-hr-accent transition-colors duration-300"
+            >
+              All
+            </button>
+            {states.map((state) => (
+              <button 
+                @click={`activeTab = '${state}'`}
+                :class={`{ 'border-b-2 border-hr-accent text-hr-accent': activeTab === '${state}' }`}
+                class="px-4 py-2 text-sm sm:text-base font-semibold whitespace-nowrap hover:text-hr-accent transition-colors duration-300"
+              >
+                {state}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <div x-show={`activeTab === 'All' || activeTab === '${project.state}'`} class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <a href={project.link} class="block">
+                <div class="relative h-48 bg-gray-200">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={400}
+                    height={300}
+                    class="w-full h-48 object-cover"
+                  />
+                </div>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold mb-2 text-hr-dark">{project.title}</h2>
+                  {project.description && <p class="text-sm text-gray-500">{project.description}</p>}
+                  <p class="text-sm text-hr-accent mt-2">{project.state}</p>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
