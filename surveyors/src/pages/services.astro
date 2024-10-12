@@ -79,103 +79,57 @@ const secondaryServices = [
   description="Explore the comprehensive range of surveying services offered by HR Surveyors. From building and construction to infrastructure and 3D scanning solutions."
 >
   <main class="bg-white text-hr-dark">
-    <section class="py-32">
-      <div class="container mx-auto px-4 max-w-6xl">
-        <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">Our Services</h1>
+    <section class="py-16 md:py-24 lg:py-32">
+      <div class="container mx-auto px-4 max-w-7xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-12 text-hr-dark text-center">Our Services</h1>
         
-        <div class="mb-20">
-          <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+        <div class="mb-16 md:mb-24">
+          <p class="text-lg md:text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
             At HR Surveyors, we offer a comprehensive range of surveying services to meet all your project needs. Our expert team utilizes cutting-edge technology and years of experience to deliver precise, reliable results.
           </p>
         </div>
 
-        <div class="bg-gray-100 rounded-lg p-12 mb-20 shadow-lg">
-          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Main Services</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mainServices.map((service, index) => (
-              <div class="bg-white rounded-lg p-6 shadow-md">
-                <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-dark" />
-                <h3 class="text-xl font-semibold mb-2 text-hr-dark">{service.title}</h3>
-                <p class="text-gray-600 text-sm mb-4 line-clamp-3" id={`description-${index}`}>{service.description}</p>
-                <button 
-                  class="text-hr-dark hover:underline text-sm font-semibold"
-                  onclick={`toggleDescription(${index})`}
-                  id={`button-${index}`}
-                >
-                  Learn More
-                </button>
-              </div>
-            ))}
+        <div class="space-y-16 md:space-y-24">
+          <div class="bg-gray-100 rounded-lg p-8 md:p-12 shadow-lg">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-hr-dark">Main Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {mainServices.map((service) => (
+                <div class="bg-white rounded-lg p-6 shadow-md flex flex-col h-full">
+                  <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-dark" />
+                  <h3 class="text-xl font-semibold mb-4 text-hr-dark">{service.title}</h3>
+                  <p class="text-gray-600 text-sm">{service.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div class="mb-20">
-          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Additional Services</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {secondaryServices.map((service, index) => (
-              <div class="bg-white rounded-lg p-6 shadow-md">
-                <Icon name={service.icon} class="w-10 h-10 mb-3 text-hr-dark" />
-                <h3 class="text-xl font-semibold mb-2 text-hr-dark">{service.title}</h3>
-                <p class="text-gray-600 text-sm mb-4 line-clamp-3" id={`secondary-description-${index}`}>{service.description}</p>
-                <button 
-                  class="text-hr-dark hover:underline text-sm font-semibold"
-                  onclick={`toggleSecondaryDescription(${index})`}
-                  id={`secondary-button-${index}`}
-                >
-                  Learn More
-                </button>
-              </div>
-            ))}
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-hr-dark">Additional Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {secondaryServices.map((service) => (
+                <div class="bg-white rounded-lg p-6 shadow-md flex flex-col h-full">
+                  <Icon name={service.icon} class="w-10 h-10 mb-3 text-hr-dark" />
+                  <h3 class="text-xl font-semibold mb-4 text-hr-dark">{service.title}</h3>
+                  <p class="text-gray-600 text-sm">{service.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div class="bg-gray-100 rounded-lg p-12 text-center">
-          <h2 class="text-3xl font-bold mb-6 text-hr-dark">Ready to Start Your Project?</h2>
-          <p class="text-xl mb-8 text-hr-dark max-w-2xl mx-auto">
-            Let us bring precision to your next engineering challenge.
-          </p>
-          <a href="/contact" class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
-            <span class="relative z-10 group-hover:text-white transition-colors">Get in Touch</span>
-            <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-          </a>
+          <div class="bg-gray-100 rounded-lg p-8 md:p-12 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-hr-dark">Ready to Start Your Project?</h2>
+            <p class="text-lg md:text-xl mb-8 text-hr-dark max-w-2xl mx-auto">
+              Let us bring precision to your next engineering challenge.
+            </p>
+            <a href="/contact" class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
+              <span class="relative z-10 group-hover:text-white transition-colors">Get in Touch</span>
+              <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 </Layout>
 
-<script>
-  function toggleDescription(index: number) {
-    const description = document.getElementById(`description-${index}`);
-    const button = document.getElementById(`button-${index}`);
-    
-    if (description && button) {
-      if (description.classList.contains('line-clamp-3')) {
-        description.classList.remove('line-clamp-3');
-        button.textContent = 'Show Less';
-      } else {
-        description.classList.add('line-clamp-3');
-        button.textContent = 'Learn More';
-      }
-    }
-  }
-
-  function toggleSecondaryDescription(index: number) {
-    const description = document.getElementById(`secondary-description-${index}`);
-    const button = document.getElementById(`secondary-button-${index}`);
-    
-    if (description && button) {
-      if (description.classList.contains('line-clamp-3')) {
-        description.classList.remove('line-clamp-3');
-        button.textContent = 'Show Less';
-      } else {
-        description.classList.add('line-clamp-3');
-        button.textContent = 'Learn More';
-      }
-    }
-  }
-
-  // Make functions available globally
-  (window as any).toggleDescription = toggleDescription;
-  (window as any).toggleSecondaryDescription = toggleSecondaryDescription;
-</script>
+// Remove the script tag as it's no longer needed
