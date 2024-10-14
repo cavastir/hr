@@ -122,6 +122,8 @@ const sisterCompany = {
     const navLinks = document.querySelectorAll('[data-nav-link]');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const burgerIcon = mobileMenuToggle?.querySelector('svg');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMobileMenu = document.getElementById('close-mobile-menu');
 
     const scrollThreshold = 50;
 
@@ -167,9 +169,48 @@ const sisterCompany = {
     // Add event listener for scroll
     window.addEventListener('scroll', updateHeaderStyle);
 
-    // Clean up the event listener when the component is unmounted
+    // Mobile menu toggle functionality
+    if (mobileMenuToggle && mobileMenu && closeMobileMenu) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('translate-x-full');
+      });
+
+      closeMobileMenu.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+      });
+    }
+
+    // Dropdown functionality for mobile menu
+    const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const targetId = target.getAttribute('data-dropdown-toggle');
+        if (targetId) {
+          const targetDropdown = document.getElementById(`dropdown-${targetId}`);
+          if (targetDropdown) {
+            targetDropdown.classList.toggle('hidden');
+            const svg = target.querySelector('svg');
+            if (svg) {
+              svg.classList.toggle('rotate-180');
+            }
+          }
+        }
+      });
+    });
+
+    // Clean up the event listeners when the component is unmounted
     return () => {
       window.removeEventListener('scroll', updateHeaderStyle);
+      if (mobileMenuToggle) {
+        mobileMenuToggle.removeEventListener('click', () => {});
+      }
+      if (closeMobileMenu) {
+        closeMobileMenu.removeEventListener('click', () => {});
+      }
+      dropdownToggles.forEach(toggle => {
+        toggle.removeEventListener('click', () => {});
+      });
     };
   });
 </script>
