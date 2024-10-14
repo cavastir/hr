@@ -5,9 +5,9 @@ import teamImage from '../assets/team-landscape.jpg';
 import founderImage from '../assets/excellence-portrait.jpg';
 
 const stats = [
-  { number: '2012', label: 'Founded' },
-  { number: '5', label: 'Locations' },
+  { number: '2012', label: 'Established' },
   { number: '70+', label: 'Employees' },
+  { number: '5', label: 'Offices' },
 ];
 ---
 
@@ -26,54 +26,30 @@ const stats = [
           </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
-          {stats.map((stat) => (
-            <div class="text-center">
-              <p class="text-4xl font-bold text-hr-dark mb-2">{stat.number}</p>
-              <p class="text-lg">{stat.label}</p>
-            </div>
-          ))}
+        <div class="flex justify-center mb-20">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {stats.map((stat) => (
+              <div class="text-center">
+                <p class="text-4xl font-bold text-hr-dark mb-2">{stat.number}</p>
+                <p class="text-lg">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div class="bg-gray-100 rounded-lg p-12 mb-20 shadow-lg">
-          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Our Company</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="bg-gray-100 rounded-lg p-12 shadow-lg">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
+              <h2 class="text-3xl font-bold mb-8 text-hr-dark">Our Company</h2>
               <p class="text-lg mb-6 leading-relaxed">
                 Since 2012, HR Surveyors has been committed to building strong, long-term relationships with our clients by delivering high-quality survey solutions tailored to the construction industry. We prioritize exceptional customer service, attention to detail, and precision in every project—large or small.
               </p>
               <p class="text-lg mb-6 leading-relaxed">
                 Our team is not only diverse and highly skilled but also brings extensive experience in the construction sector, making us uniquely equipped to handle the complexities of engineering and construction projects.
               </p>
-            </div>
-            <div>
-              <Image 
-                src={teamImage} 
-                alt="HR Surveyors team" 
-                class="rounded-lg shadow-xl focus:outline-none"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-20">
-          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Our Reach</h2>
-          <p class="text-lg mb-6 leading-relaxed">
-            With five locations across Australia, we have the capacity to support projects nationwide, providing local expertise and timely service wherever it's needed. This specialized focus sets us apart from other survey companies, allowing us to consistently meet and exceed industry demands with confidence and reliability.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 rounded-lg p-12 mb-20 shadow-lg">
-          <h2 class="text-3xl font-bold mb-8 text-hr-dark">Our Commitment</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <Image 
-                src={founderImage} 
-                alt="HR Surveyors founder" 
-                class="rounded-lg shadow-xl focus:outline-none"
-              />
-            </div>
-            <div>
+              <p class="text-lg mb-6 leading-relaxed">
+                With five locations across Australia, we have the capacity to support projects nationwide, providing local expertise and timely service wherever it's needed. This specialized focus sets us apart from other survey companies, allowing us to consistently meet and exceed industry demands with confidence and reliability.
+              </p>
               <p class="text-lg mb-6 leading-relaxed">
                 At HR Surveyors, we're dedicated to delivering precision and excellence in every project. Our team's expertise and commitment to quality ensure that we provide innovative solutions tailored to each client's unique needs.
               </p>
@@ -81,6 +57,18 @@ const stats = [
                 <span class="relative z-10 group-hover:text-white transition-colors">Get in Touch</span>
                 <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
               </a>
+            </div>
+            <div class="space-y-8">
+              <Image 
+                src={teamImage} 
+                alt="HR Surveyors team" 
+                class="rounded-lg shadow-xl focus:outline-none w-full"
+              />
+              <Image 
+                src={founderImage} 
+                alt="HR Surveyors founder" 
+                class="rounded-lg shadow-xl focus:outline-none w-full"
+              />
             </div>
           </div>
         </div>
