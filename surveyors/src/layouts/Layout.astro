@@ -41,7 +41,7 @@ const { title, description } = Astro.props;
 	</head>
 	<body class="bg-white text-hr-dark overflow-x-hidden w-full">
 		<Header />
-		<main class="w-full overflow-x-hidden">
+		<main class="w-full overflow-x-hidden pt-[header-height]">
 			<slot />
 		</main>
 		<Footer />
@@ -179,7 +179,7 @@ const { title, description } = Astro.props;
 
 	/* Adjust the header styles */
 	#main-header {
-		position: sticky;
+		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;

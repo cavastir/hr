@@ -23,40 +23,45 @@ const sisterCompany = {
 };
 ---
 
-<!-- New top bar for sister company -->
-<div class="bg-hr-light text-dark text-sm py-1">
-  <div class="container mx-auto px-4 text-center">
-    <a href={sisterCompany.url} class="hover:underline" target="_blank" rel="noopener noreferrer">Discover our sister company, <b>HR Utilities</b>, specializing in advanced subsurface mapping solutions.</a>
-  </div>
-</div>
-
-<header id="main-header" class="fixed top-6 left-0 right-0 z-50 bg-hr-dark bg-opacity-90 backdrop-blur-md transition-all duration-300">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="/" class="flex items-center space-x-2 relative w-48 h-12"> 
-      <img 
-        src="/images/hr-surveyors-logo-light.png" 
-        alt="HR Surveyors Logo" 
-        class="w-full h-full object-contain logo"
-        width="192" height="48"
-        loading="eager"
-      />
-    </a>
-    <nav class="hidden md:flex items-center space-x-6">
-      {navItems.map((item) => (
-        <a href={item.href} class="text-hr-light hover:text-hr-accent transition-colors relative group" data-nav-link>
-          {item.name}
-          <span class="absolute left-0 right-0 bottom-0 h-0.5 bg-hr-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-        </a>
-      ))}
-      <a href="/contact" class="bg-hr-accent text-hr-light px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors">
-        Get in touch
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <!-- Sister company bar -->
+  <div class="bg-hr-light text-dark text-sm py-1">
+    <div class="container mx-auto px-4 text-center">
+      <a href={sisterCompany.url} class="hover:underline" target="_blank" rel="noopener noreferrer">
+        Discover our sister company, <b>HR Utilities</b>, specializing in advanced subsurface mapping solutions.
       </a>
-    </nav>
-    <button class="md:hidden text-hr-light p-2 focus:outline-none" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
+    </div>
+  </div>
+
+  <!-- Main navigation -->
+  <div id="main-nav" class="bg-hr-dark bg-opacity-90 backdrop-blur-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="flex items-center space-x-2 relative w-48 h-12"> 
+        <img 
+          src="/images/hr-surveyors-logo-light.png" 
+          alt="HR Surveyors Logo" 
+          class="w-full h-full object-contain logo"
+          width="192" height="48"
+          loading="eager"
+        />
+      </a>
+      <nav class="hidden md:flex items-center space-x-6">
+        {navItems.map((item) => (
+          <a href={item.href} class="text-hr-light hover:text-hr-accent transition-colors relative group" data-nav-link>
+            {item.name}
+            <span class="absolute left-0 right-0 bottom-0 h-0.5 bg-hr-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+          </a>
+        ))}
+        <a href="/contact" class="bg-hr-accent text-hr-light px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors">
+          Get in touch
+        </a>
+      </nav>
+      <button class="md:hidden text-hr-light p-2 focus:outline-none" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -113,21 +118,21 @@ const sisterCompany = {
 <script>
   document.addEventListener('astro:page-load', () => {
     const header = document.getElementById('main-header');
+    const mainNav = document.getElementById('main-nav');
     const navLinks = document.querySelectorAll('[data-nav-link]');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const burgerIcon = mobileMenuToggle?.querySelector('svg');
-    const topBar = document.querySelector('.bg-hr-light');
 
     const scrollThreshold = 50;
 
     function updateHeaderStyle() {
-      if (!header) return;
+      if (!header || !mainNav) return;
 
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > scrollThreshold) {
-        header.classList.remove('bg-opacity-20', 'backdrop-blur-md', 'bg-hr-dark');
-        header.classList.add('bg-white');
+        mainNav.classList.remove('bg-opacity-20', 'backdrop-blur-md', 'bg-hr-dark');
+        mainNav.classList.add('bg-white');
         
         navLinks.forEach(link => {
           if (link instanceof HTMLElement) {
@@ -139,10 +144,9 @@ const sisterCompany = {
           burgerIcon.classList.remove('text-hr-light');
           burgerIcon.classList.add('text-hr-dark');
         }
-        if (topBar) topBar.classList.add('hidden');
       } else {
-        header.classList.remove('bg-white');
-        header.classList.add('bg-hr-dark', 'bg-opacity-80', 'backdrop-blur-md');
+        mainNav.classList.remove('bg-white');
+        mainNav.classList.add('bg-hr-dark', 'bg-opacity-90', 'backdrop-blur-md');
         
         navLinks.forEach(link => {
           if (link instanceof HTMLElement) {
@@ -154,7 +158,6 @@ const sisterCompany = {
           burgerIcon.classList.add('text-hr-light');
           burgerIcon.classList.remove('text-hr-dark');
         }
-        if (topBar) topBar.classList.remove('hidden');
       }
     }
 
