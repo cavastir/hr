@@ -194,4 +194,46 @@ const { title, description } = Astro.props;
 	.bg-hr-light {
 		transition: all 0.3s ease;
 	}
+
+	/* Add these new styles */
+	main {
+		padding-top: 4rem; /* Increased padding for mobile */
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin-bottom: 1rem; /* Increased margin for mobile */
+	}
+
+	/* Specific style for the main heading (usually h1) */
+	main > h1:first-child,
+	main > div:first-child > h1:first-child {
+		margin-top: 1rem; /* Increased margin for mobile */
+	}
+
+	/* Add more space after the main heading */
+	main > h1:first-child + *,
+	main > div:first-child > h1:first-child + * {
+		margin-top: 1.5rem; /* Increased margin for mobile */
+	}
+
+	/* Adjustments for larger screens */
+	@media (min-width: 768px) {
+		main {
+			padding-top: 2rem;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			margin-bottom: 1.5rem;
+		}
+
+		main > h1:first-child,
+		main > div:first-child > h1:first-child {
+			margin-top: 2rem;
+		}
+
+		main > h1:first-child + *,
+		main > div:first-child > h1:first-child + * {
+			margin-top: 2.5rem;
+		}
+	}
 </style>
