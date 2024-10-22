@@ -17,5 +17,5 @@ export default defineConfig({
       },
     },
   },
-  site: 'https://hrsurveyors.com.au',
+  site: 'https://www.hrsurveyors.com.au',
 });

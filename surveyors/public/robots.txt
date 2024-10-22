@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hrsurveyors.com.au/sitemap.xml
+Sitemap: https://www.hrsurveyors.com.au/sitemap.xml
