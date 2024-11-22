@@ -128,7 +128,13 @@ const locationContent = {
   }
 };
 
-const content = locationContent[location as keyof typeof locationContent] || {};
+// Add better fallback content
+const defaultContent = {
+  heroText: "Professional Land Surveyors",
+  description: "Expert surveying services across Australia with comprehensive engineering and construction survey solutions."
+};
+
+const content = locationContent[location as keyof typeof locationContent] || defaultContent;
 const capitalizedLocation = capitalize(location);
 ---
 
@@ -137,12 +143,12 @@ const capitalizedLocation = capitalize(location);
     <section class="py-32">
       <div class="container mx-auto px-4 max-w-6xl">
         <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">
-          {content.heroText || `HR Surveyors ${capitalize(location)}`}
+          {content.heroText}
         </h1>
         
         <div class="mb-20">
           <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
-            {content.description || `Professional land surveying services in ${capitalize(location)}`}
+            {content.description}
           </p>
           
           {officeInfo && (
