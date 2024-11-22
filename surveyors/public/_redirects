@@ -5,7 +5,10 @@
 /icons/* /icons/:splat 200
 
 # Redirect /service to /services/
-/service /services 301
+/service /services/ 301
+
+# Handle 404s
+/* /404 404
 
 # Handle trailing slashes
 # Do not redirect urls that end with a file extension
