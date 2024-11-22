@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getStaticPaths } from '../utils/seo';
+
+export { getStaticPaths };
+
+interface Props {
+  title: string;
+  description: string;
+  location: string;
+}
+
+const { title, description, location = '' } = Astro.props;
+
+// Helper function for safe capitalization
+const capitalize = (str: string) => {
+  return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
+};
+
+const officeInfo = {
+  melbourne: {
+    address: '8/20 Duerdin street, Clayton, VIC, 3168',
+    areas: 'Melbourne Metro, Eastern Victoria'
+  },
+  geelong: {
+    address: 'Newtown, VIC, 3220', 
+    areas: 'Geelong, Western Victoria'
+  },
+  perth: {
+    address: 'West Leederville, WA, 6007',
+    areas: 'Perth Metro, Regional WA'
+  },
+  brisbane: {
+    address: 'Murwillumbah, NSW, 2484',
+    areas: 'Brisbane, Gold Coast, Northern Rivers'
+  },
+  adelaide: {
+    address: 'Edinburgh North, SA, 5113',
+    areas: 'Adelaide Metro, Regional SA'
+  }
+}[location] || null;
+
+const capitalizedLocation = capitalize(location);
+---
+
+<Layout title={title} description={description} location={location}>
+  <main class="bg-white text-hr-dark">
+    <section class="py-32">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">
+          HR Surveyors {capitalizedLocation}
+        </h1>
+        
+        <div class="mb-20">
+          <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+            Professional land surveying services in {capitalizedLocation}
+          </p>
+          
+          {officeInfo && (
+            <div class="bg-gray-100 rounded-lg p-8 shadow-lg mb-12">
+              <h2 class="text-2xl font-bold mb-4">Our {capitalizedLocation} Office</h2>
+              <p class="mb-2"><strong>Address:</strong> {officeInfo.address}</p>
+              <p><strong>Service Areas:</strong> {officeInfo.areas}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

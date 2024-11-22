@@ -132,22 +132,22 @@ const contactInfo = [
 
 <script>
   // Tab functionality
-  const tabs = document.querySelectorAll('.location-tab');
-  const panels = document.querySelectorAll('.location-panel');
-
-  // Show first tab by default
-  tabs[0].classList.add('border-hr-accent', 'text-hr-accent');
-  panels[0].classList.remove('hidden');
-
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.location-tab');
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      // Remove active states
+      const panelId = tab.getAttribute('data-tab');
+      if (!panelId) return;
+      
+      const panel = document.querySelector(`#panel-${panelId}`);
+      if (!panel) return;
+      
+      // Remove active states from all tabs/panels
       tabs.forEach(t => t.classList.remove('border-hr-accent', 'text-hr-accent'));
-      panels.forEach(p => p.classList.add('hidden'));
-
+      document.querySelectorAll('.location-panel').forEach(p => p.classList.add('hidden'));
+      
       // Add active states
       tab.classList.add('border-hr-accent', 'text-hr-accent');
-      document.querySelector(`#panel-${tab.dataset.tab}`).classList.remove('hidden');
+      panel.classList.remove('hidden');
     });
   });
 </script>

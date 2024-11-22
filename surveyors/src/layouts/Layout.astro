@@ -2,14 +2,23 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
+import { getLocationMetaDesc } from '../utils/seo';
 
 interface Props {
 	title: string;
-	description: string;
+	description?: string;
+	location?: string;
+	canonicalUrl?: string;
 }
 
-const { title, description } = Astro.props;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const { 
+	title, 
+	description = "Professional land surveying services across Australia. Engineering surveys, construction surveys and aerial mapping in Melbourne, Perth, Brisbane, Adelaide and regional areas.",
+	location,
+	canonicalUrl = Astro.url.href 
+} = Astro.props;
+
+const locationDesc = location ? getLocationMetaDesc(location) : description;
 ---
 
 <!DOCTYPE html>
@@ -22,7 +31,25 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 		<meta name="generator" content={Astro.generator} />
 		<link rel="canonical" href={canonicalUrl} />
 		<title>{title}</title>
-		<meta name="description" content={description} />
+		<meta name="description" content={locationDesc} />
+		
+		<!-- Schema.org markup for multiple locations -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "HR Surveyors",
+				"url": "https://www.hrsurveyors.com.au",
+				"logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo-light.png",
+				"areaServed": ["VIC", "WA", "QLD", "SA", "NSW"],
+				"contactPoint": {
+					"@type": "ContactPoint",
+					"telephone": "+61-3-xxxx-xxxx",
+					"contactType": "customer service"
+				}
+			}
+		</script>
+
 		<link rel="preload" as="image" href="/images/hr-surveyors-logo-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
 		<link rel="preload" as="image" href="/images/hr-surveyors-logo-light.png">
 		<style>
