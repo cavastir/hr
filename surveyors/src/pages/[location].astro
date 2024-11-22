@@ -1,23 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getStaticPaths } from '../utils/seo';
+import { getStaticPaths, locationContent, type LocationKey } from '../utils/seo';
 
 export { getStaticPaths };
 
 interface Props {
   title: string;
   description: string;
-  location: string;
+  location: LocationKey;
 }
 
-const { title, description, location = '' } = Astro.props;
+const { title, description, location } = Astro.props;
 
 // Helper function for safe capitalization
-const capitalize = (str: string) => {
+const capitalize = (str: string): string => {
   return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
 };
 
-const officeInfo = {
+type OfficeInfo = Record<LocationKey, {
+  address: string;
+  areas: string;
+}>;
+
+const officeLocations: OfficeInfo = {
   melbourne: {
     address: '8/20 Duerdin street, Clayton, VIC, 3168',
     areas: 'Melbourne Metro, Eastern Victoria'
@@ -38,103 +43,10 @@ const officeInfo = {
     address: 'Edinburgh North, SA, 5113',
     areas: 'Adelaide Metro, Regional SA'
   }
-}[location] || null;
-
-const locationContent = {
-  melbourne: {
-    title: "HR Surveyors Melbourne",
-    heroText: "Expert Land Surveyors in Melbourne",
-    description: "Professional surveying services across Melbourne and Eastern Victoria. Our Clayton office serves the Greater Melbourne area with comprehensive engineering and construction survey solutions.",
-    services: [
-      "Building and Construction",
-      "Civil Construction",
-      "Infrastructure & Mining",
-      "Feature and Level Survey",
-      "Laser Scanning",
-      "Renewable Energy",
-      "Utility Locating"
-    ],
-    projects: [
-      "Golden Plains Wind Farm & East & Cressy Terminal Station",
-      "Penny Lane Moonee Ponds",
-      "Childs Road Upgrade, Epping to Mill Park"
-    ]
-  },
-  geelong: {
-    title: "HR Surveyors Geelong",
-    heroText: "Leading Survey Solutions in Geelong",
-    description: "Serving Geelong and Western Victoria with professional land surveying services. Our local team delivers precise engineering and construction surveys for projects of all sizes.",
-    services: [
-      "Civil Construction",
-      "Land Development",
-      "Engineering Surveys",
-      "Infrastructure Projects",
-      "Feature & Level Surveys",
-      "Utility Locating"
-    ],
-    projects: [
-      "Geelong Port Expansion",
-      "Western Victoria Renewables"
-    ]
-  },
-  perth: {
-    title: "HR Surveyors Perth",
-    heroText: "Leading Survey Solutions in Perth",
-    description: "Comprehensive surveying services across Perth Metro and Regional WA. Our West Leederville office delivers expert solutions for construction, infrastructure and development projects.",
-    services: [
-      "Building and Construction",
-      "Civil Construction", 
-      "Infrastructure & Mining",
-      "Laser Scanning",
-      "UAV (Drone Survey)"
-    ],
-    projects: [
-      "Victoria Park-Canning Level Crossing Removal Project",
-      "Lumiere Apartments, South Perth",
-      "Casuarina Prison Expansion Project"
-    ]
-  },
-  adelaide: {
-    title: "HR Surveyors Adelaide",
-    heroText: "Professional Surveyors in Adelaide",
-    description: "Expert surveying services across Adelaide Metro and Regional SA. Our Edinburgh North office specializes in infrastructure, construction and development projects.",
-    services: [
-      "Civil Construction",
-      "Infrastructure & Mining", 
-      "Feature and Level Survey",
-      "Laser Scanning",
-      "Specification Surveys (A-SPEC & ADAC)"
-    ],
-    projects: [
-      "Bookmark Creek Inlet Regulator, Renmark",
-      "Nelwart Street Bridge, Crescent"
-    ]
-  },
-  brisbane: {
-    title: "HR Surveyors Brisbane",
-    heroText: "Trusted Surveyors in Brisbane",
-    description: "Complete surveying solutions for Brisbane, Gold Coast and Northern Rivers regions. Our team delivers precise engineering and construction surveys for projects of all sizes.",
-    services: [
-      "Building and Construction",
-      "Civil Construction",
-      "Infrastructure & Mining",
-      "UAV (Drone Survey)",
-      "Machine Control (3D Models & Design)"
-    ],
-    projects: [
-      "Mt Lindesay Highway Upgrade, Woodhill",
-      "Park Lane Apartments, Lutwyche"
-    ]
-  }
 };
 
-// Add better fallback content
-const defaultContent = {
-  heroText: "Professional Land Surveyors",
-  description: "Expert surveying services across Australia with comprehensive engineering and construction survey solutions."
-};
-
-const content = locationContent[location as keyof typeof locationContent] || defaultContent;
+const officeInfo = officeLocations[location] || null;
+const content = locationContent[location];
 const capitalizedLocation = capitalize(location);
 ---
 
@@ -171,7 +83,7 @@ const capitalizedLocation = capitalize(location);
             <div class="mb-12">
               <h2 class="text-2xl font-bold mb-6 text-center">Our Services in {capitalize(location)}</h2>
               <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {content.services.map(service => (
+                {content.services.map((service: string) => (
                   <li class="bg-white p-4 rounded shadow-sm border border-gray-100">
                     {service}
                   </li>
@@ -184,7 +96,7 @@ const capitalizedLocation = capitalize(location);
             <div>
               <h2 class="text-2xl font-bold mb-6 text-center">Featured Projects in {capitalize(location)}</h2>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {content.projects.map(project => (
+                {content.projects.map((project: string) => (
                   <div class="bg-white p-4 rounded shadow-sm border border-gray-100">
                     {project}
                   </div>
