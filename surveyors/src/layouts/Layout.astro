@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const canonicalUrl = `${Astro.site}${Astro.request.url.replace(/\/?$/, '/')}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!DOCTYPE html>
