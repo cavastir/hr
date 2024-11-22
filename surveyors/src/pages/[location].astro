@@ -40,6 +40,95 @@ const officeInfo = {
   }
 }[location] || null;
 
+const locationContent = {
+  melbourne: {
+    title: "HR Surveyors Melbourne",
+    heroText: "Expert Land Surveyors in Melbourne",
+    description: "Professional surveying services across Melbourne and Eastern Victoria. Our Clayton office serves the Greater Melbourne area with comprehensive engineering and construction survey solutions.",
+    services: [
+      "Building and Construction",
+      "Civil Construction",
+      "Infrastructure & Mining",
+      "Feature and Level Survey",
+      "Laser Scanning",
+      "Renewable Energy",
+      "Utility Locating"
+    ],
+    projects: [
+      "Golden Plains Wind Farm & East & Cressy Terminal Station",
+      "Penny Lane Moonee Ponds",
+      "Childs Road Upgrade, Epping to Mill Park"
+    ]
+  },
+  geelong: {
+    title: "HR Surveyors Geelong",
+    heroText: "Leading Survey Solutions in Geelong",
+    description: "Serving Geelong and Western Victoria with professional land surveying services. Our local team delivers precise engineering and construction surveys for projects of all sizes.",
+    services: [
+      "Civil Construction",
+      "Land Development",
+      "Engineering Surveys",
+      "Infrastructure Projects",
+      "Feature & Level Surveys",
+      "Utility Locating"
+    ],
+    projects: [
+      "Geelong Port Expansion",
+      "Western Victoria Renewables"
+    ]
+  },
+  perth: {
+    title: "HR Surveyors Perth",
+    heroText: "Leading Survey Solutions in Perth",
+    description: "Comprehensive surveying services across Perth Metro and Regional WA. Our West Leederville office delivers expert solutions for construction, infrastructure and development projects.",
+    services: [
+      "Building and Construction",
+      "Civil Construction", 
+      "Infrastructure & Mining",
+      "Laser Scanning",
+      "UAV (Drone Survey)"
+    ],
+    projects: [
+      "Victoria Park-Canning Level Crossing Removal Project",
+      "Lumiere Apartments, South Perth",
+      "Casuarina Prison Expansion Project"
+    ]
+  },
+  adelaide: {
+    title: "HR Surveyors Adelaide",
+    heroText: "Professional Surveyors in Adelaide",
+    description: "Expert surveying services across Adelaide Metro and Regional SA. Our Edinburgh North office specializes in infrastructure, construction and development projects.",
+    services: [
+      "Civil Construction",
+      "Infrastructure & Mining", 
+      "Feature and Level Survey",
+      "Laser Scanning",
+      "Specification Surveys (A-SPEC & ADAC)"
+    ],
+    projects: [
+      "Bookmark Creek Inlet Regulator, Renmark",
+      "Nelwart Street Bridge, Crescent"
+    ]
+  },
+  brisbane: {
+    title: "HR Surveyors Brisbane",
+    heroText: "Trusted Surveyors in Brisbane",
+    description: "Complete surveying solutions for Brisbane, Gold Coast and Northern Rivers regions. Our team delivers precise engineering and construction surveys for projects of all sizes.",
+    services: [
+      "Building and Construction",
+      "Civil Construction",
+      "Infrastructure & Mining",
+      "UAV (Drone Survey)",
+      "Machine Control (3D Models & Design)"
+    ],
+    projects: [
+      "Mt Lindesay Highway Upgrade, Woodhill",
+      "Park Lane Apartments, Lutwyche"
+    ]
+  }
+};
+
+const content = locationContent[location as keyof typeof locationContent] || {};
 const capitalizedLocation = capitalize(location);
 ---
 
@@ -48,19 +137,53 @@ const capitalizedLocation = capitalize(location);
     <section class="py-32">
       <div class="container mx-auto px-4 max-w-6xl">
         <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">
-          HR Surveyors {capitalizedLocation}
+          {content.heroText || `HR Surveyors ${capitalize(location)}`}
         </h1>
         
         <div class="mb-20">
           <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
-            Professional land surveying services in {capitalizedLocation}
+            {content.description || `Professional land surveying services in ${capitalize(location)}`}
           </p>
           
           {officeInfo && (
             <div class="bg-gray-100 rounded-lg p-8 shadow-lg mb-12">
-              <h2 class="text-2xl font-bold mb-4">Our {capitalizedLocation} Office</h2>
+              <h2 class="text-2xl font-bold mb-4">Our {capitalize(location)} Office</h2>
               <p class="mb-2"><strong>Address:</strong> {officeInfo.address}</p>
-              <p><strong>Service Areas:</strong> {officeInfo.areas}</p>
+              <p class="mb-4"><strong>Service Areas:</strong> {officeInfo.areas}</p>
+              <a 
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(officeInfo.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block bg-hr-accent text-hr-dark px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors"
+              >
+                Get Directions
+              </a>
+            </div>
+          )}
+
+          {content.services && (
+            <div class="mb-12">
+              <h2 class="text-2xl font-bold mb-6 text-center">Our Services in {capitalize(location)}</h2>
+              <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {content.services.map(service => (
+                  <li class="bg-white p-4 rounded shadow-sm border border-gray-100">
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {content.projects && (
+            <div>
+              <h2 class="text-2xl font-bold mb-6 text-center">Featured Projects in {capitalize(location)}</h2>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {content.projects.map(project => (
+                  <div class="bg-white p-4 rounded shadow-sm border border-gray-100">
+                    {project}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
