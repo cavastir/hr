@@ -34,7 +34,7 @@ const locationDesc = location ? getLocationMetaDesc(location) : description;
 		<meta name="description" content={locationDesc} />
 		
 		<!-- Schema.org markup for multiple locations -->
-		<script type="application/ld+json">
+		<script type="application/ld+json" is:inline>
 			{
 				"@context": "https://schema.org",
 				"@type": "Organization",
