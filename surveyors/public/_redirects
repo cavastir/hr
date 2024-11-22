@@ -1,0 +1,12 @@
+# Serve static assets without redirecting
+/images/* /images/:splat 200
+/css/* /css/:splat 200
+/js/* /js/:splat 200
+/fonts/* /fonts/:splat 200
+/favicon.ico /favicon.ico 200
+
+# Redirect /service to /services/
+ /service /services/ 301
+
+# Append trailing slash to all other routes
+/* /:splat/ 301

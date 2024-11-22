@@ -18,4 +18,5 @@ export default defineConfig({
     },
   },
   site: 'https://www.hrsurveyors.com.au',
+  trailingSlash: 'always', // Ensures all URLs have a trailing slash
 });

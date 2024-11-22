@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
+import { Astro } from 'astro';
 
 interface Props {
 	title: string;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const canonicalUrl = `${Astro.site}${Astro.request.url.replace(/\/?$/, '/')}`;
 ---
 
 <!DOCTYPE html>
@@ -19,6 +21,7 @@ const { title, description } = Astro.props;
 		<meta name="google-site-verification" content="rxo16IC5CJeZljzTlKDqilhIMz6H0RCxZ5VNho19CuY" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonicalUrl} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="preload" as="image" href="/images/hr-surveyors-logo-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
