@@ -65,15 +65,17 @@ export const locationContent: LocationContents = {
     ]
   },
   adelaide: {
-    title: "HR Surveyors Adelaide",
-    heroText: "Professional Surveyors in Adelaide",
-    description: "Expert surveying services across Adelaide Metro and Regional SA. Our Edinburgh North office specializes in infrastructure, construction and development projects.",
+    title: "HR Surveyors Adelaide | Expert Land & Engineering Surveyors",
+    heroText: "Professional Land & Engineering Surveyors in Adelaide",
+    description: "Trusted land surveyors delivering precise engineering surveys, construction surveys, and infrastructure solutions across Adelaide Metro and Regional SA. Our Edinburgh North office specializes in civil construction, infrastructure mapping, and development projects with proven expertise.",
     services: [
       "Civil Construction",
       "Infrastructure & Mining", 
       "Feature and Level Survey",
       "Laser Scanning",
-      "Specification Surveys (A-SPEC & ADAC)"
+      "Specification Surveys (A-SPEC & ADAC)",
+      "Engineering Surveys",
+      "Construction Surveys"
     ],
     projects: [
       "Bookmark Creek Inlet Regulator, Renmark",
@@ -107,7 +109,7 @@ export const locationMetaDesc: LocationDescriptions = {
   melbourne: "Expert land and engineering surveyors in Melbourne. Providing construction surveys, infrastructure mapping and development solutions across Metro Melbourne and Eastern Victoria.",
   perth: "Professional land surveying services in Perth. Specializing in engineering surveys, construction surveys and aerial mapping across Perth Metro and Regional WA.",
   brisbane: "Leading land surveyors in Brisbane and Gold Coast. Offering expert engineering surveys, construction surveys and development solutions across Queensland.",
-  adelaide: "Experienced land surveyors in Adelaide. Delivering precise engineering surveys, construction surveys and mapping solutions across South Australia.",
+  adelaide: "Adelaide's trusted land & engineering surveyors. Specializing in construction surveys, infrastructure mapping, and development solutions. Serving Adelaide Metro and Regional SA from our Edinburgh North office.",
   geelong: "Professional land surveying services in Geelong and Western Victoria. Expert engineering surveys, construction surveys and development solutions."
 };
 

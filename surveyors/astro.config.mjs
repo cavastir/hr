@@ -8,7 +8,12 @@ export default defineConfig({
     sitemap({
       customPages: ['https://www.hrsurveyors.com.au'],
       filter: (page) => !page.includes('/404'),
-      entryLimit: 10000, // Number of URLs per sitemap file
+      entryLimit: 10000,
+      serialize: (item) => ({
+        ...item,
+        changefreq: 'weekly',
+        priority: 0.7,
+      })
     })
   ],
   output: 'static',
