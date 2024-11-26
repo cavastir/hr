@@ -84,8 +84,10 @@ const capitalizedLocation = capitalize(location);
               <h2 class="text-2xl font-bold mb-6 text-center">Our Services in {capitalize(location)}</h2>
               <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {content.services.map((service: string) => (
-                  <li class="bg-white p-4 rounded shadow-sm border border-gray-100">
-                    {service}
+                  <li class="bg-white p-4 rounded shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <a href="/services/" class="block text-hr-dark hover:text-hr-accent transition-colors">
+                      {service}
+                    </a>
                   </li>
                 ))}
               </ul>

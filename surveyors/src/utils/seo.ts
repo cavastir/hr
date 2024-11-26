@@ -81,19 +81,24 @@ export const locationContent: LocationContents = {
     ]
   },
   geelong: {
-    title: "HR Surveyors Geelong",
-    heroText: "Leading Survey Solutions in Geelong",
-    description: "Serving Geelong and Western Victoria with professional land surveying services. Our local team delivers precise engineering and construction surveys for projects of all sizes.",
+    title: "Land Surveyors Geelong | HR Surveyors",
+    heroText: "Expert Land Surveyors in Geelong",
+    description: "Expert land surveyors in Geelong and Western Victoria. Specializing in civil construction surveys, land development, engineering surveys, and infrastructure projects. Local surveying solutions with 10+ years of experience.",
     services: [
+      "Building and Construction",
       "Civil Construction",
-      "Land Development",
-      "Engineering Surveys",
-      "Infrastructure Projects",
-      "Feature & Level Surveys"
+      "Infrastructure & Mining",
+      "Feature and Level Survey",
+      "Laser Scanning",
+      "UAV (Drone Survey)",
+      "Renewable Energy",
+      "Specification Surveys (A-SPEC & ADAC)"
     ],
     projects: [
-      "Geelong Port Expansion",
-      "Western Victoria Renewables"
+      "Geelong Port Expansion Project",
+      "Western Victoria Renewable Energy Projects",
+      "Geelong Ring Road Upgrades",
+      "Local Subdivision Developments"
     ]
   }
 };
