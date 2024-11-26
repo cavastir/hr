@@ -13,7 +13,11 @@ export default defineConfig({
         ...item,
         changefreq: 'weekly',
         priority: 0.7,
-      })
+      }),
+      outFile: 'sitemap-index.xml',
+      sitemap: {
+        filename: 'sitemap-0.xml'
+      }
     })
   ],
   output: 'static',
