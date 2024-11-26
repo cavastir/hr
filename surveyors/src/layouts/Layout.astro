@@ -13,7 +13,7 @@ interface Props {
 
 const { 
 	title, 
-	description = "Professional land surveying services across Australia. Engineering surveys, construction surveys and aerial mapping in Melbourne, Perth, Brisbane, Adelaide and regional areas.",
+	description = "Australia's leading engineering surveyors since 2012, delivering expert land surveying, engineering surveys, and construction solutions nationwide. ISO 9001 certified with offices in Melbourne, Perth, Brisbane, and Adelaide.",
 	location,
 	canonicalUrl = Astro.url.href 
 } = Astro.props;
@@ -288,3 +288,17 @@ const locationDesc = location ? getLocationMetaDesc(location) : description;
 		}
 	}
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "HR Surveyors",
+  "description": "Professional land surveying and engineering survey services across Australia",
+  "@id": "https://www.hrsurveyors.com.au",
+  "url": "https://www.hrsurveyors.com.au",
+  "keywords": "land surveyors, engineering surveys, construction surveys, surveyor perth, land surveys melbourne, engineering surveying",
+  "priceRange": "$$",
+  "hasMap": "https://www.google.com/maps?cid=YOUR_GOOGLE_BUSINESS_CID"
+}
+</script>

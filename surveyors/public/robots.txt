@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Allow crawling of all content
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemaps
 Sitemap: https://www.hrsurveyors.com.au/sitemap.xml
