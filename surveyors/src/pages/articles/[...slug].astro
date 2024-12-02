@@ -3,6 +3,35 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
+// Add interface for structured data
+interface StructuredData {
+  "@context": string;
+  "@type": string;
+  headline: string;
+  datePublished: string;
+  author: {
+    "@type": string;
+    name: string;
+  };
+  publisher: {
+    "@type": string;
+    name: string;
+    logo: {
+      "@type": string;
+      url: string;
+    };
+  };
+  spatialCoverage?: {
+    "@type": string;
+    name: string;
+    address: {
+      "@type": string;
+      addressRegion: string;
+      addressCountry: string;
+    };
+  };
+}
+
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -26,7 +55,7 @@ interface Props {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-const structuredData = {
+const structuredData: StructuredData = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": entry.data.title,
@@ -47,7 +76,7 @@ const structuredData = {
 
 // Add location-specific schema if location is present
 if (entry.data.location) {
-  structuredData["spatialCoverage"] = {
+  structuredData.spatialCoverage = {
     "@type": "Place",
     "name": entry.data.location,
     "address": {
