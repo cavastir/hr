@@ -17,7 +17,8 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 const defaultImage = '/images/hr-surveyors-social-share.jpg'.toLowerCase();
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString(); // Convert URL to string
+const socialImage = frontmatter.image?.toLowerCase() || defaultImage;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 // Format date
 const formattedDate = new Date(frontmatter.publishDate).toLocaleDateString('en-US', {
@@ -32,6 +33,10 @@ const formattedDate = new Date(frontmatter.publishDate).toLocaleDateString('en-U
   description={frontmatter.description}
   location={frontmatter.location}
   canonicalUrl={canonicalUrl}
+  image={socialImage}
+  type="article"
+  author={frontmatter.author}
+  publishDate={frontmatter.publishDate}
 >
   <main class="bg-white text-hr-dark">
     <article class="max-w-4xl mx-auto px-4 py-12 mt-20">
