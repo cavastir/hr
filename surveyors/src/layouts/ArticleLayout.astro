@@ -16,8 +16,13 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
+
+// Ensure image path is properly formatted
 const defaultImage = '/images/hr-surveyors-social-share.jpg'.toLowerCase();
-const socialImage = frontmatter.image?.toLowerCase() || defaultImage;
+const articleImage = frontmatter.image?.toLowerCase();
+const socialImage = articleImage || defaultImage;
+
+// Generate canonical URL
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 // Format date
