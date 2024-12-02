@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const allArticles = await getCollection('articles');
+  console.log('Available articles:', allArticles);
+  console.log('Article slugs:', allArticles.map(entry => entry.slug));
+  
+  return allArticles.map((entry) => {
+    console.log('Creating path for slug:', entry.slug);
+    return {
+      params: { slug: entry.slug },
+      props: { entry }
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'articles'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": entry.data.title,
+  "datePublished": entry.data.publishDate,
+  "author": {
+    "@type": "Person",
+    "name": entry.data.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hrsurveyors.com.au/images/logo.png" // Update with actual logo URL
+    }
+  }
+};
+
+// Add location-specific schema if location is present
+if (entry.data.location) {
+  structuredData["spatialCoverage"] = {
+    "@type": "Place",
+    "name": entry.data.location,
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Western Australia",
+      "addressCountry": "AU"
+    }
+  };
+}
+---
+
+<ArticleLayout frontmatter={entry.data}>
+  <script is:inline type="application/ld+json">
+    {JSON.stringify(structuredData)}
+  </script>
+  <Content />
+</ArticleLayout>
