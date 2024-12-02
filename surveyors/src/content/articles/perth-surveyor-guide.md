@@ -114,9 +114,6 @@ Ready to ensure precision in your construction project? Consider these steps:
 - Point Cloud file
 - AutoCAD drawing
 
-## Success Story Spotlight
-How HR Surveyors used advanced [technology] to help Lumiere Apartments [quantifiable amount] in Western Perth
-
 ## Contact a Specialist
 
 For expert engineering survey solutions:
