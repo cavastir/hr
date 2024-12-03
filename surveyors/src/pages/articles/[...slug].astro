@@ -32,6 +32,17 @@ interface StructuredData {
   };
 }
 
+// Add interface for article data
+interface ArticleData {
+  title: string;
+  description: string;
+  publishDate: string;
+  author: string; // Make required
+  image?: string;
+  location?: string;
+  category?: string;
+}
+
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -62,7 +73,7 @@ const structuredData: StructuredData = {
   "datePublished": entry.data.publishDate,
   "author": {
     "@type": "Person",
-    "name": entry.data.author
+    "name": entry.data.author || "HR Surveyors Team" // Provide default
   },
   "publisher": {
     "@type": "Organization",

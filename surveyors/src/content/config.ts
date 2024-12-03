@@ -13,12 +13,13 @@ const services = defineCollection({
 });
 
 export const collections = {
+  services,
   articles: defineCollection({
     schema: z.object({
       title: z.string(),
       description: z.string(),
       publishDate: z.string(),
-      author: z.string().optional(),
+      author: z.string(),
       location: z.string().optional(),
       image: z.string().optional(),
       category: z.string().optional(),
