@@ -12,16 +12,16 @@ const services = defineCollection({
   })
 });
 
-const articles = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    publishDate: z.string(),
-    author: z.string(),
-    location: z.string().optional(),
-    image: z.string().optional()
+export const collections = {
+  articles: defineCollection({
+    schema: z.object({
+      title: z.string(),
+      description: z.string(),
+      publishDate: z.string(),
+      author: z.string().optional(),
+      location: z.string().optional(),
+      image: z.string().optional(),
+      category: z.string().optional(),
+    })
   })
-});
-
-export const collections = { services, articles };
+};

@@ -10,15 +10,18 @@ const sortedArticles = articles.sort((a, b) =>
   new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
 );
 
-// Get unique categories
-const categories = [...new Set(articles.map(article => article.data.category).filter(Boolean))];
+// Get unique categories using optional chaining
+const categories = [...new Set(articles
+  .map(article => article.data?.category)
+  .filter((category): category is string => Boolean(category))
+)];
 
 // Structured data for articles list
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Blog",
   "name": "HR Surveyors Industry Insights",
-  "description": "Professional surveying insights, technical guides, and industry updates from Australia's leading engineering surveyors",
+  "description": "Professional surveying insights, technical guides, and industry updates",
   "publisher": {
     "@type": "Organization",
     "name": "HR Surveyors",
@@ -34,7 +37,7 @@ const structuredData = {
     "description": article.data.description,
     "author": {
       "@type": "Person",
-      "name": article.data.author
+      "name": article.data.author || "HR Surveyors Team"
     }
   }))
 };
@@ -42,10 +45,10 @@ const structuredData = {
 
 <Layout 
   title="Land Surveying Industry Insights & Expert Guides | HR Surveyors"
-  description="Expert insights, technical guides and industry updates on land surveying, engineering surveys and construction surveying across Australia. Trusted by leading builders since 2012."
+  description="Expert insights, technical guides and industry updates on land surveying, engineering surveys and construction surveying across Australia."
   type="website"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   
   <main class="bg-white text-hr-dark">
     <nav aria-label="Breadcrumb" class="container mx-auto px-4 py-4">
@@ -69,8 +72,10 @@ const structuredData = {
         <header class="mb-16 text-center">
           <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-hr-dark">Industry Insights</h1>
           <p class="text-xl mb-6 leading-relaxed max-w-3xl mx-auto">
-            Expert insights and technical guidance from our team of professional surveyors. 
-            Discover articles covering land surveying, engineering surveys, and construction surveying.
+            Expert insights and technical guidance from our team of professional surveyors.
+            {articles.length > 0 && 
+              `Discover ${articles.length} articles covering land surveying, engineering surveys, and construction surveying.`
+            }
           </p>
         </header>
 
@@ -91,42 +96,29 @@ const structuredData = {
           </nav>
         )}
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="feed" aria-label="Articles list">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sortedArticles.map((article) => (
             <article class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <a 
-                href={`/articles/${article.slug}/`}
-                class="block h-full"
-                aria-labelledby={`article-${article.slug}`}
-              >
+              <a href={`/articles/${article.slug}/`} class="block h-full">
                 {article.data.image && (
-                  <div class="relative h-48 bg-gray-200">
-                    <img
-                      src={article.data.image}
-                      alt=""
-                      aria-hidden="true"
-                      class="w-full h-48 object-cover"
-                      loading="lazy"
-                    />
-                  </div>
+                  <img
+                    src={article.data.image}
+                    alt=""
+                    class="w-full h-48 object-cover"
+                    loading="lazy"
+                  />
                 )}
                 <div class="p-6">
-                  <h2 id={`article-${article.slug}`} class="text-xl font-semibold mb-2 text-hr-dark">
-                    {article.data.title}
-                  </h2>
+                  <h2 class="text-xl font-semibold mb-2 text-hr-dark">{article.data.title}</h2>
                   <p class="text-gray-600 text-sm mb-4">{article.data.description}</p>
                   <div class="flex items-center text-sm text-gray-500">
                     <time datetime={article.data.publishDate}>
-                      {new Date(article.data.publishDate).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
+                      {new Date(article.data.publishDate).toLocaleDateString()}
                     </time>
-                    {article.data.location && (
+                    {article.data.category && (
                       <>
-                        <span class="mx-2" aria-hidden="true">•</span>
-                        <span>{article.data.location}</span>
+                        <span class="mx-2">•</span>
+                        <span>{article.data.category}</span>
                       </>
                     )}
                   </div>
