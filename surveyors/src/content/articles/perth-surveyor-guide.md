@@ -1,5 +1,5 @@
 ---
-title: "Perth Surveyor Guide: How to Choose the Best Engineering Surveyor (2024)"
+title: "Perth Surveyor Guide: How to choose the Right Engineering Surveyor (2024)"
 description: "Comprehensive guide to choosing the right engineering surveyor in Perth, with insights into Western Australia's $25.1B construction sector and essential factors for project success."
 publishDate: "2024-12-02"
 author: "HR Surveyors"
@@ -93,10 +93,9 @@ Ready to ensure precision in your construction project? Consider these steps:
 - Budget 
 
 #### Documentation Requirements
-- ICF or Stamped PDF drawings
-- ICF or Stamped CAD drawings
-- Most recent Title Re-Establishment docs
-- Existing Feature Survey (PDF and CAD)
+- IFC Drawings
+- Title Documentation
+- Feature & Level Survey
 
 ### 2. Request Detailed Proposals
 - Scope of Services
@@ -109,10 +108,9 @@ Ready to ensure precision in your construction project? Consider these steps:
 - Industry recognition
 
 ### Required Deliverables
-- Survey Setout plan
 - As-constructed drawing
-- Point Cloud file
-- AutoCAD drawing
+- Point Cloud files
+- Conformance reports
 
 ## Contact a Specialist
 
