@@ -25,5 +25,12 @@ export default defineConfig({
   trailingSlash: 'always',
   build: {
     inlineStylesheets: 'auto'
+  },
+  vite: {
+    server: {
+      fs: {
+        allow: ['..']
+      }
+    }
   }
 });
