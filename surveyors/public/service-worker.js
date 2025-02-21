@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hr-surveyors-cache-v2';
+const CACHE_NAME = 'hr-surveyors-cache-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
