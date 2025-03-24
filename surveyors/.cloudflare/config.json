@@ -7,6 +7,9 @@
   "build": {
     "excludedFilesAndFolders": []
   },
+  "placement": {
+    "mode": "smart"
+  },
   "redirects": {
     "preserveQueryString": true,
     "redirectIds": []

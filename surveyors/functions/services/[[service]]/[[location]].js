@@ -16,6 +16,13 @@ export async function onRequest({ request, next, params }) {
     return next();
   }
   
-  // For any other cases, just continue
-  return next();
+  // Only handle redirects from non-trailing to trailing slash
+  // Don't attempt to process pages with trailing slash
+  if (pathname.endsWith('/')) {
+    return next();
+  }
+  
+  // Only redirect URLs without trailing slash
+  const redirectUrl = new URL(`${pathname}/`, url);
+  return Response.redirect(redirectUrl.toString(), 301);
 } 
