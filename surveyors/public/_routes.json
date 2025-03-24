@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/_astro/*",
+    "/assets/*",
+    "/images/*",
+    "/favicon.ico",
+    "/robots.txt"
+  ],
+  "routes": [
+    {
+      "src": "/melbourne$",
+      "dst": "/melbourne/",
+      "status": 301
+    },
+    {
+      "src": "/perth$",
+      "dst": "/perth/",
+      "status": 301
+    },
+    {
+      "src": "/brisbane$",
+      "dst": "/brisbane/",
+      "status": 301
+    },
+    {
+      "src": "/adelaide$",
+      "dst": "/adelaide/",
+      "status": 301
+    },
+    {
+      "src": "/geelong$",
+      "dst": "/geelong/",
+      "status": 301
+    },
+    {
+      "src": "/services/drone-surveying/melbourne$",
+      "dst": "/services/drone-surveying/melbourne/",
+      "status": 301
+    },
+    {
+      "src": "/services/drone-surveying/perth$",
+      "dst": "/services/drone-surveying/perth/",
+      "status": 301
+    },
+    {
+      "src": "/services/drone-surveying/brisbane$",
+      "dst": "/services/drone-surveying/brisbane/",
+      "status": 301
+    },
+    {
+      "src": "/services/drone-surveying/adelaide$",
+      "dst": "/services/drone-surveying/adelaide/",
+      "status": 301
+    },
+    {
+      "src": "/services/drone-surveying/geelong$",
+      "dst": "/services/drone-surveying/geelong/",
+      "status": 301
+    },
+    {
+      "src": "/services/engineering-surveying/melbourne$",
+      "dst": "/services/engineering-surveying/melbourne/",
+      "status": 301
+    },
+    {
+      "src": "/services/engineering-surveying/perth$",
+      "dst": "/services/engineering-surveying/perth/",
+      "status": 301
+    },
+    {
+      "src": "/services/engineering-surveying/brisbane$",
+      "dst": "/services/engineering-surveying/brisbane/",
+      "status": 301
+    },
+    {
+      "src": "/services/engineering-surveying/adelaide$",
+      "dst": "/services/engineering-surveying/adelaide/",
+      "status": 301
+    },
+    {
+      "src": "/services/engineering-surveying/geelong$",
+      "dst": "/services/engineering-surveying/geelong/",
+      "status": 301
+    },
+    {
+      "src": "/services/land-surveying/melbourne$",
+      "dst": "/services/land-surveying/melbourne/",
+      "status": 301
+    },
+    {
+      "src": "/services/land-surveying/perth$",
+      "dst": "/services/land-surveying/perth/",
+      "status": 301
+    },
+    {
+      "src": "/services/land-surveying/brisbane$",
+      "dst": "/services/land-surveying/brisbane/",
+      "status": 301
+    },
+    {
+      "src": "/services/land-surveying/adelaide$",
+      "dst": "/services/land-surveying/adelaide/",
+      "status": 301
+    },
+    {
+      "src": "/services/land-surveying/geelong$",
+      "dst": "/services/land-surveying/geelong/",
+      "status": 301
+    }
+  ]
+} 
