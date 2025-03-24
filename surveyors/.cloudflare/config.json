@@ -11,31 +11,5 @@
     "preserveQueryString": true,
     "redirectIds": []
   },
-  "routes": [
-    {
-      "pattern": "/services/drone-surveying/melbourne",
-      "target": "/services/drone-surveying/melbourne/",
-      "statusCode": 301
-    },
-    {
-      "pattern": "/services/drone-surveying/perth",
-      "target": "/services/drone-surveying/perth/",
-      "statusCode": 301
-    },
-    {
-      "pattern": "/services/drone-surveying/brisbane",
-      "target": "/services/drone-surveying/brisbane/",
-      "statusCode": 301
-    },
-    {
-      "pattern": "/services/drone-surveying/adelaide",
-      "target": "/services/drone-surveying/adelaide/",
-      "statusCode": 301
-    },
-    {
-      "pattern": "/services/drone-surveying/geelong",
-      "target": "/services/drone-surveying/geelong/",
-      "statusCode": 301
-    }
-  ]
+  "routes": []
 } 
