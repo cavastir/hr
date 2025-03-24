@@ -26,7 +26,7 @@ export default defineConfig({
     mode: 'standalone'
   }),
   site: 'https://www.hrsurveyors.com.au',
-  trailingSlash: 'ignore',
+  trailingSlash: 'always',
   build: {
     inlineStylesheets: 'auto'
   },
