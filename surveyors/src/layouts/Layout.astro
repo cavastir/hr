@@ -13,6 +13,7 @@ interface Props {
   type?: 'website' | 'article';
   author?: string;
   publishDate?: string;
+  schema?: Record<string, any>;
 }
 
 const { 
@@ -23,7 +24,8 @@ const {
   image,
   type = 'website',
   author,
-  publishDate
+  publishDate,
+  schema
 } = Astro.props;
 
 // Generate meta description based on location if provided
@@ -73,6 +75,9 @@ const fullImageUrl = `${siteUrl}${socialImage}`.replace(/([^:]\/)\/+/g, '$1');
     <meta name="twitter:description" content={locationDesc} />
     <meta name="twitter:image" content={fullImageUrl} />
 
+    <!-- Schema.org structured data -->
+    {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    
     <!-- Rest of your existing head content... -->
     <link rel="preload" as="image" href="/images/hr-surveyors-logo-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
     <link rel="preload" as="image" href="/images/hr-surveyors-logo-light.png">

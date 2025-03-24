@@ -131,3 +131,77 @@ export const getStaticPaths = () => {
     }
   }));
 };
+
+export const locationKeywords: Record<LocationKey, string[]> = {
+  melbourne: ['land surveyors in south east melbourne', 'land surveying northern suburbs melbourne', 'engineering surveyors melbourne', 'construction surveyors melbourne', 'drone surveying melbourne'],
+  perth: ['surveyors perth', 'drone surveying perth', 'engineering surveys perth', 'construction surveyors perth', 'land surveying perth'],
+  brisbane: ['land surveyors brisbane', 'engineering surveyors brisbane', 'drone surveys brisbane', 'construction surveying gold coast', 'building surveyors brisbane'],
+  adelaide: ['surveyors adelaide', 'engineering surveyors adelaide', 'construction surveying adelaide', 'land surveying adelaide', 'infrastructure surveying adelaide'],
+  geelong: ['surveyors geelong', 'land surveying geelong', 'construction surveyors geelong', 'engineering surveys geelong', 'drone surveys western victoria']
+};
+
+export function generateLocationSchema(location: LocationKey, locationName: string, officeInfo: any, content: any) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": `HR Surveyors ${locationName}`,
+    "description": content.description,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": officeInfo?.address || "",
+      "addressLocality": locationName,
+      "addressCountry": "AU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": content.coordinates?.lat || -25.2744, // Default Australia coords
+      "longitude": content.coordinates?.lng || 133.7751
+    },
+    "areaServed": officeInfo?.areas || locationName,
+    "service": content.services.map((service: string) => ({
+      "@type": "Service",
+      "name": service,
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": content.coordinates?.lat || -25.2744,
+          "longitude": content.coordinates?.lng || 133.7751
+        },
+        "geoRadius": "50000"
+      }
+    }))
+  };
+}
+
+// Helper function for safe capitalization
+export function capitalize(str: string): string {
+  return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
+}
+
+export function getServiceLocationPaths() {
+  const services = ['drone-surveying', 'engineering-surveying', 'land-surveying'];
+  const locations = ['perth', 'melbourne', 'geelong', 'brisbane', 'adelaide'];
+  
+  const paths = [];
+  
+  for (const service of services) {
+    for (const location of locations) {
+      paths.push({
+        params: { service, location },
+        props: { 
+          service,
+          location,
+          title: `${formatService(service)} in ${capitalize(location)} | HR Surveyors`,
+          description: `Professional ${formatService(service)} services in ${capitalize(location)} and surrounding areas. Fast, accurate, and reliable.`
+        }
+      });
+    }
+  }
+  
+  return paths;
+}
+
+function formatService(service: string): string {
+  return service.split('-').map(capitalize).join(' ');
+}

@@ -1,8 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getStaticPaths, locationContent, type LocationKey } from '../utils/seo';
+import { locationContent, type LocationKey, locationKeywords, generateLocationSchema } from '../utils/seo';
 
-export { getStaticPaths };
+// Direct export instead of re-exporting
+export const getStaticPaths = () => {
+  return Object.entries(locationContent).map(([location, content]) => ({
+    params: { location },
+    props: { 
+      title: content.title,
+      description: content.description,
+      location: location as LocationKey
+    }
+  }));
+};
 
 interface Props {
   title: string;
@@ -48,9 +58,18 @@ const officeLocations: OfficeInfo = {
 const officeInfo = officeLocations[location] || null;
 const content = locationContent[location];
 const capitalizedLocation = capitalize(location);
+
+// Improved SEO Elements
+const metaTitle = `HR Surveyors ${capitalizedLocation} | Professional Surveying Services`;
+const metaDescription = `Expert ${content.services.join(', ')} services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`;
 ---
 
-<Layout title={title} description={description} location={location}>
+<Layout 
+  title={metaTitle} 
+  description={metaDescription}
+  location={location}
+  schema={generateLocationSchema(location, capitalizedLocation, officeInfo, content)}
+>
   <main class="bg-white text-hr-dark">
     <section class="py-32">
       <div class="container mx-auto px-4 max-w-6xl">
@@ -79,6 +98,15 @@ const capitalizedLocation = capitalize(location);
             </div>
           )}
 
+          <!-- Add this section to highlight high-impression services -->
+          <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Drone Surveying in {capitalizedLocation}</h2>
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent">
+              <p class="mb-4">Our drone surveying services in {capitalizedLocation} provide high-precision aerial mapping and data collection for engineering, construction, and mining projects.</p>
+              <a href={`/services/drone-surveying/${location}`} class="text-hr-accent font-semibold hover:underline">Learn more about our drone surveying capabilities →</a>
+            </div>
+          </div>
+
           {content.services && (
             <div class="mb-12">
               <h2 class="text-2xl font-bold mb-6 text-center">Our Services in {capitalize(location)}</h2>
@@ -95,7 +123,7 @@ const capitalizedLocation = capitalize(location);
           )}
 
           {content.projects && (
-            <div>
+            <div class="mb-12">
               <h2 class="text-2xl font-bold mb-6 text-center">Featured Projects in {capitalize(location)}</h2>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {content.projects.map((project: string) => (
@@ -106,6 +134,18 @@ const capitalizedLocation = capitalize(location);
               </div>
             </div>
           )}
+
+          <!-- Add Location-Specific Keywords -->
+          <div class="mt-8 mb-12">
+            <h2 class="text-xl font-bold mb-4">Popular {capitalizedLocation} Surveying Services</h2>
+            <div class="flex flex-wrap gap-2">
+              {locationKeywords[location]?.map(keyword => (
+                <a href={`/services/${keyword.replace(/\s+/g, '-')}`} class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors">
+                  {keyword}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

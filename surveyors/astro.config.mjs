@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 
 export default defineConfig({
   integrations: [
@@ -20,7 +21,10 @@ export default defineConfig({
       }
     })
   ],
-  output: 'static',
+  output: 'hybrid',
+  adapter: node({
+    mode: 'standalone'
+  }),
   site: 'https://www.hrsurveyors.com.au',
   trailingSlash: 'always',
   build: {
