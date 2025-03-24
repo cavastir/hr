@@ -11,30 +11,30 @@
 /adelaide /adelaide/ 301
 /geelong /geelong/ 301
 
-# Service redirects
+# Service + Location redirects for problematic paths
+/services/drone-surveying/melbourne /services/drone-surveying/melbourne/ 301!
+/services/drone-surveying/perth /services/drone-surveying/perth/ 301!
+/services/drone-surveying/brisbane /services/drone-surveying/brisbane/ 301!
+/services/drone-surveying/adelaide /services/drone-surveying/adelaide/ 301!
+/services/drone-surveying/geelong /services/drone-surveying/geelong/ 301!
+
+/services/engineering-surveying/melbourne /services/engineering-surveying/melbourne/ 301!
+/services/engineering-surveying/perth /services/engineering-surveying/perth/ 301!
+/services/engineering-surveying/brisbane /services/engineering-surveying/brisbane/ 301!
+/services/engineering-surveying/adelaide /services/engineering-surveying/adelaide/ 301!
+/services/engineering-surveying/geelong /services/engineering-surveying/geelong/ 301!
+
+/services/land-surveying/melbourne /services/land-surveying/melbourne/ 301!
+/services/land-surveying/perth /services/land-surveying/perth/ 301!
+/services/land-surveying/brisbane /services/land-surveying/brisbane/ 301!
+/services/land-surveying/adelaide /services/land-surveying/adelaide/ 301!
+/services/land-surveying/geelong /services/land-surveying/geelong/ 301!
+
+# Generic redirects
 /services/drone-surveying /services/drone-surveying/ 301
-/services/engineering-surveying /services/engineering-surveying/ 301 
+/services/engineering-surveying /services/engineering-surveying/ 301
 /services/land-surveying /services/land-surveying/ 301
 /services /services/ 301
 
-# Allow service+location pages to be served from static files
-/services/drone-surveying/melbourne/ /services/drone-surveying/melbourne/index.html 200
-/services/drone-surveying/perth/ /services/drone-surveying/perth/index.html 200
-/services/drone-surveying/brisbane/ /services/drone-surveying/brisbane/index.html 200
-/services/drone-surveying/adelaide/ /services/drone-surveying/adelaide/index.html 200
-/services/drone-surveying/geelong/ /services/drone-surveying/geelong/index.html 200
-
-/services/engineering-surveying/melbourne/ /services/engineering-surveying/melbourne/index.html 200
-/services/engineering-surveying/perth/ /services/engineering-surveying/perth/index.html 200
-/services/engineering-surveying/brisbane/ /services/engineering-surveying/brisbane/index.html 200
-/services/engineering-surveying/adelaide/ /services/engineering-surveying/adelaide/index.html 200
-/services/engineering-surveying/geelong/ /services/engineering-surveying/geelong/index.html 200
-
-/services/land-surveying/melbourne/ /services/land-surveying/melbourne/index.html 200
-/services/land-surveying/perth/ /services/land-surveying/perth/index.html 200
-/services/land-surveying/brisbane/ /services/land-surveying/brisbane/index.html 200
-/services/land-surveying/adelaide/ /services/land-surveying/adelaide/index.html 200
-/services/land-surveying/geelong/ /services/land-surveying/geelong/index.html 200
-
-# Only send unmatched paths to 404
-/* /404.html 404
+# 404 handling
+/* /404 404
