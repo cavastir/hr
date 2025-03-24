@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "include": [
+      "/services/drone-surveying/melbourne/",
+      "/services/drone-surveying/perth/",
+      "/services/drone-surveying/brisbane/",
+      "/services/drone-surveying/adelaide/",
+      "/services/drone-surveying/geelong/",
+      "/services/engineering-surveying/melbourne/",
+      "/services/engineering-surveying/perth/",
+      "/services/engineering-surveying/brisbane/",
+      "/services/engineering-surveying/adelaide/",
+      "/services/engineering-surveying/geelong/",
+      "/services/land-surveying/melbourne/",
+      "/services/land-surveying/perth/",
+      "/services/land-surveying/brisbane/",
+      "/services/land-surveying/adelaide/",
+      "/services/land-surveying/geelong/"
+    ],
+    "exclude": []
+  }

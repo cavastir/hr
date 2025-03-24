@@ -8,7 +8,7 @@
     "excludedFilesAndFolders": []
   },
   "placement": {
-    "mode": "smart"
+    "mode": "off"
   },
   "redirects": {
     "preserveQueryString": true,

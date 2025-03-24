@@ -11,12 +11,30 @@
 /adelaide /adelaide/ 301
 /geelong /geelong/ 301
 
-# Remove all specific service+location redirects
-# Keep only the generic service redirects
+# Service redirects
 /services/drone-surveying /services/drone-surveying/ 301
 /services/engineering-surveying /services/engineering-surveying/ 301 
 /services/land-surveying /services/land-surveying/ 301
 /services /services/ 301
 
-# 404 handling
-/* /404 404
+# Allow service+location pages to be served from static files
+/services/drone-surveying/melbourne/ /services/drone-surveying/melbourne/index.html 200
+/services/drone-surveying/perth/ /services/drone-surveying/perth/index.html 200
+/services/drone-surveying/brisbane/ /services/drone-surveying/brisbane/index.html 200
+/services/drone-surveying/adelaide/ /services/drone-surveying/adelaide/index.html 200
+/services/drone-surveying/geelong/ /services/drone-surveying/geelong/index.html 200
+
+/services/engineering-surveying/melbourne/ /services/engineering-surveying/melbourne/index.html 200
+/services/engineering-surveying/perth/ /services/engineering-surveying/perth/index.html 200
+/services/engineering-surveying/brisbane/ /services/engineering-surveying/brisbane/index.html 200
+/services/engineering-surveying/adelaide/ /services/engineering-surveying/adelaide/index.html 200
+/services/engineering-surveying/geelong/ /services/engineering-surveying/geelong/index.html 200
+
+/services/land-surveying/melbourne/ /services/land-surveying/melbourne/index.html 200
+/services/land-surveying/perth/ /services/land-surveying/perth/index.html 200
+/services/land-surveying/brisbane/ /services/land-surveying/brisbane/index.html 200
+/services/land-surveying/adelaide/ /services/land-surveying/adelaide/index.html 200
+/services/land-surveying/geelong/ /services/land-surveying/geelong/index.html 200
+
+# Only send unmatched paths to 404
+/* /404.html 404
