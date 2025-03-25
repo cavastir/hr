@@ -74,6 +74,8 @@ The SEO implementation centers around the `seo.ts` file, which contains:
 
 5. **Forgetting Null Checks**: Always include null checks when accessing potentially undefined properties, especially with dynamic content.
 
+6. **Duplicate Location Information**: Avoid adding location information to headings when the keyword already contains location references (e.g., use "land surveyors in south east melbourne" instead of "land surveyors in south east melbourne in Melbourne").
+
 ## Best Practices for Maintaining and Extending
 
 1. **Adding New Keywords**:
@@ -92,6 +94,8 @@ The SEO implementation centers around the `seo.ts` file, which contains:
    - Use heading tags (H1, H2, H3) appropriately for content hierarchy
    - Include relevant keywords naturally in content
    - Balance keyword usage with readability and user experience
+   - Keep headings clean and avoid redundancy (particularly when keywords already contain location references)
+   - Ensure image alt text includes both keyword and location (e.g., "HR Surveyors drone surveying - Melbourne")
 
 4. **Image Optimization**:
    - Always include descriptive, keyword-rich alt text
@@ -154,3 +158,12 @@ The build process automatically:
 5. Creates appropriate schema.org structured data
 
 Running `npm run build` will regenerate all pages with the latest content and configurations. 
+
+## Recent Updates
+
+### May 2023 - Heading and Image Alt Text Improvements
+- Fixed duplicate location information in headings for keyword pages
+- Updated the `/services/[keyword].astro` template to display cleaner headings
+- Enhanced image alt text to include both keyword and location information
+- Improved heading hierarchy and removed redundant location mentions
+- Applied consistent heading format across all dynamically generated pages 

@@ -97,7 +97,7 @@ const serviceContent = {
 const defaultContent = {
   title: 'Surveying Services',
   image: '/images/hr-surveyors-land-surveying.jpg',
-  description: `Our professional ${keyword} services combine precision and expertise to deliver accurate results for your projects in the ${locationArea}. We use the latest surveying technology to ensure quality outcomes.`,
+  description: `Our professional ${keyword} services in ${capitalizedLocation} combine precision and expertise to deliver accurate results for your projects. We use the latest surveying technology to ensure quality outcomes for all surveying needs in the ${locationArea}.`,
   benefits: [
     "Expert local knowledge",
     "Advanced technology",
@@ -177,7 +177,7 @@ const schema = {
         <div class="mb-16">
           <img 
             src={currentService.image} 
-            alt={`HR Surveyors ${keyword}`} 
+            alt={`HR Surveyors ${keyword} - ${capitalizedLocation}`} 
             class="rounded-lg shadow-lg w-full h-auto object-cover"
             width="1200"
             height="600"
@@ -214,7 +214,7 @@ const schema = {
         <!-- Location Specific Section -->
         {locationData && (
           <div class="mb-16 bg-gray-50 p-8 rounded-lg">
-            <h2 class="text-3xl font-bold mb-6">Our {capitalize(location)} Surveying Services</h2>
+            <h2 class="text-3xl font-bold mb-6">HR Surveyors {capitalizedLocation} - Local Expertise</h2>
             <p class="mb-6">{locationData.description}</p>
             
             {locationData.services && (
