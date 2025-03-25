@@ -93,7 +93,29 @@ const serviceContent = {
   }
 };
 
-const currentService = serviceContent[serviceType as keyof typeof serviceContent];
+// Fallback content in case the serviceType doesn't match any keys
+const defaultContent = {
+  title: 'Surveying Services',
+  image: '/images/hr-surveyors-land-surveying.jpg',
+  description: `Our professional ${keyword} services combine precision and expertise to deliver accurate results for your projects in the ${locationArea}. We use the latest surveying technology to ensure quality outcomes.`,
+  benefits: [
+    "Expert local knowledge",
+    "Advanced technology",
+    "Accurate and reliable results",
+    "Timely delivery",
+    "Comprehensive documentation"
+  ],
+  applications: [
+    "Land development",
+    "Construction projects",
+    "Infrastructure planning",
+    "Property transactions",
+    "Asset management"
+  ]
+};
+
+// Get the service content with fallback
+const currentService = serviceContent[serviceType as keyof typeof serviceContent] || defaultContent;
 
 // Generate schema markup
 const schema = {

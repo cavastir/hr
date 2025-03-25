@@ -56,8 +56,21 @@ const officeLocations: OfficeInfo = {
 };
 
 const officeInfo = officeLocations[location] || null;
-const content = locationContent[location];
+const content = locationContent[location] || {
+  title: "HR Surveyors",
+  heroText: "Professional Surveying Services",
+  description: "Professional surveying services across Australia. Our team delivers comprehensive engineering and construction survey solutions.",
+  services: ["Building and Construction", "Engineering Surveys", "Land Surveying"],
+  projects: ["Major Infrastructure Projects", "Development Projects"]
+};
 const capitalizedLocation = capitalize(location);
+
+// Local area info with default entry for cases not explicitly defined
+const defaultLocalAreaInfo = {
+  keyAreas: ['Metropolitan Area', 'Regional Areas', 'Commercial Centers'],
+  localExpertise: `Our ${capitalizedLocation} surveying team delivers professional services across the region with expertise in local conditions and regulations.`,
+  industryFocus: ['Construction', 'Infrastructure', 'Development', 'Engineering']
+};
 
 // Local area info for more targeted content
 const localAreaInfo: Record<LocationKey, {
@@ -92,20 +105,34 @@ const localAreaInfo: Record<LocationKey, {
   }
 };
 
-const localInfo = localAreaInfo[location];
+const localInfo = localAreaInfo[location] || defaultLocalAreaInfo;
 
 // Improved SEO Elements
 const metaTitle = `HR Surveyors ${capitalizedLocation} | Professional Surveying Services`;
 const metaDescription = content && content.services 
   ? `Expert ${content.services.join(', ')} services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`
   : `Professional surveying services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`;
+
+const fallbackSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": `HR Surveyors ${capitalizedLocation}`,
+  "description": content.description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": officeInfo?.address || "",
+    "addressLocality": capitalizedLocation,
+    "addressCountry": "AU"
+  },
+  "areaServed": officeInfo?.areas || capitalizedLocation
+};
 ---
 
 <Layout 
   title={metaTitle} 
   description={metaDescription}
   location={location}
-  schema={generateLocationSchema(location, capitalizedLocation, officeInfo, content)}
+  schema={generateLocationSchema ? generateLocationSchema(location, capitalizedLocation, officeInfo, content) : fallbackSchema}
 >
   <main class="bg-white text-hr-dark">
     <section class="py-20 md:py-32">
