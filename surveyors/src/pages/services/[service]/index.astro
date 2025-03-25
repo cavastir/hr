@@ -1,0 +1,76 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { capitalize, type LocationKey } from '../../../utils/seo';
+
+export async function getStaticPaths() {
+  const services = ['drone-surveying', 'engineering-surveying', 'land-surveying'];
+  
+  return services.map(service => ({
+    params: { service },
+    props: { 
+      service,
+      title: `${service.split('-').map(capitalize).join(' ')} Services | HR Surveyors`,
+      description: `Professional ${service.split('-').map(capitalize).join(' ')} services across Australia. Fast, accurate, and reliable surveying solutions.`
+    }
+  }));
+}
+
+interface Props {
+  service: string;
+  title: string;
+  description: string;
+}
+
+const { service, title, description } = Astro.props;
+
+// Format display name
+const formattedService = service.split('-').map(capitalize).join(' ');
+const locations = ['melbourne', 'perth', 'geelong', 'brisbane', 'adelaide'];
+---
+
+<Layout 
+  title={title}
+  description={description}
+>
+  <main class="bg-white text-hr-dark">
+    <section class="py-16 md:py-24 lg:py-32">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-hr-dark text-center">
+          {formattedService} Services
+        </h1>
+        
+        <div class="mb-16">
+          <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+            Our professional {formattedService.toLowerCase()} services are available across Australia in the following locations:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {locations.map(location => (
+            <a 
+              href={`/services/${service}/${location}/`}
+              class="block p-6 bg-gray-50 rounded-lg border border-gray-200 hover:bg-hr-accent hover:text-hr-dark transition-colors text-center"
+            >
+              <h2 class="text-2xl font-bold mb-2">{capitalize(location)}</h2>
+              <p>View {formattedService} services in {capitalize(location)}</p>
+            </a>
+          ))}
+        </div>
+
+        <div class="text-center mt-16">
+          <h2 class="text-2xl font-bold mb-6">Ready to Start Your {formattedService} Project?</h2>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">
+            Contact our team for a no-obligation quote and discover how we can help with your next project.
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group"
+          >
+            <span class="relative z-10 group-hover:text-white transition-colors">Request a Quote</span>
+            <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
