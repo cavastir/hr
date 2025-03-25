@@ -280,13 +280,11 @@ const metaDescription = content && content.services
             <h2 class="text-xl font-bold mb-4">Popular {capitalizedLocation} Surveying Services</h2>
             <div class="flex flex-wrap gap-2">
               {locationKeywords[location]?.map(keyword => {
-                const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-');
-                const serviceType = keywordSlug.includes('drone') ? 'drone-surveying' : 
-                                  keywordSlug.includes('engineering') ? 'engineering-surveying' : 'land-surveying';
+                const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
                 
                 return (
                   <a 
-                    href={`/services/${serviceType}/${location}`}
+                    href={`/services/${keywordSlug}/`}
                     class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors"
                   >
                     {keyword}

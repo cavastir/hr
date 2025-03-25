@@ -371,12 +371,39 @@ if (currentService.faqs && currentService.faqs.length > 0) {
               keyword.toLowerCase().includes('surveyor') || 
               keyword.toLowerCase().includes('survey')
             ).map((keyword: string) => (
-              <a href={`/services/${keyword.replace(/\s+/g, '-').toLowerCase()}`} class="px-4 py-2 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors">
+              <a href={`/services/${keyword.replace(/\s+/g, '-').toLowerCase()}/`} class="px-4 py-2 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors">
                 {keyword}
               </a>
             ))}
           </div>
         </div>
+
+        {/* Relevant keyword topics section */}
+        {locationKeywords[locationKey]?.filter(keyword => 
+          keyword.toLowerCase().includes(service.replace(/-/g, ' ')) || 
+          (service === 'drone-surveying' && keyword.toLowerCase().includes('drone'))
+        ).length > 0 && (
+          <div class="mt-8 mb-16">
+            <h2 class="text-xl font-bold mb-4">Related {capitalizedLocation} Services</h2>
+            <div class="flex flex-wrap gap-2">
+              {locationKeywords[locationKey]?.filter(keyword => 
+                keyword.toLowerCase().includes(service.replace(/-/g, ' ')) || 
+                (service === 'drone-surveying' && keyword.toLowerCase().includes('drone'))
+              ).map(keyword => {
+                const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                
+                return (
+                  <a 
+                    href={`/services/${keywordSlug}/`}
+                    class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors"
+                  >
+                    {keyword}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-6">Ready to Start Your {formattedService} Project?</h2>

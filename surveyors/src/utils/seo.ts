@@ -202,6 +202,50 @@ export function getServiceLocationPaths() {
   return paths;
 }
 
+export function getKeywordPaths() {
+  interface KeywordPath {
+    params: { slug: string };
+    props: { 
+      keyword: string;
+      location: LocationKey;
+      serviceType: string;
+      title: string;
+      description: string;
+    };
+  }
+  
+  const paths: KeywordPath[] = [];
+  
+  // Go through all location keywords
+  Object.entries(locationKeywords).forEach(([location, keywords]) => {
+    keywords.forEach(keyword => {
+      // Convert keyword to slug
+      const slug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      
+      // Determine relevant service type based on keyword content
+      let serviceType = 'land-surveying'; // default
+      if (keyword.includes('drone') || keyword.includes('uav')) {
+        serviceType = 'drone-surveying';
+      } else if (keyword.includes('engineering')) {
+        serviceType = 'engineering-surveying';
+      }
+      
+      paths.push({
+        params: { slug },
+        props: { 
+          keyword,
+          location: location as LocationKey,
+          serviceType,
+          title: `${capitalize(keyword)} | Professional Survey Solutions`,
+          description: `Expert ${keyword} services with comprehensive solutions for projects of all sizes. Local surveyors with extensive experience in ${location}.`
+        }
+      });
+    });
+  });
+  
+  return paths;
+}
+
 function formatService(service: string): string {
   return service.split('-').map(capitalize).join(' ');
 }
