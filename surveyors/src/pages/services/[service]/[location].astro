@@ -2,6 +2,8 @@
 import Layout from '../../../layouts/Layout.astro';
 import { getServiceLocationPaths, capitalize, locationContent, type LocationKey, generateLocationSchema, locationKeywords } from '../../../utils/seo';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const paths = getServiceLocationPaths();
   console.log('Generated service+location paths:', JSON.stringify(paths, null, 2));
@@ -17,9 +19,9 @@ interface Props {
 
 const { service, location, title, description } = Astro.props;
 
-// Format display names
-const formattedService = service.split('-').map(capitalize).join(' ');
-const capitalizedLocation = capitalize(location);
+// Format display names - add null check
+const formattedService = service ? service.split('-').map(capitalize).join(' ') : 'Survey Services';
+const capitalizedLocation = capitalize(location || '');
 
 // Get additional location data
 const locationKey = location as LocationKey;
@@ -77,7 +79,7 @@ const serviceContent = {
       },
       {
         question: `What areas can you cover with drone surveying in ${capitalizedLocation}?`,
-        answer: `We provide drone surveying services throughout ${capitalizedLocation} and surrounding areas including ${content?.description.split('.')[0] || capitalizedLocation}. Our equipment allows us to cover large areas efficiently.`
+        answer: `We provide drone surveying services throughout ${capitalizedLocation} and surrounding areas including ${content?.description?.split('.')[0] || `the ${capitalizedLocation} region`}. Our equipment allows us to cover large areas efficiently.`
       }
     ]
   },
@@ -192,7 +194,7 @@ const serviceContent = {
 };
 
 type ServiceKey = 'drone-surveying' | 'engineering-surveying' | 'land-surveying';
-const currentService = serviceContent[service as ServiceKey] || serviceContent['engineering-surveying'];
+const currentService = service && serviceContent[service as ServiceKey] ? serviceContent[service as ServiceKey] : serviceContent['engineering-surveying'];
 
 // Generate schema markup
 const schema: any = {

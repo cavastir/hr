@@ -96,7 +96,9 @@ const localInfo = localAreaInfo[location];
 
 // Improved SEO Elements
 const metaTitle = `HR Surveyors ${capitalizedLocation} | Professional Surveying Services`;
-const metaDescription = `Expert ${content.services.join(', ')} services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`;
+const metaDescription = content && content.services 
+  ? `Expert ${content.services.join(', ')} services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`
+  : `Professional surveying services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`;
 ---
 
 <Layout 
@@ -109,7 +111,7 @@ const metaDescription = `Expert ${content.services.join(', ')} services in ${cap
     <section class="py-20 md:py-32">
       <div class="container mx-auto px-4 max-w-6xl">
         <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">
-          Professional {content.services.includes('Engineering Surveys') ? 'Engineering' : 'Land'} Surveyors in {capitalizedLocation}
+          Professional {content && content.services && content.services.includes('Engineering Surveys') ? 'Engineering' : 'Land'} Surveyors in {capitalizedLocation}
         </h1>
         
         <div class="mb-20">
@@ -236,7 +238,7 @@ const metaDescription = `Expert ${content.services.join(', ')} services in ${cap
           {/* Removed testimonials section */}
 
           <!-- Complete Services Section with Links to Service+Location Pages -->
-          {content.services && (
+          {content && content.services && (
             <div class="mb-16">
               <h2 class="text-2xl font-bold mb-6 text-center">Our Complete Services in {capitalize(location)}</h2>
               <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -258,7 +260,7 @@ const metaDescription = `Expert ${content.services.join(', ')} services in ${cap
             </div>
           )}
 
-          {content.projects && (
+          {content && content.projects && (
             <div class="mb-16">
               <h2 class="text-2xl font-bold mb-6 text-center">Featured Projects in {capitalize(location)}</h2>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
