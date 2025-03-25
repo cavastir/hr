@@ -1,36 +1,32 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { getServiceLocationPaths, capitalize, locationContent, type LocationKey, generateLocationSchema, locationKeywords } from '../../../utils/seo';
+import { getKeywordPaths, capitalize, locationContent, type LocationKey } from '../../../utils/seo';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const paths = getServiceLocationPaths();
-  console.log('Generated service+location paths:', JSON.stringify(paths, null, 2));
-  return paths;
+  return getKeywordPaths();
 }
 
 interface Props {
-  service: string;
-  location: string;
+  keyword: string;
+  location: LocationKey;
+  serviceType: string;
   title: string;
   description: string;
 }
 
-const { service, location, title, description } = Astro.props;
-
-// Format display names - add null check
-const formattedService = service ? service.split('-').map(capitalize).join(' ') : 'Survey Services';
-const capitalizedLocation = capitalize(location || '');
-
-// Get additional location data
-const locationKey = location as LocationKey;
-const content = locationContent[locationKey] || null;
+const { keyword, location, serviceType, title, description } = Astro.props;
+const locationData = locationContent[location] || null;
+const capitalizedLocation = capitalize(location);
+const locationArea = locationData?.description?.split('.')[0] || `${capitalizedLocation} area`;
 
 // Service-specific content
 const serviceContent = {
   'drone-surveying': {
-    description: `Our professional drone surveying services in ${capitalizedLocation} deliver high-precision aerial mapping and data collection for engineering, construction, and mining projects. Using advanced UAV technology with LiDAR capabilities, we provide accurate topographical surveys, volumetric calculations, and detailed 3D terrain models.`,
+    title: 'Drone Surveying Services',
+    image: '/images/articles/drone-surveying.jpg',
+    description: `Our professional ${keyword} services deliver high-precision aerial mapping and data collection for engineering, construction, and mining projects. Using advanced UAV technology with LiDAR capabilities, we provide accurate topographical surveys, volumetric calculations, and detailed 3D terrain models.`,
     benefits: [
       "High-resolution orthomosaic mapping",
       "Accurate terrain modeling for design and planning",
@@ -44,47 +40,12 @@ const serviceContent = {
       "Infrastructure development",
       "Environmental assessment",
       "Land development and planning"
-    ],
-    image: "/images/hr-surveyors-drone-survey.jpg",
-    process: [
-      "Initial consultation to understand project requirements",
-      "Flight planning and obtaining necessary permits",
-      "Data collection using state-of-the-art drone technology",
-      "Data processing and quality control",
-      "Delivery of accurate survey results in required formats"
-    ],
-    equipment: [
-      "DJI Matrice 300 RTK with LiDAR payload",
-      "Phantom 4 RTK for photogrammetry mapping",
-      "Precision GPS base stations",
-      "Advanced data processing software",
-      "Specialized analysis tools for point cloud management"
-    ],
-    faqs: [
-      {
-        question: `How accurate are drone surveys in ${capitalizedLocation}?`,
-        answer: `Our drone surveys in ${capitalizedLocation} achieve accuracy of 2-3cm with RTK GPS integration, meeting survey-grade requirements for most engineering and construction projects.`
-      },
-      {
-        question: `What deliverables can I expect from a drone survey?`,
-        answer: `Typical deliverables include orthomosaic maps, digital elevation models (DEM), contour maps, 3D point clouds, volumetric calculations, and CAD-compatible files in formats like DWG and DXF.`
-      },
-      {
-        question: `How long does a drone survey take in ${capitalizedLocation}?`,
-        answer: `A typical drone survey in ${capitalizedLocation} takes 1-2 days for data collection, depending on site size and complexity, with data processing and deliverables ready within 3-5 business days.`
-      },
-      {
-        question: `Do you have proper licensing for commercial drone operations?`,
-        answer: `Yes, all our drone operators hold CASA Remote Pilot Licenses (RePL) and our company has a Remote Operator Certificate (ReOC), ensuring all flights are conducted legally and safely.`
-      },
-      {
-        question: `What areas can you cover with drone surveying in ${capitalizedLocation}?`,
-        answer: `We provide drone surveying services throughout ${capitalizedLocation} and surrounding areas including ${content?.description?.split('.')[0] || `the ${capitalizedLocation} region`}. Our equipment allows us to cover large areas efficiently.`
-      }
     ]
   },
   'engineering-surveying': {
-    description: `Expert engineering surveying services across ${capitalizedLocation} delivered by our highly qualified team. We provide precise measurements, control networks, and spatial data essential for engineering design, construction layout, and quality assurance on projects of all sizes.`,
+    title: 'Engineering Surveying Services',
+    image: '/images/hr-surveyors-engineering-surveying.jpg',
+    description: `Our professional ${keyword} services provide precise measurements, control networks, and spatial data essential for engineering design, construction layout, and quality assurance on projects of all sizes in the ${locationArea}.`,
     benefits: [
       "Precise control networks for consistent project accuracy",
       "Detailed topographic surveys for engineering design",
@@ -98,47 +59,12 @@ const serviceContent = {
       "Railway projects",
       "Utility infrastructure",
       "Commercial development"
-    ],
-    image: "/images/hr-surveyors-engineering-surveying.jpg",
-    process: [
-      "Initial project consultation and scope definition",
-      "Establishment of survey control network",
-      "Collection and analysis of spatial data",
-      "Production of engineering-grade deliverables",
-      "Quality control and final verification"
-    ],
-    equipment: [
-      "Total stations with sub-millimeter accuracy",
-      "High-precision GNSS receivers",
-      "Digital levels and laser scanners",
-      "Robotic measurement systems",
-      "Advanced computational software"
-    ],
-    faqs: [
-      {
-        question: `What types of engineering surveys do you provide in ${capitalizedLocation}?`,
-        answer: `In ${capitalizedLocation}, we offer a comprehensive range of engineering surveying services including control network establishment, topographic surveys, construction setout, monitoring surveys, and as-built documentation for infrastructure and development projects.`
-      },
-      {
-        question: `How do you ensure accuracy in engineering surveys?`,
-        answer: `We ensure accuracy through redundant measurements, calibrated equipment, rigorous field procedures, and thorough quality control processes. Our surveys typically achieve accuracy levels suitable for even the most demanding engineering applications.`
-      },
-      {
-        question: `Can you provide engineering surveys for large infrastructure projects in ${capitalizedLocation}?`,
-        answer: `Yes, we have extensive experience providing engineering surveys for major infrastructure projects across ${capitalizedLocation}, including roads, bridges, tunnels, and utilities. Our team has the expertise and equipment to handle projects of any scale.`
-      },
-      {
-        question: `What formats do you provide for engineering survey data?`,
-        answer: `We deliver engineering survey data in various formats including AutoCAD (DWG/DXF), MicroStation (DGN), 12d Model, Civil 3D, and other industry-standard formats based on client requirements.`
-      },
-      {
-        question: `How quickly can you mobilize for an engineering survey in ${capitalizedLocation}?`,
-        answer: `We can typically mobilize for engineering surveys in ${capitalizedLocation} within 24-48 hours for urgent projects, depending on current workload and project complexity.`
-      }
     ]
   },
   'land-surveying': {
-    description: `Professional land surveying services in ${capitalizedLocation}, providing accurate boundary determinations, subdivision layouts, and title surveys. Our licensed surveyors combine traditional methods with modern technology to deliver reliable results for property transactions, development, and legal compliance.`,
+    title: 'Land Surveying Services',
+    image: '/images/hr-surveyors-land-surveying.jpg',
+    description: `Our professional ${keyword} services provide accurate boundary determinations, subdivision layouts, and title surveys across the ${locationArea}. Our licensed surveyors combine traditional methods with modern technology to deliver reliable results for property transactions, development, and legal compliance.`,
     benefits: [
       "Accurate boundary determinations",
       "Detailed site plans for development applications",
@@ -152,55 +78,17 @@ const serviceContent = {
       "Boundary dispute resolution",
       "Planning and zoning compliance",
       "Legal documentation"
-    ],
-    image: "/images/hr-surveyors-land-surveying.jpg",
-    process: [
-      "Research of existing title and survey information",
-      "Field survey and collection of boundary evidence",
-      "Analysis and boundary determination",
-      "Preparation of survey plans and documentation",
-      "Certification and lodgment with relevant authorities"
-    ],
-    equipment: [
-      "High-precision GNSS systems",
-      "Electronic total stations",
-      "Digital levels",
-      "Advanced survey computation software",
-      "GIS and spatial analysis tools"
-    ],
-    faqs: [
-      {
-        question: `What information do I need to provide for a boundary survey in ${capitalizedLocation}?`,
-        answer: `For a boundary survey in ${capitalizedLocation}, we typically need your property address, certificate of title information, any existing survey plans, and details of any boundary concerns you may have. We'll also ask about any specific requirements for the survey.`
-      },
-      {
-        question: `How long does a land survey take in ${capitalizedLocation}?`,
-        answer: `A standard land survey in ${capitalizedLocation} typically takes 1-2 weeks from engagement to delivery of final plans, depending on property complexity, research requirements, and current workload.`
-      },
-      {
-        question: `Do I need a survey for my property sale in ${capitalizedLocation}?`,
-        answer: `While not always mandatory in ${capitalizedLocation}, a current survey is highly recommended for property sales to identify any encroachments, confirm boundaries, and provide certainty for both buyers and sellers.`
-      },
-      {
-        question: `Can you help with subdivision approvals in ${capitalizedLocation}?`,
-        answer: `Yes, our experienced surveyors can guide you through the entire subdivision process in ${capitalizedLocation}, from initial feasibility and design to council applications, final survey plans, and registration.`
-      },
-      {
-        question: `How do you resolve boundary disputes in ${capitalizedLocation}?`,
-        answer: `We resolve boundary disputes in ${capitalizedLocation} through thorough research of historical records, precise field measurements, analysis of all available evidence, and clear documentation of findings. When necessary, we also provide expert witness services.`
-      }
     ]
   }
 };
 
-type ServiceKey = 'drone-surveying' | 'engineering-surveying' | 'land-surveying';
-const currentService = service && serviceContent[service as ServiceKey] ? serviceContent[service as ServiceKey] : serviceContent['engineering-surveying'];
+const currentService = serviceContent[serviceType as keyof typeof serviceContent];
 
 // Generate schema markup
-const schema: any = {
+const schema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": `${formattedService} in ${capitalizedLocation}`,
+  "name": keyword,
   "description": currentService.description,
   "provider": {
     "@type": "ProfessionalService",
@@ -216,206 +104,111 @@ const schema: any = {
     "name": capitalizedLocation,
     "address": {
       "@type": "PostalAddress",
-      "addressRegion": locationKey === "melbourne" || locationKey === "geelong" ? "VIC" : 
-                      locationKey === "perth" ? "WA" : 
-                      locationKey === "brisbane" ? "QLD" : 
-                      locationKey === "adelaide" ? "SA" : "Australia",
+      "addressRegion": location === "melbourne" || location === "geelong" ? "VIC" : 
+                      location === "perth" ? "WA" : 
+                      location === "brisbane" ? "QLD" : 
+                      location === "adelaide" ? "SA" : "Australia",
       "addressCountry": "AU"
     }
   },
-  "serviceType": formattedService,
-  "serviceOutput": currentService.applications.join(", "),
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "areaServed": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": locationKey === "melbourne" ? -37.8136 : 
-                    locationKey === "perth" ? -31.9505 : 
-                    locationKey === "brisbane" ? -27.4698 : 
-                    locationKey === "adelaide" ? -34.9285 :
-                    locationKey === "geelong" ? -38.1499 : -25.2744,
-        "longitude": locationKey === "melbourne" ? 144.9631 : 
-                    locationKey === "perth" ? 115.8605 : 
-                    locationKey === "brisbane" ? 153.0251 : 
-                    locationKey === "adelaide" ? 138.6007 :
-                    locationKey === "geelong" ? 144.3617 : 133.7751
-      },
-      "geoRadius": "50000"
-    }
-  }
+  "serviceType": currentService.title
 };
-
-// FAQ Schema
-if (currentService.faqs && currentService.faqs.length > 0) {
-  schema.mainEntity = {
-    "@type": "FAQPage",
-    "mainEntity": currentService.faqs.map((faq: any) => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-}
 ---
 
-<Layout 
+<Layout
   title={title}
   description={description}
-  location={locationKey}
+  location={location}
   schema={schema}
 >
   <main class="bg-white text-hr-dark">
     <section class="py-16 md:py-24 lg:py-32">
       <div class="container mx-auto px-4 max-w-6xl">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-hr-dark text-center">
-          {formattedService} in {capitalizedLocation}
+          {keyword}
         </h1>
         
         <div class="mb-16">
-          <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+          <p class="text-xl mb-8 leading-relaxed text-center max-w-3xl mx-auto">
             {currentService.description}
           </p>
+          
+          <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent mb-12">
+            <p class="text-lg font-medium">
+              Experience fast, accurate, and cost-effective surveying solutions from our local {capitalizedLocation} team.
+            </p>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          <div>
-            <img 
-              src={currentService.image} 
-              alt={`${formattedService} services in ${capitalizedLocation}`}
-              class="rounded-lg shadow-lg w-full h-auto object-cover"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold mb-6">Benefits of Our {formattedService} Services</h2>
-            <ul class="space-y-4">
-              {currentService.benefits.map((benefit: string) => (
-                <li class="flex items-start">
-                  <span class="text-hr-accent mr-2">✓</span>
+        <!-- Main Image Section -->
+        <div class="mb-16">
+          <img 
+            src={currentService.image} 
+            alt={`HR Surveyors ${keyword} - ${capitalizedLocation}`} 
+            class="rounded-lg shadow-lg w-full h-auto object-cover"
+            width="1200"
+            height="600"
+          />
+        </div>
+
+        <!-- Services Grid -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Key Benefits</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {currentService.benefits.map((benefit) => (
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="flex items-start">
+                  <span class="text-hr-accent mr-2 text-xl">✓</span>
                   <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <h2 class="text-3xl font-bold mb-8 text-center">Applications</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {currentService.applications.map((application) => (
+              <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-bold mb-3">{application}</h3>
+                <p class="text-gray-700">Our team provides expert {keyword.toLowerCase()} for {application.toLowerCase()} projects throughout {capitalizedLocation}.</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Location Specific Section -->
+        {locationData && (
+          <div class="mb-16 bg-gray-50 p-8 rounded-lg">
+            <h2 class="text-3xl font-bold mb-6">HR Surveyors {capitalizedLocation} - Local Expertise</h2>
+            <p class="mb-6">{locationData.description}</p>
             
-            <h2 class="text-2xl font-bold mt-10 mb-6">Common Applications</h2>
-            <ul class="space-y-4">
-              {currentService.applications.map((application: string) => (
-                <li class="flex items-start">
-                  <span class="text-hr-accent mr-2">→</span>
-                  <span>{application}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <!-- Our Process Section -->
-        <div class="mb-16">
-          <h2 class="text-2xl font-bold mb-8 text-center">Our {formattedService} Process in {capitalizedLocation}</h2>
-          <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {currentService.process.map((step: string, index: number) => (
-              <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
-                <div class="text-hr-accent font-bold text-xl mb-2">Step {index + 1}</div>
-                <p>{step}</p>
+            {locationData.services && (
+              <div>
+                <h3 class="text-xl font-semibold mb-4">Additional Services Available in {capitalize(location)}</h3>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {locationData.services.map((service: string) => (
+                    <li class="flex items-center">
+                      <span class="text-hr-accent mr-2">•</span>
+                      <span>{service}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Equipment Section -->
-        <div class="mb-16 bg-gray-50 p-8 rounded-lg">
-          <h2 class="text-2xl font-bold mb-6">Our {formattedService} Equipment</h2>
-          <p class="mb-6">At HR Surveyors, we invest in the latest technology to ensure accurate, efficient surveying services in {capitalizedLocation}:</p>
-          <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {currentService.equipment.map((item: string) => (
-              <li class="bg-white p-4 rounded shadow-sm border border-gray-100">
-                <span class="text-hr-accent mr-2">•</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- FAQ Section -->
-        <div class="mb-16">
-          <h2 class="text-2xl font-bold mb-8 text-center">Frequently Asked Questions About {formattedService} in {capitalizedLocation}</h2>
-          <div class="space-y-6">
-            {currentService.faqs.map((faq: any) => (
-              <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                <h3 class="text-xl font-bold mb-3">{faq.question}</h3>
-                <p>{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="bg-gray-50 rounded-lg p-8 border-l-4 border-hr-accent mb-16">
-          <h2 class="text-2xl font-bold mb-4">Why Choose HR Surveyors in {capitalizedLocation}?</h2>
-          <p class="mb-4">With extensive local knowledge of {capitalizedLocation} and surrounding areas, our team delivers accurate, reliable surveying services tailored to your specific project requirements.</p>
-          <p>Our commitment to quality, fast turnaround times, and competitive pricing makes us the preferred choice for {formattedService.toLowerCase()} projects across {content?.description.split('.')[0] || capitalizedLocation}.</p>
-        </div>
-
-        <!-- Location-Specific Keywords -->
-        <div class="mb-16">
-          <h2 class="text-2xl font-bold mb-6 text-center">Popular {capitalizedLocation} {formattedService} Services</h2>
-          <div class="flex flex-wrap justify-center gap-3">
-            {locationKeywords[locationKey]?.filter(keyword => 
-              keyword.toLowerCase().includes(service.replace('-', ' ')) || 
-              keyword.toLowerCase().includes('surveyor') || 
-              keyword.toLowerCase().includes('survey')
-            ).map((keyword: string) => (
-              <a href={`/services/${keyword.replace(/\s+/g, '-').toLowerCase()}/`} class="px-4 py-2 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors">
-                {keyword}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Relevant keyword topics section */}
-        {locationKeywords[locationKey]?.filter(keyword => 
-          keyword.toLowerCase().includes(service.replace(/-/g, ' ')) || 
-          (service === 'drone-surveying' && keyword.toLowerCase().includes('drone'))
-        ).length > 0 && (
-          <div class="mt-8 mb-16">
-            <h2 class="text-xl font-bold mb-4">Related {capitalizedLocation} Services</h2>
-            <div class="flex flex-wrap gap-2">
-              {locationKeywords[locationKey]?.filter(keyword => 
-                keyword.toLowerCase().includes(service.replace(/-/g, ' ')) || 
-                (service === 'drone-surveying' && keyword.toLowerCase().includes('drone'))
-              ).map(keyword => {
-                const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                
-                return (
-                  <a 
-                    href={`/services/${keywordSlug}/`}
-                    class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors"
-                  >
-                    {keyword}
-                  </a>
-                );
-              })}
-            </div>
+            )}
           </div>
         )}
 
-        <div class="text-center">
-          <h2 class="text-2xl font-bold mb-6">Ready to Start Your {formattedService} Project?</h2>
-          <p class="text-lg mb-8 max-w-2xl mx-auto">
-            Contact our {capitalizedLocation} team for a no-obligation quote and discover how we can help with your next project.
-          </p>
+        <!-- CTA Section -->
+        <div class="text-center bg-gray-50 p-8 rounded-lg">
+          <h2 class="text-2xl font-bold mb-4">Need Professional {keyword} Services?</h2>
+          <p class="mb-6 max-w-2xl mx-auto">Contact our local {capitalizedLocation} team for a consultation and discover how our surveying expertise can help with your next project.</p>
           <a 
             href="/contact" 
-            class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group"
+            class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors"
           >
-            <span class="relative z-10 group-hover:text-white transition-colors">Request a Quote</span>
-            <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+            Request a Quote
           </a>
         </div>
       </div>

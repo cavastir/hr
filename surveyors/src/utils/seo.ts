@@ -179,32 +179,9 @@ export function capitalize(str: string): string {
   return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
 }
 
-export function getServiceLocationPaths() {
-  const services = ['drone-surveying', 'engineering-surveying', 'land-surveying'];
-  const locations = ['perth', 'melbourne', 'geelong', 'brisbane', 'adelaide'];
-  
-  const paths = [];
-  
-  for (const service of services) {
-    for (const location of locations) {
-      paths.push({
-        params: { service, location },
-        props: { 
-          service,
-          location,
-          title: `${formatService(service)} in ${capitalize(location)} | HR Surveyors`,
-          description: `Professional ${formatService(service)} services in ${capitalize(location)} and surrounding areas. Fast, accurate, and reliable.`
-        }
-      });
-    }
-  }
-  
-  return paths;
-}
-
 export function getKeywordPaths() {
   interface KeywordPath {
-    params: { slug: string };
+    params: { location: string; service: string };
     props: { 
       keyword: string;
       location: LocationKey;
@@ -219,9 +196,6 @@ export function getKeywordPaths() {
   // Go through all location keywords
   Object.entries(locationKeywords).forEach(([location, keywords]) => {
     keywords.forEach(keyword => {
-      // Convert keyword to slug
-      const slug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-      
       // Determine relevant service type based on keyword content
       let serviceType = 'land-surveying'; // default
       if (keyword.includes('drone') || keyword.includes('uav')) {
@@ -231,7 +205,10 @@ export function getKeywordPaths() {
       }
       
       paths.push({
-        params: { slug },
+        params: { 
+          location,
+          service: serviceType
+        },
         props: { 
           keyword,
           location: location as LocationKey,
@@ -244,8 +221,4 @@ export function getKeywordPaths() {
   });
   
   return paths;
-}
-
-function formatService(service: string): string {
-  return service.split('-').map(capitalize).join(' ');
 }
