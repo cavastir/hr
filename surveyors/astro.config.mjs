@@ -28,7 +28,9 @@ export default defineConfig({
   site: 'https://www.hrsurveyors.com.au',
   trailingSlash: 'always',
   build: {
-    inlineStylesheets: 'auto'
+    inlineStylesheets: 'auto',
+    assets: `assets-${Date.now()}`,
+    cache: false
   },
   vite: {
     server: {

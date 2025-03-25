@@ -4,6 +4,7 @@
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cache-Control: public, max-age=3600
   
 # Ensure proper mime type for JavaScript files
 /_astro/*.js
@@ -11,4 +12,8 @@
 
 # Ensure proper handling for JSON files  
 /api/*.json
-  Content-Type: application/json 
+  Content-Type: application/json
+
+# Dynamic pages that need fresh content
+/services/*
+  Cache-Control: public, max-age=0, must-revalidate 
