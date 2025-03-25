@@ -59,6 +59,41 @@ const officeInfo = officeLocations[location] || null;
 const content = locationContent[location];
 const capitalizedLocation = capitalize(location);
 
+// Local area info for more targeted content
+const localAreaInfo: Record<LocationKey, {
+  keyAreas: string[];
+  localExpertise: string;
+  industryFocus: string[];
+}> = {
+  melbourne: {
+    keyAreas: ['Clayton', 'South East Melbourne', 'Eastern Victoria', 'Dandenong', 'Mornington Peninsula'],
+    localExpertise: "With over 10 years of experience in Melbourne's eastern suburbs and industrial areas, our Clayton-based surveyors understand the local planning regulations and terrain challenges specific to Victoria.",
+    industryFocus: ['Manufacturing', 'Infrastructure', 'Residential Development', 'Education Facilities']
+  },
+  geelong: {
+    keyAreas: ['Geelong', 'Western Victoria', 'Bellarine Peninsula', 'Surf Coast', 'Golden Plains'],
+    localExpertise: "Our Geelong surveyors bring specialized knowledge of coastal environments, regional development requirements, and the unique surveying challenges of Western Victoria.",
+    industryFocus: ['Coastal Development', 'Rural Subdivisions', 'Industrial Zones', 'Renewable Energy']
+  },
+  perth: {
+    keyAreas: ['Perth Metro', 'West Leederville', 'Western Suburbs', 'Northern Corridor', 'South Perth'],
+    localExpertise: "Our Perth team combines deep knowledge of Western Australia's mining regulations, urban development codes, and coastal survey requirements with advanced technical capabilities.",
+    industryFocus: ['Mining', 'Urban Development', 'Infrastructure', 'Commercial Construction']
+  },
+  brisbane: {
+    keyAreas: ['Brisbane', 'Gold Coast', 'Northern Rivers', 'Sunshine Coast', 'Logan'],
+    localExpertise: "Specializing in Queensland's diverse landscapes, from urban Brisbane to coastal Gold Coast developments, our surveyors bring local insight to every project.",
+    industryFocus: ['Tourism Development', 'Residential Projects', 'Flood Mapping', 'Urban Renewal']
+  },
+  adelaide: {
+    keyAreas: ['Adelaide Metro', 'Edinburgh North', 'Northern Suburbs', 'Adelaide Hills', 'Barossa Valley'],
+    localExpertise: "Our Edinburgh North team offers specialized knowledge of South Australian regulations, with particular expertise in infrastructure projects and industrial developments.",
+    industryFocus: ['Defense', 'Manufacturing', 'Wineries', 'Urban Expansion', 'Education Facilities']
+  }
+};
+
+const localInfo = localAreaInfo[location];
+
 // Improved SEO Elements
 const metaTitle = `HR Surveyors ${capitalizedLocation} | Professional Surveying Services`;
 const metaDescription = `Expert ${content.services.join(', ')} services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`;
@@ -71,7 +106,7 @@ const metaDescription = `Expert ${content.services.join(', ')} services in ${cap
   schema={generateLocationSchema(location, capitalizedLocation, officeInfo, content)}
 >
   <main class="bg-white text-hr-dark">
-    <section class="py-32">
+    <section class="py-20 md:py-32">
       <div class="container mx-auto px-4 max-w-6xl">
         <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">
           Professional {content.services.includes('Engineering Surveys') ? 'Engineering' : 'Land'} Surveyors in {capitalizedLocation}
@@ -82,8 +117,39 @@ const metaDescription = `Expert ${content.services.join(', ')} services in ${cap
             {content.description}
           </p>
           
+          <!-- Location-Specific Area Information -->
+          <div class="bg-gray-50 p-8 rounded-lg mb-16">
+            <h2 class="text-2xl font-bold mb-6">HR Surveyors in {capitalizedLocation}</h2>
+            <p class="mb-6">{localInfo.localExpertise}</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Key Areas We Serve:</h3>
+                <ul class="space-y-2">
+                  {localInfo.keyAreas.map((area) => (
+                    <li class="flex items-center">
+                      <span class="text-hr-accent mr-2">•</span>
+                      <span>{area}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Industry Specializations:</h3>
+                <ul class="space-y-2">
+                  {localInfo.industryFocus.map((industry) => (
+                    <li class="flex items-center">
+                      <span class="text-hr-accent mr-2">•</span>
+                      <span>{industry}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
           {officeInfo && (
-            <div class="bg-gray-100 rounded-lg p-8 shadow-lg mb-12">
+            <div class="bg-gray-100 rounded-lg p-8 shadow-lg mb-16">
               <h2 class="text-2xl font-bold mb-4">Our {capitalize(location)} Office</h2>
               <p class="mb-2"><strong>Address:</strong> {officeInfo.address}</p>
               <p class="mb-4"><strong>Service Areas:</strong> {officeInfo.areas}</p>
@@ -98,53 +164,146 @@ const metaDescription = `Expert ${content.services.join(', ')} services in ${cap
             </div>
           )}
 
-          <!-- Add this section to highlight high-impression services -->
-          <div class="mb-12">
+          <!-- Featured Service: Drone Surveying (Highest Impressions) -->
+          <div class="mb-16">
             <h2 class="text-2xl font-bold mb-6">Drone Surveying in {capitalizedLocation}</h2>
-            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent">
-              <p class="mb-4">Our drone surveying services in {capitalizedLocation} provide high-precision aerial mapping and data collection for engineering, construction, and mining projects.</p>
-              <a href={`/services/drone-surveying/${location}`} class="text-hr-accent font-semibold hover:underline">Learn more about our drone surveying capabilities →</a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              <div class="md:col-span-2 bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent">
+                <p class="mb-4">Our drone surveying services in {capitalizedLocation} provide high-precision aerial mapping and data collection for engineering, construction, and mining projects. Using advanced UAV technology, we deliver:</p>
+                <ul class="mb-4 space-y-2">
+                  <li class="flex items-start">
+                    <span class="text-hr-accent mr-2">✓</span>
+                    <span>High-resolution orthomosaic mapping</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-hr-accent mr-2">✓</span>
+                    <span>3D terrain models and volumetric calculations</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-hr-accent mr-2">✓</span>
+                    <span>Rapid data collection for large areas</span>
+                  </li>
+                </ul>
+                <a href={`/services/drone-surveying/${location}`} class="text-hr-accent font-semibold hover:underline">Learn more about our drone surveying capabilities →</a>
+              </div>
+              <div>
+                <img 
+                  src="/images/hr-surveyors-drone-survey.jpg" 
+                  alt={`Drone surveying services in ${capitalizedLocation}`}
+                  class="rounded-lg shadow-md w-full h-auto"
+                  width="400"
+                  height="300"
+                />
+              </div>
             </div>
           </div>
 
-          {content.services && (
-            <div class="mb-12">
-              <h2 class="text-2xl font-bold mb-6 text-center">Our Services in {capitalize(location)}</h2>
-              <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {content.services.map((service: string) => (
-                  <li class="bg-white p-4 rounded shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <a href="/services/" class="block text-hr-dark hover:text-hr-accent transition-colors">
-                      {service}
-                    </a>
+          <!-- Featured Service: Engineering Surveying -->
+          <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-6">Engineering Surveying in {capitalizedLocation}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              <div>
+                <img 
+                  src="/images/hr-surveyors-engineering-surveying.jpg" 
+                  alt={`Engineering surveying services in ${capitalizedLocation}`}
+                  class="rounded-lg shadow-md w-full h-auto"
+                  width="400"
+                  height="300"
+                />
+              </div>
+              <div class="md:col-span-2 bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent">
+                <p class="mb-4">Our engineering surveying team in {capitalizedLocation} delivers precise measurements and spatial data essential for engineering design, construction, and quality assurance, including:</p>
+                <ul class="mb-4 space-y-2">
+                  <li class="flex items-start">
+                    <span class="text-hr-accent mr-2">✓</span>
+                    <span>Precise control networks and topographic surveys</span>
                   </li>
-                ))}
+                  <li class="flex items-start">
+                    <span class="text-hr-accent mr-2">✓</span>
+                    <span>Accurate construction layout and as-built documentation</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-hr-accent mr-2">✓</span>
+                    <span>Structural monitoring and deformation analysis</span>
+                  </li>
+                </ul>
+                <a href={`/services/engineering-surveying/${location}`} class="text-hr-accent font-semibold hover:underline">Explore our engineering surveying expertise →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Client Testimonials Section -->
+          {/* Removed testimonials section */}
+
+          <!-- Complete Services Section with Links to Service+Location Pages -->
+          {content.services && (
+            <div class="mb-16">
+              <h2 class="text-2xl font-bold mb-6 text-center">Our Complete Services in {capitalize(location)}</h2>
+              <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {content.services.map((service: string) => {
+                  const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/\(|\)/g, '');
+                  const serviceType = serviceSlug.includes('drone') || serviceSlug.includes('uav') ? 'drone-surveying' : 
+                                    serviceSlug.includes('engineering') ? 'engineering-surveying' : 'land-surveying';
+                  
+                  return (
+                    <li class="bg-white p-5 rounded shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                      <a href={`/services/${serviceType}/${location}`} class="block text-hr-dark hover:text-hr-accent transition-colors">
+                        <span class="font-medium">{service}</span>
+                        <span class="block text-sm text-gray-600 mt-1">in {capitalizedLocation}</span>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}
 
           {content.projects && (
-            <div class="mb-12">
+            <div class="mb-16">
               <h2 class="text-2xl font-bold mb-6 text-center">Featured Projects in {capitalize(location)}</h2>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {content.projects.map((project: string) => (
-                  <div class="bg-white p-4 rounded shadow-sm border border-gray-100">
-                    {project}
+                  <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <h3 class="font-semibold mb-2">{project}</h3>
+                    <p class="text-sm text-gray-600 mb-3">Surveying & Engineering Solutions</p>
+                    <a href="/projects" class="text-hr-accent text-sm hover:underline">View project details →</a>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          <!-- Add Location-Specific Keywords -->
-          <div class="mt-8 mb-12">
+          <!-- Location-Specific Keywords as Tagged Topics -->
+          <div class="mt-8 mb-16">
             <h2 class="text-xl font-bold mb-4">Popular {capitalizedLocation} Surveying Services</h2>
             <div class="flex flex-wrap gap-2">
-              {locationKeywords[location]?.map(keyword => (
-                <a href={`/services/${keyword.replace(/\s+/g, '-')}`} class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors">
-                  {keyword}
-                </a>
-              ))}
+              {locationKeywords[location]?.map(keyword => {
+                const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-');
+                const serviceType = keywordSlug.includes('drone') ? 'drone-surveying' : 
+                                  keywordSlug.includes('engineering') ? 'engineering-surveying' : 'land-surveying';
+                
+                return (
+                  <a 
+                    href={`/services/${serviceType}/${location}`}
+                    class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors"
+                  >
+                    {keyword}
+                  </a>
+                );
+              })}
             </div>
+          </div>
+
+          <!-- CTA Section -->
+          <div class="text-center bg-gray-50 p-8 rounded-lg">
+            <h2 class="text-2xl font-bold mb-4">Need Professional Surveying in {capitalizedLocation}?</h2>
+            <p class="mb-6 max-w-2xl mx-auto">Contact our local team for a consultation and discover how our surveying expertise can help with your next project in {capitalizedLocation}.</p>
+            <a 
+              href="/contact" 
+              class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors"
+            >
+              Request a Quote
+            </a>
           </div>
         </div>
       </div>
