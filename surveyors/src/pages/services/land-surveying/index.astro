@@ -1,0 +1,345 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { capitalize } from '../../../utils/seo';
+
+// Service images mapping
+const images = {
+  main: "/images/hr-surveyors-land-surveying.jpg",
+  gallery: [
+    "/images/land-surveying-1.jpg",
+    "/images/land-surveying-2.jpg",
+    "/images/land-surveying-3.jpg"
+  ]
+};
+
+// Applications and details
+const applications = [
+  {
+    title: "Property Transactions",
+    description: "Accurate boundary surveys for property sales, purchases, and transfers. We provide clear documentation of property boundaries to protect your interests and prevent future disputes.",
+    icon: "level"
+  },
+  {
+    title: "Land Development & Subdivision",
+    description: "Comprehensive surveying services for land development projects, from initial feasibility studies through subdivision design, council approvals, and final registration.",
+    icon: "building"
+  },
+  {
+    title: "Boundary Dispute Resolution",
+    description: "Expert investigation and documentation of property boundaries to resolve disputes. Our licensed surveyors provide authoritative evidence and expert witness services when needed.",
+    icon: "laser"
+  },
+  {
+    title: "Planning & Zoning Compliance",
+    description: "Specialized surveys to verify compliance with planning regulations and zoning requirements, including setbacks, height restrictions, and protected areas.",
+    icon: "civil"
+  },
+  {
+    title: "Legal Documentation",
+    description: "Preparation of precise legal documents including survey plans, easement plans, and boundary identification surveys that meet all regulatory requirements.",
+    icon: "gps"
+  },
+  {
+    title: "Rural & Agricultural Surveying",
+    description: "Specialized surveying services for rural properties, including large acreage boundary surveys, farm subdivisions, and water rights documentation.",
+    icon: "infrastructure"
+  }
+];
+
+// Technical specifications and capabilities
+const capabilities = [
+  {
+    title: "Boundary Determinations",
+    details: "Our licensed surveyors conduct thorough research and precise field measurements to accurately determine property boundaries according to legal descriptions and historic evidence."
+  },
+  {
+    title: "Site Plans & Development Applications",
+    details: "We prepare detailed site plans that meet all requirements for development applications, showing existing conditions, property boundaries, and proposed improvements."
+  },
+  {
+    title: "Subdivision Design & Implementation",
+    details: "Our comprehensive subdivision services include feasibility analysis, optimized lot layout, infrastructure planning, and all survey documentation required for approval and registration."
+  },
+  {
+    title: "Easement Documentation",
+    details: "We provide precise documentation of easements, rights-of-way, and other encumbrances, ensuring clear understanding of rights and restrictions affecting properties."
+  },
+  {
+    title: "Expert Witness Services",
+    details: "Our licensed surveyors provide expert testimony and evidence in property-related legal matters, interpreting survey findings and explaining technical aspects to courts and tribunals."
+  }
+];
+
+// Deliverables information
+const deliverables = [
+  {
+    title: "Boundary Survey Plans",
+    description: "Detailed plans showing property boundaries with dimensions, angles, and references to survey monuments and adjoining properties.",
+    format: "PDF, CAD, Hardcopy"
+  },
+  {
+    title: "Title Survey Reports",
+    description: "Comprehensive reports identifying boundaries, encroachments, easements, and other title matters affecting property ownership.",
+    format: "PDF, Hardcopy"
+  },
+  {
+    title: "Subdivision Plans",
+    description: "Precise plans showing proposed lot divisions, easements, roads, and other infrastructure required for development approval and registration.",
+    format: "CAD, PDF, Regulatory formats"
+  },
+  {
+    title: "Site Development Plans",
+    description: "Detailed plans showing property boundaries, existing features, and proposed improvements for development applications.",
+    format: "CAD, PDF, GIS"
+  },
+  {
+    title: "Legal Descriptions",
+    description: "Precise written descriptions of property boundaries and easements for inclusion in legal documents and property titles.",
+    format: "Text, PDF"
+  },
+  {
+    title: "GNSS Data & Survey Control",
+    description: "Geodetic survey data establishing precise control points and coordinates for property boundaries and infrastructure.",
+    format: "Digital data files, Coordinate lists"
+  }
+];
+
+// FAQ content
+const faqs = [
+  {
+    question: "Why do I need a land survey for my property?",
+    answer: "A land survey provides essential information about your property's legal boundaries, easements, encroachments, and other features that may affect ownership rights. It's particularly important before buying or selling property, resolving boundary disputes, planning construction, or subdividing land to avoid costly legal issues and ensure compliance with regulations."
+  },
+  {
+    question: "How long does a typical boundary survey take?",
+    answer: "The timeline for a boundary survey depends on property size, complexity, and research requirements. A standard residential boundary survey typically takes 1-2 weeks from engagement to delivery of final plans. Larger or more complex properties may require additional time, especially if extensive historical research is needed or if boundary conflicts are discovered."
+  },
+  {
+    question: "What's the difference between a boundary survey and a title survey?",
+    answer: "A boundary survey focuses specifically on determining and marking property boundaries, while a title survey (sometimes called an identification survey) is more comprehensive, identifying boundaries, encroachments, easements, improvements, and other features affecting title. Title surveys are often required for property transactions or financing, while boundary surveys may be sufficient for fence installation or resolving specific boundary questions."
+  },
+  {
+    question: "How accurate are your land surveys?",
+    answer: "Our land surveys meet or exceed all regulatory standards for accuracy, typically achieving positional tolerances of ±10mm in urban areas and ±50mm in rural areas. We use state-of-the-art equipment and rigorous procedures to ensure reliable results, and all surveys are conducted or supervised by licensed surveyors in accordance with state regulations."
+  },
+  {
+    question: "Do I need to be present during the survey?",
+    answer: "While it's not mandatory for you to be present during the survey, we often recommend it, especially for boundary surveys. Your presence allows you to provide valuable information about property features and discuss any concerns directly with the surveyor. However, if you can't be present, we can proceed with the survey as long as we have proper access to the property."
+  },
+  {
+    question: "How do you handle boundary disputes?",
+    answer: "When boundary disputes arise, we conduct thorough research of historical records and precise field measurements to determine the legally correct boundary location. We document all findings clearly and can provide expert witness services if the dispute proceeds to litigation. Our goal is to provide objective, factual information that helps resolve disputes efficiently and accurately."
+  }
+];
+
+// Schema markup for SEO
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Land Surveying Services",
+  "description": "Professional land surveying services providing accurate boundary determinations, subdivision layouts, and title surveys. Our licensed surveyors combine traditional methods with modern technology to deliver reliable results for property transactions, development, and legal compliance.",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "HR Surveyors",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AU"
+    }
+  },
+  "serviceType": "Land Surveying",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Australia"
+  }
+};
+
+// Locations
+const locations = [
+  {
+    name: "Perth",
+    region: "Western Australia",
+    slug: "perth"
+  },
+  {
+    name: "Melbourne",
+    region: "Victoria",
+    slug: "melbourne"
+  },
+  {
+    name: "Brisbane",
+    region: "Queensland",
+    slug: "brisbane"
+  },
+  {
+    name: "Adelaide",
+    region: "South Australia",
+    slug: "adelaide"
+  },
+  {
+    name: "Geelong",
+    region: "Victoria",
+    slug: "geelong"
+  }
+];
+---
+
+<Layout
+  title="Land Surveying Services | HR Surveyors"
+  description="Professional land surveying services providing accurate boundary determinations, subdivision layouts, and title surveys across Australia. Our licensed surveyors combine traditional methods with modern technology to deliver reliable results."
+  schema={schema}
+>
+  <main class="bg-white text-hr-dark">
+    <section class="py-16 md:py-24 lg:py-32">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-hr-dark text-center">
+          Land Surveying Services
+        </h1>
+        
+        <div class="mb-16">
+          <p class="text-xl mb-8 leading-relaxed text-center max-w-3xl mx-auto">
+            Our professional land surveying services provide accurate boundary determinations, subdivision layouts, and title surveys across Australia. Our licensed surveyors combine traditional methods with modern technology to deliver reliable results for property transactions, development, and legal compliance.
+          </p>
+          
+          <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent mb-12">
+            <p class="text-lg font-medium">
+              Experience precision and confidence in your property matters with our expert land surveyors and state-of-the-art technology.
+            </p>
+          </div>
+        </div>
+
+        <!-- Main Image Section -->
+        <div class="mb-16">
+          <img 
+            src={images.main} 
+            alt="HR Surveyors land surveying services" 
+            class="rounded-lg shadow-lg w-full h-auto object-cover"
+            width="1200"
+            height="600"
+          />
+        </div>
+
+        <!-- Applications Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Land Surveying Applications</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {applications.map((app) => (
+              <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-bold mb-3">{app.title}</h3>
+                <p class="text-gray-700">{app.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Technical Capabilities Section -->
+        <div class="mb-16 bg-gray-50 p-8 rounded-lg">
+          <h2 class="text-3xl font-bold mb-8 text-center">Our Land Surveying Capabilities</h2>
+          <div class="space-y-6">
+            {capabilities.map((capability) => (
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 class="text-xl font-bold mb-2">{capability.title}</h3>
+                <p class="text-gray-700">{capability.details}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Process Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Our Land Survey Process</h2>
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 1</div>
+              <p class="font-semibold mb-1">Research</p>
+              <p class="text-gray-700 text-sm">Thorough research of titles, plans, and historical records</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 2</div>
+              <p class="font-semibold mb-1">Field Survey</p>
+              <p class="text-gray-700 text-sm">Precise measurements and collection of boundary evidence</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 3</div>
+              <p class="font-semibold mb-1">Analysis</p>
+              <p class="text-gray-700 text-sm">Careful evaluation of all evidence to determine boundaries</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 4</div>
+              <p class="font-semibold mb-1">Documentation</p>
+              <p class="text-gray-700 text-sm">Preparation of survey plans and required documentation</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 5</div>
+              <p class="font-semibold mb-1">Certification</p>
+              <p class="text-gray-700 text-sm">Final review, certification, and lodgment as required</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deliverables Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Land Survey Deliverables</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {deliverables.map((deliverable) => (
+              <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                <h3 class="text-xl font-bold mb-3">{deliverable.title}</h3>
+                <p class="text-gray-700 mb-3">{deliverable.description}</p>
+                <p class="text-sm text-gray-500">Format: {deliverable.format}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Location Links Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Land Surveying Locations</h2>
+          <p class="text-lg mb-8 text-center">We provide professional land surveying services across Australia, with specialized local expertise in the following areas:</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {locations.map((location) => (
+              <a href={`/services/land-surveying/${location.slug}`} class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
+                <h3 class="text-xl font-bold">{location.name}</h3>
+                <p class="text-sm">{location.region}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+          <div class="space-y-6">
+            {faqs.map((faq) => (
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 class="text-xl font-bold mb-3">{faq.question}</h3>
+                <p class="text-gray-700">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center bg-gray-50 p-8 rounded-lg">
+          <h2 class="text-3xl font-bold mb-6">Ready for Your Land Survey?</h2>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">
+            Contact our team for a consultation and discover how our land surveying expertise can provide the accuracy and confidence you need for your property matters.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a 
+              href="/contact" 
+              class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors"
+            >
+              Request a Quote
+            </a>
+            <a 
+              href="/services" 
+              class="inline-block bg-gray-200 text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-gray-300 transition-colors"
+            >
+              Explore All Services
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 

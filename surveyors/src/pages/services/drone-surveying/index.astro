@@ -4,7 +4,7 @@ import { capitalize } from '../../../utils/seo';
 
 // Service images mapping
 const images = {
-  main: "/images/hr-surveyors-drone-survey.jpg",
+  main: "/images/hr-surveyors-drone.jpg",
   gallery: [
     "/images/drone-surveying-1.jpg",
     "/images/drone-surveying-2.jpg",
@@ -15,58 +15,58 @@ const images = {
 // Applications and details
 const applications = [
   {
+    title: "Aerial Mapping & Topographic Surveys",
+    description: "Comprehensive aerial mapping services capturing high-resolution imagery and elevation data over large areas efficiently. Our drone surveys provide detailed topographic information for planning and design.",
+    icon: "infrastructure"
+  },
+  {
     title: "Construction Monitoring",
-    description: "Track construction progress with high-resolution aerial imagery and 3D models. Our drone surveys provide accurate timeline documentation, helping project managers identify issues early and make informed decisions.",
+    description: "Regular progress documentation of construction sites from consistent aerial perspectives. Track earthworks, measure stockpiles, and verify construction against design models.",
     icon: "building"
   },
   {
-    title: "Mining & Quarry Operations",
-    description: "Optimize resource extraction with precise volumetric calculations and stockpile measurements. Our drone LiDAR capabilities enable accurate terrain mapping even in vegetated areas.",
-    icon: "infrastructure"
-  },
-  {
-    title: "Land Development",
-    description: "Accelerate planning processes with comprehensive site data. Our drone surveys generate detailed topographic maps, contour data, and 3D models essential for efficient land development.",
+    title: "Asset & Infrastructure Inspection",
+    description: "Detailed visual inspections of tall or difficult-to-access structures including bridges, towers, roofs, and industrial facilities without the need for scaffolding or rope access.",
     icon: "level"
   },
   {
-    title: "Infrastructure Inspection",
-    description: "Safely inspect bridges, towers, and utility networks without service interruption. High-resolution drone imagery helps identify structural issues and maintenance needs.",
-    icon: "infrastructure"
+    title: "Volumetric Calculations",
+    description: "Precise measurement of material stockpiles, excavations, and earthworks. Our drone surveys provide accurate volume data for inventory management and quantity verification.",
+    icon: "laser"
   },
   {
     title: "Environmental Monitoring",
-    description: "Monitor environmental changes and impacts with regular drone surveys. Track erosion, vegetation health, and land use changes with georeferenced aerial imagery.",
-    icon: "renewable"
+    description: "Periodic surveys of environmental changes, vegetation health, erosion patterns, and rehabilitation progress across project sites and sensitive areas.",
+    icon: "civil"
   },
   {
-    title: "Volumetric Analysis",
-    description: "Calculate precise volumes for stockpiles, excavations, and earthworks with drone-based photogrammetry and LiDAR technology.",
-    icon: "3d"
+    title: "3D Modeling & Visualization",
+    description: "Creation of detailed 3D models and visualizations of sites, structures, and terrain for planning, presentations, and stakeholder engagement.",
+    icon: "gps"
   }
 ];
 
 // Technical specifications and capabilities
 const capabilities = [
   {
-    title: "High-Precision RTK Drones",
-    details: "Our fleet includes DJI Matrice 300 RTK and Phantom 4 RTK drones, providing survey-grade accuracy of 2-3cm with proper ground control."
+    title: "High-Resolution Orthophotography",
+    details: "We produce geo-referenced aerial imagery with resolution down to 1cm per pixel, providing exceptional detail for site analysis, planning, and documentation."
   },
   {
-    title: "Advanced LiDAR Integration",
-    details: "Our LiDAR-equipped drones penetrate vegetation to capture accurate ground data, essential for comprehensive terrain modeling in forested or densely vegetated areas."
+    title: "LiDAR Integration",
+    details: "Our advanced drones equipped with LiDAR sensors capture highly accurate point clouds even in vegetated areas, offering superior terrain modeling through canopy penetration."
   },
   {
-    title: "Photogrammetry Excellence",
-    details: "Using high-resolution cameras and sophisticated processing software, we generate detailed orthomosaic maps and 3D models with exceptional clarity."
+    title: "Multispectral & Thermal Imaging",
+    details: "Specialized sensors capture data beyond the visible spectrum, revealing hidden features such as moisture variation, vegetation health, thermal leakage, and subsurface anomalies."
   },
   {
-    title: "Multispectral Capability",
-    details: "Our multispectral sensors capture data across multiple wavelengths, enabling specialized applications in agriculture, environmental assessment, and vegetation health monitoring."
+    title: "Precision Photogrammetry",
+    details: "Our photogrammetric processing achieves survey-grade accuracy with tight ground control and sophisticated algorithms, delivering reliable data for engineering applications."
   },
   {
-    title: "Comprehensive Processing",
-    details: "Using industry-leading software like Pix4D and Agisoft Metashape, we transform raw data into actionable information and deliverables in formats compatible with CAD, GIS, and BIM workflows."
+    title: "Real-Time Kinematic (RTK) Positioning",
+    details: "RTK-enabled drones maintain centimeter-level positioning accuracy during flight, ensuring precise geo-referencing without extensive ground control points."
   }
 ];
 
@@ -74,74 +74,70 @@ const capabilities = [
 const deliverables = [
   {
     title: "Orthomosaic Maps",
-    description: "High-resolution aerial imagery stitched together to form a geometrically corrected photographic map of your entire project area.",
-    format: "TIFF, JPG, PDF"
+    description: "High-resolution, geo-referenced aerial imagery mosaics covering the entire project area with consistent scale and alignment.",
+    format: "GeoTIFF, JPEG, MrSID, ECW"
   },
   {
-    title: "Digital Elevation Models (DEM)",
-    description: "Precise 3D representation of terrain surfaces, showing elevation changes across your project site.",
-    format: "TIN, DXF, LAS/LAZ"
+    title: "Digital Elevation Models",
+    description: "Detailed terrain models showing ground elevations, contours, and surface characteristics for design and analysis.",
+    format: "GeoTIFF, ASCII, DXF, LAS/LAZ"
   },
   {
     title: "3D Point Clouds",
-    description: "Comprehensive collection of data points in three dimensions, providing detailed spatial information for your project.",
-    format: "LAS/LAZ, E57, PLY"
+    description: "Dense point clouds representing terrain and features in three dimensions, suitable for detailed modeling and analysis.",
+    format: "LAS/LAZ, XYZ, E57, RCP"
+  },
+  {
+    title: "3D Mesh Models",
+    description: "Textured 3D models of terrain, structures, and sites for visualization, presentations, and BIM integration.",
+    format: "OBJ, FBX, 3DS, GLTF"
   },
   {
     title: "Contour Maps",
-    description: "Detailed topographic representation with lines connecting points of equal elevation, essential for site planning and design.",
-    format: "DWG, DXF, SHP"
+    description: "Vector contour lines at specified intervals derived from elevation data for engineering design and planning.",
+    format: "DWG, DXF, SHP, GeoJSON"
   },
   {
-    title: "Volumetric Calculations",
-    description: "Precise measurements of stockpile volumes, cut/fill requirements, and material quantities for project planning and management.",
+    title: "Volume Reports",
+    description: "Detailed calculations of material volumes for stockpiles, excavations, and earthworks with supporting documentation.",
     format: "PDF, Excel, CSV"
-  },
-  {
-    title: "3D Models",
-    description: "Textured 3D representations of terrain and structures that can be integrated with design software for visualization and planning.",
-    format: "OBJ, FBX, GLTF"
   }
 ];
 
 // FAQ content
 const faqs = [
   {
-    question: "What is the typical accuracy of your drone surveys?",
-    answer: "Our RTK drone surveys typically achieve horizontal accuracy of 2-3cm and vertical accuracy of 3-5cm when used with proper ground control points (GCPs). LiDAR surveys can achieve similar accuracy depending on flight parameters and environmental conditions."
+    question: "What advantages does drone surveying offer over traditional methods?",
+    answer: "Drone surveying offers several advantages: faster data collection covering large areas efficiently, reduced field time and associated costs, safe inspection of hazardous or difficult-to-access areas, minimal site disruption during surveys, rich visual documentation alongside technical data, and comprehensive rather than spot sampling of data points. While traditional methods remain valuable for certain applications, drones often provide a more efficient and comprehensive solution for many surveying needs."
   },
   {
-    question: "How long does a drone survey take?",
-    answer: "The time required depends on the site size, complexity, and required detail. A typical 10-hectare site might require 1-2 hours for data capture. Processing time usually ranges from 1-3 days depending on deliverable requirements and complexity."
+    question: "How accurate are your drone surveys?",
+    answer: "Our drone surveys typically achieve horizontal accuracies of 2-5cm and vertical accuracies of 3-10cm depending on flight parameters, ground control, and site conditions. For specialized applications requiring higher precision, we implement enhanced methodologies including RTK/PPK positioning and comprehensive ground control networks to achieve accuracies approaching traditional survey methods. All our deliverables include accuracy reports and quality assurance documentation."
   },
   {
-    question: "What area can be covered in a single drone survey?",
-    answer: "With our current fleet, we can efficiently survey sites up to 100 hectares in a single day. Larger projects are divided into sections and may require multiple days of fieldwork."
+    question: "What area can be covered in a typical drone survey?",
+    answer: "A typical drone survey can cover 20-100 hectares per day depending on resolution requirements, terrain complexity, and weather conditions. Our high-endurance drones can survey larger areas efficiently, while complex sites requiring detailed documentation may progress at a slower pace to ensure data quality. We optimize flight planning based on project requirements to maximize efficiency while maintaining quality standards."
   },
   {
-    question: "Do you need permission to conduct drone surveys?",
-    answer: "Yes. All our drone operations comply with CASA regulations. We obtain necessary approvals for controlled airspace, maintain visual line of sight when required, and secure property owner permissions before conducting any aerial survey."
+    question: "How do weather conditions affect drone surveying?",
+    answer: "Weather significantly impacts drone operations. Surveys require dry conditions with winds below 25km/h, no precipitation, good visibility, and temperatures within the drone's operating range (typically 0-40°C). While light-to-moderate winds can be managed with professional equipment, rain, snow, fog, or strong winds will postpone operations for safety and data quality reasons. We monitor forecasts closely and schedule operations during optimal conditions."
   },
   {
-    question: "What's the difference between photogrammetry and LiDAR drone surveys?",
-    answer: "Photogrammetry uses overlapping photos to create 3D models and is excellent for visual documentation and surface modeling. LiDAR uses laser pulses to measure distances and can penetrate vegetation to capture ground data. We recommend LiDAR for heavily vegetated areas or when highest accuracy is required."
+    question: "What regulations apply to your drone operations?",
+    answer: "All our drone operations comply with CASA (Civil Aviation Safety Authority) regulations. Our pilots hold CASA Remote Pilot Licenses (RePL), and our company maintains a Remote Operator Certificate (ReOC). We obtain all necessary approvals for controlled airspace operations, operations near airports, and other restricted areas. We carry comprehensive aviation liability insurance specific to drone operations and follow strict safety management procedures."
   },
   {
-    question: "Can drone surveys replace traditional ground surveys?",
-    answer: "Drone surveys complement rather than replace traditional methods. They excel at capturing large areas quickly and providing visual context, while traditional methods may be better for specific precision requirements or underground utilities. We often recommend a combined approach for comprehensive results."
-  },
-  {
-    question: "How do weather conditions affect drone surveys?",
-    answer: "Surveys require reasonably good weather conditions - low wind (generally under 35km/h), no rain, and good visibility. Light cloud cover is acceptable and sometimes preferable for even lighting, but we avoid flying in rain, fog, or high winds for safety and data quality reasons."
+    question: "Can drone data integrate with BIM and CAD software?",
+    answer: "Yes, our drone survey deliverables are specifically processed to integrate seamlessly with BIM and CAD platforms. Point clouds, mesh models, and orthophotos can be imported directly into software like Revit, AutoCAD Civil 3D, and Bentley applications. We provide data in industry-standard formats and can tailor outputs to specific software requirements, including coordinate system alignment and data structure organization to match your project workflows."
   }
 ];
 
-// Schema.org structured data
+// Schema markup for SEO
 const schema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Drone Surveying Services",
-  "description": "Professional drone surveying services using advanced UAV technology with LiDAR capabilities for high-precision aerial mapping, volumetric calculations, and 3D terrain models.",
+  "description": "Professional drone surveying services providing high-resolution aerial mapping, 3D modeling, and inspection capabilities for projects of all sizes. Our certified drone pilots and geospatial experts deliver accurate data efficiently and safely.",
   "provider": {
     "@type": "ProfessionalService",
     "name": "HR Surveyors",
@@ -151,40 +147,45 @@ const schema = {
     }
   },
   "serviceType": "Drone Surveying",
-  "areaServed": "Australia",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Drone Surveying Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Construction Monitoring Drone Surveys"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Mining & Quarry Drone Surveys"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Land Development Drone Surveys"
-        }
-      }
-    ]
+  "areaServed": {
+    "@type": "Country",
+    "name": "Australia"
   }
 };
+
+// Locations
+const locations = [
+  {
+    name: "Perth",
+    region: "Western Australia",
+    slug: "perth"
+  },
+  {
+    name: "Melbourne",
+    region: "Victoria",
+    slug: "melbourne"
+  },
+  {
+    name: "Brisbane",
+    region: "Queensland",
+    slug: "brisbane"
+  },
+  {
+    name: "Adelaide",
+    region: "South Australia",
+    slug: "adelaide"
+  },
+  {
+    name: "Geelong",
+    region: "Victoria",
+    slug: "geelong"
+  }
+];
 ---
 
 <Layout
   title="Drone Surveying Services | HR Surveyors"
-  description="Advanced drone surveying services with LiDAR capabilities delivering high-precision aerial mapping, volumetric calculations, and 3D terrain models for construction, mining, and development projects."
+  description="Professional drone surveying services providing high-resolution aerial mapping, 3D modeling, and inspection capabilities across Australia. Our certified drone pilots and geospatial experts deliver accurate data efficiently and safely."
   schema={schema}
 >
   <main class="bg-white text-hr-dark">
@@ -196,12 +197,12 @@ const schema = {
         
         <div class="mb-16">
           <p class="text-xl mb-8 leading-relaxed text-center max-w-3xl mx-auto">
-            Our professional drone surveying services combine advanced UAV technology with expert data processing to deliver high-precision aerial mapping, volumetric calculations, and detailed 3D terrain models for engineering, construction, and mining projects across Australia.
+            Our professional drone surveying services provide high-resolution aerial mapping, 3D modeling, and inspection capabilities across Australia. Our certified drone pilots and geospatial experts deliver accurate data efficiently and safely for projects of all sizes.
           </p>
           
           <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent mb-12">
             <p class="text-lg font-medium">
-              Experience fast, accurate, and cost-effective aerial surveying with our CASA-certified drone operators and survey-grade equipment.
+              Experience rapid data collection and comprehensive site documentation with our cutting-edge drone technology and expert analysis.
             </p>
           </div>
         </div>
@@ -232,7 +233,7 @@ const schema = {
 
         <!-- Technical Capabilities Section -->
         <div class="mb-16 bg-gray-50 p-8 rounded-lg">
-          <h2 class="text-3xl font-bold mb-8 text-center">Our Drone Technology</h2>
+          <h2 class="text-3xl font-bold mb-8 text-center">Our Drone Surveying Capabilities</h2>
           <div class="space-y-6">
             {capabilities.map((capability) => (
               <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
@@ -249,28 +250,28 @@ const schema = {
           <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
               <div class="text-hr-accent font-bold text-xl mb-2">Step 1</div>
-              <p class="font-semibold mb-1">Initial Consultation</p>
-              <p class="text-gray-700 text-sm">Understanding your project requirements and objectives</p>
+              <p class="font-semibold mb-1">Project Planning</p>
+              <p class="text-gray-700 text-sm">Site assessment, flight planning, and regulatory compliance</p>
             </div>
             <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
               <div class="text-hr-accent font-bold text-xl mb-2">Step 2</div>
-              <p class="font-semibold mb-1">Flight Planning</p>
-              <p class="text-gray-700 text-sm">Designing optimal flight paths and securing necessary permits</p>
+              <p class="font-semibold mb-1">Ground Control</p>
+              <p class="text-gray-700 text-sm">Establishing and surveying ground control points for accuracy</p>
             </div>
             <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
               <div class="text-hr-accent font-bold text-xl mb-2">Step 3</div>
-              <p class="font-semibold mb-1">Data Collection</p>
-              <p class="text-gray-700 text-sm">Capturing high-resolution imagery or LiDAR data</p>
+              <p class="font-semibold mb-1">Aerial Data Capture</p>
+              <p class="text-gray-700 text-sm">Systematic drone flights capturing overlapping imagery</p>
             </div>
             <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
               <div class="text-hr-accent font-bold text-xl mb-2">Step 4</div>
               <p class="font-semibold mb-1">Data Processing</p>
-              <p class="text-gray-700 text-sm">Converting raw data into usable formats with rigorous QA/QC</p>
+              <p class="text-gray-700 text-sm">Photogrammetric processing and quality assurance</p>
             </div>
             <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
               <div class="text-hr-accent font-bold text-xl mb-2">Step 5</div>
-              <p class="font-semibold mb-1">Delivery</p>
-              <p class="text-gray-700 text-sm">Providing finalized deliverables in your preferred format</p>
+              <p class="font-semibold mb-1">Deliverable Creation</p>
+              <p class="text-gray-700 text-sm">Generation of maps, models, and technical reports</p>
             </div>
           </div>
         </div>
@@ -295,26 +296,12 @@ const schema = {
           <p class="text-lg mb-8 text-center">We provide professional drone surveying services across Australia, with specialized local expertise in the following areas:</p>
           
           <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            <a href="/services/drone-surveying/perth" class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
-              <h3 class="text-xl font-bold">Perth</h3>
-              <p class="text-sm">Western Australia</p>
-            </a>
-            <a href="/services/drone-surveying/melbourne" class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
-              <h3 class="text-xl font-bold">Melbourne</h3>
-              <p class="text-sm">Victoria</p>
-            </a>
-            <a href="/services/drone-surveying/brisbane" class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
-              <h3 class="text-xl font-bold">Brisbane</h3>
-              <p class="text-sm">Queensland</p>
-            </a>
-            <a href="/services/drone-surveying/adelaide" class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
-              <h3 class="text-xl font-bold">Adelaide</h3>
-              <p class="text-sm">South Australia</p>
-            </a>
-            <a href="/services/drone-surveying/geelong" class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
-              <h3 class="text-xl font-bold">Geelong</h3>
-              <p class="text-sm">Victoria</p>
-            </a>
+            {locations.map((location) => (
+              <a href={`/services/drone-surveying/${location.slug}`} class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
+                <h3 class="text-xl font-bold">{location.name}</h3>
+                <p class="text-sm">{location.region}</p>
+              </a>
+            ))}
           </div>
         </div>
 
@@ -333,9 +320,9 @@ const schema = {
 
         <!-- CTA Section -->
         <div class="text-center bg-gray-50 p-8 rounded-lg">
-          <h2 class="text-3xl font-bold mb-6">Ready to Start Your Drone Survey Project?</h2>
+          <h2 class="text-3xl font-bold mb-6">Ready for Your Drone Survey?</h2>
           <p class="text-lg mb-8 max-w-2xl mx-auto">
-            Contact our team for a consultation and discover how our drone surveying expertise can help with your next project.
+            Contact our team for a consultation and discover how our drone surveying expertise can provide efficient, comprehensive data for your project.
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4">
             <a 

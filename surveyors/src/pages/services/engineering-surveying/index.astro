@@ -1,0 +1,345 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { capitalize } from '../../../utils/seo';
+
+// Service images mapping
+const images = {
+  main: "/images/hr-surveyors-engineering-surveying.jpg",
+  gallery: [
+    "/images/engineering-surveying-1.jpg",
+    "/images/engineering-surveying-2.jpg",
+    "/images/engineering-surveying-3.jpg"
+  ]
+};
+
+// Applications and details
+const applications = [
+  {
+    title: "Infrastructure Projects",
+    description: "Precise surveying for roads, bridges, tunnels, and other major infrastructure projects. Our engineering surveyors ensure design alignment and construction precision throughout the project lifecycle.",
+    icon: "infrastructure"
+  },
+  {
+    title: "Building Construction",
+    description: "Comprehensive surveying services for commercial and industrial buildings, from initial site assessment through construction monitoring and final as-built documentation.",
+    icon: "building"
+  },
+  {
+    title: "Pipeline & Utility Design",
+    description: "Specialized surveying for pipeline routes, utility corridors, and service infrastructure, including existing conditions mapping and design support.",
+    icon: "level"
+  },
+  {
+    title: "Mining & Resources",
+    description: "Engineering surveying for mining operations, including site development, volumetric calculations, and environmental monitoring to optimize resource extraction.",
+    icon: "laser"
+  },
+  {
+    title: "Renewable Energy Projects",
+    description: "Detailed surveying for wind, solar, and hydroelectric developments, providing critical elevation data, siting optimization, and construction support.",
+    icon: "civil"
+  },
+  {
+    title: "Water Management Systems",
+    description: "Precision surveying for water infrastructure including dams, channels, drainage systems, and flood mitigation works to ensure proper hydraulic function.",
+    icon: "gps"
+  }
+];
+
+// Technical specifications and capabilities
+const capabilities = [
+  {
+    title: "3D Modeling & Digital Twins",
+    details: "We create detailed 3D models and digital twins of infrastructure projects using high-resolution point clouds and photogrammetry, providing valuable visualization tools for planning, construction, and asset management."
+  },
+  {
+    title: "Structural Monitoring",
+    details: "Our engineering surveyors implement precise monitoring systems to track structural movement and deformation over time, providing critical data for safety assessment and maintenance planning."
+  },
+  {
+    title: "Earthwork & Volume Calculations",
+    details: "We deliver accurate material volume calculations for excavation, cut and fill operations, and stockpile management, helping optimize construction processes and control costs."
+  },
+  {
+    title: "Construction Layout",
+    details: "Our teams provide precise setting-out services for construction projects, ensuring that structures are built exactly according to design specifications with millimeter-level accuracy."
+  },
+  {
+    title: "Vertical Control Networks",
+    details: "We establish reliable vertical control networks using differential leveling and GNSS techniques to maintain consistent elevation references across large project areas and extended timelines."
+  }
+];
+
+// Deliverables information
+const deliverables = [
+  {
+    title: "Engineering Survey Plans",
+    description: "Detailed plans showing topography, structures, utilities, and other features crucial for engineering design and construction planning.",
+    format: "CAD, PDF, GIS"
+  },
+  {
+    title: "3D Point Clouds & Models",
+    description: "High-resolution 3D representations of existing conditions, structures, and terrain for engineering analysis and visualization.",
+    format: "LAS/LAZ, RCP, OBJ, FBX"
+  },
+  {
+    title: "Setting-Out Reports",
+    description: "Comprehensive documentation of construction layout activities including methodology, coordinates, and quality assurance metrics.",
+    format: "PDF, Excel"
+  },
+  {
+    title: "As-Built Documentation",
+    description: "Detailed surveys of completed construction showing actual dimensions, locations, and elevations for comparison to design plans.",
+    format: "CAD, PDF, BIM"
+  },
+  {
+    title: "Monitoring Reports",
+    description: "Regular reports documenting structural movement, settlement, and deformation with statistical analysis and visualization of trends.",
+    format: "PDF, Excel, Web Dashboard"
+  },
+  {
+    title: "Digital Terrain Models",
+    description: "Detailed 3D models of terrain and surfaces for design optimization, earthwork calculations, and hydraulic analysis.",
+    format: "DTM, TIN, Contour Plans"
+  }
+];
+
+// FAQ content
+const faqs = [
+  {
+    question: "What distinguishes engineering surveying from other surveying disciplines?",
+    answer: "Engineering surveying specifically focuses on providing precise spatial information for the design, construction, and monitoring of infrastructure and built assets. It requires higher precision than many other surveying disciplines and integrates closely with engineering design processes. Engineering surveyors typically work with tighter tolerances, more specialized equipment, and have expertise in construction methodologies and engineering principles."
+  },
+  {
+    question: "How accurate are your engineering surveys?",
+    answer: "Our engineering surveys achieve positional accuracies ranging from ±2mm for high-precision structural monitoring to ±10mm for standard construction layout work. Vertical accuracies are typically ±1-5mm depending on project requirements. We use calibrated, high-precision instruments including robotic total stations, digital levels, and RTK GNSS systems, with rigorous quality control procedures to maintain these accuracies across projects of all sizes."
+  },
+  {
+    question: "What types of projects require engineering surveying?",
+    answer: "Engineering surveying is essential for infrastructure projects (roads, bridges, railways, tunnels), commercial and industrial building construction, mining operations, pipeline and utility design, dam and water management systems, renewable energy facilities, and any project requiring precise spatial positioning during design and construction. It's particularly crucial for projects with strict tolerance requirements, complex geometries, or where integration with existing infrastructure is needed."
+  },
+  {
+    question: "How does engineering surveying support BIM and digital delivery?",
+    answer: "Our engineering surveying services integrate seamlessly with Building Information Modeling (BIM) by providing accurate spatial data that forms the foundation of the digital model. We deliver point clouds, 3D models, and survey data in formats compatible with major BIM platforms, allowing for clash detection, 4D scheduling, and quantity takeoffs. Our surveyors also provide field verification during construction to ensure the physical project matches the digital twin."
+  },
+  {
+    question: "What equipment do you use for engineering surveying?",
+    answer: "We employ state-of-the-art equipment including Leica and Trimble robotic total stations with sub-second accuracy, digital and automatic levels, RTK GNSS receivers, 3D laser scanners capable of collecting millions of points per second, UAVs for aerial mapping, ground penetrating radar for subsurface investigation, and specialized monitoring equipment. All instruments are regularly calibrated and certified to maintain the highest standards of accuracy."
+  },
+  {
+    question: "How do you approach quality assurance in engineering surveying?",
+    answer: "Our quality assurance process includes instrument calibration verification, redundant measurements, closed traverses, independent checks of critical positions, statistical analysis of results, and comprehensive documentation of methodologies. We maintain detailed records of control networks and implement rigorous procedures to ensure consistency across multiple survey sessions and different team members. Our work is supervised by licensed surveyors with specific expertise in engineering applications."
+  }
+];
+
+// Schema markup for SEO
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Engineering Surveying Services",
+  "description": "Professional engineering surveying services providing precise spatial data for infrastructure, construction, and monitoring projects. Our engineering surveyors combine traditional surveying methods with advanced technology to support the entire project lifecycle.",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "HR Surveyors",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AU"
+    }
+  },
+  "serviceType": "Engineering Surveying",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Australia"
+  }
+};
+
+// Locations
+const locations = [
+  {
+    name: "Perth",
+    region: "Western Australia",
+    slug: "perth"
+  },
+  {
+    name: "Melbourne",
+    region: "Victoria",
+    slug: "melbourne"
+  },
+  {
+    name: "Brisbane",
+    region: "Queensland",
+    slug: "brisbane"
+  },
+  {
+    name: "Adelaide",
+    region: "South Australia",
+    slug: "adelaide"
+  },
+  {
+    name: "Geelong",
+    region: "Victoria",
+    slug: "geelong"
+  }
+];
+---
+
+<Layout
+  title="Engineering Surveying Services | HR Surveyors"
+  description="Professional engineering surveying services providing precise spatial data for infrastructure, construction, and monitoring projects across Australia. Our engineering surveyors combine traditional methods with advanced technology to support the entire project lifecycle."
+  schema={schema}
+>
+  <main class="bg-white text-hr-dark">
+    <section class="py-16 md:py-24 lg:py-32">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-hr-dark text-center">
+          Engineering Surveying Services
+        </h1>
+        
+        <div class="mb-16">
+          <p class="text-xl mb-8 leading-relaxed text-center max-w-3xl mx-auto">
+            Our professional engineering surveying services provide precise spatial data for infrastructure, construction, and monitoring projects across Australia. Our engineering surveyors combine traditional methods with advanced technology to support the entire project lifecycle.
+          </p>
+          
+          <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent mb-12">
+            <p class="text-lg font-medium">
+              Experience millimeter precision and reliable results with our expert engineering surveyors and state-of-the-art technology.
+            </p>
+          </div>
+        </div>
+
+        <!-- Main Image Section -->
+        <div class="mb-16">
+          <img 
+            src={images.main} 
+            alt="HR Surveyors engineering surveying services" 
+            class="rounded-lg shadow-lg w-full h-auto object-cover"
+            width="1200"
+            height="600"
+          />
+        </div>
+
+        <!-- Applications Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Engineering Surveying Applications</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {applications.map((app) => (
+              <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-bold mb-3">{app.title}</h3>
+                <p class="text-gray-700">{app.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Technical Capabilities Section -->
+        <div class="mb-16 bg-gray-50 p-8 rounded-lg">
+          <h2 class="text-3xl font-bold mb-8 text-center">Our Engineering Surveying Capabilities</h2>
+          <div class="space-y-6">
+            {capabilities.map((capability) => (
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 class="text-xl font-bold mb-2">{capability.title}</h3>
+                <p class="text-gray-700">{capability.details}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Process Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Our Engineering Survey Process</h2>
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 1</div>
+              <p class="font-semibold mb-1">Project Planning</p>
+              <p class="text-gray-700 text-sm">Detailed assessment of requirements and methodology development</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 2</div>
+              <p class="font-semibold mb-1">Control Network</p>
+              <p class="text-gray-700 text-sm">Establishment of precise control points referenced to geodetic datums</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 3</div>
+              <p class="font-semibold mb-1">Data Collection</p>
+              <p class="text-gray-700 text-sm">Comprehensive field measurements using appropriate technologies</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 4</div>
+              <p class="font-semibold mb-1">Processing & Analysis</p>
+              <p class="text-gray-700 text-sm">Rigorous data processing with quality checks and validation</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border-t-4 border-hr-accent">
+              <div class="text-hr-accent font-bold text-xl mb-2">Step 5</div>
+              <p class="font-semibold mb-1">Deliverable Creation</p>
+              <p class="text-gray-700 text-sm">Generation of final products tailored to project requirements</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deliverables Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Engineering Survey Deliverables</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {deliverables.map((deliverable) => (
+              <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                <h3 class="text-xl font-bold mb-3">{deliverable.title}</h3>
+                <p class="text-gray-700 mb-3">{deliverable.description}</p>
+                <p class="text-sm text-gray-500">Format: {deliverable.format}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Location Links Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Engineering Surveying Locations</h2>
+          <p class="text-lg mb-8 text-center">We provide professional engineering surveying services across Australia, with specialized local expertise in the following areas:</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {locations.map((location) => (
+              <a href={`/services/engineering-surveying/${location.slug}`} class="bg-gray-50 p-5 rounded-lg text-center hover:bg-hr-accent hover:text-white transition-colors">
+                <h3 class="text-xl font-bold">{location.name}</h3>
+                <p class="text-sm">{location.region}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+          <div class="space-y-6">
+            {faqs.map((faq) => (
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 class="text-xl font-bold mb-3">{faq.question}</h3>
+                <p class="text-gray-700">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center bg-gray-50 p-8 rounded-lg">
+          <h2 class="text-3xl font-bold mb-6">Ready for Your Engineering Survey Project?</h2>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">
+            Contact our team for a consultation and discover how our engineering surveying expertise can provide the precision and reliability your project requires.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a 
+              href="/contact" 
+              class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors"
+            >
+              Request a Quote
+            </a>
+            <a 
+              href="/services" 
+              class="inline-block bg-gray-200 text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-gray-300 transition-colors"
+            >
+              Explore All Services
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 
