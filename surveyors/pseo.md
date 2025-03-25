@@ -2,11 +2,11 @@
 
 ## Overview
 
-This document outlines the SEO strategy implemented for HR Surveyors, focusing on the dynamic page generation system that creates dedicated keyword-targeted pages and their technical implementation.
+This document outlines the SEO strategy implemented for HR Surveyors, focusing on the dynamic page generation system that creates dedicated service and location pages with keyword optimization.
 
 ## Dynamic Page Structure
 
-The site now generates three types of SEO-optimized dynamic pages:
+The site now generates two types of SEO-optimized dynamic pages:
 
 1. **Location Pages** (`/[location].astro`)
    - Base URL: `/{location}` (e.g., `/melbourne`, `/perth`)
@@ -16,13 +16,8 @@ The site now generates three types of SEO-optimized dynamic pages:
 2. **Service+Location Pages** (`/services/[service]/[location].astro`) 
    - Base URL: `/services/{service}/{location}` (e.g., `/services/drone-surveying/melbourne`)
    - Purpose: Target specific service type searches within locations
-   - Content: Detailed service information, FAQs, benefits specific to that location
-
-3. **Keyword Pages** - implemented in two routes for maximum SEO benefit:
-   - Primary route: `/services/[keyword].astro` (e.g., `/services/land-surveyors-in-south-east-melbourne/`)
-   - Secondary route: `/keyword/[slug].astro` (e.g., `/keyword/land-surveyors-in-south-east-melbourne/`)
-   - Purpose: Target specific long-tail keyword phrases with dedicated content
-   - Content: Keyword-optimized content with service and location context
+   - Content: Detailed service information, benefits, applications specific to that location
+   - Keyword Optimization: Each page targets specific long-tail keywords for the service+location combination
 
 ## Technical Implementation
 
@@ -32,37 +27,38 @@ The SEO implementation centers around the `seo.ts` file, which contains:
 
 - **`locationContent`**: Object with location-specific data
 - **`locationKeywords`**: Array of targeted keywords for each location
-- **`getKeywordPaths()`**: Function to generate paths for all keyword pages
-- **`getServiceLocationPaths()`**: Function to generate paths for service+location pages
+- **`getKeywordPaths()`**: Function to generate optimized paths for service+location pages
 - **`generateLocationSchema()`**: Function to create schema.org markup for locations
 
 ### Key Features
 
 1. **Prerendering**: All dynamic pages use `export const prerender = true` to generate static HTML at build time for optimal performance.
 
-2. **Dual Routes for Keywords**: Keyword content is accessible via two URL patterns:
-   - `/services/{keyword}/` - Primary route (more SEO-friendly URL structure)
-   - `/keyword/{slug}/` - Secondary route (provides alternative indexing opportunity)
+2. **Unified Route Structure**: All service and keyword content is now served through a single, clean URL pattern:
+   - `/services/{service}/{location}/` (e.g., `/services/drone-surveying/melbourne/`)
+   - Eliminates duplicate content issues
+   - Provides clear information hierarchy
+   - Improves crawlability and indexing
 
-3. **Dynamic Content Generation**: Content automatically adapts based on keyword, service type, and location:
+3. **Dynamic Content Generation**: Content automatically adapts based on service type, location, and targeted keywords:
    - Title and meta description
    - Schema.org structured data
    - Page content and sections
    - Related content links
 
 4. **Internal Linking**: Comprehensive cross-linking between related pages to distribute link equity:
-   - Location pages link to service pages and keyword pages
-   - Service pages link to related keyword pages
-   - Keyword pages link to relevant location and service pages
+   - Location pages link to service pages
+   - Service pages link to related location pages
+   - Clear hierarchical structure
 
 5. **Schema.org Implementation**: Rich structured data for enhanced SERP features:
    - Service schemas with location data
-   - FAQ schemas for common questions
    - Organization and LocalBusiness schemas
+   - Comprehensive provider and area served information
 
 ## Common Mistakes to Avoid
 
-1. **Missing Trailing Slashes**: The site is configured with `trailingSlash: 'always'` in Astro config. All internal links must include trailing slashes (e.g., `/services/keyword/` not `/services/keyword`).
+1. **Missing Trailing Slashes**: The site is configured with `trailingSlash: 'always'` in Astro config. All internal links must include trailing slashes.
 
 2. **Bypassing the Type System**: Always define proper interfaces and types, especially for the `locationContent` and `locationKeywords` data structures.
 
@@ -74,14 +70,12 @@ The SEO implementation centers around the `seo.ts` file, which contains:
 
 5. **Forgetting Null Checks**: Always include null checks when accessing potentially undefined properties, especially with dynamic content.
 
-6. **Duplicate Location Information**: Avoid adding location information to headings when the keyword already contains location references (e.g., use "land surveyors in south east melbourne" instead of "land surveyors in south east melbourne in Melbourne").
-
 ## Best Practices for Maintaining and Extending
 
 1. **Adding New Keywords**:
    - Add new keywords to the appropriate location in the `locationKeywords` object in `seo.ts`
    - Follow existing format and naming conventions
-   - Build the site to verify the new pages are generated correctly
+   - Ensure keywords map to appropriate service types
 
 2. **Adding New Locations**:
    - Add the new location to the `locationContent` object in `seo.ts`
@@ -94,13 +88,12 @@ The SEO implementation centers around the `seo.ts` file, which contains:
    - Use heading tags (H1, H2, H3) appropriately for content hierarchy
    - Include relevant keywords naturally in content
    - Balance keyword usage with readability and user experience
-   - Keep headings clean and avoid redundancy (particularly when keywords already contain location references)
-   - Ensure image alt text includes both keyword and location (e.g., "HR Surveyors drone surveying - Melbourne")
 
 4. **Image Optimization**:
    - Always include descriptive, keyword-rich alt text
    - Use responsive images with appropriate width/height attributes
    - Follow the established pattern for image paths
+   - Consider implementing the `compile` image service for Cloudflare deployment
 
 5. **Monitoring and Improvement**:
    - Regularly check Google Search Console for performance metrics
@@ -111,11 +104,11 @@ The SEO implementation centers around the `seo.ts` file, which contains:
 
 The current implementation has some areas that could be improved in future iterations:
 
-1. **Content Duplication Management**: While the dual routes provide SEO benefits, they require careful management to avoid potential duplicate content issues. Consider implementing canonical tags on the `/keyword/[slug]` routes.
+1. **Centralized Content Repository**: Consider moving service-specific content into a centralized content collection for easier management.
 
-2. **Centralized Content Repository**: Consider moving service-specific content into a centralized content collection for easier management.
+2. **Dynamic Image Handling**: Images are currently hardcoded paths. Consider implementing a more flexible system for associating images with services.
 
-3. **Dynamic Image Handling**: Images are currently hardcoded paths. Consider implementing a more flexible system for associating images with services and keywords.
+3. **Image Service**: Consider implementing the `compile` image service for Cloudflare deployment to handle image optimization at build time.
 
 ## Error Prevention
 
@@ -136,11 +129,6 @@ The dynamic page system includes several safeguards to prevent 500 errors and en
    - Safe string replacements with default values
    - Protected string template literals
 
-4. **Safe Data Access**: Functions that access data objects include error handling:
-   - Checking for existence before accessing nested properties
-   - Providing sensible defaults when data is missing
-   - Type checking before operations
-
 These safeguards ensure the site remains functional even when:
 - New locations or services are added without complete content
 - Keywords are mapped to non-existent service types
@@ -152,18 +140,18 @@ These safeguards ensure the site remains functional even when:
 The build process automatically:
 
 1. Generates all location pages
-2. Creates all service+location combinations
-3. Generates all keyword pages at both URL patterns
-4. Sets up all internal links with proper trailing slashes
-5. Creates appropriate schema.org structured data
+2. Creates all service+location combinations with keyword optimization
+3. Sets up all internal links with proper trailing slashes
+4. Creates appropriate schema.org structured data
 
-Running `npm run build` will regenerate all pages with the latest content and configurations. 
+Running `npm run build` will regenerate all pages with the latest content and configurations.
 
 ## Recent Updates
 
-### May 2023 - Heading and Image Alt Text Improvements
-- Fixed duplicate location information in headings for keyword pages
-- Updated the `/services/[keyword].astro` template to display cleaner headings
-- Enhanced image alt text to include both keyword and location information
-- Improved heading hierarchy and removed redundant location mentions
-- Applied consistent heading format across all dynamically generated pages 
+### March 2025 - URL Structure and Content Optimization
+- Consolidated all service and keyword pages into a single, clean URL structure
+- Removed duplicate routes to improve SEO and reduce maintenance
+- Enhanced schema.org implementation with more detailed service information
+- Improved content generation with better location-specific context
+- Added support for service-specific benefits and applications sections
+- Updated image handling recommendations for Cloudflare deployment 
