@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hr-surveyors-cache-v3';
+const CACHE_NAME = 'hr-surveyors-cache-v4';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -8,6 +8,7 @@ const STATIC_ASSETS = [
 
 // Install event: Cache static assets
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
   );
@@ -24,32 +25,49 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
-// Fetch event: Stale-while-revalidate strategy
+// Fetch event: Use different strategies based on URL
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
-        // Check if we received a valid response
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
+  const url = new URL(event.request.url);
+  
+  // Network-first for service pages and other dynamic content
+  if (url.pathname.startsWith('/services/') || url.pathname.includes('/api/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, response.clone());
+            return response;
           });
-        }
-        return networkResponse;
-      });
-
-      // Return the cached response if we have it, otherwise wait for the network response
-      return cachedResponse || fetchPromise;
-    })
-  );
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+  } 
+  // Stale-while-revalidate for other resources
+  else {
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        const fetchPromise = fetch(event.request).then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return networkResponse;
+        });
+        return cachedResponse || fetchPromise;
+      })
+    );
+  }
 });
 
-// Optional: Add a message event listener for cache updates
+// Message event listener for cache updates
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();

@@ -113,17 +113,23 @@ const fullImageUrl = `${siteUrl}${socialImage}`.replace(/([^:]\/)\/+/g, '$1');
           navigator.serviceWorker.register('/service-worker.js').then((registration) => {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
             
-            // Check for service worker updates
+            // Immediately check for updates
+            registration.update();
+            
+            // If there's already a waiting worker, activate it
+            if (registration.waiting) {
+              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+            }
+            
+            // Handle future updates
             registration.addEventListener('updatefound', () => {
               const newWorker = registration.installing;
               if (newWorker) {
                 newWorker.addEventListener('statechange', () => {
                   if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    // New service worker available, notify user to refresh
-                    if (confirm('New version available! Refresh to update?')) {
-                      newWorker.postMessage({ type: 'SKIP_WAITING' });
-                      window.location.reload();
-                    }
+                    // New service worker available - activate it immediately
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                    window.location.reload();
                   }
                 });
               }
@@ -131,6 +137,11 @@ const fullImageUrl = `${siteUrl}${socialImage}`.replace(/([^:]\/)\/+/g, '$1');
           }).catch((err) => {
             console.log('ServiceWorker registration failed: ', err);
           });
+        });
+        
+        // Handle updates from other tabs
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          window.location.reload();
         });
       }
     </script>
