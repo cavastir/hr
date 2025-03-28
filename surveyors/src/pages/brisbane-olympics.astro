@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all articles related to Brisbane Olympics
+const allArticles = await getCollection('articles');
+const olympicsArticles = allArticles.filter(article => 
+  article.data.category === 'Brisbane Olympics'
+);
+
+// Sort articles by publish date
+const sortedArticles = olympicsArticles.sort((a, b) => 
+  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
+// Structured data for Brisbane Olympics hub
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brisbane Olympics 2032 Resources | HR Surveyors",
+  "description": "Surveying and engineering resources for property owners and developers affected by Brisbane 2032 Olympics construction",
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hrsurveyors.com.au/images/logo.png"
+    }
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": sortedArticles.map((article, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://hrsurveyors.com.au/articles/${article.slug}/`,
+      "name": article.data.title
+    }))
+  }
+};
+---
+
+<Layout 
+  title="Brisbane Olympics 2032 Resources | Property Protection & Surveying Services"
+  description="Essential resources for property owners and construction projects near Olympic development zones in Brisbane. Expert guidance on infrastructure, dilapidation reports, and surveying services."
+  location="Brisbane, QLD"
+  image="/images/brisbane-olympics.webp"
+  type="website"
+>
+  <script is:inline type="application/ld+json">
+    {JSON.stringify(structuredData)}
+  </script>
+
+  <main class="bg-white text-hr-dark">
+    <nav aria-label="Breadcrumb" class="container mx-auto px-4 py-2">
+      <ol class="flex text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item" class="text-hr-dark hover:text-hr-accent">
+            <span itemprop="name">Home</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="mx-2">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name" class="text-hr-accent">Brisbane Olympics 2032</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+
+    <section class="relative text-white">
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/images/brisbane-olympics.webp" 
+          alt="Brisbane Olympics 2032"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-hr-dark/70 via-hr-dark/40 to-transparent"></div>
+      </div>
+      <div class="container mx-auto px-4 max-w-6xl relative z-10 py-28">
+        <div class="max-w-3xl backdrop-blur-sm bg-hr-dark/5 p-6 rounded-lg">
+          <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg">Brisbane Olympics 2032 Resources</h1>
+          <p class="text-xl mb-8 leading-relaxed text-white drop-shadow font-medium">
+            As Brisbane prepares for the 2032 Olympics, both property owners and construction projects face unique challenges. 
+            Explore our specialized resources to protect your assets and deliver successful Olympic infrastructure.
+          </p>
+          <a href="#contact" class="bg-yellow-400 text-hr-dark hover:bg-white px-8 py-3 rounded-md inline-block font-bold transition-colors shadow-lg">
+            Olympic Project Services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <header class="mb-12">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Olympic Preparation Resources</h2>
+          <p class="text-lg mb-6 leading-relaxed">
+            Expert guidance to help Brisbane property owners and construction projects navigate the challenges and opportunities of Olympic development.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedArticles.map((article) => (
+            <article class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <a href={`/articles/${article.slug}/`} class="block h-full">
+                {article.data.image && (
+                  <img
+                    src={article.data.image}
+                    alt=""
+                    class="w-full h-48 object-cover"
+                    loading="lazy"
+                  />
+                )}
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2 text-hr-dark">{article.data.title}</h3>
+                  <p class="text-gray-600 text-sm mb-4">{article.data.description}</p>
+                  <div class="flex items-center text-sm text-gray-500">
+                    <time datetime={article.data.publishDate}>
+                      {new Date(article.data.publishDate).toLocaleDateString()}
+                    </time>
+                    {article.data.location && (
+                      <>
+                        <span class="mx-2">•</span>
+                        <span>{article.data.location}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50" id="contact">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="bg-white p-8 rounded-xl shadow-xl max-w-2xl mx-auto">
+          <h2 class="text-3xl font-bold mb-6 text-center">Get Olympic-Ready Assessment</h2>
+          <p class="mb-8 text-center">
+            Contact our Brisbane team for specialized property dilapidation reports and construction surveying services for Olympic-related projects.
+          </p>
+          <div class="text-center">
+            <a 
+              href="mailto:office@hrsurveyors.com.au" 
+              class="bg-hr-accent text-white hover:bg-hr-dark px-8 py-3 rounded-md inline-block font-bold transition-colors mx-auto"
+            >
+              Email Us Today
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 
