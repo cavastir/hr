@@ -1,44 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { fade } from 'astro:transitions';
-
-const officeLocations = [
-  {
-    title: "VIC Office HQ",
-    address: "8/20 Duerdin Street",
-    city: "Clayton",
-    state: "VIC",
-    postcode: "3168"
-  },
-  {
-    title: "Geelong Office",
-    address: "265 Pakington Street",
-    city: "Newtown",
-    state: "VIC",
-    postcode: "3220"
-  },
-  {
-    title: "WA Office",
-    address: "1/435 Vincent Street West",
-    city: "West Leederville",
-    state: "WA",
-    postcode: "6007"
-  },
-  {
-    title: "QLD/Northern NSW Office",
-    address: "36-42 Murwillumbah Street",
-    city: "Murwillumbah",
-    state: "NSW",
-    postcode: "2484"
-  },
-  {
-    title: "SA Office",
-    address: "28 Peachey Road",
-    city: "Edinburgh North",
-    state: "SA",
-    postcode: "5113"
-  }
-];
+import { officeLocations } from '../data/officeData.js';
+import Icon from '../components/Icon.astro';
 ---
 
 <Layout 
@@ -52,15 +16,23 @@ const officeLocations = [
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           {officeLocations.map((office) => (
-            <div class="bg-gray-100 rounded-lg p-8 shadow-lg">
-              <h3 class="text-2xl font-semibold mb-4 text-hr-dark">{office.title}</h3>
+            <div class="relative bg-gray-100 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              <a 
+                href={`/locations/${office.slug}/`} 
+                class="absolute top-3 right-3 p-1.5 text-hr-accent rounded-full hover:text-hr-dark focus:outline-none focus:ring-2 focus:ring-hr-accent focus:ring-opacity-50 transition-colors"
+                aria-label={`View details for ${office.title}`}
+                title={`View details for ${office.title}`}
+              >
+                <Icon name="arrow-up-right" class="w-5 h-5" />
+              </a>
+              <h3 class="text-2xl font-semibold mb-4 text-hr-dark pt-8">{office.title}</h3>
               <p class="text-lg mb-2">{office.address}</p>
               <p class="text-lg mb-4">{office.city}, {office.state} {office.postcode}</p>
               <a 
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.address}, ${office.city}, ${office.state} ${office.postcode}`)}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="inline-block bg-hr-accent text-hr-dark px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group"
+                class="inline-block bg-hr-accent text-hr-dark px-4 py-2 rounded text-base font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group mt-4"
               >
                 <span class="relative z-10 group-hover:text-white transition-colors">Get Directions</span>
                 <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>

@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { fade } from 'astro:transitions';
+import { officeLocations, mainServices, secondaryServices } from '../../data/officeData.js';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  console.log("getStaticPaths: officeLocations data:", JSON.stringify(officeLocations.find(o => o.slug === 'clayton'))); // Log clayton office data
+  console.log("getStaticPaths: mainServices data available:", !!mainServices);
+  console.log("getStaticPaths: secondaryServices data available:", !!secondaryServices);
+
+  const paths = officeLocations.map(office => ({
+    params: { slug: office.slug },
+    props: { currentOffice: office, mainServices, secondaryServices }
+  }));
+  
+  console.log("getStaticPaths: generated paths object for clayton:", JSON.stringify(paths.find(p => p.params.slug === 'clayton')));
+  return paths; // Return all paths for now, but the log will focus on clayton
+}
+
+console.log("Astro.props on [slug].astro page render:", Astro.props); // Renamed log for clarity
+
+const { currentOffice: office = { title: "Default Title", address: "N/A", city: "N/A", state: "N/A", postcode: "N/A", slug: "default" }, mainServices: allMainServices = [], secondaryServices: allSecondaryServices = [] } = Astro.props;
+const email = "office@hrsurveyors.com.au";
+
+const pageTitle = `Engineering Surveyors in ${office.city} | ${office.title} - HR Surveyors`;
+const metaDescription = `Expert engineering surveying services by HR Surveyors in ${office.city}, ${office.state}. Visit our ${office.title} at ${office.address} for construction, civil, and infrastructure projects.`;
+---
+
+<Layout 
+  title={pageTitle}
+  description={metaDescription}
+  transition:animate={fade({ duration: '0.5s' })}
+>
+  <main class="bg-white text-hr-dark">
+    <section class="py-20 md:py-28">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-12 text-hr-dark text-center" transition:name={`office-main-title-${office.slug}`}>Engineering Surveyors in {office.city}</h1>
+        <div class="bg-gray-50 p-8 md:p-12 rounded-lg shadow-xl mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-5 text-hr-dark" transition:name={`office-title-${office.slug}`}>{office.title}</h2>
+          <p class="text-lg md:text-xl mb-2 text-gray-700" transition:name={`office-address-${office.slug}`}>{office.address}</p>
+          <p class="text-lg md:text-xl mb-4 text-gray-700">{office.city}, {office.state} {office.postcode}</p>
+          <p class="text-lg md:text-xl mb-6 text-gray-700">
+            Email: <a href={`mailto:${email}`} class="text-hr-accent hover:underline">{email}</a>
+          </p>
+          
+          <a 
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.address}, ${office.city}, ${office.state} ${office.postcode}`)}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group"
+          >
+            <span class="relative z-10 group-hover:text-white transition-colors">Get Directions</span>
+            <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+          </a>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 md:mb-12 text-hr-dark text-center">Services Available</h2>
+        
+        <div class="mb-16">
+          <h3 class="text-2xl md:text-3xl font-semibold mb-8 text-hr-dark border-b pb-3 border-gray-300">Main Services</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+            {allMainServices.map((service: any) => (
+              <div class="bg-white rounded-lg p-6 shadow-lg flex flex-col h-full border border-gray-200 hover:shadow-xl transition-shadow">
+                {service.icon && <Icon name={service.icon} class="w-10 h-10 mb-4 text-hr-accent" />}
+                <h4 class="text-xl font-semibold mb-3 text-hr-dark">{service.title}</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl md:text-3xl font-semibold mb-8 text-hr-dark border-b pb-3 border-gray-300">Additional Services</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+            {allSecondaryServices.map((service: any) => (
+              <div class="bg-white rounded-lg p-6 shadow-lg flex flex-col h-full border border-gray-200 hover:shadow-xl transition-shadow">
+                {service.icon && <Icon name={service.icon} class="w-10 h-10 mb-4 text-hr-accent" />}
+                <h4 class="text-xl font-semibold mb-3 text-hr-dark">{service.title}</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="text-center mt-20">
+          <a href="/contact" class="inline-block bg-hr-accent text-hr-dark px-8 py-4 rounded text-xl font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
+            <span class="relative z-10 group-hover:text-white transition-colors">Contact Us</span>
+            <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
