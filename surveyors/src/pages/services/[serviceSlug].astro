@@ -12,9 +12,9 @@ export const prerender = true;
 export async function getStaticPaths() {
   const serviceSlugs = getAllServiceSlugs();
   
-  // Exclude services that are handled by the existing [service]/index.astro route
-  const excludedServices = ['drone-surveying', 'engineering-surveying', 'land-surveying'];
-  const filteredSlugs = serviceSlugs.filter(slug => !excludedServices.includes(slug));
+  // For natural submission, only generate the engineering-surveying-services page
+  const allowedServices = ['engineering-surveying-services'];
+  const filteredSlugs = serviceSlugs.filter(slug => allowedServices.includes(slug));
   
   return filteredSlugs.map((slug) => ({
     params: { serviceSlug: slug },
