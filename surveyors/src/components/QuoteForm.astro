@@ -1,0 +1,311 @@
+---
+interface Props {
+  serviceType: 'engineering' | 'civil' | 'professional' | 'land' | 'drone' | 'property';
+  formTitle?: string;
+}
+
+const { serviceType, formTitle } = Astro.props;
+
+const serviceProjectTypes = {
+  engineering: [
+    "High-rise Building Survey",
+    "Infrastructure Development", 
+    "Bridge/Road Construction",
+    "Industrial Complex",
+    "Control Network Setup",
+    "As-Built Documentation",
+    "3D Scanning & Modeling",
+    "Other Engineering Survey"
+  ],
+  civil: [
+    "Subdivision Development",
+    "Road Upgrade/Construction", 
+    "Pipeline Installation",
+    "Rail Infrastructure",
+    "Shopping Centre/Retail",
+    "Utility Installation",
+    "Civil Construction Survey",
+    "Other Civil Survey"
+  ],
+  professional: [
+    "Large Infrastructure Project",
+    "Government Development",
+    "Corporate Campus",
+    "Mining Operation Survey", 
+    "Major Construction Project",
+    "Multi-phase Development",
+    "Enterprise Survey Solution",
+    "Other Professional Survey"
+  ],
+  land: [
+    "Boundary Definition Survey",
+    "Property Development",
+    "Subdivision Planning",
+    "Title Survey",
+    "Rural Property Survey",
+    "Easement Survey",
+    "Property Assessment",
+    "Other Land Survey"
+  ],
+  drone: [
+    "Aerial Mapping & Surveying",
+    "Drone LiDAR Survey",
+    "Topographic Mapping",
+    "Volume Calculations", 
+    "Site Inspection & Monitoring",
+    "3D Terrain Modeling",
+    "Environmental Surveying",
+    "Other Drone Survey"
+  ],
+  property: [
+    "Residential Property Survey",
+    "Commercial Property Survey",
+    "Industrial Property Survey",
+    "Property Boundary Survey",
+    "Building/Construction Survey",
+    "Property Development Survey",
+    "Multi-unit Development",
+    "Other Property Survey"
+  ]
+};
+
+const projectTypes = serviceProjectTypes[serviceType];
+
+const defaultTitle = {
+  engineering: "Get Your Engineering Survey Quote",
+  civil: "Get Your Civil Survey Quote", 
+  professional: "Get Your Professional Survey Quote",
+  land: "Get Your Land Survey Quote",
+  drone: "Get Your Drone Survey Quote",
+  property: "Get Your Property Survey Quote"
+};
+
+const title = formTitle || defaultTitle[serviceType];
+---
+
+<section id="quote-form" class="py-16 md:py-20 bg-hr-dark text-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Content Column -->
+      <div class="lg:pr-8">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          {title}
+        </h2>
+        
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+          Get a detailed quote tailored to your specific project requirements. Our team of experts will 
+          provide you with accurate pricing and timeline estimates.
+        </p>
+
+        <!-- Trust Signals -->
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-hr-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-lg">Free, no-obligation quotes</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-hr-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-lg">Response within 24 hours</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-hr-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm3 6a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-lg">Detailed project consultation</span>
+          </div>
+        </div>
+
+        <!-- Additional Contact Options -->
+        <div class="bg-white bg-opacity-10 rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4">Prefer to speak directly?</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              <a href="tel:1300-079-887" class="text-hr-accent hover:text-white transition-colors">
+                1300 079 887
+              </a>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              <a href="mailto:office@hrsurveyors.com.au" class="text-hr-accent hover:text-white transition-colors">
+                office@hrsurveyors.com.au
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Column -->
+      <div class="bg-white rounded-xl p-8 shadow-2xl">
+        <form class="space-y-6" action="https://hr-surveyors-form-handler.pat-e17.workers.dev/" method="POST">
+          <input type="hidden" name="service_type" value={serviceType} />
+          <input type="hidden" name="form_source" value={`${serviceType}-landing-page`} />
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-sm font-semibold text-hr-dark mb-2">
+                Full Name *
+              </label>
+              <input 
+                type="text" 
+                name="name" 
+                id="name" 
+                required 
+                class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+                placeholder="Enter your full name"
+              />
+            </div>
+            
+            <div>
+              <label for="phone" class="block text-sm font-semibold text-hr-dark mb-2">
+                Phone Number *
+              </label>
+              <input 
+                type="tel" 
+                name="phone" 
+                id="phone" 
+                required 
+                class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+                placeholder="Enter your phone number"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-semibold text-hr-dark mb-2">
+              Email Address *
+            </label>
+            <input 
+              type="email" 
+              name="email" 
+              id="email" 
+              required 
+              class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+              placeholder="Enter your email address"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="project_type" class="block text-sm font-semibold text-hr-dark mb-2">
+                Project Type *
+              </label>
+              <select 
+                name="project_type" 
+                id="project_type" 
+                required 
+                class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+              >
+                <option value="">Select project type</option>
+                {projectTypes.map((type) => (
+                  <option value={type}>{type}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div>
+              <label for="location" class="block text-sm font-semibold text-hr-dark mb-2">
+                Project Location *
+              </label>
+              <input 
+                type="text" 
+                name="location" 
+                id="location" 
+                required 
+                class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+                placeholder="City, State"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="timeline" class="block text-sm font-semibold text-hr-dark mb-2">
+                Project Timeline
+              </label>
+              <select 
+                name="timeline" 
+                id="timeline" 
+                class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+              >
+                <option value="">Select timeline</option>
+                <option value="ASAP">ASAP</option>
+                <option value="Within 1 month">Within 1 month</option>
+                <option value="1-3 months">1-3 months</option>
+                <option value="3-6 months">3-6 months</option>
+                <option value="6+ months">6+ months</option>
+                <option value="Planning stage">Planning stage</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="budget" class="block text-sm font-semibold text-hr-dark mb-2">
+                Estimated Budget
+              </label>
+              <select 
+                name="budget" 
+                id="budget" 
+                class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+              >
+                <option value="">Select budget range</option>
+                <option value="Under $5,000">Under $5,000</option>
+                <option value="$5,000 - $15,000">$5,000 - $15,000</option>
+                <option value="$15,000 - $50,000">$15,000 - $50,000</option>
+                <option value="$50,000 - $100,000">$50,000 - $100,000</option>
+                <option value="$100,000+">$100,000+</option>
+                <option value="Discuss with consultant">Discuss with consultant</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold text-hr-dark mb-2">
+              Project Details
+            </label>
+            <textarea 
+              name="message" 
+              id="message" 
+              rows="4" 
+              class="w-full rounded-lg border-gray-300 text-hr-dark shadow-sm focus:border-hr-accent focus:ring focus:ring-hr-accent focus:ring-opacity-50 px-4 py-3"
+              placeholder="Please provide details about your project requirements, site conditions, or any specific challenges..."
+            ></textarea>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <input 
+              type="checkbox" 
+              id="consent" 
+              name="consent" 
+              required 
+              class="mt-1 rounded border-gray-300 text-hr-accent focus:ring-hr-accent focus:ring-offset-0"
+            />
+            <label for="consent" class="text-sm text-gray-600 leading-relaxed">
+              I consent to HR Surveyors contacting me regarding my enquiry and understand that my information will be handled in accordance with their privacy policy. *
+            </label>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full bg-hr-accent text-hr-dark px-8 py-4 rounded-lg text-lg font-bold hover:bg-opacity-90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-hr-accent focus:ring-offset-2 group"
+          >
+            <span class="inline-flex items-center justify-center">
+              Get My Free Quote
+              <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section> 

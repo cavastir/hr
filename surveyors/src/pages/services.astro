@@ -6,22 +6,22 @@ const mainServices = [
   {
     title: "Building and Construction",
     icon: "building",
-    description: "With extensive experience in the building and construction sector, we deliver high-precision surveys for apartment complexes, high-rise buildings, schools, and residential projects. Understanding that each project is unique, we tailor our services to meet the specific needs of every client. From initial site datum setup to final as-constructed surveys, our team ensures accurate data and seamless execution, giving you the confidence to complete your project on time and within budget."
+    description: `With extensive experience in the building and construction sector, we deliver high-precision surveys for apartment complexes, high-rise buildings, schools, and residential projects. Understanding that each project is unique, we tailor our <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying services</a> to meet the specific needs of every client. From initial site datum setup to final as-constructed surveys, our team ensures accurate data and seamless execution, giving you the confidence to complete your project on time and within budget.`
   },
   {
     title: "Civil Construction",
     icon: "civil",
-    description: "From road upgrades and subdivisions to bridges, pipelines, and rail projects, HR Surveyors offers the expertise required for your civil construction needs. Our services include control network setup, on-site set out and pickups, volume calculations, 3D modeling, and final as-built surveys. Whether you need a dedicated team of surveyors to manage your project or a one-time visit to set up, we deliver the same high-quality, reliable service every time."
+    description: `From road upgrades and subdivisions to bridges, pipelines, and rail projects, HR Surveyors offers the expertise required for your civil construction needs. Our <a href="/services/civil-engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">civil engineering surveying services</a> include control network setup, on-site set out and pickups, volume calculations, 3D modeling, and final as-built surveys. Whether you need a dedicated team of surveyors to manage your project or a one-time visit to set up, we deliver the same high-quality, reliable service every time.`
   },
   {
     title: "Infrastructure & Mining",
     icon: "infrastructure",
-    description: "With extensive experience in some of Australia's largest infrastructure and regional mining projects, we have the systems in place to efficiently manage your major undertaking, whether in urban or rural settings. From submitting conformance reports to handling RFIs and managing data, we ensure that all records are current, facilitating seamless project execution and on-time handover. Our highly skilled surveyors offer expert advice and reliable service, giving you the confidence you need throughout the entire project lifecycle."
+    description: `With extensive experience in some of Australia's largest infrastructure and regional mining projects, our <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional surveying services</a> ensure efficient management of your major undertaking, whether in urban or rural settings. From submitting conformance reports to handling RFIs and managing data, we ensure that all records are current, facilitating seamless project execution and on-time handover. Our highly skilled surveyors offer expert advice and reliable service, giving you the confidence you need throughout the entire project lifecycle.`
   },
   {
     title: "Feature and Level Survey",
     icon: "level",
-    description: "A Feature and Level survey is a crucial step in the planning of any development project, whether for a new building, subdivision, or major construction endeavor. This type of survey provides essential data that forms the foundation for accurate design before construction begins. By establishing precise survey control to a local datum or MGA/AHD from the outset, we ensure continuity and adherence to standards throughout every aspect of the development process."
+    description: `A Feature and Level survey is a crucial step in the planning of any development project, whether for a new building, subdivision, or major construction endeavor. This type of survey provides essential data that forms the foundation for accurate design before construction begins. Our <a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">land surveying services</a> establish precise survey control to a local datum or MGA/AHD from the outset, ensuring continuity and adherence to standards throughout every aspect of the development process.`
   },
   {
     title: "Laser Scanning",
@@ -31,7 +31,7 @@ const mainServices = [
   {
     title: "UAV (Drone LiDAR & Aerial Surveying)",
     icon: "uav",
-    description: "Our UAV (Drone Survey) service integrates advanced drone technology with LiDAR and aerial imaging to deliver high-precision mapping and data capture. This approach enables accurate topographical mapping, high-resolution imagery, and 3D terrain modelling for various applications. With the addition of Drone LiDAR surveys, we provide enhanced capabilities for terrain analysis, including accurate elevation data in vegetated areas, improved stockpile volume calculations, and detailed surface models. Our team ensures precise data collection and processing, supporting informed decision-making and efficient project management across engineering, construction, and environmental industries."
+    description: `Our <a href="/services/drone-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">drone surveying services</a> integrate advanced UAV technology with LiDAR and aerial imaging to deliver high-precision mapping and data capture. This approach enables accurate topographical mapping, high-resolution imagery, and 3D terrain modelling for various applications. With the addition of Drone LiDAR surveys, we provide enhanced capabilities for terrain analysis, including accurate elevation data in vegetated areas, improved stockpile volume calculations, and detailed surface models. Our team ensures precise data collection and processing, supporting informed decision-making and efficient project management across engineering, construction, and environmental industries.`
   },
   {
     title: "Renewable Energy",
@@ -64,7 +64,7 @@ const secondaryServices = [
   {
     title: "Machine Control (3D Models & Design)",
     icon: "3d",
-    description: "Our expertise in 3D surfaces enables us to create highly accurate design surface files tailored to your project's specific requirements. Whether it's converting machine control files and localizations, developing comprehensive Digital Terrain Models (DTM), or designing intricate 3D drainage systems, we have the skills to fulfill our clients' needs."
+    description: `Our expertise in 3D surfaces enables us to create highly accurate design surface files tailored to your project's specific requirements. Whether it's converting machine control files and localizations, developing comprehensive Digital Terrain Models (DTM), or designing intricate 3D drainage systems, our <a href="/services/surveying-and-engineering-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">surveying and engineering services</a> have the skills to fulfill our clients' needs.`
   },
   {
     title: "Equipment Hire",
@@ -97,7 +97,7 @@ const secondaryServices = [
                 <div class="bg-white rounded-lg p-6 shadow-md flex flex-col h-full">
                   <Icon name={service.icon} class="w-12 h-12 mb-4 text-hr-dark" />
                   <h3 class="text-xl font-semibold mb-4 text-hr-dark">{service.title}</h3>
-                  <p class="text-gray-600 text-sm">{service.description}</p>
+                  <p class="text-gray-600 text-sm" set:html={service.description}></p>
                 </div>
               ))}
             </div>
@@ -110,9 +110,18 @@ const secondaryServices = [
                 <div class="bg-white rounded-lg p-6 shadow-md flex flex-col h-full">
                   <Icon name={service.icon} class="w-10 h-10 mb-3 text-hr-dark" />
                   <h3 class="text-xl font-semibold mb-4 text-hr-dark">{service.title}</h3>
-                  <p class="text-gray-600 text-sm">{service.description}</p>
+                  <p class="text-gray-600 text-sm" set:html={service.description}></p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <!-- Additional Specialized Solutions -->
+          <div class="mb-16">
+            <div class="text-center mb-8">
+              <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Looking for specialized expertise? Explore our dedicated <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying</a>, <a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">land surveying</a>, and <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional surveying solutions</a> tailored to your specific project requirements.
+              </p>
             </div>
           </div>
 
@@ -121,7 +130,7 @@ const secondaryServices = [
             <p class="text-lg md:text-xl mb-8 text-hr-dark max-w-2xl mx-auto">
               Let us bring precision to your next engineering challenge.
             </p>
-            <a href="/contact" class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
+            <a href="/contact/" class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors relative overflow-hidden group">
               <span class="relative z-10 group-hover:text-white transition-colors">Get in Touch</span>
               <span class="absolute inset-0 bg-hr-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
             </a>

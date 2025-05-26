@@ -1,0 +1,91 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  heroImage?: string;
+  serviceType: 'engineering' | 'civil' | 'professional' | 'land' | 'drone' | 'property';
+}
+
+const { title, description, heroImage = '/images/hero-surveying.jpg', serviceType } = Astro.props;
+
+const serviceImages = {
+  engineering: '/images/engineering-surveying-hero.jpg',
+  civil: '/images/civil-surveying-hero.jpg', 
+  professional: '/images/professional-surveying-hero.jpg',
+  land: '/images/land-surveying-hero.jpg',
+  drone: '/images/drone-surveying-hero.jpg',
+  property: '/images/property-surveying-hero.jpg'
+};
+
+const defaultImage = serviceImages[serviceType] || heroImage;
+---
+
+<section class="relative overflow-hidden bg-hr-dark rounded-lg mb-12">
+  <div class="absolute inset-0 rounded-lg overflow-hidden">
+    <img
+      src={defaultImage}
+      alt={`${title} - HR Surveyors`}
+      class="object-cover object-center w-full h-full"
+      width="1920"
+      height="600"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-hr-dark bg-opacity-50"></div>
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4 py-16 md:py-20 lg:py-24">
+    <div class="max-w-4xl">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+        {title} | HR Surveyors
+      </h1>
+      
+      <p class="text-lg md:text-xl text-white mb-8 max-w-3xl leading-relaxed">
+        {description}
+      </p>
+
+      <!-- Trust Signals -->
+      <div class="flex flex-wrap items-center gap-6 mb-8 text-white text-sm md:text-base">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          <span>Established 2012</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>70+ Qualified Professionals</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg>
+          <span>5 Offices Australia-wide</span>
+        </div>
+      </div>
+
+      <!-- Primary CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a 
+          href="#quote-form" 
+          class="bg-hr-accent text-hr-dark px-8 py-4 rounded-lg text-lg font-bold hover:bg-opacity-90 transition-all duration-300 text-center inline-flex items-center justify-center group focus:outline-none focus:ring-2 focus:ring-hr-accent focus:ring-offset-2"
+        >
+          <span>Get Project Quote</span>
+          <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a 
+          href="#portfolio" 
+          class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-white hover:text-hr-dark transition-all duration-300 text-center inline-flex items-center justify-center group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+        >
+          <span>View Our Projects</span>
+          <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section> 

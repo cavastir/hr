@@ -1,0 +1,349 @@
+---
+interface Props {
+  serviceType: 'engineering' | 'civil' | 'professional' | 'land' | 'drone' | 'property';
+  currentService: string;
+}
+
+const { serviceType, currentService } = Astro.props;
+
+// Strategic related services mapping based on hub-and-spoke architecture
+const relatedServicesMapping = {
+  'engineering-surveying-services': [
+    {
+      title: "Civil Engineering Surveying Services",
+      slug: "civil-engineering-surveying-services",
+      description: "Specialized civil construction surveys for roads, bridges, pipelines, and infrastructure projects with precision control networks.",
+      benefits: ["Road & Bridge Surveys", "Pipeline Installation", "Infrastructure Control"]
+    },
+    {
+      title: "Precise Surveying for Civil Engineering Teams",
+      slug: "precise-surveying-for-civil-engineering-teams",
+      description: "B2B specialized surveying solutions designed specifically for civil engineering teams and construction professionals.",
+      benefits: ["Team Collaboration", "Real-time Data", "Project Integration"]
+    },
+    {
+      title: "Professional Surveying Services",
+      slug: "professional-surveying-services",
+      description: "Enterprise-grade surveying solutions for large-scale infrastructure and corporate development projects.",
+      benefits: ["Large-scale Projects", "Enterprise Solutions", "Corporate Support"]
+    }
+  ],
+  'civil-engineering-surveying-services': [
+    {
+      title: "Engineering Surveying Services",
+      slug: "engineering-surveying-services",
+      description: "Comprehensive engineering surveys for construction projects, infrastructure development, and complex building works.",
+      benefits: ["Construction Surveys", "Infrastructure Projects", "Complex Buildings"]
+    },
+    {
+      title: "Land Surveying Engineering",
+      slug: "land-surveying-engineering",
+      description: "Engineering-focused land surveys combining traditional boundary definition with modern construction requirements.",
+      benefits: ["Boundary Engineering", "Construction Planning", "Development Support"]
+    },
+    {
+      title: "Drone Surveying Services",
+      slug: "drone-surveying-services", 
+      description: "Advanced UAV and LiDAR technology for rapid site mapping, topographic surveys, and hard-to-access areas.",
+      benefits: ["Aerial Mapping", "LiDAR Technology", "Rapid Data Collection"]
+    }
+  ],
+  'professional-surveying-services': [
+    {
+      title: "Engineering Survey Services",
+      slug: "engineering-survey-services",
+      description: "Streamlined engineering survey solutions focused on precision delivery and professional project management.",
+      benefits: ["Precision Engineering", "Project Management", "Quality Assurance"]
+    },
+    {
+      title: "Surveying and Engineering Services",
+      slug: "surveying-and-engineering-services",
+      description: "Integrated approach combining comprehensive surveying with engineering expertise for complex developments.",
+      benefits: ["Integrated Solutions", "Engineering Expertise", "Complex Projects"]
+    },
+    {
+      title: "Land Surveying Services Australia",
+      slug: "land-surveying-services-australia",
+      description: "Australia-wide land surveying services with local expertise and national coverage for property development.",
+      benefits: ["National Coverage", "Local Expertise", "Property Development"]
+    }
+  ],
+  'land-surveying-services-australia': [
+    {
+      title: "Property Surveying Services",
+      slug: "property-surveying-services",
+      description: "Specialized property surveys for residential, commercial, and industrial developments with detailed boundary definition.",
+      benefits: ["Property Boundaries", "Development Support", "Detailed Surveys"]
+    },
+    {
+      title: "Land Surveying Engineering",
+      slug: "land-surveying-engineering",
+      description: "Engineering-focused land surveys that bridge traditional boundary work with modern construction needs.",
+      benefits: ["Engineering Focus", "Construction Integration", "Modern Methods"]
+    },
+    {
+      title: "Professional Surveying Services",
+      slug: "professional-surveying-services",
+      description: "Enterprise-level land surveying for major property developments and institutional projects.",
+      benefits: ["Enterprise Solutions", "Major Developments", "Institutional Projects"]
+    }
+  ],
+  'drone-surveying-services': [
+    {
+      title: "Engineering Surveying Services",
+      slug: "engineering-surveying-services",
+      description: "Traditional engineering surveys enhanced with cutting-edge technology for comprehensive project coverage.",
+      benefits: ["Traditional + Modern", "Comprehensive Coverage", "Enhanced Accuracy"]
+    },
+    {
+      title: "Civil Engineering Surveying Services", 
+      slug: "civil-engineering-surveying-services",
+      description: "Civil construction surveys complemented by aerial mapping and topographic analysis for complete site understanding.",
+      benefits: ["Aerial Mapping", "Site Analysis", "Complete Coverage"]
+    },
+    {
+      title: "Survey and Engineering Services",
+      slug: "survey-and-engineering-services",
+      description: "Combined survey and engineering approach leveraging both ground-based and aerial data collection methods.",
+      benefits: ["Combined Approach", "Multi-method Data", "Engineering Integration"]
+    }
+  ],
+  'surveying-and-engineering-services': [
+    {
+      title: "Engineering Surveys and Services",
+      slug: "engineering-surveys-and-services",
+      description: "Survey-specific engineering solutions that prioritize data collection and analysis for optimal project outcomes.",
+      benefits: ["Data-focused", "Engineering Analysis", "Optimal Outcomes"]
+    },
+    {
+      title: "Professional Surveying Services",
+      slug: "professional-surveying-services",
+      description: "Professional-grade integrated services for complex projects requiring both surveying and engineering expertise.",
+      benefits: ["Professional Grade", "Complex Projects", "Integrated Expertise"]
+    },
+    {
+      title: "Surveying and Engineering",
+      slug: "surveying-and-engineering",
+      description: "General category services covering the full spectrum of surveying and engineering project requirements.",
+      benefits: ["Full Spectrum", "Comprehensive Services", "All Requirements"]
+    }
+  ],
+  'engineering-surveys-and-services': [
+    {
+      title: "Surveying and Engineering Services",
+      slug: "surveying-and-engineering-services",
+      description: "Integrated services approach combining comprehensive surveying capabilities with engineering project management.",
+      benefits: ["Integrated Approach", "Comprehensive Capabilities", "Project Management"]
+    },
+    {
+      title: "Engineering Survey Services",
+      slug: "engineering-survey-services", 
+      description: "Focused engineering survey solutions with streamlined delivery and precision-focused project execution.",
+      benefits: ["Focused Solutions", "Streamlined Delivery", "Precision Focus"]
+    },
+    {
+      title: "Civil Engineering Surveying Services",
+      slug: "civil-engineering-surveying-services",
+      description: "Specialized civil construction surveys with engineering analysis and construction support services.",
+      benefits: ["Civil Specialization", "Engineering Analysis", "Construction Support"]
+    }
+  ],
+  'precise-surveying-for-civil-engineering-teams': [
+    {
+      title: "Civil Engineering Surveying Services",
+      slug: "civil-engineering-surveying-services",
+      description: "Broader civil engineering survey services extending beyond team-specific solutions to full project coverage.",
+      benefits: ["Full Project Coverage", "Extended Services", "Comprehensive Solutions"]
+    },
+    {
+      title: "Professional Surveying Services",
+      slug: "professional-surveying-services",
+      description: "Enterprise-level surveying for organizations requiring systematic team integration and professional delivery.",
+      benefits: ["Enterprise Level", "Team Integration", "Professional Delivery"]
+    },
+    {
+      title: "Engineering Surveying Services",
+      slug: "engineering-surveying-services",
+      description: "Core engineering surveying capabilities that support civil engineering teams with comprehensive data solutions.",
+      benefits: ["Core Capabilities", "Team Support", "Data Solutions"]
+    }
+  ],
+  'land-surveying-engineering': [
+    {
+      title: "Land Surveying Services Australia",
+      slug: "land-surveying-services-australia",
+      description: "Comprehensive land surveying across Australia with traditional boundary expertise and national coverage.",
+      benefits: ["National Coverage", "Traditional Expertise", "Comprehensive Services"]
+    },
+    {
+      title: "Engineering Surveying Services",
+      slug: "engineering-surveying-services",
+      description: "Engineering surveys that complement land surveying with construction and development project support.",
+      benefits: ["Construction Support", "Development Projects", "Engineering Complement"]
+    },
+    {
+      title: "Property Surveying Services",
+      slug: "property-surveying-services",
+      description: "Property-specific surveys that build on land surveying foundations with development-focused deliverables.",
+      benefits: ["Property Focus", "Development Deliverables", "Land Survey Foundation"]
+    }
+  ],
+  'surveying-and-engineering': [
+    {
+      title: "Surveying and Engineering Services",
+      slug: "surveying-and-engineering-services",
+      description: "Comprehensive integrated services with detailed project management and advanced technical capabilities.",
+      benefits: ["Detailed Management", "Advanced Technical", "Comprehensive Integration"]
+    },
+    {
+      title: "Survey and Engineering Services",
+      slug: "survey-and-engineering-services",
+      description: "Alternative service approach with flexible delivery models and customized project solutions.",
+      benefits: ["Flexible Delivery", "Customized Solutions", "Alternative Approach"]
+    },
+    {
+      title: "Engineering Survey Services",
+      slug: "engineering-survey-services",
+      description: "Streamlined engineering focus with precision delivery and efficient project execution methodologies.",
+      benefits: ["Streamlined Focus", "Precision Delivery", "Efficient Execution"]
+    }
+  ],
+  'survey-and-engineering-services': [
+    {
+      title: "Surveying and Engineering",
+      slug: "surveying-and-engineering",
+      description: "General category approach covering all aspects of surveying and engineering with flexible service options.",
+      benefits: ["General Category", "All Aspects", "Flexible Options"]
+    },
+    {
+      title: "Drone Surveying Services",
+      slug: "drone-surveying-services",
+      description: "Advanced technology services that enhance traditional survey and engineering approaches with aerial capabilities.",
+      benefits: ["Advanced Technology", "Aerial Capabilities", "Enhanced Approaches"]
+    },
+    {
+      title: "Professional Surveying Services",
+      slug: "professional-surveying-services",
+      description: "Professional-grade service delivery with enterprise integration and systematic project management.",
+      benefits: ["Professional Grade", "Enterprise Integration", "Systematic Management"]
+    }
+  ],
+  'engineering-survey-services': [
+    {
+      title: "Engineering Surveys and Services",
+      slug: "engineering-surveys-and-services",
+      description: "Comprehensive engineering survey approach with detailed analysis and extended service capabilities.",
+      benefits: ["Detailed Analysis", "Extended Capabilities", "Comprehensive Approach"]
+    },
+    {
+      title: "Engineering Surveying Services", 
+      slug: "engineering-surveying-services",
+      description: "Core engineering surveying with comprehensive project coverage and advanced technical capabilities.",
+      benefits: ["Core Engineering", "Project Coverage", "Advanced Technical"]
+    },
+    {
+      title: "Surveying and Engineering Services",
+      slug: "surveying-and-engineering-services",
+      description: "Integrated services combining engineering surveys with broader surveying and engineering capabilities.",
+      benefits: ["Integrated Services", "Broader Capabilities", "Combined Approach"]
+    }
+  ],
+  'property-surveying-services': [
+    {
+      title: "Land Surveying Services Australia",
+      slug: "land-surveying-services-australia",
+      description: "Broader land surveying services extending property surveys to include rural, commercial, and industrial applications.",
+      benefits: ["Extended Applications", "Rural & Commercial", "Broader Services"]
+    },
+    {
+      title: "Land Surveying Engineering",
+      slug: "land-surveying-engineering",
+      description: "Engineering-enhanced property surveys for development projects requiring construction integration.",
+      benefits: ["Engineering Enhanced", "Development Projects", "Construction Integration"]
+    },
+    {
+      title: "Professional Surveying Services",
+      slug: "professional-surveying-services",
+      description: "Enterprise-level property surveying for major developments and institutional property projects.",
+      benefits: ["Enterprise Level", "Major Developments", "Institutional Projects"]
+    }
+  ]
+};
+
+const relatedServices = relatedServicesMapping[currentService as keyof typeof relatedServicesMapping] || [];
+---
+
+{relatedServices.length > 0 && (
+  <section class="py-16 md:py-20 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-hr-dark mb-6">
+          Related Services
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Discover complementary surveying services often combined with this solution for comprehensive project delivery.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {relatedServices.map((service) => (
+          <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-100">
+            <div class="mb-6">
+              <h3 class="text-xl md:text-2xl font-bold text-hr-dark mb-4 group-hover:text-hr-accent transition-colors duration-300">
+                {service.title}
+              </h3>
+              <p class="text-gray-600 leading-relaxed mb-6">
+                {service.description}
+              </p>
+            </div>
+
+
+
+            <!-- CTA Button -->
+            <div class="pt-4 border-t border-gray-100">
+              <a 
+                href={`/services/${service.slug}/`}
+                class="inline-flex items-center text-hr-accent hover:text-hr-dark font-semibold transition-colors duration-300 group-hover:translate-x-1 transform"
+              >
+                <span>Learn More</span>
+                <svg class="w-4 h-4 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Often Combined With Section -->
+      <div class="mt-16 bg-white rounded-xl p-8 md:p-12 shadow-lg text-center">
+        <h3 class="text-2xl md:text-3xl font-bold text-hr-dark mb-6">
+          Often Combined With These Services
+        </h3>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Many clients choose to combine multiple surveying services for comprehensive project coverage and enhanced value delivery.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/services/"
+            class="inline-flex items-center bg-hr-accent text-hr-dark px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-hr-accent focus:ring-offset-2"
+          >
+            <span>View All Services</span>
+            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a 
+                            href="/contact/"
+            class="inline-flex items-center bg-transparent border-2 border-hr-dark text-hr-dark px-6 py-3 rounded-lg font-semibold hover:bg-hr-dark hover:text-white transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-hr-dark focus:ring-offset-2"
+          >
+            <span>Discuss Custom Package</span>
+            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+)} 

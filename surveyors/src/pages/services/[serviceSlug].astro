@@ -1,0 +1,228 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
+import ProjectPortfolio from '../../components/ProjectPortfolio.astro';
+import RelatedServices from '../../components/RelatedServices.astro';
+
+import { getAllServiceSlugs, getServiceBySlug } from '../../data/servicesData.js';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const serviceSlugs = getAllServiceSlugs();
+  
+  // Exclude services that are handled by the existing [service]/index.astro route
+  const excludedServices = ['drone-surveying', 'engineering-surveying', 'land-surveying'];
+  const filteredSlugs = serviceSlugs.filter(slug => !excludedServices.includes(slug));
+  
+  return filteredSlugs.map((slug) => ({
+    params: { serviceSlug: slug },
+  }));
+}
+
+const { serviceSlug } = Astro.params;
+const serviceData = getServiceBySlug(serviceSlug as string);
+
+if (!serviceData) {
+  return Astro.redirect('/404');
+}
+
+const { 
+  title, 
+  slug, 
+  type, 
+  metaTitle, 
+  metaDescription, 
+  heroDescription, 
+  content 
+} = serviceData;
+
+// Schema.org structured data for SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": title,
+  "description": metaDescription,
+  "provider": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "url": "https://www.hrsurveyors.com.au",
+    "logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AU"
+    },
+
+    "email": "office@hrsurveyors.com.au"
+  },
+  "areaServed": "Australia",
+  "serviceType": type,
+  "offers": {
+    "@type": "Offer",
+    "description": "Professional surveying services with free consultation",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "0",
+      "priceCurrency": "AUD",
+      "description": "Free consultation and quote"
+    }
+  }
+};
+---
+
+<Layout 
+  title={metaTitle}
+  description={metaDescription}
+>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <main class="bg-white text-hr-dark">
+    <!-- Hero Section -->
+    <ServiceHero 
+      title={title}
+      description={heroDescription}
+      serviceType={type}
+    />
+
+    <!-- Service Overview Section -->
+    <ServiceOverview serviceType={type} />
+
+    <!-- Detailed Content Section -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-7xl">
+        <!-- Introduction -->
+        <div class="max-w-4xl mx-auto mb-16">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            {content.introduction}
+          </p>
+        </div>
+
+        <!-- Service Details Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {content.serviceDetails.map((detail: any) => (
+            <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <h3 class="text-xl md:text-2xl font-bold text-hr-dark mb-6">
+                {detail.title}
+              </h3>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                {detail.description}
+              </p>
+              
+
+            </div>
+          ))}
+        </div>
+
+        <!-- Technical Specifications -->
+        <div class="bg-hr-dark rounded-xl p-8 md:p-12 text-white mb-16">
+          <h3 class="text-3xl md:text-4xl font-bold mb-8 text-center text-hr-accent">Technical Specifications</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <h4 class="text-lg font-semibold text-hr-accent mb-3">Accuracy</h4>
+              <p class="text-sm text-gray-300">{content.technicalSpecs.accuracy}</p>
+            </div>
+            <div class="text-center">
+              <h4 class="text-lg font-semibold text-hr-accent mb-3">Equipment</h4>
+              <p class="text-sm text-gray-300">{content.technicalSpecs.equipment}</p>
+            </div>
+            <div class="text-center">
+              <h4 class="text-lg font-semibold text-hr-accent mb-3">Standards</h4>
+              <p class="text-sm text-gray-300">{content.technicalSpecs.standards}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industries Served -->
+        <div class="text-center mb-16">
+          <h3 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8">Industries We Serve</h3>
+          <div class="flex flex-wrap justify-center gap-4">
+            {content.industries.map((industry: string) => (
+              <span class="bg-hr-accent bg-opacity-10 text-hr-dark px-6 py-3 rounded-full font-semibold">
+                {industry}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Portfolio -->
+    <ProjectPortfolio serviceType={type} />
+
+    <!-- Related Services -->
+    <RelatedServices serviceType={type} currentService={slug} />
+
+
+
+    <!-- Commercial CTA Section -->
+    <section class="py-16 md:py-20 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Content Column -->
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-6">
+              Ready to Start Your {title} Project?
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+              Join thousands of satisfied clients who trust HR Surveyors for their most important projects. 
+              Get your free consultation today and discover why we're Australia's leading surveying professionals.
+            </p>
+            
+            <!-- Trust Signals -->
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center gap-3">
+                <svg class="w-6 h-6 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-lg text-gray-700">12+ years of surveying excellence</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-6 h-6 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-lg text-gray-700">70+ qualified professionals</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-6 h-6 text-hr-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-lg text-gray-700">5 offices across Australia</span>
+              </div>
+            </div>
+
+            <!-- Contact Options -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="/contact/"
+                class="inline-flex items-center justify-center bg-hr-accent text-hr-dark px-8 py-4 rounded-lg text-lg font-bold hover:bg-opacity-90 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-hr-accent focus:ring-offset-2"
+              >
+                <span>Get Free Quote</span>
+                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Image Column -->
+          <div class="relative">
+            <img 
+              src="/images/hr-surveyors-team-in-action.jpg"
+              alt="HR Surveyors team in action"
+              class="rounded-xl shadow-xl w-full h-auto object-cover"
+              width="600"
+              height="400"
+              loading="lazy"
+            />
+            <div class="absolute -bottom-6 -right-6 bg-hr-accent text-hr-dark p-6 rounded-xl shadow-lg">
+              <div class="text-2xl font-bold leading-tight">Precision</div>
+              <div class="text-2xl font-bold leading-tight">Delivered</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 

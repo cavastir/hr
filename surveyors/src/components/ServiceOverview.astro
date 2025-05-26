@@ -1,0 +1,176 @@
+---
+interface Props {
+  serviceType: 'engineering' | 'civil' | 'professional' | 'land' | 'drone' | 'property';
+  customBenefits?: Array<{
+    icon: string;
+    title: string;
+    description: string;
+  }>;
+}
+
+const { serviceType, customBenefits } = Astro.props;
+
+const defaultBenefits = {
+  engineering: [
+    {
+      icon: "expertise",
+      title: "12+ Years Engineering Excellence",
+      description: "Since 2012, we've delivered precision engineering surveys for Australia's most complex infrastructure projects, from high-rise developments to major civil works."
+    },
+    {
+      icon: "coverage", 
+      title: "Australia-wide Coverage",
+      description: "With 5 strategic office locations and 70+ qualified professionals, we provide comprehensive engineering surveying services across all major Australian markets."
+    },
+    {
+      icon: "technology",
+      title: "Cutting-edge Technology",
+      description: "Advanced 3D scanning, UAV LiDAR, and real-time GPS systems ensure millimetre accuracy for your engineering projects, reducing risks and delays."
+    }
+  ],
+  civil: [
+    {
+      icon: "expertise",
+      title: "Civil Construction Specialists",
+      description: "Extensive experience in road upgrades, subdivisions, bridges, pipelines, and rail projects with dedicated surveying teams for seamless project execution."
+    },
+    {
+      icon: "coverage",
+      title: "Nationwide Project Support", 
+      description: "From urban developments to regional infrastructure, our teams deliver consistent quality across Queensland, Victoria, South Australia, and Western Australia."
+    },
+    {
+      icon: "technology",
+      title: "Advanced Survey Technology",
+      description: "Control network setup, 3D modeling, volume calculations, and as-built surveys using the latest GPS, total station, and scanning technology."
+    }
+  ],
+  professional: [
+    {
+      icon: "expertise",
+      title: "Corporate-grade Excellence",
+      description: "Trusted by Australia's largest construction firms and government agencies for major infrastructure projects requiring the highest standards of precision and compliance."
+    },
+    {
+      icon: "coverage",
+      title: "Scalable Team Solutions",
+      description: "From single-visit setups to dedicated project teams, we scale our 70+ professional workforce to match your project requirements perfectly."
+    },
+    {
+      icon: "technology",
+      title: "Enterprise-level Systems",
+      description: "Advanced data management, real-time reporting, and seamless integration with major construction management platforms for efficient project delivery."
+    }
+  ],
+  land: [
+    {
+      icon: "expertise",
+      title: "Land Surveying Heritage",
+      description: "Deep expertise in Australian land surveying standards and regulations, ensuring accurate boundary definitions and compliance with state requirements."
+    },
+    {
+      icon: "coverage",
+      title: "Coast-to-coast Service",
+      description: "Comprehensive land surveying across all Australian states with local teams understanding regional variations in regulations and requirements."
+    },
+    {
+      icon: "technology",
+      title: "Precision Mapping Technology",
+      description: "High-accuracy GPS, total stations, and digital mapping systems delivering reliable boundary surveys, subdivisions, and property assessments."
+    }
+  ],
+  drone: [
+    {
+      icon: "expertise",
+      title: "UAV Technology Leaders",
+      description: "Pioneering drone surveying in Australia with advanced LiDAR and photogrammetry capabilities for rapid, accurate data collection across any terrain."
+    },
+    {
+      icon: "coverage",
+      title: "Unrestricted Access Capability",
+      description: "Access challenging or dangerous sites safely with our certified drone pilots and advanced UAV fleet, delivering data where traditional methods can't reach."
+    },
+    {
+      icon: "technology",
+      title: "Next-generation UAV Systems",
+      description: "State-of-the-art drone LiDAR, high-resolution cameras, and real-time processing delivering detailed topographic maps, 3D models, and volumetric analysis."
+    }
+  ],
+  property: [
+    {
+      icon: "expertise",
+      title: "Property Survey Specialists",
+      description: "Comprehensive property surveying for residential, commercial, and industrial developments with detailed boundary definitions and compliance documentation."
+    },
+    {
+      icon: "coverage",
+      title: "Nationwide Property Service",
+      description: "Professional property surveying across all Australian markets with local expertise in state-specific regulations and property law requirements."
+    },
+    {
+      icon: "technology",
+      title: "Modern Survey Methods",
+      description: "Digital surveying technology providing accurate property assessments, detailed plans, and fast turnaround times for property transactions and developments."
+    }
+  ]
+};
+
+const benefits = customBenefits || defaultBenefits[serviceType];
+
+const iconPaths: Record<string, string> = {
+  expertise: "M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z M12 14l-9-5 9 5z",
+  coverage: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
+  technology: "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+};
+---
+
+<section class="py-16 md:py-20 bg-gray-50">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-hr-dark mb-6">
+        Why Choose HR Surveyors?
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Experience the difference of working with Australia's leading surveying professionals. 
+        <strong class="text-hr-dark">Precision Delivered</strong> since 2012.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+      {benefits.map((benefit) => (
+        <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center group">
+          <div class="bg-hr-accent bg-opacity-10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 group-hover:bg-opacity-20 transition-colors duration-300">
+            <svg class="w-8 h-8 text-hr-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths[benefit.icon]} />
+            </svg>
+          </div>
+          
+          <h3 class="text-xl md:text-2xl font-bold text-hr-dark mb-4">
+            {benefit.title}
+          </h3>
+          
+          <p class="text-gray-600 leading-relaxed">
+            {benefit.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Trust Elements -->
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="bg-white rounded-lg p-6 shadow-md">
+        <div class="text-3xl font-bold text-hr-accent mb-2">12+</div>
+        <div class="text-sm text-gray-600 font-medium">Years Established</div>
+      </div>
+      <div class="bg-white rounded-lg p-6 shadow-md">
+        <div class="text-3xl font-bold text-hr-accent mb-2">70+</div>
+        <div class="text-sm text-gray-600 font-medium">Qualified Professionals</div>
+      </div>
+      <div class="bg-white rounded-lg p-6 shadow-md">
+        <div class="text-3xl font-bold text-hr-accent mb-2">5</div>
+        <div class="text-sm text-gray-600 font-medium">Office Locations</div>
+      </div>
+
+    </div>
+  </div>
+</section> 
