@@ -50,6 +50,12 @@ const updatedServices = [
     shortDesc: "Accurate underground utility location using electromagnetic induction and Ground Penetrating Radar (GPR).",
     fullDesc: "Our Utility Locating services use a combination of electromagnetic induction and Ground Penetrating Radar (GPR) to accurately locate both metallic and non-metallic underground utilities. By combining conductive, inductive, and passive locating techniques, we can quickly identify and trace utilities across large areas, even those with non-metallic lines using traceable copper rods. This approach ensures precise depth measurement without breaking ground, making it an efficient and non-invasive solution for your project needs.",
     externalLink: "https://www.hrutilities.com.au"
+  },
+  {
+    title: "Hydro Survey",
+    icon: "map",
+    shortDesc: "Essential mapping above and below waterline for infrastructure planning and environmental assessment.",
+    fullDesc: "Hydrographic surveys are essential for projects located near rivers, lakes, inlets, or marine environments. At HR Surveyors, we provide detailed mapping above and below the waterline to support infrastructure planning, design, and environmental assessment. Our team uses specialised sonar technology and high-precision GNSS equipment to capture accurate bathymetric data, aligned to MGA and AHD control. These surveys are commonly used for bridge construction, dredging operations, flood modelling, and coastal projects. Deliverables include 3D surfaces, depth contours, cross sections, and CAD-ready models tailored to suit design and compliance requirements."
   }
 ];
 
@@ -98,7 +104,7 @@ function getAltText(src: string) {
         </div>
       </div>
       <div class="lg:w-1/2 relative">
-        <div class="space-y-2 h-[600px] overflow-y-auto" id="servicesContainer">
+        <div class="space-y-2 h-[650px] overflow-y-auto" id="servicesContainer">
           {updatedServices.map((service, index) => (
             <div class="bg-white rounded-lg shadow-md transition-all duration-300 group hover:bg-hr-light">
               <button 
