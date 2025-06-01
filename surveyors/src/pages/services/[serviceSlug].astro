@@ -15,7 +15,9 @@ export async function getStaticPaths() {
   // For natural submission, only generate the engineering-surveying-services page
   const allowedServices = [
     'engineering-surveying-services',
-    'civil-engineering-surveying-services'
+    'civil-engineering-surveying-services',
+    'surveying-and-engineering-services',
+    'engineering-surveys-and-services'
   ];
   const filteredSlugs = serviceSlugs.filter(slug => allowedServices.includes(slug));
   
