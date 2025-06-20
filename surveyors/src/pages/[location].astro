@@ -1,6 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { locationContent, type LocationKey, locationKeywords, generateLocationSchema } from '../utils/seo';
+import { mainServices, secondaryServices } from '../data/officeData.js';
+import Icon from '../components/Icon.astro';
+import ServicesCarousel from '../components/ServicesCarousel.astro';
+
+// Enable prerendering for static generation
+export const prerender = true;
 
 // Direct export instead of re-exporting
 export const getStaticPaths = () => {
@@ -30,28 +36,35 @@ const capitalize = (str: string): string => {
 type OfficeInfo = Record<LocationKey, {
   address: string;
   areas: string;
+  phone?: string;
+  specialties: string[];
 }>;
 
 const officeLocations: OfficeInfo = {
   melbourne: {
-    address: '8/20 Duerdin street, Clayton, VIC, 3168',
-    areas: 'Melbourne Metro, Eastern Victoria'
+    address: '8/20 Duerdin Street, Clayton, VIC, 3168',
+    areas: 'Melbourne Metro, Eastern Victoria',
+    specialties: ['High-rise Construction', 'Infrastructure Projects', 'Industrial Surveying']
   },
   geelong: {
-    address: 'Newtown, VIC, 3220', 
-    areas: 'Geelong, Western Victoria'
+    address: '265 Pakington Street, Newtown, VIC, 3220', 
+    areas: 'Geelong, Western Victoria',
+    specialties: ['Renewable Energy Projects', 'Coastal Development', 'Civil Construction']
   },
   perth: {
-    address: 'West Leederville, WA, 6007',
-    areas: 'Perth Metro, Regional WA'
+    address: '1/435 Vincent Street West, West Leederville, WA, 6007',
+    areas: 'Perth Metro, Regional WA',
+    specialties: ['Mining Projects', 'Infrastructure Development', 'Level Crossing Removals']
   },
   brisbane: {
-    address: 'Murwillumbah, NSW, 2484',
-    areas: 'Brisbane, Gold Coast, Northern Rivers'
+    address: '36-42 Murwillumbah Street, Murwillumbah, NSW, 2484',
+    areas: 'Brisbane, Gold Coast, Northern Rivers',
+    specialties: ['Highway Upgrades', 'Residential Development', 'UAV Surveying']
   },
   adelaide: {
-    address: 'Edinburgh North, SA, 5113',
-    areas: 'Adelaide Metro, Regional SA'
+    address: '28 Peachey Road, Edinburgh North, SA, 5113',
+    areas: 'Adelaide Metro, Regional SA',
+    specialties: ['Infrastructure Mapping', 'Specification Surveys', 'Civil Construction']
   }
 };
 
@@ -65,53 +78,12 @@ const content = locationContent[location] || {
 };
 const capitalizedLocation = capitalize(location);
 
-// Local area info with default entry for cases not explicitly defined
-const defaultLocalAreaInfo = {
-  keyAreas: ['Metropolitan Area', 'Regional Areas', 'Commercial Centers'],
-  localExpertise: `Our ${capitalizedLocation} surveying team delivers professional services across the region with expertise in local conditions and regulations.`,
-  industryFocus: ['Construction', 'Infrastructure', 'Development', 'Engineering']
-};
-
-// Local area info for more targeted content
-const localAreaInfo: Record<LocationKey, {
-  keyAreas: string[];
-  localExpertise: string;
-  industryFocus: string[];
-}> = {
-  melbourne: {
-    keyAreas: ['Clayton', 'South East Melbourne', 'Eastern Victoria', 'Dandenong', 'Mornington Peninsula'],
-    localExpertise: "With over 10 years of experience in Melbourne's eastern suburbs and industrial areas, our Clayton-based surveyors understand the local planning regulations and terrain challenges specific to Victoria.",
-    industryFocus: ['Manufacturing', 'Infrastructure', 'Residential Development', 'Education Facilities']
-  },
-  geelong: {
-    keyAreas: ['Geelong', 'Western Victoria', 'Bellarine Peninsula', 'Surf Coast', 'Golden Plains'],
-    localExpertise: "Our Geelong surveyors bring specialized knowledge of coastal environments, regional development requirements, and the unique surveying challenges of Western Victoria.",
-    industryFocus: ['Coastal Development', 'Rural Subdivisions', 'Industrial Zones', 'Renewable Energy']
-  },
-  perth: {
-    keyAreas: ['Perth Metro', 'West Leederville', 'Western Suburbs', 'Northern Corridor', 'South Perth'],
-    localExpertise: "Our Perth team combines deep knowledge of Western Australia's mining regulations, urban development codes, and coastal survey requirements with advanced technical capabilities.",
-    industryFocus: ['Mining', 'Urban Development', 'Infrastructure', 'Commercial Construction']
-  },
-  brisbane: {
-    keyAreas: ['Brisbane', 'Gold Coast', 'Northern Rivers', 'Sunshine Coast', 'Logan'],
-    localExpertise: "Specializing in Queensland's diverse landscapes, from urban Brisbane to coastal Gold Coast developments, our surveyors bring local insight to every project.",
-    industryFocus: ['Tourism Development', 'Residential Projects', 'Flood Mapping', 'Urban Renewal']
-  },
-  adelaide: {
-    keyAreas: ['Adelaide Metro', 'Edinburgh North', 'Northern Suburbs', 'Adelaide Hills', 'Barossa Valley'],
-    localExpertise: "Our Edinburgh North team offers specialized knowledge of South Australian regulations, with particular expertise in infrastructure projects and industrial developments.",
-    industryFocus: ['Defense', 'Manufacturing', 'Wineries', 'Urban Expansion', 'Education Facilities']
-  }
-};
-
-const localInfo = localAreaInfo[location] || defaultLocalAreaInfo;
+// Show all services from the site (main + secondary)
+const allServices = [...mainServices, ...secondaryServices];
 
 // Improved SEO Elements
-const metaTitle = `HR Surveyors ${capitalizedLocation} | Professional Surveying Services`;
-const metaDescription = content && content.services 
-  ? `Expert ${content.services.join(', ')} services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`
-  : `Professional surveying services in ${capitalizedLocation}. Local surveyors with extensive experience in ${officeInfo?.areas || capitalizedLocation}.`;
+const metaTitle = `Professional Land Surveyors ${capitalizedLocation} | HR Surveyors`;
+const metaDescription = `Expert surveying services in ${capitalizedLocation}. Precision engineering surveys, construction surveying & infrastructure mapping. 12+ years experience across ${officeInfo?.areas || capitalizedLocation}.`;
 
 const fallbackSchema = {
   "@context": "https://schema.org",
@@ -135,203 +107,235 @@ const fallbackSchema = {
   schema={generateLocationSchema ? generateLocationSchema(location, capitalizedLocation, officeInfo, content) : fallbackSchema}
 >
   <main class="bg-white text-hr-dark">
-    <section class="py-20 md:py-32">
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
       <div class="container mx-auto px-4 max-w-6xl">
-        <h1 class="text-5xl lg:text-6xl font-bold mb-12 text-hr-dark text-center">
-          Professional {content && content.services && content.services.includes('Engineering Surveys') ? 'Engineering' : 'Land'} Surveyors in {capitalizedLocation}
-        </h1>
-        
-        <div class="mb-20">
-          <p class="text-xl mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 text-hr-dark">
+            Professional Land Surveyors in {capitalizedLocation}
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            Precision Delivered. Solutions Engineered.
+          </p>
+          <p class="text-lg mb-8 text-gray-600 max-w-3xl mx-auto">
             {content.description}
           </p>
-          
-          <!-- Location-Specific Area Information -->
-          <div class="bg-gray-50 p-8 rounded-lg mb-16">
-            <h2 class="text-2xl font-bold mb-6">HR Surveyors in {capitalizedLocation}</h2>
-            <p class="mb-6">{localInfo.localExpertise}</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-              <div>
-                <h3 class="text-lg font-semibold mb-3">Key Areas We Serve:</h3>
-                <ul class="space-y-2">
-                  {localInfo.keyAreas.map((area) => (
-                    <li class="flex items-center">
-                      <span class="text-hr-accent mr-2">•</span>
-                      <span>{area}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-3">Industry Specializations:</h3>
-                <ul class="space-y-2">
-                  {localInfo.industryFocus.map((industry) => (
-                    <li class="flex items-center">
-                      <span class="text-hr-accent mr-2">•</span>
-                      <span>{industry}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          {officeInfo && (
-            <div class="bg-gray-100 rounded-lg p-8 shadow-lg mb-16">
-              <h2 class="text-2xl font-bold mb-4">Our {capitalize(location)} Office</h2>
-              <p class="mb-2"><strong>Address:</strong> {officeInfo.address}</p>
-              <p class="mb-4"><strong>Service Areas:</strong> {officeInfo.areas}</p>
-              <a 
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(officeInfo.address)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block bg-hr-accent text-hr-dark px-4 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors"
-              >
-                Get Directions
-              </a>
-            </div>
-          )}
-
-          <!-- Featured Service: Drone Surveying (Highest Impressions) -->
-          <div class="mb-16">
-            <h2 class="text-2xl font-bold mb-6">Drone Surveying in {capitalizedLocation}</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              <div class="md:col-span-2 bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent">
-                <p class="mb-4">Our drone surveying services in {capitalizedLocation} provide high-precision aerial mapping and data collection for engineering, construction, and mining projects. Using advanced UAV technology, we deliver:</p>
-                <ul class="mb-4 space-y-2">
-                  <li class="flex items-start">
-                    <span class="text-hr-accent mr-2">✓</span>
-                    <span>High-resolution orthomosaic mapping</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-hr-accent mr-2">✓</span>
-                    <span>3D terrain models and volumetric calculations</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-hr-accent mr-2">✓</span>
-                    <span>Rapid data collection for large areas</span>
-                  </li>
-                </ul>
-                <a href={`/services/drone-surveying/${location}`} class="text-hr-accent font-semibold hover:underline">Learn more about our drone surveying capabilities →</a>
-              </div>
-              <div>
-                <img 
-                  src="/images/hr-surveyors-drone-survey.jpg" 
-                  alt={`Drone surveying services in ${capitalizedLocation}`}
-                  class="rounded-lg shadow-md w-full h-auto"
-                  width="400"
-                  height="300"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- Featured Service: Engineering Surveying -->
-          <div class="mb-16">
-            <h2 class="text-2xl font-bold mb-6">Engineering Surveying in {capitalizedLocation}</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              <div>
-                <img 
-                  src="/images/hr-surveyors-engineering-surveying.jpg" 
-                  alt={`Engineering surveying services in ${capitalizedLocation}`}
-                  class="rounded-lg shadow-md w-full h-auto"
-                  width="400"
-                  height="300"
-                />
-              </div>
-              <div class="md:col-span-2 bg-gray-50 p-6 rounded-lg border-l-4 border-hr-accent">
-                <p class="mb-4">Our engineering surveying team in {capitalizedLocation} delivers precise measurements and spatial data essential for engineering design, construction, and quality assurance, including:</p>
-                <ul class="mb-4 space-y-2">
-                  <li class="flex items-start">
-                    <span class="text-hr-accent mr-2">✓</span>
-                    <span>Precise control networks and topographic surveys</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-hr-accent mr-2">✓</span>
-                    <span>Accurate construction layout and as-built documentation</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-hr-accent mr-2">✓</span>
-                    <span>Structural monitoring and deformation analysis</span>
-                  </li>
-                </ul>
-                <a href={`/services/engineering-surveying/${location}`} class="text-hr-accent font-semibold hover:underline">Explore our engineering surveying expertise →</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Client Testimonials Section -->
-          {/* Removed testimonials section */}
-
-          <!-- Complete Services Section with Links to Service+Location Pages -->
-          {content && content.services && (
-            <div class="mb-16">
-              <h2 class="text-2xl font-bold mb-6 text-center">Our Complete Services in {capitalize(location)}</h2>
-              <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {content.services.map((service: string) => {
-                  const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/\(|\)/g, '');
-                  const serviceType = serviceSlug.includes('drone') || serviceSlug.includes('uav') ? 'drone-surveying' : 
-                                    serviceSlug.includes('engineering') ? 'engineering-surveying' : 'land-surveying';
-                  
-                  return (
-                    <li class="bg-white p-5 rounded shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                      <a href={`/services/${serviceType}/${location}`} class="block text-hr-dark hover:text-hr-accent transition-colors">
-                        <span class="font-medium">{service}</span>
-                        <span class="block text-sm text-gray-600 mt-1">in {capitalizedLocation}</span>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-
-          {content && content.projects && (
-            <div class="mb-16">
-              <h2 class="text-2xl font-bold mb-6 text-center">Featured Projects in {capitalize(location)}</h2>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {content.projects.map((project: string) => (
-                  <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <h3 class="font-semibold mb-2">{project}</h3>
-                    <p class="text-sm text-gray-600 mb-3">Surveying & Engineering Solutions</p>
-                    <a href="/projects" class="text-hr-accent text-sm hover:underline">View project details →</a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <!-- Location-Specific Keywords as Tagged Topics -->
-          <div class="mt-8 mb-16">
-            <h2 class="text-xl font-bold mb-4">Popular {capitalizedLocation} Surveying Services</h2>
-            <div class="flex flex-wrap gap-2">
-              {locationKeywords[location]?.map(keyword => {
-                const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                
-                return (
-                  <a 
-                    href={`/services/${keywordSlug}/`}
-                    class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-hr-accent hover:text-white transition-colors"
-                  >
-                    {keyword}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          <!-- CTA Section -->
-          <div class="text-center bg-gray-50 p-8 rounded-lg">
-            <h2 class="text-2xl font-bold mb-4">Need Professional Surveying in {capitalizedLocation}?</h2>
-            <p class="mb-6 max-w-2xl mx-auto">Contact our local team for a consultation and discover how our surveying expertise can help with your next project in {capitalizedLocation}.</p>
-            <a 
-                              href="/contact/" 
-              class="inline-block bg-hr-accent text-hr-dark px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors"
-            >
-              Request a Quote
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+              Start Your Project
+            </a>
+            <a href="/services/" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300">
+              Explore Our Services
             </a>
           </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">2012</p>
+            <p class="text-gray-600">Established</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">70+</p>
+            <p class="text-gray-600">Employees</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">5</p>
+            <p class="text-gray-600">Offices</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office Information -->
+    {officeInfo && (
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <div class="bg-gray-50 rounded-lg p-8 shadow-lg">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <h2 class="text-3xl font-bold mb-6 text-hr-dark">Our {capitalizedLocation} Office</h2>
+                <div class="space-y-4 mb-6">
+                  <div class="flex items-start">
+                    <svg class="w-5 h-5 text-hr-accent mt-1 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <p class="font-semibold text-hr-dark">Address</p>
+                      <p class="text-gray-600">{officeInfo.address}</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <svg class="w-5 h-5 text-hr-accent mt-1 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                      <p class="font-semibold text-hr-dark">Service Areas</p>
+                      <p class="text-gray-600">{officeInfo.areas}</p>
+                    </div>
+                  </div>
+                </div>
+                <a 
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(officeInfo.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center bg-hr-accent text-hr-dark px-6 py-3 rounded font-semibold hover:bg-opacity-90 transition-colors"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                  </svg>
+                  Get Directions
+                </a>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-4 text-hr-dark">Local Specialties</h3>
+                <ul class="space-y-3">
+                  {officeInfo.specialties.map((specialty) => (
+                    <li class="flex items-center">
+                      <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                      <span class="text-gray-700">{specialty}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Services Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-6 text-hr-dark">
+            Expert Surveying Services in {capitalizedLocation}
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Professional land surveyors and engineering surveying experts delivering precision solutions across {officeInfo?.areas || capitalizedLocation}.
+          </p>
+        </div>
+
+                                 <ServicesCarousel services={allServices} />
+
+        <div class="text-center mt-12">
+          <a href="/services/" class="inline-flex items-center text-hr-dark hover:text-hr-accent transition-colors">
+            <span class="mr-2 text-lg font-semibold">View all our services</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    {content && content.projects && (
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-hr-dark">Featured Projects in {capitalizedLocation}</h2>
+            <p class="text-lg text-gray-600">Recent successful surveying projects across {officeInfo?.areas || capitalizedLocation}</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {content.projects.map((project: string) => (
+              <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold mb-3 text-hr-dark">{project}</h3>
+                <p class="text-gray-600 mb-4">
+                  Comprehensive surveying and engineering solutions delivered with precision and efficiency.
+                </p>
+                <div class="flex items-center text-hr-accent font-semibold">
+                  <span>Project Details</span>
+                  <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Why Choose HR Surveyors -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold mb-6 text-hr-dark">
+              Why Choose HR Surveyors in {capitalizedLocation}?
+            </h2>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2 text-hr-dark">12+ Years Experience</h3>
+                  <p class="text-gray-600">Established in 2012, we've built strong, long-term relationships with clients across Australia's construction industry.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2 text-hr-dark">Advanced Technology</h3>
+                  <p class="text-gray-600">Cutting-edge equipment including 3D laser scanning, UAV LiDAR, and high-precision GPS systems for millimetre accuracy.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2 text-hr-dark">Local Expertise</h3>
+                  <p class="text-gray-600">Deep understanding of local regulations, terrain challenges, and industry requirements specific to {capitalizedLocation}.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <h3 class="text-2xl font-bold mb-6 text-hr-dark">Ready to Start Your Project?</h3>
+            <p class="text-gray-600 mb-6">
+              Contact our {capitalizedLocation} team for a consultation and discover how our surveying expertise can help with your next project.
+            </p>
+            <div class="space-y-4">
+              <a 
+                href="mailto:office@hrsurveyors.com.au" 
+                class="block w-full bg-hr-accent text-hr-dark text-center px-6 py-3 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors"
+              >
+                Request a Quote
+              </a>
+              <a 
+                href="/contact/" 
+                class="block w-full bg-transparent border-2 border-hr-dark text-hr-dark text-center px-6 py-3 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Searches -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-2xl font-bold mb-8 text-hr-dark text-center">Popular {capitalizedLocation} Surveying Services</h2>
+        <div class="flex flex-wrap justify-center gap-3">
+          {locationKeywords[location]?.map(keyword => (
+            <span class="px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-700 hover:bg-hr-accent hover:text-white transition-colors cursor-pointer">
+              {keyword}
+            </span>
+          ))}
         </div>
       </div>
     </section>
