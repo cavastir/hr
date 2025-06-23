@@ -1,0 +1,235 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Land Surveying Clayton - Expert Analysis & Professional Services",
+  "description": "Expert analysis of land surveying requirements in Clayton from Melbourne's leading surveying professionals based at our Victoria headquarters.",
+  "author": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "url": "https://www.hrsurveyors.com.au"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo.png"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Land Surveying Clayton",
+    "provider": {
+      "@type": "Organization",
+      "name": "HR Surveyors"
+    },
+    "areaServed": "Clayton, Melbourne, Victoria"
+  }
+};
+---
+
+<Layout 
+  title="Land Surveying Clayton - Expert Analysis & Professional Services | HR Surveyors"
+  description="Expert analysis of land surveying in Clayton from Melbourne's leading professionals. Our Victoria headquarters provides comprehensive land surveying services for Clayton and Melbourne Metro areas."
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <main class="bg-white text-hr-dark">
+    <section class="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 text-hr-dark">
+            Land Surveying Clayton - Expert Analysis
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            Melbourne HQ Expertise: Professional Analysis of Clayton Land Surveying Requirements
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+              Clayton Consultation
+            </a>
+            <a href="/melbourne/" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300">
+              Visit Our HQ
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Clayton Land Surveying Market Analysis</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Clayton represents a dynamic surveying market within Melbourne's southeastern growth corridor, combining established residential areas with ongoing industrial and commercial development. Our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Melbourne headquarters team</a>, based directly in Clayton at Duerdin Street, provides unmatched local expertise and immediate response capabilities for land surveying requirements.
+          </p>
+          <p class="text-lg leading-relaxed text-gray-600 mb-8">
+            As Melbourne's surveying professionals established since 2012, we've witnessed Clayton's transformation from primarily industrial area to a mixed-use hub requiring diverse land surveying solutions. Our comprehensive <a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">land surveying services</a> are specifically adapted for Clayton's unique combination of heritage boundaries, modern development pressures, and industrial zoning requirements.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Industrial Heritage</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Clayton's industrial heritage creates complex boundary situations where historical property lines intersect with modern development requirements, requiring specialized expertise in heritage boundary research and verification.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Mixed-Use Development</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Clayton's evolution into mixed residential, commercial, and industrial zones requires land surveys that accommodate diverse zoning requirements and interface considerations between different property uses.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Transport Infrastructure</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Clayton's position as a transport hub with rail connections and major road networks creates surveying challenges involving transport authority interfaces and infrastructure protection requirements.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Our Clayton Headquarters Advantage</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Operating from our Victoria headquarters directly in Clayton provides unparalleled advantages for local land surveying projects. Our established presence since 2012, combined with intimate knowledge of local planning requirements and council processes, ensures efficient project delivery and optimal outcomes for Clayton property owners and developers.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 md:p-12 shadow-lg mb-16">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-2xl font-bold text-hr-dark mb-6">Victoria Headquarters</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div class="w-5 h-5 bg-hr-accent rounded-full mt-1 mr-3"></div>
+                  <div>
+                    <p class="font-semibold text-hr-dark">Clayton Address</p>
+                    <p class="text-gray-600">8/20 Duerdin Street, Clayton, VIC, 3168</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-5 h-5 bg-hr-accent rounded-full mt-1 mr-3"></div>
+                  <div>
+                    <p class="font-semibold text-hr-dark">Service Coverage</p>
+                    <p class="text-gray-600">Melbourne Metro, Eastern Victoria</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-5 h-5 bg-hr-accent rounded-full mt-1 mr-3"></div>
+                  <div>
+                    <p class="font-semibold text-hr-dark">Local Advantages</p>
+                    <p class="text-gray-600">Immediate response, council relationships, area expertise</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4 text-hr-dark">Melbourne Specializations</h3>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">High-rise Construction</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Infrastructure Projects</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Industrial Surveying</span>
+                </li>
+              </ul>
+              
+              <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                <h4 class="font-semibold text-hr-dark mb-2">Local Council Experience</h4>
+                <p class="text-gray-600 text-sm">Extensive experience with Monash City Council planning and surveying requirements, ensuring streamlined approvals and compliance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-hr-dark rounded-xl p-8 md:p-12 text-white">
+          <h3 class="text-3xl font-bold mb-8 text-center text-hr-accent">Recent Clayton & Melbourne Metro Projects</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-semibold text-hr-accent mb-3">Golden Plains Wind Farm</h4>
+              <p class="text-gray-300 text-sm">Major renewable energy infrastructure project demonstrating our capability with large-scale surveying projects requiring precise boundary definition and infrastructure coordination.</p>
+            </div>
+            <div>
+              <h4 class="text-xl font-semibold text-hr-accent mb-3">Penny Lane Moonee Ponds</h4>
+              <p class="text-gray-300 text-sm">Melbourne metro residential development showcasing our expertise in urban boundary surveys and subdivision work similar to Clayton area requirements.</p>
+            </div>
+            <div>
+              <h4 class="text-xl font-semibold text-hr-accent mb-3">Childs Road Upgrade</h4>
+              <p class="text-gray-300 text-sm">Complex Melbourne infrastructure project requiring detailed boundary surveys and coordination with existing properties, demonstrating capabilities applicable to Clayton developments.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-6">
+              Clayton Land Survey Consultation
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+              Connect directly with our Clayton-based land surveying team for immediate consultation and site assessment. Our Victoria headquarters location ensures rapid response times and comprehensive understanding of local planning and development requirements.
+            </p>
+            
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-hr-accent rounded-full"></div>
+                <span class="text-lg text-gray-700">Clayton headquarters - immediate local response</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-hr-accent rounded-full"></div>
+                <span class="text-lg text-gray-700">12+ years Clayton and Melbourne Metro experience</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-hr-accent rounded-full"></div>
+                <span class="text-lg text-gray-700">Established council and planning relationships</span>
+              </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="/contact/"
+                class="inline-flex items-center justify-center bg-hr-accent text-hr-dark px-8 py-4 rounded-lg text-lg font-bold hover:bg-opacity-90 transition-all duration-300"
+              >
+                Clayton Consultation
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-hr-dark mb-8 text-center">Clayton Surveying Expertise</h3>
+            <div class="space-y-6">
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-hr-dark mb-3">Local Team Expertise</h4>
+                <p class="text-gray-600 text-sm mb-4">Our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Melbourne headquarters team</a> brings comprehensive understanding of Clayton's unique surveying challenges and opportunities.</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-hr-dark mb-3">Land Surveying Services</h4>
+                <p class="text-gray-600 text-sm mb-4">Clayton land surveys integrated with our comprehensive <a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">land surveying services</a> for complete project coverage.</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-hr-dark mb-3">Engineering Integration</h4>
+                <p class="text-gray-600 text-sm mb-4">Land surveys often combined with our <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying services</a> for comprehensive Clayton development projects.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

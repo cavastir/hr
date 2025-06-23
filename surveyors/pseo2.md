@@ -30,7 +30,7 @@
 
 ## **Target Keywords Strategy & Page Architecture**
 
-### **Tier 1: High-Volume Commercial Keywords (12 pages)**
+### **Tier 1: High-Volume Commercial Keywords (13 pages)**
 
 **Primary Landing Pages:**
 1. `civil-engineering-surveys` - Core civil engineering focus (507 searches)
@@ -40,11 +40,12 @@
 5. `high-precision-engineering-surveys-bunbury-area` - Regional precision focus (245 searches)
 6. `engineering-surveyor-perth` - Perth professional positioning (187 searches)
 7. `land-surveyors-near-epping` - Melbourne metro targeting (165 searches)
-8. `drone-surveys-australia` - National drone leadership (154 searches)
-9. `drone-surveying-australia` - Comprehensive drone services (103 searches)
-10. `advanced-surveying-tools-australia` - Technology leadership positioning
-11. `environmental-compliance-surveying-mining` - Specialized industry focus
-12. `engineering-surveying-infrastructure-projects` - Large project positioning
+8. `land-surveying-clayton` - Melbourne HQ location targeting (85 searches)
+9. `drone-surveys-australia` - National drone leadership (154 searches)
+10. `drone-surveying-australia` - Comprehensive drone services (103 searches)
+11. `advanced-surveying-tools-australia` - Technology leadership positioning
+12. `environmental-compliance-surveying-mining` - Specialized industry focus
+13. `engineering-surveying-infrastructure-projects` - Large project positioning
 
 ### **Tier 2: Educational & Conversion Keywords (8 pages)**
 
