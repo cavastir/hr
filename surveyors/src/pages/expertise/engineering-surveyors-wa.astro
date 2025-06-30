@@ -1,0 +1,352 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { mainServices, officeLocations } from '../../data/officeData.js';
+
+// Schema.org structured data for SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Engineering Surveyors WA - Expert Analysis & Professional Services",
+  "description": "Expert analysis of Western Australia's engineering surveying landscape from leading WA professionals with extensive regional experience and local expertise.",
+  "author": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "url": "https://www.hrsurveyors.com.au"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo.png"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Engineering Surveyors WA",
+    "serviceArea": {
+      "@type": "State",
+      "name": "Western Australia"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "HR Surveyors"
+    }
+  }
+};
+
+// Get WA office and relevant services
+const waOffice = officeLocations.find(office => office.state === "WA");
+const infrastructureService = mainServices.find(service => service.title === "Infrastructure & Mining");
+const civilService = mainServices.find(service => service.title === "Civil Construction");
+---
+
+<Layout 
+  title="Engineering Surveyors WA - Expert Analysis & Professional Services | HR Surveyors"
+  description="Expert analysis of Western Australia's engineering surveying landscape from leading WA professionals. Comprehensive insights on mining integration, infrastructure projects, and regional surveying expertise."
+>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <main class="bg-white text-hr-dark">
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 text-hr-dark">
+            Engineering Surveyors WA - Expert Analysis
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            Regional Expertise: Professional Analysis of Western Australia's Engineering Survey Landscape
+          </p>
+          <p class="text-lg mb-8 text-gray-600 max-w-3xl mx-auto">
+            Comprehensive insights from WA's established surveying professionals
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+              WA Consultation
+            </a>
+            <a href="/western-australia/" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300">
+              Visit WA Office
+            </a>
+          </div>
+        </div>
+
+        <!-- WA Office Stats -->
+        <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">2012</p>
+            <p class="text-gray-600">Established</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">WA</p>
+            <p class="text-gray-600">Regional Presence</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">5</p>
+            <p class="text-gray-600">National Offices</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WA Market Analysis -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Western Australia Engineering Survey Market Analysis</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Western Australia's engineering surveying landscape presents unique challenges combining mining infrastructure, urban development, and resource extraction projects. Our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">WA-based team</a>, operating from West Leederville, has established comprehensive expertise in managing WA's diverse engineering survey requirements across mining, infrastructure, and construction sectors.
+          </p>
+          <p class="text-lg leading-relaxed text-gray-600 mb-8">
+            The integration of mining operations with urban infrastructure creates complex surveying challenges requiring specialized knowledge of both industries. Technical insights from our <a href="/articles/perth-surveyor-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Perth surveyor guide</a> demonstrate how WA's resource-driven economy influences engineering survey methodologies and precision requirements across the state.
+          </p>
+        </div>
+
+        <!-- WA-Specific Challenges -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Mining Integration</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              WA's mining-driven economy requires engineering surveys that accommodate heavy haulage routes, subsidence monitoring, and resource extraction infrastructure while integrating with urban development and environmental compliance requirements.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Regional Coverage</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Western Australia's vast geographic scale demands engineering survey capabilities that can efficiently cover remote locations while maintaining accuracy standards for both regional mining operations and metropolitan infrastructure projects.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Environmental Considerations</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              WA's diverse environmental conditions, from coastal areas to inland mining regions, require engineering surveys that account for soil variations, groundwater impacts, and environmental protection requirements across different ecosystems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HR Surveyors WA Approach -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Our WA Engineering Survey Approach</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Based on our extensive experience with Western Australia's unique engineering challenges, we've developed specialized methodologies that address the state's mining integration, infrastructure development, and environmental requirements. Our local expertise, combined with our <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">comprehensive engineering surveying services</a>, ensures optimal results for WA's diverse project types.
+          </p>
+        </div>
+
+        <!-- WA Office Integration -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">WA Office Capabilities</h3>
+            <div class="space-y-6">
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">📍 Office Location</h4>
+                <p class="text-gray-600">{waOffice.address}, {waOffice.city}, {waOffice.state}, {waOffice.postcode}</p>
+              </div>
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">🗺️ Service Areas</h4>
+                <p class="text-gray-600">Perth Metro, Regional WA</p>
+              </div>
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">🏗️ Specializations</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-hr-accent text-hr-dark px-3 py-1 rounded-full text-sm font-medium">Mining Projects</span>
+                  <span class="bg-hr-accent text-hr-dark px-3 py-1 rounded-full text-sm font-medium">Infrastructure Development</span>
+                  <span class="text-gray-700">Regional Expertise</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Technology & Equipment</h3>
+            <div class="bg-white rounded-lg p-6 shadow-md">
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">High-precision GPS systems for regional coverage</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Advanced total stations for mining integration</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">3D laser scanning for infrastructure projects</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">UAV systems for large-scale regional mapping</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Infrastructure & Mining Service -->
+        <div class="bg-hr-dark rounded-xl p-8 md:p-12 text-white">
+          <h3 class="text-3xl md:text-4xl font-bold mb-8 text-center text-hr-accent">Infrastructure & Mining Expertise</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-4 text-hr-accent">Regional Projects</h4>
+              <p class="text-gray-300 text-sm mb-4">
+                {infrastructureService.description}
+              </p>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Major infrastructure projects across WA</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Regional mining operation support</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Urban and rural project management</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold mb-4 text-hr-accent">Civil Construction</h4>
+              <p class="text-gray-300 text-sm mb-4">
+                Our civil construction expertise extends across WA's diverse landscape, from Perth metropolitan developments to regional infrastructure projects requiring specialized knowledge of local conditions and regulatory requirements.
+              </p>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Road upgrades and subdivisions</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Bridges and pipeline projects</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">3D modeling and volume calculations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expert Team Integration -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">WA Engineering Survey Expertise</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Our WA engineering survey team combines regional expertise with national standards, ensuring comprehensive understanding of Western Australia's unique surveying challenges. The professional qualifications and experience detailed on our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">company overview</a> demonstrate our commitment to maintaining the highest standards across all WA projects.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Regional Expertise</h3>
+            <p class="text-gray-600 mb-4">
+              Specialized knowledge of WA's mining, infrastructure, and construction industries with comprehensive understanding of regional regulatory requirements.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Professional Standards</h3>
+            <p class="text-gray-600 mb-4">
+              Maintaining national surveying standards while adapting to WA's specific environmental and regulatory requirements across diverse project types.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Technology Integration</h3>
+            <p class="text-gray-600 mb-4">
+              Advanced surveying technology adapted for WA's unique geographic and environmental conditions, ensuring optimal results across metropolitan and regional projects.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Insights & Resources -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Related Insights & Resources</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Industry Articles</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="/articles/perth-surveyor-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Perth Surveyor Guide
+                </a>
+                <p class="text-gray-600 text-sm">Comprehensive insights into WA surveying practices</p>
+              </li>
+              <li>
+                <a href="/articles/drone-surveying-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Drone Surveying Guide
+                </a>
+                <p class="text-gray-600 text-sm">Advanced UAV applications for WA projects</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Professional Services</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Engineering Surveying Services
+                </a>
+                <p class="text-gray-600 text-sm">Comprehensive engineering survey solutions</p>
+              </li>
+              <li>
+                <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Professional Surveying Services
+                </a>
+                <p class="text-gray-600 text-sm">Enterprise-grade surveying solutions</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">WA Expertise</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="/western-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  WA Office Information
+                </a>
+                <p class="text-gray-600 text-sm">Local office capabilities and coverage</p>
+              </li>
+              <li>
+                <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Our Professional Team
+                </a>
+                <p class="text-gray-600 text-sm">WA team expertise and qualifications</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-hr-dark text-white">
+      <div class="container mx-auto px-4 max-w-4xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-hr-accent">Ready to Discuss Your WA Engineering Survey Requirements?</h2>
+        <p class="text-xl mb-8 text-gray-300">
+          Connect with our Western Australia engineering survey specialists for expert analysis and professional consultation.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+            Get Professional Assessment
+          </a>
+          <a href="/western-australia/" class="bg-transparent border-2 border-hr-accent text-hr-accent px-8 py-4 rounded text-lg font-bold hover:bg-hr-accent hover:text-hr-dark transition-all duration-300">
+            Visit WA Office
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 

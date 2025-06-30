@@ -1,0 +1,361 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { mainServices, officeLocations } from '../../data/officeData.js';
+
+// Schema.org structured data for SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Professional Surveyors Goldfields Region - Expert Analysis & Mining Services",
+  "description": "Expert analysis of goldfields region surveying requirements from professional surveyors with extensive mining and regional infrastructure experience.",
+  "author": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "url": "https://www.hrsurveyors.com.au"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo.png"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Professional Surveyors Goldfields Region",
+    "serviceArea": {
+      "@type": "Place",
+      "name": "Goldfields Region, Western Australia"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "HR Surveyors"
+    }
+  }
+};
+
+// Get WA office and mining-related services
+const waOffice = officeLocations.find(office => office.state === "WA");
+const infrastructureService = mainServices.find(service => service.title === "Infrastructure & Mining");
+const professionalService = mainServices.find(service => service.title === "Professional Surveying Services");
+---
+
+<Layout 
+  title="Professional Surveyors Goldfields Region - Expert Analysis & Mining Services | HR Surveyors"
+  description="Expert analysis of goldfields region surveying from professional surveyors with extensive mining experience. Comprehensive insights on regional mining infrastructure and specialized surveying requirements."
+>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <main class="bg-white text-hr-dark">
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 text-hr-dark">
+            Professional Surveyors Goldfields Region
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            Mining Region Specialization: Professional Analysis of Goldfields Surveying Requirements
+          </p>
+          <p class="text-lg mb-8 text-gray-600 max-w-3xl mx-auto">
+            Expert insights from professional surveyors with extensive regional mining experience
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+              Regional Consultation
+            </a>
+            <a href="/about/" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300">
+              Our Mining Expertise
+            </a>
+          </div>
+        </div>
+
+        <!-- Regional Stats -->
+        <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">2012</p>
+            <p class="text-gray-600">Established</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">WA</p>
+            <p class="text-gray-600">Regional Base</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">70+</p>
+            <p class="text-gray-600">Professionals</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Goldfields Market Analysis -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Goldfields Region Professional Surveying Analysis</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            The Goldfields region presents unique professional surveying challenges that combine large-scale mining operations with regional infrastructure development. Our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional team</a> has extensive experience managing complex mining projects that require specialized surveying approaches adapted to the region's operational and environmental requirements.
+          </p>
+          <p class="text-lg leading-relaxed text-gray-600 mb-8">
+            Professional surveying in the Goldfields region demands comprehensive understanding of mining operations, environmental compliance, and regional infrastructure integration. Technical insights from our <a href="/articles/drone-surveying-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">drone surveying guide</a> demonstrate how advanced technology applications enhance traditional surveying methods for large-scale mining and regional projects.
+          </p>
+        </div>
+
+        <!-- Regional Challenges -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Mining Operations</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Large-scale mining operations require professional surveying that can accommodate pit progression monitoring, stockpile management, and infrastructure development while maintaining operational safety and environmental compliance standards.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Regional Infrastructure</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Regional infrastructure projects in the Goldfields require professional surveying that integrates mining operations with transportation networks, utilities, and community infrastructure across vast geographic areas.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Environmental Compliance</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Environmental monitoring and compliance documentation require professional surveying that can track environmental impacts, monitor rehabilitation progress, and ensure regulatory compliance across multiple project phases.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HR Surveyors Professional Approach -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Our Professional Goldfields Surveying Approach</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Based on our extensive experience with regional mining projects, we've developed professional surveying methodologies specifically adapted to the Goldfields region's unique operational requirements. Our approach, supported by our <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional surveying services</a>, ensures comprehensive project management and technical excellence across all phases of mining and infrastructure development.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Professional Methodology</h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <span class="text-white font-bold text-sm">1</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-hr-dark mb-2">Regional Project Management</h4>
+                  <p class="text-gray-600">Comprehensive project management systems designed for large-scale regional mining operations and infrastructure development projects.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <span class="text-white font-bold text-sm">2</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-hr-dark mb-2">Data Management & Reporting</h4>
+                  <p class="text-gray-600">Advanced data management systems ensuring current records, compliance documentation, and seamless project handover for mining operations.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <span class="text-white font-bold text-sm">3</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-hr-dark mb-2">Environmental Monitoring</h4>
+                  <p class="text-gray-600">Specialized environmental monitoring and compliance documentation supporting sustainable mining operations and regulatory requirements.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Regional Capabilities</h3>
+            <div class="space-y-6">
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-hr-dark mb-2">📍 WA Office Base</h4>
+                <p class="text-gray-600">{waOffice.address}, {waOffice.city}, {waOffice.state}, {waOffice.postcode}</p>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-hr-dark mb-2">🗺️ Regional Coverage</h4>
+                <p class="text-gray-600">Perth Metro, Regional WA, Goldfields Region</p>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-hr-dark mb-2">⚙️ Specialized Equipment</h4>
+                <ul class="text-gray-600 text-sm space-y-1">
+                  <li>• High-precision GPS for large-scale mining operations</li>
+                  <li>• UAV systems for regional area mapping</li>
+                  <li>• 3D laser scanning for infrastructure projects</li>
+                  <li>• Advanced total stations for precision measurements</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Infrastructure & Mining Expertise -->
+        <div class="bg-hr-dark rounded-xl p-8 md:p-12 text-white">
+          <h3 class="text-3xl md:text-4xl font-bold mb-8 text-center text-hr-accent">Infrastructure & Mining Professional Services</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-4 text-hr-accent">Regional Mining Projects</h4>
+              <p class="text-gray-300 text-sm mb-4">
+                {infrastructureService.description}
+              </p>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Conformance reports and RFI management</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Current data records and documentation</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Seamless project execution and handover</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold mb-4 text-hr-accent">Professional Standards</h4>
+              <p class="text-gray-300 text-sm mb-4">
+                Our professional approach ensures expert advice and reliable service throughout the entire project lifecycle, providing the confidence needed for successful goldfields region operations.
+              </p>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Highly skilled professional surveyors</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Expert advice and reliable service</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-300 text-sm">Complete project lifecycle support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Team Integration -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Professional Goldfields Surveying Expertise</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Our professional team combines extensive mining industry experience with comprehensive understanding of goldfields region requirements. The qualifications and expertise detailed on our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">company overview</a> demonstrate our commitment to maintaining professional standards while adapting to the unique challenges of regional mining operations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Mining Industry Experience</h3>
+            <p class="text-gray-600 mb-4">
+              Extensive experience with Australia's largest infrastructure and regional mining projects, providing comprehensive understanding of goldfields operational requirements.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Professional Qualifications</h3>
+            <p class="text-gray-600 mb-4">
+              Professional surveying qualifications and continuing education ensuring industry-leading standards and compliance with mining industry regulations.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Regional Specialization</h3>
+            <p class="text-gray-600 mb-4">
+              Specialized knowledge of goldfields region geology, environmental conditions, and regulatory requirements ensuring optimal project outcomes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Insights & Resources -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Related Professional Resources</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Technical Articles</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="/articles/drone-surveying-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Drone Surveying Guide
+                </a>
+                <p class="text-gray-600 text-sm">Advanced UAV applications for mining operations</p>
+              </li>
+              <li>
+                <a href="/articles/perth-surveyor-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Perth Surveyor Guide
+                </a>
+                <p class="text-gray-600 text-sm">Regional surveying expertise and practices</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Professional Services</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Professional Surveying Services
+                </a>
+                <p class="text-gray-600 text-sm">Enterprise-grade surveying solutions</p>
+              </li>
+              <li>
+                <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Engineering Surveying Services
+                </a>
+                <p class="text-gray-600 text-sm">Comprehensive engineering survey solutions</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Regional Expertise</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="/western-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  WA Office & Capabilities
+                </a>
+                <p class="text-gray-600 text-sm">Regional office and service coverage</p>
+              </li>
+              <li>
+                <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+                  Professional Team Expertise
+                </a>
+                <p class="text-gray-600 text-sm">Team qualifications and mining experience</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-hr-dark text-white">
+      <div class="container mx-auto px-4 max-w-4xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-hr-accent">Ready to Discuss Your Goldfields Region Project?</h2>
+        <p class="text-xl mb-8 text-gray-300">
+          Connect with our professional surveyors for expert analysis and specialized consultation on goldfields region projects.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+            Get Professional Assessment
+          </a>
+          <a href="/about/" class="bg-transparent border-2 border-hr-accent text-hr-accent px-8 py-4 rounded text-lg font-bold hover:bg-hr-accent hover:text-hr-dark transition-all duration-300">
+            Meet Our Team
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 
