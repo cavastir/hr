@@ -175,7 +175,7 @@ const professionalService = mainServices.find(service => service.title === "Prof
             <div class="space-y-6">
               <div class="bg-gray-50 rounded-lg p-4">
                 <h4 class="font-semibold text-hr-dark mb-2">📍 WA Office Base</h4>
-                <p class="text-gray-600">{waOffice.address}, {waOffice.city}, {waOffice.state}, {waOffice.postcode}</p>
+                <p class="text-gray-600">{waOffice?.address}, {waOffice?.city}, {waOffice?.state}, {waOffice?.postcode}</p>
               </div>
               <div class="bg-gray-50 rounded-lg p-4">
                 <h4 class="font-semibold text-hr-dark mb-2">🗺️ Regional Coverage</h4>
@@ -201,7 +201,7 @@ const professionalService = mainServices.find(service => service.title === "Prof
             <div>
               <h4 class="text-xl font-bold mb-4 text-hr-accent">Regional Mining Projects</h4>
               <p class="text-gray-300 text-sm mb-4">
-                {infrastructureService.description}
+                {infrastructureService?.description}
               </p>
               <div class="space-y-2">
                 <div class="flex items-center">
