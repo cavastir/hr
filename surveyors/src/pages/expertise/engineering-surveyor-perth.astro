@@ -1,0 +1,226 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { mainServices, officeLocations } from '../../data/officeData.js';
+
+// Schema.org structured data for SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Engineering Surveyor Perth - Professional Analysis & Local Expertise",
+  "description": "Expert analysis of Perth's engineering surveyor landscape from leading WA professionals with extensive local experience and technical knowledge.",
+  "author": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "url": "https://www.hrsurveyors.com.au"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo.png"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Engineering Surveyor Perth",
+    "serviceArea": {
+      "@type": "City",
+      "name": "Perth"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "HR Surveyors"
+    }
+  }
+};
+
+// Get WA office and relevant services
+const waOffice = officeLocations.find(office => office.state === "WA");
+const engineeringService = mainServices.find(service => service.title === "Engineering Surveying Services");
+---
+
+<Layout 
+  title="Engineering Surveyor Perth - Professional Analysis & Local Expertise | HR Surveyors"
+  description="Expert analysis of the engineering surveyor landscape in Perth. Comprehensive insights on local construction projects, infrastructure development, and choosing the right surveyor for your WA project."
+>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <main class="bg-white text-hr-dark">
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 text-hr-dark">
+            Engineering Surveyor Perth - Expert Analysis
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            Local Expertise: Professional Analysis of the Perth Engineering Surveyor Landscape
+          </p>
+          <p class="text-lg mb-8 text-gray-600 max-w-3xl mx-auto">
+            Comprehensive insights from Perth's established surveying professionals
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+              Perth Consultation
+            </a>
+            <a href="/western-australia/" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300">
+              Our Perth Office
+            </a>
+          </div>
+        </div>
+
+        <!-- Local Stats -->
+        <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">2012</p>
+            <p class="text-gray-600">Established</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">WA</p>
+            <p class="text-gray-600">Local Office</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">70+</p>
+            <p class="text-gray-600">Professionals</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perth Surveyor Market Analysis -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Perth Engineering Surveyor Market Analysis</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Choosing the right engineering surveyor in Perth is critical for project success, especially within Western Australia's booming construction sector. Our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Perth-based team</a> provides extensive local knowledge and technical expertise essential for navigating the complexities of Perth's development landscape.
+          </p>
+          <p class="text-lg leading-relaxed text-gray-600 mb-8">
+            As detailed in our <a href="/articles/perth-surveyor-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Perth surveyor guide</a>, the local market demands engineering surveyors with specialized knowledge of mining integration, coastal conditions, and rapid development cycles. Our West Leederville office is strategically positioned to provide expert engineering surveying services across Perth Metro and regional WA.
+          </p>
+        </div>
+
+        <!-- Local Challenges -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Local Project Experience</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              An engineering surveyor in Perth must have a proven portfolio of similar local projects, demonstrating understanding of WA's unique construction environment and regulatory requirements.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Technical Capabilities</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Modern Perth construction projects require engineering surveyors with advanced equipment, including robotic total stations, high-definition laser scanners, and sophisticated data processing systems for BIM integration.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Service Delivery</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              The ideal Perth engineering surveyor provides dedicated project teams, clear communication protocols, and fast response times to keep projects on schedule and within budget.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HR Surveyors Professional Approach -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Our Perth Engineering Surveyor Approach</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Our approach to providing engineering surveyor services in Perth combines extensive local knowledge with national best practices. We leverage our <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">comprehensive engineering surveying services</a> to deliver tailored solutions that meet the specific needs of Perth's construction, infrastructure, and mining sectors.
+          </p>
+        </div>
+
+        <!-- WA Office Integration -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Perth Office & Capabilities</h3>
+            <div class="space-y-6">
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">📍 Perth Office Location</h4>
+                <p class="text-gray-600">{waOffice?.address}, {waOffice?.city}, {waOffice?.state}, {waOffice?.postcode}</p>
+              </div>
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">🗺️ Perth Service Areas</h4>
+                <p class="text-gray-600">Perth Metro, Regional WA</p>
+              </div>
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">🏗️ Perth Specializations</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-hr-accent text-hr-dark px-3 py-1 rounded-full text-sm font-medium">Mining Projects</span>
+                  <span class="bg-hr-accent text-hr-dark px-3 py-1 rounded-full text-sm font-medium">Infrastructure Development</span>
+                  <span class="text-gray-700">Level Crossing Removals</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Quality Assurance</h3>
+            <div class="bg-white rounded-lg p-6 shadow-md">
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">ISO-certified processes</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Regular equipment calibration</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Documented quality controls</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Comprehensive reporting systems</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Perth Project Examples -->
+        <div class="bg-hr-dark rounded-xl p-8 md:p-12 text-white">
+          <h3 class="text-3xl md:text-4xl font-bold mb-8 text-center text-hr-accent">Recent Perth Engineering Surveyor Projects</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-4 text-hr-accent">Victoria Park-Canning Level Crossing Removal</h4>
+              <p class="text-gray-300 text-sm mb-4">
+                A complex infrastructure project requiring a Perth engineering surveyor with expertise in rail systems, road infrastructure, and utility coordination in an established urban environment.
+              </p>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold mb-4 text-hr-accent">Lumiere Apartments, South Perth</h4>
+              <p class="text-gray-300 text-sm mb-4">
+                High-rise residential development requiring a Perth engineering surveyor for millimetre-precision foundation and structural surveys in a challenging riverside location.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-hr-dark text-white">
+      <div class="container mx-auto px-4 max-w-4xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-hr-accent">Ready to Discuss Your Perth Project with an Engineering Surveyor?</h2>
+        <p class="text-xl mb-8 text-gray-300">
+          Connect with our Perth engineering surveyor team for expert analysis and professional consultation on your WA project.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+            Get Professional Assessment
+          </a>
+          <a href="/western-australia/" class="bg-transparent border-2 border-hr-accent text-hr-accent px-8 py-4 rounded text-lg font-bold hover:bg-hr-accent hover:text-hr-dark transition-all duration-300">
+            Visit Our Perth Office
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 

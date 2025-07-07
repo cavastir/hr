@@ -1,0 +1,194 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { officeLocations } from '../../data/officeData.js';
+
+// Schema.org structured data for SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "High-Precision Engineering Surveys Bunbury Area - Expert Analysis",
+  "description": "Expert analysis of high-precision engineering surveying in the Bunbury area from WA's leading regional infrastructure and construction surveyors.",
+  "author": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "url": "https://www.hrsurveyors.com.au"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo.png"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "High-Precision Engineering Surveys Bunbury Area",
+    "serviceArea": {
+      "@type": "Place",
+      "name": "Bunbury, Western Australia"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "HR Surveyors"
+    }
+  }
+};
+
+// Get WA office and relevant services
+const waOffice = officeLocations.find(office => office.state === "WA");
+---
+
+<Layout 
+  title="High-Precision Engineering Surveys Bunbury Area - Expert Analysis | HR Surveyors"
+  description="Expert analysis of high-precision engineering surveying in the Bunbury area. Comprehensive insights on regional infrastructure, construction projects, and specialized surveying requirements."
+>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <main class="bg-white text-hr-dark">
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 text-hr-dark">
+            High-Precision Engineering Surveys Bunbury Area
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            Regional Precision Focus: Professional Analysis of Bunbury's Engineering Surveying Needs
+          </p>
+          <p class="text-lg mb-8 text-gray-600 max-w-3xl mx-auto">
+            Expert insights from WA's established regional surveying professionals
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+              Bunbury Consultation
+            </a>
+            <a href="/western-australia/" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300">
+              Our WA Office
+            </a>
+          </div>
+        </div>
+
+        <!-- Regional Stats -->
+        <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">2012</p>
+            <p class="text-gray-600">Established</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">WA</p>
+            <p class="text-gray-600">Regional Expertise</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">70+</p>
+            <p class="text-gray-600">Professionals</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bunbury Market Analysis -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Bunbury Area High-Precision Engineering Surveying Analysis</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            The Bunbury area, as a key regional hub in Western Australia, requires high-precision engineering surveys for its diverse range of infrastructure, construction, and development projects. Our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">WA-based team</a> provides specialized expertise in managing projects that demand the highest levels of accuracy and technical proficiency.
+          </p>
+          <p class="text-lg leading-relaxed text-gray-600 mb-8">
+            High-precision engineering surveying in the Bunbury area is critical for ensuring the stability and longevity of regional infrastructure. Our approach combines advanced technology with local knowledge, as detailed in our <a href="/articles/perth-surveyor-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Perth surveyor guide</a>, to address the specific challenges of regional development in WA.
+          </p>
+        </div>
+
+        <!-- Regional Challenges -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Regional Infrastructure</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Bunbury's growing infrastructure, including port facilities and transport networks, demands high-precision surveys for expansion projects, structural monitoring, and compliance with state and federal regulations.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Construction Accuracy</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              High-precision surveys are essential for construction set-out, ensuring that buildings, roads, and other structures are built to exact design specifications with minimal tolerance for error.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-6">Environmental Sensitivity</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              The Bunbury area's coastal and environmental sensitivities require high-precision surveys for monitoring land movement, managing water resources, and ensuring sustainable development practices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HR Surveyors Professional Approach -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Our Bunbury High-Precision Surveying Approach</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Our approach to high-precision engineering surveys in the Bunbury area is founded on our extensive experience with regional WA projects. We utilize our <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">comprehensive engineering surveying services</a> and advanced technology to deliver the accuracy and reliability that critical infrastructure and construction projects demand.
+          </p>
+        </div>
+
+        <!-- WA Office Integration -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">WA Regional Office</h3>
+            <div class="space-y-6">
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">📍 Office Location</h4>
+                <p class="text-gray-600">{waOffice?.address}, {waOffice?.city}</p>
+              </div>
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-hr-dark mb-2">🗺️ Service Areas</h4>
+                <p class="text-gray-600">Perth Metro, Regional WA including Bunbury</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Precision Technology</h3>
+            <div class="bg-white rounded-lg p-6 shadow-md">
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Robotic total stations for millimeter precision</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">High-definition laser scanners for 3D data capture</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                  <span class="text-gray-700">Latest GPS/GNSS systems for real-time positioning</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-hr-dark text-white">
+      <div class="container mx-auto px-4 max-w-4xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-hr-accent">Ready for High-Precision Engineering Surveys in the Bunbury Area?</h2>
+        <p class="text-xl mb-8 text-gray-300">
+          Connect with our WA team to discuss your Bunbury project requirements and learn how our high-precision surveying can ensure your project's success.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+            Get Professional Assessment
+          </a>
+          <a href="/western-australia/" class="bg-transparent border-2 border-hr-accent text-hr-accent px-8 py-4 rounded text-lg font-bold hover:bg-hr-accent hover:text-hr-dark transition-all duration-300">
+            Our WA Expertise
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 
