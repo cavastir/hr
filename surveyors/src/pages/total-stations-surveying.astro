@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { Image } from 'astro:assets';
+
+import heroImage from '../../public/images/articles/total-stations-vs-gnss.jpg';
+import constructionImage from '../../public/images/hr-surveyors-construction-site.jpg';
+import engineeringImage from '../../public/images/hr-surveyors-engineering-surveying.jpg';
+
+const features = [
+  {
+    icon: 'level',
+    title: 'Millimeter-Level Precision',
+    description: 'Total Stations are ideal for detailed measurements where the highest level of accuracy is non-negotiable.'
+  },
+  {
+    icon: '3d',
+    title: 'Angle and Distance Measurement',
+    description: 'They simultaneously measure both angles and distances to calculate precise coordinates from a fixed position.'
+  },
+  {
+    icon: 'equipment',
+    title: 'Reliable in Obstructed Areas',
+    description: 'Unlike GNSS, Total Stations excel in areas where satellite signals are blocked, such as dense urban centers or indoors.'
+  }
+];
+
+const applications = [
+  {
+    title: 'Construction Set-Outs',
+    description: 'Perfect for accurately marking building corners, road alignments, and other critical construction elements.'
+  },
+  {
+    title: 'Boundary Surveys',
+    description: 'The high precision of Total Stations makes them the go-to tool for definitive boundary surveys.'
+  },
+  {
+    title: 'Topographic Surveys',
+    description: 'Excellent for detailed mapping of smaller or obstructed areas where precision is paramount.'
+  },
+    {
+    title: 'Structural Monitoring',
+    description: 'Used to monitor the movement and deformation of structures like buildings and bridges over time.'
+  }
+];
+---
+
+<Layout
+  title="Total Stations Surveying | High-Precision Surveying Services"
+  description="Learn about high-precision surveying with Total Stations. HR Surveyors uses advanced equipment for construction, boundary, and topographic surveys."
+>
+  <main>
+    <!-- Hero Section -->
+    <section class="relative bg-hr-dark text-white">
+        <Image src={heroImage} alt="Surveyor using a Total Station" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" />
+        <div class="relative container mx-auto px-4 py-32 text-center">
+            <h1 class="text-4xl lg:text-6xl font-bold mb-4">High-Precision Surveying with Total Stations</h1>
+            <p class="text-xl lg:text-2xl max-w-3xl mx-auto">
+                Delivering millimeter-level accuracy for your most demanding construction and engineering projects.
+            </p>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-4xl text-center">
+        <h2 class="text-3xl font-bold mb-6 text-hr-dark">What is a Total Station?</h2>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          A Total Station is a modern surveying instrument that integrates an electronic theodolite for measuring angles with an electronic distance meter (EDM). It is a fundamental tool for surveyors to collect the precise data needed for mapping, construction stakeout, and boundary definition. By measuring angles and distances from a known point, it can accurately determine the coordinates of any other point.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-hr-dark">Key Features & Advantages</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {features.map(feature => (
+                    <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                        <Icon name={feature.icon} class="w-12 h-12 text-hr-accent mx-auto mb-4" />
+                        <h3 class="text-xl font-semibold mb-2 text-hr-dark">{feature.title}</h3>
+                        <p class="text-gray-600">{feature.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-8 text-hr-dark">Optimal Applications</h2>
+                    <div class="space-y-6">
+                        {applications.map(app => (
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-hr-accent text-white rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-hr-dark">{app.title}</h3>
+                                    <p class="text-gray-700">{app.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <Image src={constructionImage} alt="Construction site surveying" class="rounded-lg shadow-lg w-full h-auto" />
+                    <Image src={engineeringImage} alt="Engineering surveying project" class="rounded-lg shadow-lg w-full h-auto mt-8" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Use It Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-6 text-hr-dark">How HR Surveyors Utilizes Total Stations</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                At HR Surveyors, we leverage the strengths of Total Station technology to ensure optimal results for every project. We adapt to challenging site conditions—whether it's an obstructed urban environment or a project that demands the highest precision.
+            </p>
+            <div class="text-left grid sm:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-bold text-hr-dark mb-2">1. Precision for Construction Setouts</h4>
+                    <p class="text-gray-600">For construction setouts in housing estates, we rely on Total Stations to achieve millimeter-level precision when marking building corners or road alignments.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-bold text-hr-dark mb-2">2. Accuracy in Detailed Mapping</h4>
+                    <p class="text-gray-600">When a project requires detailed topographic mapping in confined spaces, the Total Station is our instrument of choice to capture every detail accurately.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CallToAction />
+  </main>
+</Layout> 

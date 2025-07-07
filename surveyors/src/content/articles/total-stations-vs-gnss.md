@@ -9,7 +9,7 @@ image: "/images/articles/total-stations-vs-gnss.jpg"
 
 Surveying is a critical component of construction, engineering, and land development projects. To achieve the highest level of accuracy, surveyors rely on advanced tools such as Total Stations and GNSS (Global Navigation Satellite System) technology. While both are indispensable in modern surveying, each has unique strengths and limitations that make them suitable for specific tasks.
 
-At HR Surveyors, we utilize both Total Stations and GPS systems strategically to deliver precise results tailored to project requirements. This article explores the differences between these tools, their accuracy levels, and when to use each one.
+At HR Surveyors, we utilize both Total Stations and GPS systems strategically to deliver precise results tailored to project requirements. Dive deep into the world of [Total Station surveying](/total-stations-surveying/) on our dedicated page, or read on to compare it with GNSS technology.
 
 ## What is a Total Station?
 
