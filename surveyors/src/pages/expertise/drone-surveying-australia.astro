@@ -1,0 +1,323 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { mainServices } from '../../data/officeData.js';
+
+// Schema.org structured data for SEO
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Drone Surveying Australia - Professional UAV Technology & Services",
+  "description": "Comprehensive analysis of professional drone surveying technology and applications across Australia from leading UAV specialists with advanced LiDAR capabilities and regulatory expertise.",
+  "author": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "url": "https://www.hrsurveyors.com.au"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HR Surveyors",
+    "logo": "https://www.hrsurveyors.com.au/images/hr-surveyors-logo.png"
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Drone Surveying Australia",
+    "provider": {
+      "@type": "Organization",
+      "name": "HR Surveyors"
+    },
+    "areaServed": "Australia"
+  }
+};
+
+// Get UAV service data
+const uavService = mainServices.find(service => service.title === "UAV (Drone LiDAR & Aerial Surveying)");
+---
+
+<Layout 
+  title="Drone Surveying Australia - Professional UAV Technology & Services | HR Surveyors"
+  description="Comprehensive analysis of professional drone surveying technology across Australia from leading UAV specialists. Expert insights on LiDAR integration, aerial mapping capabilities, and professional UAV operations."
+>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <main class="bg-white text-hr-dark">
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6 text-hr-dark">
+            Drone Surveying Australia - Professional UAV Technology
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            Advanced UAV Technology: Professional Drone Surveying Excellence Across Australia
+          </p>
+          <p class="text-lg mb-8 text-gray-600 max-w-3xl mx-auto">
+            Technical expertise from Australia's premier drone surveying specialists
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact/" class="bg-hr-accent text-hr-dark px-8 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition-colors">
+              Professional UAV Services
+            </a>
+            <a href="/about/" class="bg-transparent border-2 border-hr-dark text-hr-dark px-8 py-4 rounded text-lg font-bold hover:bg-hr-dark hover:text-white transition-all duration-300">
+              Our UAV Specialists
+            </a>
+          </div>
+        </div>
+
+        <!-- Technology Excellence Stats -->
+        <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">12+</p>
+            <p class="text-gray-600">Years Experience</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">CASA</p>
+            <p class="text-gray-600">Approved</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-hr-dark mb-2">Advanced</p>
+            <p class="text-gray-600">LiDAR Tech</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Drone Surveying Hero Image -->
+    <section class="py-8 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center">
+          <img 
+            src="/images/articles/drone-surveying.jpg" 
+            alt="Professional drone surveying operations in Australia - HR Surveyors UAV technology" 
+            class="w-full max-w-4xl mx-auto rounded-xl shadow-lg"
+            loading="lazy"
+          />
+          <p class="text-sm text-gray-500 mt-4 italic">Advanced drone technology delivering precision surveying across Australian projects</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional UAV Technology Analysis -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">Professional Drone Surveying Technology Analysis</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Professional drone surveying represents a transformative advancement in Australian surveying practices, combining cutting-edge UAV platforms with sophisticated data collection systems. Through extensive deployment across construction, infrastructure, and environmental monitoring projects, our professional team has established comprehensive expertise in UAV technology applications across Australia's challenging environments.
+          </p>
+          <p class="text-lg leading-relaxed text-gray-600 mb-8">
+            The technical insights detailed in our comprehensive <a href="/articles/drone-surveying-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional drone surveying guide</a> demonstrate the integration capabilities between traditional surveying methods and modern UAV technology. Our specialized team members, whose qualifications are outlined on our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional credentials page</a>, bring decades of combined experience in adapting drone technology for Australia's unique surveying requirements and regulatory framework.
+          </p>
+        </div>
+
+        <!-- Professional Technology Framework -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl md:text-2xl font-bold text-hr-dark mb-6">
+              Advanced UAV Platforms
+            </h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Professional-grade UAV systems equipped with precision navigation, advanced payload capabilities, and extended flight operations enable comprehensive data collection across diverse Australian project environments and challenging site conditions.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl md:text-2xl font-bold text-hr-dark mb-6">
+              LiDAR Technology Integration
+            </h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Cutting-edge LiDAR sensor integration provides high-density point cloud generation, enabling precise terrain modeling, vegetation penetration analysis, and comprehensive volumetric calculations for complex project deliverables.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl md:text-2xl font-bold text-hr-dark mb-6">
+              Professional Data Workflows
+            </h3>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Sophisticated data processing methodologies transform raw UAV datasets into professionally accurate deliverables including precision orthophotos, digital elevation models, and detailed project documentation for engineering applications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HR Surveyors Professional UAV Methodology -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-8 text-center">HR Surveyors' Professional Drone Surveying Methodology</h2>
+        <div class="max-w-4xl mx-auto mb-12">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Our professional drone surveying methodology combines state-of-the-art UAV technology with LiDAR systems and high-resolution imaging to deliver comprehensive aerial data collection and analysis. This integrated approach provides accurate topographical surveys, detailed aerial documentation, and precise 3D modeling capabilities, fully integrated within our comprehensive <a href="/services/drone-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">UAV surveying services</a> framework.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Professional UAV Capabilities</h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <span class="text-white font-bold text-sm">1</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-hr-dark mb-2">Advanced LiDAR Operations</h4>
+                  <p class="text-gray-600">Comprehensive terrain analysis capabilities including precision elevation mapping through vegetation, detailed surface modeling, and accurate volumetric assessments for construction and mining applications.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <span class="text-white font-bold text-sm">2</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-hr-dark mb-2">Precision Aerial Imaging</h4>
+                  <p class="text-gray-600">High-resolution aerial photography and imaging systems delivering detailed project documentation and precision orthomosaic creation for comprehensive site analysis and monitoring.</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-hr-accent rounded-full flex items-center justify-center mr-4 mt-1">
+                  <span class="text-white font-bold text-sm">3</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-hr-dark mb-2">Professional 3D Modeling</h4>
+                  <p class="text-gray-600">Advanced 3D terrain and structure modeling capabilities enabling detailed project visualization, accurate progress monitoring, and comprehensive data analysis for informed project management decisions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-2xl font-bold text-hr-dark mb-6">Industry Applications</h3>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                <span class="text-gray-700">Comprehensive topographical surveying</span>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                <span class="text-gray-700">Construction site monitoring and analysis</span>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                <span class="text-gray-700">Precision volumetric calculations</span>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                <span class="text-gray-700">Environmental monitoring and compliance</span>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                <span class="text-gray-700">Infrastructure condition assessment</span>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-hr-accent rounded-full mr-3"></span>
+                <span class="text-gray-700">Mining operations support</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Professional Applications Showcase -->
+        <div class="bg-hr-dark rounded-xl p-8 md:p-12 text-white">
+          <h3 class="text-3xl md:text-4xl font-bold mb-8 text-center text-hr-accent">Australian Professional UAV Applications</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h4 class="text-xl font-semibold text-hr-accent mb-3">Construction Excellence</h4>
+              <p class="text-gray-300 text-sm">Comprehensive construction monitoring and precision measurement capabilities providing detailed progress analysis and accurate volumetric data for project management and compliance verification.</p>
+            </div>
+            <div>
+              <h4 class="text-xl font-semibold text-hr-accent mb-3">Infrastructure Analysis</h4>
+              <p class="text-gray-300 text-sm">Advanced infrastructure evaluation and condition monitoring utilizing high-resolution UAV imaging and LiDAR technology for comprehensive maintenance planning and safety assessment.</p>
+            </div>
+            <div>
+              <h4 class="text-xl font-semibold text-hr-accent mb-3">Environmental Compliance</h4>
+              <p class="text-gray-300 text-sm">Professional environmental assessment and continuous monitoring capabilities for mining, development, and construction projects across Australia's varied environmental regulations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Insights & Professional Resources -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-12 text-center">Professional UAV Resources & Insights</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Technical Guide</h3>
+            <p class="text-gray-600 mb-4">Comprehensive insights into professional drone surveying methodology and applications across Australian projects.</p>
+            <a href="/articles/drone-surveying-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+              Read Professional Guide →
+            </a>
+          </div>
+          
+          <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">UAV Team Expertise</h3>
+            <p class="text-gray-600 mb-4">Meet our specialized drone surveying professionals and their technical qualifications for Australian UAV operations.</p>
+            <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+              Meet Our Specialists →
+            </a>
+          </div>
+          
+          <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-xl font-bold text-hr-dark mb-4">Complete UAV Services</h3>
+            <p class="text-gray-600 mb-4">Explore our comprehensive drone surveying services and technology integration capabilities.</p>
+            <a href="/services/drone-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">
+              View UAV Services →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Consultation CTA -->
+    <section class="py-16 md:py-20 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Content Column -->
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-6">
+              Professional Drone Surveying Consultation
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+              Collaborate with our drone surveying specialists to discover how advanced UAV technology can optimize your project delivery. Our professional expertise ensures precise data collection and comprehensive analysis that drives successful project outcomes across diverse Australian environments.
+            </p>
+            
+            <!-- Contact Options -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="/contact/"
+                class="inline-flex items-center justify-center bg-hr-accent text-hr-dark px-8 py-4 rounded-lg text-lg font-bold hover:bg-opacity-90 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-hr-accent focus:ring-offset-2"
+              >
+                <span>Professional Consultation</span>
+                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Professional Services Integration -->
+          <div class="bg-white rounded-xl p-8 shadow-md">
+            <h3 class="text-2xl font-bold text-hr-dark mb-8 text-center">Integrated Professional Solutions</h3>
+            <div class="space-y-6">
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-hr-dark mb-3">Technical Excellence</h4>
+                <p class="text-gray-600 text-sm mb-4">Our <a href="/about/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional expertise</a> integrates advanced UAV capabilities with established surveying standards for superior project delivery.</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-hr-dark mb-3">Comprehensive Service Portfolio</h4>
+                <p class="text-gray-600 text-sm mb-4">Professional drone surveying integrates seamlessly with our <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying services</a> for comprehensive project solutions and data consistency.</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-lg font-semibold text-hr-dark mb-3">Quality Assurance</h4>
+                <p class="text-gray-600 text-sm mb-4">All UAV operations delivered within our <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">professional surveying framework</a> ensuring consistent quality and regulatory compliance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
