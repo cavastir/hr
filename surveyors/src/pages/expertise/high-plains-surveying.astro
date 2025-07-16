@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+const heroImage = "/images/articles/renewable-energy-guide.jpg";
+
+const expertiseAreas = [
+  {
+    title: "Navigating Remote Project Complexities",
+    icon: "map",
+    description: "Surveying in remote and high-plains environments presents a unique set of logistical and operational challenges. Our team excels in this arena, bringing years of experience in managing projects far from urban centers. We handle everything from mobilization and establishing remote site communications to ensuring our teams can operate self-sufficiently. This proactive approach minimizes delays and ensures that your project, whether in mining, infrastructure, or agriculture, remains on schedule and within budget."
+  },
+  {
+    title: "Mastering Diverse and Demanding Terrain",
+    icon: "civil",
+    description: "The vast and varied landscapes of Australia's high plains demand a flexible and adaptive surveying approach. We combine the strengths of multiple technologies—the broad coverage of drone surveying, the precision of GPS/GNSS, and the reliability of traditional methods—to master any topographical challenge. This allows us to deliver a comprehensive and accurate understanding of the land for large-scale agricultural developments, sprawling wind farms, or critical new infrastructure corridors."
+  },
+  {
+    title: "Specialists in Linear Infrastructure and Corridor Mapping",
+    icon: "infrastructure",
+    description: "Many of Australia’s most vital infrastructure projects cross its rural and high-plains regions. We have extensive experience in surveying for these linear projects, including pipelines, access roads, and transmission lines. Our services cover the entire project lifecycle, from initial route selection and detailed corridor mapping to final as-built surveys. We provide the critical data needed to optimize design, ensure compliance, and facilitate long-term maintenance."
+  },
+  {
+    title: "Supporting Sustainable Agriculture and Environmental Management",
+    icon: "renewable",
+    description: "Our surveying expertise provides immense value to the agricultural and environmental sectors. In rural settings, our data supports everything from sophisticated water management and land use planning to precision agriculture applications like crop health monitoring and yield analysis. By providing detailed insights into the land, we empower farmers and land managers to make informed decisions that enhance productivity and promote sustainability."
+  }
+];
+---
+
+<Layout 
+  title="High Plains & Rural Surveying Experts | HR Surveyors"
+  description="HR Surveyors offers specialized surveying services for the unique challenges of high plains, rural, and remote projects across Australia."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="A wind farm in a rural, high-plains environment, representing renewable energy projects" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">Mastering the Demands of Rural & High Plains Surveying</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Bringing precision and expertise to Australia's most challenging and remote environments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">Your Partner in Remote Project Success</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          Successfully executing projects in high plains, rural, and remote areas requires more than just good data—it demands specialized expertise, robust equipment, and a deep understanding of the local environment. At HR Surveyors, we have a proven track record of delivering accurate and reliable surveying solutions in these challenging settings. We thrive where others see obstacles, providing the confidence and support you need, no matter how remote the location.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {expertiseAreas.map((area) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={area.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{area.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{area.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>

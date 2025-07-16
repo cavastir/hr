@@ -72,7 +72,7 @@ At HR Surveyors, we combine the strengths of both Total Stations and GPS technol
 
 1. For construction setouts in housing estates, we rely on Total Stations to achieve millimeter-level precision when marking building corners or road alignments
 2. For large-scale subdivision mapping, we use RTK-enabled GPS systems to efficiently cover extensive areas while maintaining centimeter-level accuracy
-3. By integrating both tools, we adapt to challenging site conditions—whether it's an obstructed urban environment or an expansive rural landscape
+3. By integrating both tools, we adapt to challenging site conditions—whether it's an obstructed urban environment or an expansive [rural landscape](/expertise/high-plains-surveying)
 
 ## Common Misconceptions About Survey Equipment
 

@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+const heroImage = "/images/hr-surveyors-laser-scanning.jpg";
+
+const technologies = [
+  {
+    title: "UAV/Drone Surveying",
+    icon: "uav",
+    description: "Drone surveying has fundamentally changed how we approach data collection. By deploying advanced UAVs, we capture high-resolution aerial imagery and LiDAR data with unparalleled speed and safety. This technology allows us to survey large or inaccessible areas efficiently, providing a comprehensive overview for progress monitoring, volumetric calculations, and environmental assessments. The result is a richer dataset that empowers clients to make more informed decisions, faster."
+  },
+  {
+    title: "3D Laser Scanning",
+    icon: "laser",
+    description: "When a project demands the highest level of detail, our 3D laser scanning services deliver. By capturing millions of data points in minutes, we create a precise digital twin of any structure or environment. This technology is indispensable for creating accurate as-built models, conducting detailed dilapidation reports, and preserving heritage sites. The resulting point cloud data provides an unambiguous record, enabling sophisticated analysis, clash detection, and design verification."
+  },
+  {
+    title: "GPS/GNSS Systems",
+    icon: "gps",
+    description: "Our reliance on state-of-the-art GPS and GNSS technology ensures that every measurement is anchored in real-world accuracy. Utilizing multiple satellite constellations, we establish reliable, centimeter-level positioning for projects of any scale. This is the backbone of our field operations, critical for establishing robust site control, performing accurate construction set-outs, and conducting large-scale topographic surveys. The efficiency of RTK (Real-Time Kinematic) technology means we cover more ground without sacrificing precision."
+  },
+  {
+    title: "Robotic Total Stations",
+    icon: "level",
+    description: "The robotic total station remains the workhorse of precision surveying for good reason. These instruments provide exceptional accuracy for tasks where every millimeter matters. They are the go-to tool for detailed structural monitoring, precise construction set-outs, and establishing fine control networks. By allowing a single surveyor to operate with high efficiency, they ensure that we can deliver meticulous results on schedule, forming a critical part of our integrated approach to surveying solutions."
+  }
+];
+---
+
+<Layout 
+  title="Advanced Surveying Technology | HR Surveyors"
+  description="Discover the advanced surveying technology that powers HR Surveyors. From UAV drones and 3D laser scanners to high-precision GPS/GNSS systems."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="A surveyor using advanced laser scanning equipment on a construction site" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">Pioneering Precision with Advanced Technology</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">At HR Surveyors, we harness the power of cutting-edge tools to deliver unparalleled accuracy and efficiency.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">The Technology That Drives Our Success</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          Our commitment to excellence is matched by our investment in the industry’s most advanced technology. By integrating a sophisticated suite of surveying tools, we provide comprehensive data solutions that minimize risk, reduce costs, and keep projects on track. This allows us to tackle complex challenges with confidence, providing innovative solutions tailored to the unique needs of our clients in the construction, mining, and infrastructure sectors.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {technologies.map((tech) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={tech.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{tech.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{tech.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>
