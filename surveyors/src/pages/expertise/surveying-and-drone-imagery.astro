@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+const heroImage = "/images/hr-surveyors-drone-survey.jpg";
+
+const imageryApplications = [
+  {
+    title: "High-Resolution Orthomosaic Mapping",
+    icon: "map",
+    description: "We transform high-resolution aerial imagery into detailed, georeferenced orthomosaic maps. These seamless images provide a comprehensive and up-to-date visual record of your site, perfect for planning, analysis, and progress tracking. The result is a richer dataset that empowers clients to make more informed decisions, faster."
+  },
+  {
+    title: "3D Models & Digital Twins",
+    icon: "3d",
+    description: "From aerial imagery, we generate precise 3D models and digital twins of structures and terrain. This technology is indispensable for creating accurate as-built models, conducting detailed analysis, and visualizing project outcomes. The resulting models provide an unambiguous record, enabling sophisticated analysis and design verification."
+  },
+  {
+    title: "Progress Monitoring & Visualisation",
+    icon: "cloud",
+    description: "Drone imagery offers a safe and efficient way to monitor construction progress. Regular flights provide a clear visual timeline of your project, helping to identify potential issues early, track milestones, and keep stakeholders informed with compelling visual data."
+  },
+  {
+    title: "Detailed Visual Inspections",
+    icon: "uav",
+    description: "Safely inspect hard-to-reach or hazardous areas with high-resolution drone imagery. We provide detailed visual data for infrastructure inspections, asset management, and condition assessments, reducing risk and improving maintenance planning without compromising on detail."
+  }
+];
+---
+
+<Layout 
+  title="High-Resolution Drone Imagery for Surveying | HR Surveyors"
+  description="Leverage advanced drone imagery and aerial photogrammetry for detailed site analysis, progress monitoring, and high-resolution mapping."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="A drone flying over a construction site for aerial imagery surveying" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">Seeing the Bigger Picture with Drone Imagery</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Harnessing the power of high-resolution aerial imagery to provide unparalleled insight and clarity for your project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">The Power of Aerial Visual Data</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          Our UAV survey service integrates advanced aerial imaging to deliver high-precision mapping and data capture. This approach enables accurate topographical mapping, high-resolution imagery, and 3D terrain modelling for various applications. By transforming raw UAV data into accurate deliverables including orthomosaics and digital terrain models, we provide powerful visual tools for construction, infrastructure, and environmental applications.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {imageryApplications.map((app) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={app.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{app.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{app.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>

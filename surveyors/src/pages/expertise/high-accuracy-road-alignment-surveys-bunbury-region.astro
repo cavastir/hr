@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+import { officeLocations } from '../../data/officeData.js';
+
+const heroImage = "/src/assets/road-upgrade.jpg";
+const waOffice = officeLocations.find(office => office.state === "WA");
+
+const roadServices = [
+  {
+    title: "High-Precision Control Networks",
+    icon: "gps",
+    description: "Our reliance on state-of-the-art GPS and GNSS technology ensures that every measurement is anchored in real-world accuracy. For road alignment projects in the Bunbury region, we establish reliable, centimeter-level positioning, creating a robust site control network that is the backbone of the entire project."
+  },
+  {
+    title: "Robotic Total Station Set-Out",
+    icon: "level",
+    description: "The robotic total station is our go-to tool for the high-accuracy set-out of road alignments, kerbs, and drainage. These instruments provide exceptional accuracy where every millimeter matters, ensuring that all elements of the road corridor are constructed exactly to design specifications."
+  },
+  {
+    title: "Civil Construction & As-Built Surveys",
+    icon: "civil",
+    description: "We offer expert surveying for road upgrades and other civil construction needs in the Bunbury region. Our services include on-site set out, volume calculations, 3D modeling, and final as-built surveys to ensure all work conforms to design and regulatory standards."
+  },
+  {
+    title: "Data Management & Conformance",
+    icon: "specificationsurvey",
+    description: "For major road projects, we ensure that all records are current, facilitating seamless project execution and on-time handover. From submitting conformance reports to handling RFIs and managing data, we provide the confidence you need throughout the entire project lifecycle."
+  }
+];
+---
+
+<Layout 
+  title="Road Alignment Surveys in Bunbury Region | HR Surveyors"
+  description="High-accuracy road alignment and civil construction surveys for the Bunbury region, WA. We deliver precision set-out and as-built surveys for infrastructure projects."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="A major road upgrade and alignment project" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">High-Accuracy Road Alignment Surveys</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Delivering precision and reliability for road and infrastructure projects in the Bunbury Region.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">Engineering Excellence for Bunbury's Roads</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          {waOffice && <Fragment>From our WA office at <a href="/locations" class="text-hr-accent hover:underline">{waOffice.address}, {waOffice.city}</a>, </Fragment>} HR Surveyors provides the expertise required for your civil construction needs in the Bunbury region. Whether you need a dedicated team of surveyors to manage your roading project or a one-time visit for control setup, we deliver the same high-quality, reliable service every time.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {roadServices.map((service) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={service.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{service.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{service.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>

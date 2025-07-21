@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+import { officeLocations } from '../../data/officeData.js';
+
+const heroImage = "/images/hr-surveyors-surface-mapping.jpg";
+const vicOffice = officeLocations.find(office => office.state === "VIC");
+
+const dtmServices = [
+  {
+    title: "Digital Terrain Model (DTM) Creation",
+    icon: "3d",
+    description: "Our expertise in 3D surfaces enables us to create highly accurate Digital Terrain Models tailored to your project's specific requirements in the Cranbourne area. By converting machine control files, localizations, and leveraging advanced survey data, we develop comprehensive DTMs that form the foundation for accurate design and construction."
+  },
+  {
+    title: "Feature and Level Surveys",
+    icon: "level",
+    description: "A Feature and Level survey is a crucial first step for creating an accurate DTM. We establish precise survey control to a local datum or MGA/AHD from the outset, ensuring continuity and adherence to standards throughout every aspect of the development process in Cranbourne."
+  },
+  {
+    title: "UAV & LiDAR Data Capture",
+    icon: "uav",
+    description: "By deploying advanced UAVs and LiDAR technology, we capture high-resolution aerial imagery and point cloud data. This allows us to efficiently survey large or complex sites in the Cranbourne region, providing a rich dataset for creating detailed and accurate digital terrain models."
+  },
+  {
+    title: "3D Data for Machine Control",
+    icon: "equipment",
+    description: "We design intricate 3D drainage systems and other models for machine control. The DTMs we produce integrate seamlessly with on-site GPS-guided machinery, ensuring earthworks and construction activities are carried out with maximum precision and efficiency."
+  }
+];
+---
+
+<Layout 
+  title="Digital Terrain Model (DTM) Surveys in Cranbourne | HR Surveyors"
+  description="Expert DTM surveys in Cranbourne. We provide high-accuracy digital terrain models for civil, construction, and development projects."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="A digital terrain model overlayed on a construction site" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">Digital Terrain Model Surveys in Cranbourne</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Precision DTM and Feature Surveys for development and construction projects across the Cranbourne region.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">Foundation for Accurate Design</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          A Digital Terrain Model (DTM) is a crucial step in the planning of any development project in Cranbourne, whether for a new subdivision or major construction endeavor. {vicOffice && <Fragment>From our office at <a href="/locations" class="text-hr-accent hover:underline">{vicOffice.address}, {vicOffice.city}</a>, </Fragment>} we provide essential data that forms the foundation for accurate design before construction begins, ensuring your project is built on a framework of precision.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {dtmServices.map((service) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={service.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{service.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{service.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>

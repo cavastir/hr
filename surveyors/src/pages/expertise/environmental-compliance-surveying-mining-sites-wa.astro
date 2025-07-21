@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+import { officeLocations } from '../../data/officeData.js';
+
+const heroImage = "/images/hr-surveyors-infrastructure-project.jpg";
+const waOffice = officeLocations.find(office => office.state === "WA");
+
+const complianceServices = [
+  {
+    title: "Environmental Impact Assessments (EIA)",
+    icon: "uav",
+    description: "Leveraging advanced UAV and LiDAR technology, we provide comprehensive data for Environmental Impact Assessments. Our surveys establish a precise baseline of existing conditions, monitor changes over time, and help predict potential impacts, ensuring your project complies with WA's stringent environmental regulations."
+  },
+  {
+    title: "Regulatory Compliance & Monitoring",
+    icon: "level",
+    description: "We provide ongoing monitoring services for mining operations to ensure adherence to environmental management plans. By using high-precision equipment, we track key metrics such as ground disturbance, water quality, and rehabilitation progress, delivering accurate reports for regulatory bodies."
+  },
+  {
+    title: "Mine Rehabilitation Surveys",
+    icon: "renewable",
+    description: "Our surveyors play a critical role in the planning and execution of mine site rehabilitation. We deliver detailed topographic data to model final landforms, verify earthworks, and monitor vegetation growth, ensuring the site is returned to a safe, stable, and sustainable condition in line with compliance requirements."
+  },
+  {
+    title: "Water & Tailing Dam Management",
+    icon: "civil",
+    description: "Precise surveying is essential for the safe management of water and tailings dams. We conduct regular volumetric calculations, wall stability monitoring, and capacity analysis to mitigate risks and ensure the long-term integrity of these critical structures."
+  }
+];
+---
+
+<Layout 
+  title="Environmental Compliance Surveying for WA Mining Sites | HR Surveyors"
+  description="Expert environmental compliance and monitoring surveys for mining sites in Western Australia. Ensure regulatory adherence with advanced UAV and LiDAR surveying."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="Large scale mining infrastructure project in Western Australia" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">Environmental Compliance Surveying for WA Mining</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Ensuring regulatory compliance and environmental sustainability for mining operations across Western Australia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">Your Partner in WA Mining Compliance</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          With extensive experience in Australia's largest infrastructure and regional mining projects, HR Surveyors is your trusted partner for navigating the complex regulatory landscape of Western Australia. {waOffice && <Fragment>Our local presence, backed by our office at <a href="/locations" class="text-hr-accent hover:underline">{waOffice.address}, {waOffice.city}</a>, allows us to provide responsive, expert surveying services tailored to the unique challenges of the WA mining sector. </Fragment>} We help you minimise risk, maintain your social license to operate, and achieve your environmental obligations.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {complianceServices.map((service) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={service.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{service.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{service.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>

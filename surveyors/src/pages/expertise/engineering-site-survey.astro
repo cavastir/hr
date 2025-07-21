@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+const heroImage = "/images/engineering-surveying-hero.jpg";
+
+const engineeringServices = [
+  {
+    title: "Initial Site Establishment & Control",
+    icon: "gps",
+    description: "The foundation of any successful engineering project is accurate site control. We establish precise survey control to a local datum or MGA/AHD from the outset, ensuring all subsequent construction activities are perfectly aligned with the design plans."
+  },
+  {
+    title: "Construction & Civil Set-Out",
+    icon: "civil",
+    description: "We provide high-precision set-out for all aspects of an engineering project, including buildings, roads, bridges, pipelines, and rail. Our experienced surveyors ensure that every component is constructed in the correct location and to the specified tolerances."
+  },
+  {
+    title: "As-Constructed & Conformance Surveys",
+    icon: "specificationsurvey",
+    description: "Upon completion of works, we conduct detailed as-constructed surveys to verify that the infrastructure has been built according to the design. We deliver A-SPEC or ADAC compliant data to ensure a smooth handover to the relevant authorities."
+  },
+  {
+    title: "Advanced Technology Integration",
+    icon: "laser",
+    description: "We utilize a suite of advanced technology, including 3D laser scanning, UAVs, and robotic total stations, to deliver comprehensive data solutions. This technology allows us to tackle complex challenges with confidence, providing innovative solutions for the construction, mining, and infrastructure sectors."
+  }
+];
+---
+
+<Layout 
+  title="Expert Engineering Site Surveys | HR Surveyors"
+  description="Comprehensive engineering site surveys for construction, civil, and infrastructure projects. We provide precision, reliability, and expert advice."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="A surveyor on an engineering site with equipment" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">Professional Engineering Site Surveys</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Delivering the precision and expertise required to bring your engineering project to life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">Your Partner in Project Delivery</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          With extensive experience in some of Australia's largest infrastructure, civil, and construction projects, we have the systems in place to efficiently manage your undertaking. Our highly skilled surveyors offer expert advice and reliable service, giving you the confidence you need throughout the entire project lifecycle, from initial site setup to final handover.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {engineeringServices.map((service) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={service.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{service.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{service.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>
