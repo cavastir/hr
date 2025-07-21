@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+const heroImage = "/images/articles/renewable-energy-guide.jpg";
+
+const inspectionServices = [
+  {
+    title: "Enhanced Safety & Accessibility",
+    icon: "uav",
+    description: "Drone surveys eliminate the need for high-risk manual inspections of turbines. Our CASA-certified operators can safely and efficiently access all parts of a wind turbine, capturing high-resolution data from a safe distance, ensuring the safety of all personnel on site."
+  },
+  {
+    title: "Rapid Data Collection & Efficiency",
+    icon: "level",
+    description: "Our advanced UAVs can survey multiple turbines in a fraction of the time it takes for traditional methods. This speed and efficiency minimize operational downtime and allow for more frequent monitoring, keeping your renewable energy project on track and performing optimally."
+  },
+  {
+    title: "High-Resolution Imaging & LiDAR",
+    icon: "laser",
+    description: "Equipped with high-resolution cameras and LiDAR scanners, our drones capture intricate details of turbine blades, towers, and foundations. This rich dataset allows for the early detection of wear, damage, or potential defects, which is crucial for preventative maintenance."
+  },
+  {
+    title: "Comprehensive Data for Asset Management",
+    icon: "3d",
+    description: "The data we collect is used to create detailed 3D models and inspection reports. This provides a precise digital record of your assets, enabling sophisticated analysis, informed maintenance planning, and ensuring the long-term integrity and efficiency of your wind farm."
+  }
+];
+---
+
+<Layout 
+  title="Wind Farm Drone Surveys | Expert Inspection Services | HR Surveyors"
+  description="Expert drone surveys and inspections for wind farms. We leverage advanced UAV and LiDAR technology for preventative maintenance and optimal asset performance."
+>
+  <div class="pt-12">
+    <div class="relative">
+      <img src={heroImage} alt="A large wind farm at sunset, showcasing renewable energy infrastructure" class="w-full h-96 object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold">Advanced Drone Surveys for Wind Farms</h1>
+          <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Maximising performance and ensuring the longevity of your renewable energy assets with high-precision drone inspections.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-hr-dark mb-4">Optimising Renewable Energy Infrastructure</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          As Victoria progresses toward its 95% renewable energy target, the reliability of assets like the Golden Plains Wind Farm is paramount. HR Surveyors provides the critical inspection services needed to ensure these facilities operate at peak efficiency. Our <a href="/services" class="text-hr-accent hover:underline">Renewable Energy</a> and <a href="/services" class="text-hr-accent hover:underline">UAV (Drone Survey)</a> services are designed to meet the complex challenges of modern wind farm projects, ensuring their success and contribution to a sustainable future.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {inspectionServices.map((service) => (
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-100 rounded-lg p-8">
+              <div class="flex items-center mb-4">
+                <Icon name={service.icon} class="w-12 h-12 mr-4 text-hr-dark flex-shrink-0" />
+                <h3 class="text-2xl font-bold text-hr-dark">{service.title}</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{service.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>
