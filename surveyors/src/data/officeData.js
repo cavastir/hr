@@ -25,10 +25,10 @@ export const officeLocations = [
   },
   {
     title: "QLD/Northern NSW Office",
-    address: "36-42 Murwillumbah Street",
-    city: "Murwillumbah",
-    state: "NSW",
-    postcode: "2484",
+    address: "6/3972 Pacific Highway",
+    city: "Loganholme",
+    state: "QLD",
+    postcode: "4129",
     slug: "queensland"
   },
   {
@@ -110,4 +110,4 @@ export const secondaryServices = [
     icon: "equipment",
     description: "We offer a diverse range of high-quality surveying equipment for hire, including GPS base and rover or network systems, Total Stations, and all essential surveying tools for both short- and long-term projects. Our experienced team provides tailored solutions and expert support to help you choose the right equipment for your needs."
   }
-]; 
+];
