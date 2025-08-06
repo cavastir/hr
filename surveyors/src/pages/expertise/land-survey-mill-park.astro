@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+const pageTitle = "Land Survey Mill Park | HR Surveyors";
+const pageDesc = "Melbourne metro land surveying context referencing the Childs Road Upgrade (Epping to Mill Park) and HR Surveyors' established land surveying services.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <main class="py-0 bg-white">
+    <!-- Hero -->
+    <!-- Hero: image-backed band + spaced title -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0">
+        <div class="w-full h-full bg-[url('/images/hr-surveyors-land-surveying.jpg')] bg-cover bg-center opacity-20"></div>
+        <div class="absolute inset-0 bg-white/70"></div>
+      </div>
+      <div class="relative max-w-6xl mx-auto px-6 pt-24 md:pt-32 pb-16 md:pb-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-hr-dark">Land Survey – Mill Park</h1>
+        <p class="text-lg text-gray-700 mt-4 max-w-3xl mx-auto">
+          Melbourne metro land surveying insights aligned with our documented experience on nearby infrastructure projects and established service capability.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/contact/" class="inline-flex items-center justify-center rounded-md bg-hr-accent px-6 py-3 text-white font-medium hover:bg-hr-dark transition-colors">Request a Quote</a>
+          <a href="/services/land-surveying-services-australia/" class="inline-flex items-center justify-center rounded-md border border-hr-accent px-6 py-3 text-hr-accent font-medium hover:bg-hr-accent hover:text-white transition-colors">View Land Surveying Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commercial Intro -->
+    <section class="max-w-5xl mx-auto px-6">
+      <div class="prose prose-lg max-w-3xl mx-auto text-gray-700 mt-12 md:mt-16">
+        <p>
+          HR Surveyors provides Melbourne metro land surveying with a comprehensive understanding of local planning requirements and surveying standards. Our approach aligns with our
+          <a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">land surveying services</a>
+          and integrates complementary engineering support as outlined in our
+          <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying services</a>.
+        </p>
+
+        <p>
+          A relevant nearby reference is the <strong>Childs Road Upgrade (Epping to Mill Park)</strong>, noted within our Melbourne content. This highlights typical metro considerations such as road widening, utility coordination, and interface with residential areas—context reflected in our
+          <a href="/expertise/land-surveyors-near-epping/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Epping area analysis</a>.
+        </p>
+
+        <p>
+          For technical background on equipment and accuracy in urban settings, review our
+          <a href="/total-stations-surveying/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Total Stations overview</a> and
+          <a href="/articles/total-stations-vs-gnss/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Total Stations vs GNSS guide</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Related Melbourne Content -->
+    <section class="max-w-5xl mx-auto px-6 mt-12">
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold text-hr-dark mb-3">Related Melbourne Content</h2>
+        <ul class="list-disc ml-6 text-gray-700">
+          <li><a href="/expertise/land-surveyors-near-epping/" class="text-hr-accent hover:text-hr-dark">Land Surveyors near Epping</a> — insights referencing Epping–Mill Park corridor.</li>
+          <li><a href="/expertise/land-surveying-clayton/" class="text-hr-accent hover:text-hr-dark">Land Surveying Clayton</a> — Melbourne HQ context and local advantages.</li>
+          <li><a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark">Land Surveying Services Australia</a> — National coverage with local expertise.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mt-14">
+      <CallToAction />
+    </section>
+  </main>
+</Layout>

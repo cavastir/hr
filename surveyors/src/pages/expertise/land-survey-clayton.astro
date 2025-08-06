@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+const pageTitle = "Land Survey Clayton | HR Surveyors";
+const pageDesc = "Clayton-focused land surveying landing page leveraging existing Melbourne HQ context and established land surveying services.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <main class="py-0 bg-white">
+    <!-- Hero -->
+    <!-- Hero: split layout with image -->
+    <section class="relative overflow-hidden bg-hr-dark/5">
+      <div class="max-w-6xl mx-auto px-6 pt-24 md:pt-32 pb-8 md:pb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-bold text-hr-dark">Land Survey – Clayton</h1>
+            <p class="text-lg text-gray-600 mt-4">
+              Clayton area land surveying aligned with our Melbourne headquarters expertise and documented metro experience.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row md:justify-start justify-center gap-4">
+              <a href="/contact/" class="inline-flex items-center justify-center rounded-md bg-hr-accent px-6 py-3 text-white font-medium hover:bg-hr-dark transition-colors">Request a Quote</a>
+              <a href="/services/land-surveying-services-australia/" class="inline-flex items-center justify-center rounded-md border border-hr-accent px-6 py-3 text-hr-accent font-medium hover:bg-hr-accent hover:text-white transition-colors">View Land Surveying Services</a>
+            </div>
+          </div>
+          <div class="relative aspect-video rounded-lg overflow-hidden">
+            <div class="absolute inset-0 bg-[url('/images/hr-surveyors-land-surveying.jpg')] bg-cover bg-center"></div>
+            <div class="absolute inset-0 bg-white/20"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commercial Intro -->
+    <section class="max-w-5xl mx-auto px-6">
+      <div class="prose prose-lg max-w-3xl mx-auto text-gray-700 mt-12 md:mt-16">
+        <p>
+          Our Melbourne headquarters team based in Clayton provides comprehensive land surveying capability aligned to local planning and development requirements. This aligns with our
+          <a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">land surveying services</a>
+          and integrates with
+          <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying services</a>
+          for construction delivery.
+        </p>
+
+        <p>
+          Existing content on <a href="/expertise/land-surveying-clayton/" class="text-hr-accent hover:text-hr-dark">Land Surveying Clayton</a> outlines local advantages and metro considerations, including industrial heritage boundaries and mixed-use development interfaces—context directly relevant to Clayton property development.
+        </p>
+
+        <p>
+          For equipment and accuracy context used in urban setout and boundary work, review
+          <a href="/total-stations-surveying/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Total Stations surveying</a> and the
+          <a href="/articles/total-stations-vs-gnss/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Total Stations vs GNSS</a> guide.
+        </p>
+      </div>
+    </section>
+
+    <!-- Related Melbourne Content -->
+    <section class="max-w-5xl mx-auto px-6 mt-12">
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold text-hr-dark mb-3">Related Melbourne Content</h2>
+        <ul class="list-disc ml-6 text-gray-700">
+          <li><a href="/expertise/land-surveying-clayton/" class="text-hr-accent hover:text-hr-dark">Land Surveying Clayton</a> — detailed local insights from our HQ.</li>
+          <li><a href="/expertise/land-surveyors-near-epping/" class="text-hr-accent hover:text-hr-dark">Land Surveyors near Epping</a> — metro case references including Penny Lane Moonee Ponds.</li>
+          <li><a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark">Land Surveying Services Australia</a> — national capability with local expertise.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mt-14">
+      <CallToAction />
+    </section>
+  </main>
+</Layout>

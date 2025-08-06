@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+const pageTitle = "Utility Survey Newtown | HR Surveyors";
+const pageDesc = "Subsurface utility survey context referencing established utility and pipeline content within HR Surveyors resources.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <main class="py-0 bg-white">
+    <!-- Hero -->
+    <!-- Hero: utility-focus with image + soft overlay -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0">
+        <div class="w-full h-full bg-[url('/images/hr-surveyors-infrastructure-project.jpg')] bg-cover bg-center opacity-30"></div>
+        <div class="absolute inset-0 bg-white/60"></div>
+      </div>
+      <div class="relative max-w-6xl mx-auto px-6 pt-24 md:pt-32 pb-16 md:pb-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-hr-dark">Utility Survey – Newtown</h1>
+        <p class="text-lg text-gray-700 mt-4 max-w-3xl mx-auto">
+          Contextual overview of subsurface utility survey considerations aligned with our existing materials and related services.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/contact/" class="inline-flex items-center justify-center rounded-md bg-hr-accent px-6 py-3 text-white font-medium hover:bg-hr-dark transition-colors">Request a Quote</a>
+          <a href="/services/professional-surveying-services/" class="inline-flex items-center justify-center rounded-md border border-hr-accent px-6 py-3 text-hr-accent font-medium hover:bg-hr-accent hover:text-white transition-colors">Pipeline & Utilities</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commercial Intro -->
+    <section class="max-w-5xl mx-auto px-6">
+      <div class="prose prose-lg max-w-3xl mx-auto text-gray-700 mt-12 md:mt-16">
+        <p>
+          Our utility-related surveying is positioned within established expertise across civil and infrastructure projects, supported by services such as
+          <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying</a>
+          and documented methodologies for corridor works referenced in our articles.
+        </p>
+
+        <p>
+          For broader service scope including pipeline and utilities context, see the
+          <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Professional Surveying Services</a>
+          page, which outlines "Pipeline & Utilities" as a specialized focus for complex infrastructure integration.
+        </p>
+
+        <p>
+          Utility detection and corridor documentation are also discussed in our insights. For example, the Perth engineering surveyor guide references
+          <a href="/articles/perth-surveyor-guide/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">underground utility detection</a>
+          alongside technology and quality frameworks used on modern projects.
+        </p>
+
+        <p>
+          Where utility surveys interface with transport and venue infrastructure, review the Brisbane Olympics engineering series which includes
+          corridor mapping and as-built documentation of new utility installations within major infrastructure upgrades:
+          <a href="/articles/brisbane-olympics-construction-surveying/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">construction surveying</a>,
+          <a href="/articles/brisbane-olympics-transportation-infrastructure/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">transportation infrastructure</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Related Resources -->
+    <section class="max-w-5xl mx-auto px-6 mt-12">
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold text-hr-dark mb-3">Related Resources</h2>
+        <ul class="list-disc ml-6 text-gray-700">
+          <li>
+            <a href="/services/professional-surveying-services/" class="text-hr-accent hover:text-hr-dark">Professional Surveying Services</a>
+            — includes Pipeline & Utilities within enterprise-grade delivery.
+          </li>
+          <li>
+            <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark">Engineering Surveying Services</a>
+            — civil construction integration for corridor and infrastructure work.
+          </li>
+          <li>
+            <a href="/articles/perth-surveyor-guide/" class="text-hr-accent hover:text-hr-dark">Perth Surveyor Guide</a>
+            — references underground utility detection in modern practice.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mt-14">
+      <CallToAction />
+    </section>
+  </main>
+</Layout>

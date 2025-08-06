@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
+
+const pageTitle = "Land Survey Moonee Ponds | HR Surveyors";
+const pageDesc = "Land surveying insights connected to Melbourne metro projects. Contextual references to Penny Lane Moonee Ponds and Melbourne land surveying services.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <main class="py-0 bg-white">
+    <!-- Hero + Primary CTA -->
+    <section class="relative overflow-hidden bg-hr-dark/5">
+      <div class="max-w-6xl mx-auto px-6 pt-24 md:pt-32 pb-16 md:pb-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-hr-dark">Land Survey – Moonee Ponds</h1>
+        <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
+          Melbourne metro land surveying context aligned with our established expertise. This page references existing work and services without introducing new claims.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/contact/" class="inline-flex items-center justify-center rounded-md bg-hr-accent px-6 py-3 text-white font-medium hover:bg-hr-dark transition-colors">Request a Quote</a>
+          <a href="/services/land-surveying-services-australia/" class="inline-flex items-center justify-center rounded-md border border-hr-accent px-6 py-3 text-hr-accent font-medium hover:bg-hr-accent hover:text-white transition-colors">View Land Surveying Services</a>
+        </div>
+      </div>
+      </section>
+
+      <div class="prose prose-lg max-w-3xl mx-auto text-gray-700 mt-12 md:mt-16">
+        <!-- Trust badges / quick value points (drawn from existing site language) -->
+        <div class="not-prose grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div class="bg-white border rounded-lg p-4">
+            <p class="text-sm text-gray-500">Established Since 2012</p>
+            <p class="text-hr-dark font-semibold">Engineering & Land Surveying Expertise</p>
+          </div>
+          <div class="bg-white border rounded-lg p-4">
+            <p class="text-sm text-gray-500">Metro Melbourne</p>
+            <p class="text-hr-dark font-semibold">Local planning understanding</p>
+          </div>
+          <div class="bg-white border rounded-lg p-4">
+            <p class="text-sm text-gray-500">National Standards</p>
+            <p class="text-hr-dark font-semibold">Consistent quality across services</p>
+          </div>
+        </div>
+        <p>
+          Our Melbourne team delivers land surveying across metro areas with comprehensive understanding of local planning requirements and standards. The approach aligns with our
+          <a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">land surveying services</a>
+          and reflects proven capability mentioned in related Melbourne content.
+        </p>
+
+        <p>
+          A relevant metropolitan reference within our content is the <strong>Penny Lane Moonee Ponds</strong> project, highlighted alongside other Melbourne area insights in our
+          <a href="/expertise/land-surveyors-near-epping/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Epping area analysis</a>.
+          That example showcases urban boundary surveys and subdivision work consistent with Melbourne metro needs.
+        </p>
+
+        <p>
+          For technical context on equipment and accuracy considerations applicable to urban work, review our
+          <a href="/total-stations-surveying/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Total Stations surveying overview</a> and
+          <a href="/articles/total-stations-vs-gnss/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">Total Stations vs GNSS guide</a>.
+        </p>
+
+        <p>
+          Explore complementary expertise that supports land development and construction delivery through
+          <a href="/services/engineering-surveying-services/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">engineering surveying</a> and
+          <a href="/expertise/advanced-surveying-tools/" class="text-hr-accent hover:text-hr-dark transition-colors font-medium">advanced surveying tools</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- On-brand service overview block to strengthen commercial intent -->
+    <section class="max-w-6xl mx-auto px-6 mt-12">
+      <div class="bg-white border rounded-lg">
+        <ServiceOverview serviceType="land" />
+      </div>
+    </section>
+
+    <!-- Related Melbourne Content -->
+    <section class="max-w-5xl mx-auto px-6 mt-12">
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold text-hr-dark mb-3">Related Melbourne Content</h2>
+        <ul class="list-disc ml-6 text-gray-700">
+          <li><a href="/expertise/land-surveying-clayton/" class="text-hr-accent hover:text-hr-dark">Land Surveying Clayton</a> — Melbourne HQ context and local advantages.</li>
+          <li><a href="/expertise/land-surveyors-near-epping/" class="text-hr-accent hover:text-hr-dark">Land Surveyors near Epping</a> — Penny Lane Moonee Ponds reference and metro insights.</li>
+          <li><a href="/services/land-surveying-services-australia/" class="text-hr-accent hover:text-hr-dark">Land Surveying Services Australia</a> — National coverage with local expertise.</li>
+        </ul>
+        <div class="mt-6">
+          <a href="/contact/" class="inline-flex items-center justify-center rounded-md bg-hr-accent px-5 py-3 text-white font-medium hover:bg-hr-dark transition-colors">Speak with our Melbourne team</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-14">
+      <CallToAction />
+    </section>
+  </main>
+</Layout>
