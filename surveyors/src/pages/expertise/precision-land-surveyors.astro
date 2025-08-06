@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
+
+const title = 'Precision Land Surveyors';
+const description = 'Accurate land surveying for subdivisions, set-out and title boundaries using HR Surveyors’ established methods and equipment.';
+---
+
+<Layout title={title} description={description}>
+  <section class="relative overflow-hidden bg-gray-50">
+    <div class="absolute inset-0">
+      <img src="/images/hr-surveyors-land-surveying.jpg" alt="Precision land surveying" class="h-full w-full object-cover opacity-25" loading="eager" />
+    </div>
+    <div class="relative mx-auto max-w-6xl px-6 pt-28 md:pt-36 pb-16 md:pb-24">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-semibold tracking-tight">Precision Land Surveyors</h1>
+        <p class="mt-4 md:mt-6 text-base md:text-lg text-gray-700">
+          Field-proven workflows across subdivisions, construction set-out and detailed site surveys — delivered with clarity and consistency.
+        </p>
+        <div class="mt-6 md:mt-8 flex flex-wrap gap-3">
+          <a href="/contact/" class="inline-flex items-center rounded-md bg-black px-5 py-3 text-white hover:bg-gray-800">Request a Quote</a>
+          <a href="/services/" class="inline-flex items-center rounded-md border border-gray-300 px-5 py-3 hover:bg-gray-100">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-12 md:py-16">
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="rounded-lg border p-6 bg-white">
+        <h3 class="font-semibold">Subdivision & Titles</h3>
+        <p class="mt-2 text-sm text-gray-700">Boundary certainty and documentation aligned with professional standards.</p>
+      </div>
+      <div class="rounded-lg border p-6 bg-white">
+        <h3 class="font-semibold">Construction Set-out</h3>
+        <p class="mt-2 text-sm text-gray-700">Reliable control and set-out to keep programs on track.</p>
+      </div>
+      <div class="rounded-lg border p-6 bg-white">
+        <h3 class="font-semibold">Detail & Feature Surveys</h3>
+        <p class="mt-2 text-sm text-gray-700">Clear deliverables for design and approvals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-8 md:py-12">
+    <ServiceOverview serviceType="land" />
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 pb-20">
+    <div class="grid gap-4 md:grid-cols-2">
+      <a href="/expertise/land-surveyors-near-epping/" class="group rounded-lg border p-6 hover:bg-gray-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Land Surveyors near Epping</h3>
+            <p class="mt-1 text-sm text-gray-600">See related metro work</p>
+          </div>
+          <img src="/icons/map.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+      <a href="/expertise/land-survey-mill-park/" class="group rounded-lg border p-6 hover:bg-gray-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Land Survey — Mill Park</h3>
+            <p class="mt-1 text-sm text-gray-600">North corridor delivery</p>
+          </div>
+          <img src="/icons/building.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-gray-900">
+    <div class="mx-auto max-w-6xl px-6 py-12 md:py-16">
+      <CallToAction title="Need precise survey control?" subtitle="Speak with our team about your next set-out or feature survey." primaryText="Contact HR Surveyors" primaryHref="/contact" />
+    </div>
+  </section>
+</Layout>

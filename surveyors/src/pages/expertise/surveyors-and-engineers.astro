@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
+
+const title = 'Surveyors and Engineers';
+const description = 'Integrated surveying to support engineering design, set-out and civil delivery.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Split hero: text left, image right -->
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-6xl px-6 pt-28 md:pt-36 pb-10 md:pb-14">
+      <div class="grid gap-8 md:grid-cols-2 md:items-center">
+        <div>
+          <h1 class="text-3xl md:text-5xl font-semibold tracking-tight">Surveyors and Engineers</h1>
+          <p class="mt-4 md:mt-6 text-base md:text-lg text-gray-700">
+            From control and set-out to detailed as-constructed outcomes, survey data aligned to engineering requirements for dependable delivery.
+          </p>
+          <div class="mt-6 md:mt-8 flex flex-wrap gap-3">
+            <a href="/contact/" class="inline-flex items-center rounded-md bg-black px-5 py-3 text-white hover:bg-gray-800">Discuss Your Project</a>
+            <a href="/services/" class="inline-flex items-center rounded-md border border-gray-300 px-5 py-3 hover:bg-gray-100">View Services</a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="rounded-xl overflow-hidden ring-1 ring-gray-200">
+            <img src="/images/hr-surveyors-engineering-surveying.jpg" alt="Engineering surveying context" class="h-full w-full object-cover" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two-lane pathway -->
+  <section class="mx-auto max-w-6xl px-6 py-8 md:py-12">
+    <div class="grid gap-6 md:grid-cols-2">
+      <a href="/expertise/civil-engineering-surveys/" class="group rounded-lg border p-6 hover:bg-gray-50 bg-white">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Civil & Infrastructure</h3>
+            <p class="mt-1 text-sm text-gray-600">Control, alignment and QA for roads and structures</p>
+          </div>
+          <img src="/icons/infrastructure.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+      <a href="/expertise/engineering-surveys-perth/" class="group rounded-lg border p-6 hover:bg-gray-50 bg-white">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Engineering Surveys</h3>
+            <p class="mt-1 text-sm text-gray-600">Methods for set-out and as-built capture</p>
+          </div>
+          <img src="/icons/level.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Service overview: engineering -->
+  <section class="mx-auto max-w-6xl px-6 py-8 md:py-12">
+    <ServiceOverview serviceType="engineering" />
+  </section>
+
+  <!-- Related articles -->
+  <section class="mx-auto max-w-6xl px-6 pb-20">
+    <div class="grid gap-4 md:grid-cols-2">
+      <a href="/articles/total-stations-vs-gnss/" class="group rounded-lg border p-6 hover:bg-gray-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Total Stations vs GNSS</h3>
+            <p class="mt-1 text-sm text-gray-600">Choosing methods for accuracy and efficiency</p>
+          </div>
+          <img src="/icons/gps.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+      <a href="/articles/engineering-surveyor-guide/" class="group rounded-lg border p-6 hover:bg-gray-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Engineering Surveyor Guide</h3>
+            <p class="mt-1 text-sm text-gray-600">Role and responsibilities on projects</p>
+          </div>
+          <img src="/icons/equipment.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-gray-900">
+    <div class="mx-auto max-w-6xl px-6 py-12 md:py-16">
+      <CallToAction title="Align survey with engineering intent" subtitle="Talk to our team about set-out, control and as-built requirements." primaryText="Contact HR Surveyors" primaryHref="/contact" />
+    </div>
+  </section>
+</Layout>

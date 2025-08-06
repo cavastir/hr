@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
+
+const title = 'Utility Surveyors — Queens Park';
+const description = 'Underground utilities and infrastructure surveys to support planning, design and delivery.';
+---
+
+<Layout title={title} description={description}>
+  <section class="relative overflow-hidden bg-gray-950">
+    <div class="absolute inset-0">
+      <img src="/images/hr-surveyors-infrastructure-project.jpg" alt="Utilities and infrastructure survey context" class="h-full w-full object-cover opacity-40" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-900/60 to-gray-900/80"></div>
+    </div>
+    <div class="relative mx-auto max-w-6xl px-6 pt-28 md:pt-36 pb-16 md:pb-24 text-white">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-semibold tracking-tight">Utility Surveyors — Queens Park</h1>
+        <p class="mt-4 md:mt-6 text-base md:text-lg text-gray-100">
+          Clear plans of existing services for safer excavation and coordinated delivery across road, civil and building projects.
+        </p>
+        <div class="mt-6 md:mt-8 flex flex-wrap gap-3">
+          <a href="/contact/" class="inline-flex items-center rounded-md bg-white px-5 py-3 text-gray-900 hover:bg-gray-100">Request a Quote</a>
+          <a href="/services/" class="inline-flex items-center rounded-md border border-white/30 px-5 py-3 hover:bg-white/10">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-12 md:py-16">
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="rounded-lg border p-6 bg-white">
+        <h3 class="font-semibold">Dial Before You Dig (DBYD)</h3>
+        <p class="mt-2 text-sm text-gray-700">Consolidated service information to support safe works.</p>
+      </div>
+      <div class="rounded-lg border p-6 bg-white">
+        <h3 class="font-semibold">Survey Integration</h3>
+        <p class="mt-2 text-sm text-gray-700">Utilities located and related to survey control for dependable coordination.</p>
+      </div>
+      <div class="rounded-lg border p-6 bg-white">
+        <h3 class="font-semibold">Construction Support</h3>
+        <p class="mt-2 text-sm text-gray-700">Clarity on service conflicts to reduce rework and delays.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-8 md:py-12">
+    <ServiceOverview serviceType="civil" />
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 pb-20">
+    <div class="grid gap-4 md:grid-cols-2">
+      <a href="/expertise/civil-engineering-surveys/" class="group rounded-lg border p-6 hover:bg-gray-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Civil Engineering Surveys</h3>
+            <p class="mt-1 text-sm text-gray-600">Road and infrastructure delivery</p>
+          </div>
+          <img src="/icons/infrastructure.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+      <a href="/services/" class="group rounded-lg border p-6 hover:bg-gray-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-medium">Professional Surveying Services</h3>
+            <p class="mt-1 text-sm text-gray-600">Pipeline & utilities coordination</p>
+          </div>
+          <img src="/icons/specificationsurvey.svg" alt="" class="h-6 w-6 opacity-60 group-hover:opacity-100" />
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-gray-900">
+    <div class="mx-auto max-w-6xl px-6 py-12 md:py-16">
+      <CallToAction title="Need clarity on existing services?" subtitle="Get dependable utility survey information aligned to site control." primaryText="Contact HR Surveyors" primaryHref="/contact" />
+    </div>
+  </section>
+</Layout>
